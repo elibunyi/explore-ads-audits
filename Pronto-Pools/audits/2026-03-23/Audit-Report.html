@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pronto Pools — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #12244a;
+    --navy-light: #1e3a6e;
+    --accent: #2d9cdb;
+    --accent-bright: #56c4f5;
+    --gold: #f0b429;
+    --green: #27ae60;
+    --red: #e74c3c;
+    --orange: #e67e22;
+    --yellow-bg: #fffbeb;
+    --text-light: #e8eef7;
+    --text-muted: #8fa3c0;
+    --border: #1e3a6e;
+    --card-bg: #0f1e3a;
+    --row-alt: #0c1830;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--text-light);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  /* HEADER */
+  .report-header {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+    border-bottom: 3px solid var(--accent);
+    padding: 32px 40px 28px;
+  }
+  .report-header h1 { font-size: 26px; font-weight: 700; color: #fff; letter-spacing: -0.3px; }
+  .report-header .meta { margin-top: 8px; color: var(--text-muted); font-size: 13px; }
+  .report-header .meta span { margin-right: 24px; }
+  .report-header .meta .acct { color: var(--accent-bright); font-weight: 600; }
+  /* SCORECARD */
+  .scorecard-bar {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 20px 40px;
+    display: flex;
+    gap: 32px;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+  .score-pill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 22px;
+    min-width: 90px;
+  }
+  .score-pill .val { font-size: 28px; font-weight: 800; color: #fff; }
+  .score-pill .lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .score-pill.health .val { color: var(--orange); }
+  .score-pill.spend .val { color: var(--accent-bright); }
+  .score-pill.conv .val { color: var(--green); }
+  .score-pill.cpa .val { color: var(--gold); }
+  .health-verdict {
+    background: var(--navy-mid);
+    border: 1px solid var(--orange);
+    border-radius: 8px;
+    padding: 12px 18px;
+    flex: 1;
+    min-width: 260px;
+  }
+  .health-verdict .title { font-size: 12px; text-transform: uppercase; color: var(--text-muted); margin-bottom: 4px; }
+  .health-verdict .desc { font-size: 14px; color: #fff; }
+  /* SECTION */
+  .section {
+    padding: 24px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section:last-child { border-bottom: none; }
+  .section-title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .section-title h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--accent-bright);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .section-num {
+    background: var(--navy-light);
+    color: var(--accent-bright);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  /* FINDINGS */
+  .finding {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+  }
+  .finding .sev {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 4px;
+    white-space: nowrap;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .sev.p1 { background: #4a0f0f; color: var(--red); border: 1px solid var(--red); }
+  .sev.p2 { background: #4a2f0a; color: var(--orange); border: 1px solid var(--orange); }
+  .sev.p3 { background: #3a3a0a; color: var(--gold); border: 1px solid var(--gold); }
+  .sev.ok { background: #0a2e1a; color: var(--green); border: 1px solid var(--green); }
+  .sev.info { background: #0a1e3a; color: var(--accent); border: 1px solid var(--accent); }
+  .finding .body { flex: 1; }
+  .finding .body strong { color: #fff; font-size: 14px; }
+  .finding .body p { color: var(--text-light); margin-top: 4px; font-size: 13px; }
+  .finding .body .rec {
+    margin-top: 8px;
+    background: var(--navy-mid);
+    border-left: 3px solid var(--accent);
+    padding: 8px 12px;
+    border-radius: 0 4px 4px 0;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .finding .body .rec strong { color: var(--accent-bright); font-size: 12px; }
+  /* COPY BLOCKS */
+  .copy-block {
+    background: #060e1e;
+    border: 1px solid var(--navy-light);
+    border-radius: 6px;
+    padding: 12px 14px;
+    font-family: 'Consolas', 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--accent-bright);
+    cursor: pointer;
+    position: relative;
+    margin: 8px 0;
+    white-space: pre-wrap;
+    word-break: break-word;
+    transition: border-color 0.2s;
+  }
+  .copy-block:hover { border-color: var(--accent); }
+  .copy-block::after {
+    content: 'Click to copy';
+    position: absolute;
+    top: 6px; right: 8px;
+    font-size: 10px;
+    color: var(--text-muted);
+    font-family: system-ui;
+  }
+  .copy-block.copied::after { content: 'Copied!'; color: var(--green); }
+  /* TABLES */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 8px;
+  }
+  .data-table th {
+    background: var(--navy-light);
+    color: var(--text-muted);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-light);
+  }
+  .data-table tr:nth-child(even) td { background: var(--row-alt); }
+  .data-table tr:hover td { background: var(--navy-mid); }
+  .tag-green { color: var(--green); font-weight: 600; }
+  .tag-red { color: var(--red); font-weight: 600; }
+  .tag-orange { color: var(--orange); font-weight: 600; }
+  .tag-gold { color: var(--gold); font-weight: 600; }
+  .tag-muted { color: var(--text-muted); }
+  /* QS BAR */
+  .qs-bar {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .qs-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+    background: var(--border);
+  }
+  .qs-dot.filled { background: var(--accent); }
+  .qs-dot.filled.good { background: var(--green); }
+  .qs-dot.filled.warn { background: var(--gold); }
+  .qs-dot.filled.bad { background: var(--red); }
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+  /* PILL GRID */
+  .pill-grid { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .pill {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: var(--text-light);
+  }
+  .pill.neg { border-color: var(--red); color: var(--red); }
+  .pill.pos { border-color: var(--green); color: var(--green); }
+  .pill.warn { border-color: var(--orange); color: var(--orange); }
+  /* WASTE TABLE */
+  .waste-kw { color: var(--red); font-style: italic; }
+  /* SUMMARY BOX */
+  .summary-box {
+    background: var(--navy-mid);
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 20px;
+  }
+  .summary-box h3 { color: var(--accent-bright); font-size: 14px; margin-bottom: 8px; }
+  .summary-box ul { padding-left: 18px; }
+  .summary-box li { margin-bottom: 4px; color: var(--text-light); font-size: 13px; }
+  /* CHANGE LOG */
+  .change-entry {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    font-size: 13px;
+  }
+  .change-entry .date { color: var(--text-muted); font-size: 12px; white-space: nowrap; }
+  .change-entry .op { color: var(--gold); font-size: 11px; font-weight: 700; }
+  /* FOOTER */
+  .report-footer {
+    padding: 24px 40px;
+    background: var(--navy-mid);
+    color: var(--text-muted);
+    font-size: 12px;
+    border-top: 1px solid var(--border);
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <h1>Pronto Pools — Google Ads Audit &amp; Campaign Rebuild</h1>
+  <div class="meta">
+    <span>Audit Date: <strong>March 23, 2026</strong></span>
+    <span>Period: Feb 21 – Mar 23, 2026 (30 days)</span>
+    <span class="acct">Account: 859-932-2758</span>
+    <span>Brand: Leisure Pools</span>
+    <span>Market: Wilmington DE / Delaware County PA</span>
+  </div>
+</div>
+
+<!-- SCORECARD -->
+<div class="scorecard-bar">
+  <div class="score-pill health"><span class="val">44</span><span class="lbl">Health Score</span></div>
+  <div class="score-pill spend"><span class="val">$793</span><span class="lbl">30d Spend</span></div>
+  <div class="score-pill conv"><span class="val">4</span><span class="lbl">Conversions</span></div>
+  <div class="score-pill cpa"><span class="val">$198</span><span class="lbl">Cost/Conv</span></div>
+  <div class="score-pill"><span class="val">320</span><span class="lbl">Clicks</span></div>
+  <div class="score-pill"><span class="val">$2.48</span><span class="lbl">Avg CPC</span></div>
+  <div class="health-verdict">
+    <div class="title">Audit Verdict</div>
+    <div class="desc">Fragmented keyword structure driving high CPA. Budget dominated by non-converting generic terms. Shared negatives linked but ~30% waste still leaking through. Sitelinks present at campaign level but missing descriptions at account level. No device modifiers. One call asset not eligible. Core conversion tracking intact.</div>
+  </div>
+</div>
+
+<!-- SECTION 1: ACCOUNT OVERVIEW -->
+<div class="section">
+  <div class="section-title"><span class="section-num">01</span><h2>Account Overview</h2></div>
+  <table class="data-table">
+    <tr><th>Field</th><th>Value</th><th>Notes</th></tr>
+    <tr><td>Account Name</td><td>Pronto Pools</td><td></td></tr>
+    <tr><td>Account ID</td><td>859-932-2758</td><td></td></tr>
+    <tr><td>Brand</td><td>Leisure Pools</td><td></td></tr>
+    <tr><td>Market</td><td>Wilmington DE / Delaware County PA</td><td>Serves DE + southeastern PA</td></tr>
+    <tr><td>Websites</td><td>prontofiberglasspools.com, prontopool.com</td><td></td></tr>
+    <tr><td>Budget</td><td>~$16.12/day (~$500/mo)</td><td>Low-end budget for fiberglass pool market</td></tr>
+    <tr><td>Campaigns (ENABLED)</td><td>1</td><td>Single Search campaign</td></tr>
+    <tr><td>Ad Groups</td><td>1</td><td>All keywords in one ad group — structural risk</td></tr>
+    <tr><td>Keywords (ENABLED)</td><td>23 (all PHRASE match)</td><td>No Exact, no Broad — phrase-only</td></tr>
+    <tr><td>Bidding Strategy</td><td>Max Clicks (TARGET_SPEND)</td><td>$3.50 CPC cap — appropriate at 4 conv/30d</td></tr>
+    <tr><td>Geo Targeting</td><td>PRESENCE (enum 7)</td><td class="tag-green">Correct — users physically in market</td></tr>
+    <tr><td>Shared Negative List</td><td>Master Exclusion List 3.18 (162 members)</td><td>Linked — all BROAD MATCH</td></tr>
+    <tr><td>Conversion Actions</td><td>3 active</td><td>Contact Dealer, Download Brochure, Submit Lead Form (removed?)</td></tr>
+    <tr><td>RSA Ad Copy</td><td>Unverifiable via API</td><td>Serialization limitation — not a finding</td></tr>
+  </table>
+</div>
+
+<!-- SECTION 2: CAMPAIGN STRUCTURE -->
+<div class="section">
+  <div class="section-title"><span class="section-num">02</span><h2>Campaign Structure</h2></div>
+
+  <div class="finding">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>Single-Ad-Group Architecture — All 23 keywords in one ad group</strong>
+      <p>Everything lives in one ad group inside one campaign. This means one RSA serves all query intents simultaneously — brand queries, "pool companies" queries, "fiberglass pool installation" queries, and "swimming pool contractors" queries all getting the same ad. Google cannot optimize ad/keyword relevance across intents, degrading Quality Scores and CTR. Low QS on generic terms (pool companies QS 3, in ground pools QS 5, swimming pool installation QS 5) is partly structural.</p>
+      <div class="rec"><strong>Recommendation:</strong> Rebuild into 3–4 tightly themed ad groups: (1) Fiberglass-Specific [fiberglass pools, fiberglass pool installation, fiberglass pool cost], (2) Inground Pool General [inground pools, in ground pools near me, pool installation], (3) Pool Company/Builder [pool companies, pool builders, swimming pool contractors], (4) Design/Style [best swimming pool design, prefab pools, fiberglass pool shell]. Each ad group gets its own RSA with matching headlines.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>No Exact Match Keywords — Phrase-Only Coverage</strong>
+      <p>All 23 keywords are PHRASE match (match type 3). While phrase is appropriate per account rules (no broad), exact match on proven performers would improve control over spend. "fiberglass pools", "pool installation", "fiberglass pool installation" are confirmed converters — exact versions would reduce wasted clicks on search term variants.</p>
+      <div class="rec"><strong>Recommendation:</strong> Add exact match versions of top converters: [fiberglass pools], [pool installation], [fiberglass pools near me], [fiberglass pool installation]. Keep phrase alongside. This improves quality score segmentation and bid control.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>"fiberglass pools canada" — Geo-Irrelevant Keyword</strong>
+      <p>This keyword has zero impressions and zero spend in 30 days, but its presence indicates the keyword list was not cleaned for market relevance. The dealer serves Wilmington DE / Delaware County PA — Canada is irrelevant and would waste budget if it ever triggers.</p>
+      <div class="rec"><strong>Recommendation:</strong> Pause or remove "fiberglass pools canada" from this account.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>"leisure pools" Brand Keyword with QS 3</strong>
+      <p>"leisure pools" (PHRASE) has QS 3 — abnormally low for a brand keyword. This typically indicates ad copy/landing page mismatch. The keyword generated 29 impressions and 1 click at $2.14 in 30 days — negligible volume but the low QS raises concern about how the RSA handles brand queries. At a dealer account, brand keywords should be handled carefully to avoid cannibalization or brand confusion.</p>
+      <div class="rec"><strong>Recommendation:</strong> If the RSA doesn't have Leisure Pools brand mentions in headlines (unverifiable via API), the low QS is likely from a landing page mismatch. Verify LP and ad copy alignment. Consider whether this brand term should remain in a dealer account.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>Max Clicks Bidding — Appropriate for Conversion Volume</strong>
+      <p>With only 4 conversions in 30 days, smart bidding strategies (Target CPA, Maximize Conversions) require a minimum of ~30–50 conversions to optimize reliably. Max Clicks with $3.50 CPC cap is the correct strategy at this conversion volume. CPC cap prevents runaway CPCs on competitive terms.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 3: KEYWORD PERFORMANCE -->
+<div class="section">
+  <div class="section-title"><span class="section-num">03</span><h2>Keyword Performance</h2></div>
+  <table class="data-table">
+    <tr>
+      <th>Keyword</th><th>Match</th><th>QS</th><th>Impressions</th><th>Clicks</th><th>Cost</th><th>Conv</th><th>CPA</th><th>CTR</th><th>Status</th>
+    </tr>
+    <tr>
+      <td>"pool companies"</td><td>Phrase</td>
+      <td><span class="tag-red">3</span></td>
+      <td>521</td><td>62</td><td>$158.83</td><td>0</td><td>—</td><td>11.9%</td>
+      <td><span class="tag-orange">⚠ Waste</span></td>
+    </tr>
+    <tr>
+      <td>"fiberglass pools"</td><td>Phrase</td>
+      <td><span class="tag-green">8</span></td>
+      <td>357</td><td>64</td><td>$149.60</td><td>2</td><td>$74.80</td><td>17.9%</td>
+      <td><span class="tag-green">✓ Top</span></td>
+    </tr>
+    <tr>
+      <td>"swimming pool installation"</td><td>Phrase</td>
+      <td class="tag-gold">5</td>
+      <td>416</td><td>49</td><td>$116.45</td><td>0</td><td>—</td><td>11.8%</td>
+      <td><span class="tag-orange">⚠ Monitor</span></td>
+    </tr>
+    <tr>
+      <td>"in ground pools"</td><td>Phrase</td>
+      <td class="tag-gold">5</td>
+      <td>183</td><td>36</td><td>$92.89</td><td>0</td><td>—</td><td>19.7%</td>
+      <td><span class="tag-orange">⚠ Monitor</span></td>
+    </tr>
+    <tr>
+      <td>"best swimming pool design"</td><td>Phrase</td>
+      <td><span class="tag-red">0*</span></td>
+      <td>189</td><td>28</td><td>$69.51</td><td>0</td><td>—</td><td>14.8%</td>
+      <td><span class="tag-red">⚠ Waste</span></td>
+    </tr>
+    <tr>
+      <td>"swimming pool contractors"</td><td>Phrase</td>
+      <td><span class="tag-red">0*</span></td>
+      <td>267</td><td>21</td><td>$60.63</td><td>0</td><td>—</td><td>7.9%</td>
+      <td><span class="tag-orange">⚠ Monitor</span></td>
+    </tr>
+    <tr>
+      <td>"prefab pools"</td><td>Phrase</td>
+      <td class="tag-gold">5</td>
+      <td>184</td><td>22</td><td>$53.56</td><td>0</td><td>—</td><td>12.0%</td>
+      <td><span class="tag-orange">⚠ Monitor</span></td>
+    </tr>
+    <tr>
+      <td>"in ground swimming pool"</td><td>Phrase</td>
+      <td><span class="tag-red">0*</span></td>
+      <td>131</td><td>18</td><td>$42.62</td><td>0</td><td>—</td><td>13.7%</td>
+      <td><span class="tag-orange">⚠ Monitor</span></td>
+    </tr>
+    <tr>
+      <td>"pool installation"</td><td>Phrase</td>
+      <td class="tag-gold">5</td>
+      <td>125</td><td>15</td><td>$37.87</td><td>1</td><td>$37.87</td><td>12.0%</td>
+      <td><span class="tag-green">✓ OK</span></td>
+    </tr>
+    <tr>
+      <td>"fiberglass pool cost"</td><td>Phrase</td>
+      <td class="tag-gold">6</td>
+      <td>62</td><td>3</td><td>$7.02</td><td>0</td><td>—</td><td>4.8%</td>
+      <td class="tag-muted">Low Vol</td>
+    </tr>
+    <tr>
+      <td>"fiberglass pools for sale"</td><td>Phrase</td>
+      <td class="tag-gold">6</td>
+      <td>1</td><td>1</td><td>$2.29</td><td>1</td><td>$2.29</td><td>100%</td>
+      <td><span class="tag-green">✓ Conv</span></td>
+    </tr>
+    <tr>
+      <td>"leisure pools"</td><td>Phrase</td>
+      <td><span class="tag-red">3</span></td>
+      <td>29</td><td>1</td><td>$2.14</td><td>0</td><td>—</td><td>3.4%</td>
+      <td><span class="tag-orange">⚠ Low QS</span></td>
+    </tr>
+    <tr>
+      <td>"fiberglass pool installation"</td><td>Phrase</td>
+      <td><span class="tag-green">7</span></td>
+      <td>0</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td class="tag-muted">No Impr</td>
+    </tr>
+    <tr>
+      <td>"fiberglass pools near me"</td><td>Phrase</td>
+      <td><span class="tag-green">8</span></td>
+      <td>2</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td class="tag-muted">Low Impr</td>
+    </tr>
+    <tr>
+      <td>"fiberglass swimming pool"</td><td>Phrase</td>
+      <td><span class="tag-green">7</span></td>
+      <td>3</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td class="tag-muted">Low Impr</td>
+    </tr>
+    <tr>
+      <td>"pool builders"</td><td>Phrase</td>
+      <td class="tag-gold">5</td>
+      <td>1</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td class="tag-muted">No Spend</td>
+    </tr>
+    <tr>
+      <td>"fiberglass pool shell"</td><td>Phrase</td>
+      <td class="tag-gold">6</td>
+      <td>5</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td class="tag-muted">No Clicks</td>
+    </tr>
+    <tr>
+      <td>"fiberglass pools canada"</td><td>Phrase</td>
+      <td><span class="tag-red">0*</span></td>
+      <td>0</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td><span class="tag-red">Remove</span></td>
+    </tr>
+    <tr>
+      <td>"pool companies" + 5 more zero-spend</td><td>Phrase</td>
+      <td>0–5</td>
+      <td>0</td><td>0</td><td>$0</td><td>0</td><td>—</td><td>—</td>
+      <td class="tag-muted">No activity</td>
+    </tr>
+  </table>
+  <p style="font-size:11px; color:var(--text-muted); margin-top:6px;">* QS 0 = insufficient data, not necessarily poor. Phrase match type confirmed; broad match (type 4) not present in ad group keywords.</p>
+
+  <div class="finding" style="margin-top:16px;">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>"pool companies" — Largest Spend, Zero Conversions ($158.83 / 62 clicks)</strong>
+      <p>This is the single biggest spend item — 20% of total budget — and generated zero conversions. At QS 3, it also signals poor ad/LP relevance for this query. "Pool companies" is an extremely broad research query (could be service companies, pool supply companies, any geography). The search term data confirms it's matching irrelevant variants. At this budget level, $159 on one non-converting keyword is a structural problem.</p>
+      <div class="rec"><strong>Recommendation:</strong> If keeping, move to its own ad group with dedicated RSA copy matching "pool company" intent. Monitor conversion on next 30 days. If zero conversions persist, consider pausing. Alternatively, replace with more qualified variants: "fiberglass pool companies near me", "pool company [city]".</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 4: SEARCH TERM ANALYSIS -->
+<div class="section">
+  <div class="section-title"><span class="section-num">04</span><h2>Search Term Analysis &amp; Waste</h2></div>
+
+  <div class="summary-box">
+    <h3>Waste Summary</h3>
+    <ul>
+      <li>50 search terms returned (ordered by cost). Estimated waste: ~$150–200 in 30 days (~20–25% of spend).</li>
+      <li>Primary waste categories: above-ground pool terms, DIY/build-your-own terms, competitor brand terms, supply store terms, and semi-inground terms.</li>
+      <li>Shared set "Master Exclusion List 3.18" is linked — but several terms it should have blocked are still triggering (see gap analysis below).</li>
+    </ul>
+  </div>
+
+  <div class="finding">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>Negative Keyword Gap — Shared Set Terms Still Triggering</strong>
+      <p>The shared set contains "gunite", "above ground", "how to build" — yet the following terms appeared in search data:</p>
+      <div class="pill-grid">
+        <span class="pill neg">"gunite pool" — appeared in search terms</span>
+        <span class="pill neg">"how to build a swimming pool" — appeared</span>
+        <span class="pill neg">"above ground pool with deck" — appeared</span>
+        <span class="pill neg">"above ground pool and installation" — appeared</span>
+      </div>
+      <p style="margin-top:8px;">This may be a negative keyword conflict (where a positive keyword pulls a term that a broad-match negative should block but doesn't due to matching rules), or the impressions occurred before the shared set was attached. Regardless, these terms generated clicks and spend.</p>
+      <div class="rec"><strong>Recommendation:</strong> Add campaign-level exact/phrase negatives for these specific terms: [gunite pool], [above ground pool], [above ground pools], ["how to build a swimming pool"]. Do not rely solely on the shared set for high-waste terms — reinforce with campaign-level negatives.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>High-Waste Search Terms — Recommend Negating</strong>
+      <p>The following terms appeared with confirmed spend but are clearly irrelevant. "Plunge" terms are intentionally excluded from this list per account rules (Leisure Pools sells The Fiji Plunge™ and Palladium Plunge™).</p>
+      <table class="data-table" style="margin-top:8px;">
+        <tr><th>Search Term</th><th>Reason to Negate</th><th>Action</th></tr>
+        <tr><td class="waste-kw">above ground pool with deck</td><td>Not an inground pool buyer</td><td>Add negative</td></tr>
+        <tr><td class="waste-kw">above ground pool and installation</td><td>Not an inground pool buyer</td><td>Add negative</td></tr>
+        <tr><td class="waste-kw">semi inground pool</td><td>Different product category</td><td>Add negative</td></tr>
+        <tr><td class="waste-kw">shipping container pools</td><td>Not a fiberglass pool</td><td>Add negative</td></tr>
+        <tr><td class="waste-kw">esther williams pools</td><td>Competitor brand</td><td>Add negative (brand)</td></tr>
+        <tr><td class="waste-kw">diy plunge pool kit</td><td>DIY, not professional installation</td><td>Add negative (diy)</td></tr>
+        <tr><td class="waste-kw">how to build a swimming pool</td><td>DIY intent, not buyer</td><td>Add negative (shared set gap)</td></tr>
+        <tr><td class="waste-kw">gunite pool</td><td>Wrong pool type</td><td>Add negative (shared set gap)</td></tr>
+        <tr><td class="waste-kw">pool stores near me</td><td>Supply store, not installer</td><td>Add negative (stores)</td></tr>
+        <tr><td class="waste-kw">budds pools photos</td><td>Competitor brand search</td><td>Add negative (budds)</td></tr>
+        <tr><td class="waste-kw">inground pool cost nj</td><td>Adjacent geo but NJ competitor focus</td><td>Monitor — may be valid</td></tr>
+      </table>
+      <div class="rec"><strong>Recommendation:</strong> Add the above as campaign-level negatives. For "diy", "esther williams", "budds", "semi inground", "shipping container" — add to the Master Exclusion shared set for fleet-wide protection. Keep "plunge" terms unrestricted.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>"plunge pool" Terms — Correctly NOT Negated</strong>
+      <p>Confirmed: "plunge pool", "plunge pools", "plunge pools for small backyards" and similar are NOT in the shared exclusion list. Leisure Pools sells The Fiji Plunge™ and The Palladium Plunge™ — these are valid product-aligned searches. "plungIE pool" (misspelling) is correctly negated in the shared set. This distinction is correct and should be maintained.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev info">INFO</span>
+    <div class="body">
+      <strong>Top Converting Search Terms (Confirmed)</strong>
+      <p>"small fiberglass pools" — 2 conversions, $7.57 cost ($3.79 CPA — exceptional). "fiberglass pools" core term — 2 conversions. "pool installation" — 1 conversion. "fiberglass pools for sale" — 1 conversion at $2.29. These four terms are the entire conversion base for the period.</p>
+      <div class="rec"><strong>Recommendation:</strong> Add "small fiberglass pools" as a dedicated keyword — it's delivering at very low CPA and is not currently a listed keyword (it's a search term match via phrase). Protect this traffic with a dedicated phrase/exact keyword.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 5: CONVERSION TRACKING -->
+<div class="section">
+  <div class="section-title"><span class="section-num">05</span><h2>Conversion Tracking</h2></div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>Contact Dealer — ENABLED, include_in_conversions=true (category: CONTACT)</strong>
+      <p>Name: "Pronto Fiberglass Pools (web) Contact Dealer". Status: ENABLED (2). Category: 18 (CONTACT). Included in conversions metric. This is the primary conversion action — correctly configured.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>Download Brochure — ENABLED, include_in_conversions=true (category: DOWNLOAD)</strong>
+      <p>Name: "Pronto Fiberglass Pools (web) Download Brochure". Status: ENABLED (2). Category: 3 (DOWNLOAD). Included in conversions metric. Per Explore Industries policy, brochure downloads require a contact form fill — these are real qualified leads and are correctly counted as conversions. Do not demote.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>"Submit lead form" — Status Returned as 3 (Likely REMOVED), But Still Included</strong>
+      <p>This conversion action returned status=3. Per API enum, 2=ENABLED, 3=REMOVED, 4=PAUSED. If status 3 is correct, this action is REMOVED but still has include_in_conversions=true. This could inflate reported conversions or cause confusion in reporting. The "Purchase" action is correctly PAUSED and excluded.</p>
+      <div class="rec"><strong>Recommendation:</strong> Verify in Google Ads UI whether "Submit lead form" is actually removed or if the status=3 enum is correct. If removed, the include=true flag is a data hygiene issue. Clean it up so only active, intentional actions count.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 6: NEGATIVE KEYWORDS -->
+<div class="section">
+  <div class="section-title"><span class="section-num">06</span><h2>Negative Keywords</h2></div>
+
+  <div class="finding">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>No Campaign-Level Negative Keywords — Relying Solely on Shared Set</strong>
+      <p>The campaign_criterion query for negatives returned empty. All negative keyword coverage comes from the Master Exclusion List 3.18 (shared set). Campaign-level negatives are absent. This is a fragility risk — the shared set is a fleet-wide protection layer, not a campaign-specific precision tool. Campaign-level negatives should reinforce and extend the shared set for this specific market's waste patterns.</p>
+      <div class="rec"><strong>Recommendation:</strong> Add campaign-level phrase negatives for terms specific to Pronto's market waste: "above ground pool", "semi inground", "shipping container pool", "diy pool", "esther williams", "budds pools", "pool store", "pool supply", "how to build", "gunite pool". These supplement the shared set without modifying it.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>Master Exclusion List 3.18 — Linked, 162 Members</strong>
+      <p>The shared exclusion list is correctly linked. Contains: above-ground, DIY, competitor brands (partial), supply/service terms. All 162 members are BROAD MATCH (type 4) — standard configuration for shared negative lists. The plunge exception is correctly handled ("plungIE pool" negated, "plunge pool" not negated).</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 7: AD EXTENSIONS / ASSETS -->
+<div class="section">
+  <div class="section-title"><span class="section-num">07</span><h2>Ad Assets (Extensions)</h2></div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>Campaign-Level Sitelinks — 4 Present with Descriptions</strong>
+      <p>Four sitelinks at campaign level (field_type=13), all ENABLED:</p>
+      <table class="data-table" style="margin-top:8px;">
+        <tr><th>Sitelink Text</th><th>Description 1</th><th>Description 2</th></tr>
+        <tr><td>Contact Us</td><td>Want To Learn More?</td><td>We'd Love To Answer Your Questions.</td></tr>
+        <tr><td>Modern Pool Designs</td><td>Rectangular &amp; Freeform Pool Shapes</td><td>Discover Our Collection</td></tr>
+        <tr><td>2025 Pool Brochure</td><td>Dive into 2025's Best Pools</td><td>Download Your Free Brochure Now</td></tr>
+        <tr><td>About Us</td><td>Trusted Fiberglass Pool Builders</td><td>Backyard Brilliance, Built for You</td></tr>
+      </table>
+      <p style="margin-top:6px;">Descriptions present — good. Copy is relevant and on-brand. Brochure sitelink directly supports the download conversion action.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>Account-Level Sitelinks — 4 Present, No Descriptions</strong>
+      <p>Four sitelinks exist at account/customer level (field_type=13): "Fiberglass Pool Colors", "Our Story", "Pool Designs", "Fiberglass Pool Gallery". These have no description lines — reducing their click-through potential and ad quality signal.</p>
+      <div class="rec"><strong>Recommendation:</strong> Add 2-line descriptions to each account-level sitelink. Example: "Fiberglass Pool Colors" → Desc1: "AquaGuard®X Color System" / Desc2: "Diamond-Like Sparkle in 15 Colors". "Pool Designs" → Desc1: "Rectangular, Freeform & Plunge Pools" / Desc2: "Find Your Perfect Pool Shape".</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>Call Asset Not Eligible (primary_status=7)</strong>
+      <p>Asset 203546962328 (field_type=18 = CALL) has status=ENABLED but primary_status=7, indicating it is not serving. Status 7 typically means the asset is not eligible to serve — could be missing phone number, verification issue, or a policy flag. This is a significant gap: call assets are high-intent for a local service business. If the phone asset isn't serving, the account is losing call conversions.</p>
+      <div class="rec"><strong>Recommendation:</strong> Check this call asset in the UI. Verify the phone number is set and verified. If the number isn't attached or there's a verification issue, re-create the call asset with Pronto's verified business phone number. Call assets for local pool installers are high-value — this should be running.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev info">INFO</span>
+    <div class="body">
+      <strong>Structured Snippet Present (field_type=27)</strong>
+      <p>Asset 210496983275 is a structured snippet at campaign level (ENABLED). Content unverifiable via API (serialization limitation on structured_snippet values). Presence confirmed — review content in UI to ensure values are current and relevant (pool types, features, etc.).</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>No Callout Assets Detected</strong>
+      <p>All tested asset IDs returned empty callout_text fields. Callout assets provide an additional line of ad copy highlighting key selling points (Lifetime Warranty, Installed in Weeks, Financing Available, etc.). Their absence is a missed opportunity for differentiation at the ad level.</p>
+      <div class="rec"><strong>Recommendation:</strong> Add 4–6 callout assets. Suggested: "Lifetime Structural Warranty", "Installed in Weeks — Not Months", "Low Maintenance Fiberglass", "Free Quote Available", "Serving Delaware &amp; PA", "150,000+ Pools Worldwide".</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 8: GEO TARGETING -->
+<div class="section">
+  <div class="section-title"><span class="section-num">08</span><h2>Geo Targeting</h2></div>
+
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>Positive Geo: PRESENCE (enum 7) — Correct</strong>
+      <p>The campaign's positive_geo_target_type = 7 = PRESENCE. This ensures ads only serve to users physically located in the targeted area. This is the correct setting for a local pool installer — not PRESENCE_OR_INTEREST (which would also serve to people researching the area from elsewhere). This was miscategorized in prior audit notes from 3/20 as a finding — it is not. The setting is correct.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>"inground pool cost nj" — Appeared in Search Terms</strong>
+      <p>New Jersey is adjacent to Delaware County PA. This search term appeared — while the user may actually be located in the targeted geo (PRESENCE setting is correct), the "nj" modifier suggests the user's intent is NJ-specific. Monitor whether this term drives conversions — if not, consider negating "nj" to reduce NJ-intent traffic that is unlikely to convert for a DE/PA dealer.</p>
+      <div class="rec"><strong>Recommendation:</strong> Watch this term for conversion data over next 30 days. If zero conversions, add campaign-level negative: "nj".</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 9: BIDDING & BUDGET -->
+<div class="section">
+  <div class="section-title"><span class="section-num">09</span><h2>Bidding &amp; Budget</h2></div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>No Device Bid Modifiers — Budget Potentially Leaking to Mobile</strong>
+      <p>No device bid modifiers exist (campaign_criterion device query returned empty). For a high-intent, high-consideration purchase like an inground fiberglass pool, mobile conversion rates typically lag desktop significantly. Without a mobile bid reduction, the account may be overpaying for mobile clicks that don't convert. At $793 total spend with only 4 conversions, device performance should be analyzed.</p>
+      <div class="rec"><strong>Recommendation:</strong> In Google Ads UI, review device performance segmentation for this campaign. If mobile CPA is significantly higher than desktop, apply a -20% to -40% mobile bid modifier to shift budget toward higher-converting desktop traffic.</div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>$500/month Budget — Below Competitive Threshold for Fiberglass Pool Market</strong>
+      <p>DE/PA is a competitive pool market. At ~$16/day, the account is heavily constrained — budget is likely running out before the end of each day, meaning the campaign loses afternoon/evening impressions (often peak pool research hours). The CPC cap of $3.50 is reasonable, but $793 over 30 days suggests consistent daily cap-outs.</p>
+      <div class="rec"><strong>Recommendation:</strong> Discuss budget increase with dealer if conversion momentum improves. Even $800–1,000/month would meaningfully expand impression share. If budget cannot increase, prioritize highest-converting keyword group (fiberglass-specific terms) and pause or reduce bids on zero-conversion terms.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 10: AD COPY & RSA -->
+<div class="section">
+  <div class="section-title"><span class="section-num">10</span><h2>Ad Copy &amp; RSA</h2></div>
+
+  <div class="finding">
+    <span class="sev info">INFO</span>
+    <div class="body">
+      <strong>RSA Content Unverifiable via API</strong>
+      <p>The Google Ads API returns a serialization error when requesting responsive_search_ad.headlines and .descriptions. This is a known API limitation — not an account issue. RSA copy should be reviewed directly in the Google Ads UI.</p>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>RSA Copy Audit — UI Review Required</strong>
+      <p>Based on QS data, several keywords have quality scores indicating ad relevance gaps: "pool companies" QS 3, "leisure pools" QS 3, "best swimming pool design" QS 0. With a single RSA serving all 23 keywords across one ad group, the RSA cannot simultaneously be highly relevant to "pool companies" and "fiberglass pool installation" — these are fundamentally different queries requiring different headline emphasis.</p>
+      <div class="rec">
+        <strong>Recommended RSA Review Checklist (in UI):</strong><br>
+        — Verify at least 3 headlines contain "fiberglass" — this is the core differentiator<br>
+        — Verify at least 1 headline contains local market signal ("Delaware" or "Wilmington")<br>
+        — Check whether "Lifetime Warranty" or "Installed in Weeks" appears in headlines<br>
+        — Ensure no competitor brand names appear<br>
+        — Check Ad Strength rating — aim for "Good" or "Excellent"
+      </div>
+    </div>
+  </div>
+
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>Suggested RSA Headlines for Fiberglass Ad Group</strong>
+      <p>These are ready-to-use headline suggestions (30 char max each) based on Leisure Pools brand guidelines. Click to copy.</p>
+      <div class="copy-block" onclick="copyText(this)">Fiberglass Pools | Delaware</div>
+      <div class="copy-block" onclick="copyText(this)">Installed in Weeks, Not Months</div>
+      <div class="copy-block" onclick="copyText(this)">Lifetime Structural Warranty</div>
+      <div class="copy-block" onclick="copyText(this)">Free Quote — Pronto Pools</div>
+      <div class="copy-block" onclick="copyText(this)">Low Maintenance Fiberglass Pool</div>
+      <div class="copy-block" onclick="copyText(this)">Wilmington's Fiberglass Experts</div>
+      <div class="copy-block" onclick="copyText(this)">Custom Inground Pool Builders</div>
+      <div class="copy-block" onclick="copyText(this)">150,000+ Pools Worldwide</div>
+      <div class="copy-block" onclick="copyText(this)">Fiberglass Pool Installation</div>
+      <div class="copy-block" onclick="copyText(this)">Delaware County Pool Builders</div>
+      <strong style="display:block;margin-top:12px;font-size:13px;">Suggested Descriptions (90 char max):</strong>
+      <div class="copy-block" onclick="copyText(this)">Custom fiberglass pools installed in Delaware &amp; Delaware County PA. Lifetime warranty. Free quote.</div>
+      <div class="copy-block" onclick="copyText(this)">Pronto Pools installs Leisure Pools fiberglass pools in weeks — not months. Low maintenance. Call today.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 11: QUALITY SCORE ANALYSIS -->
+<div class="section">
+  <div class="section-title"><span class="section-num">11</span><h2>Quality Score Analysis</h2></div>
+  <table class="data-table">
+    <tr><th>QS</th><th>Keywords</th><th>Implication</th></tr>
+    <tr><td><span class="tag-green">8</span></td><td>fiberglass pools, fiberglass pools near me</td><td class="tag-green">Strong — well-aligned ad + LP</td></tr>
+    <tr><td><span class="tag-green">7</span></td><td>fiberglass swimming pool, fiberglass pool installation</td><td class="tag-green">Good — near optimal</td></tr>
+    <tr><td class="tag-gold">6</td><td>fiberglass pool cost, fiberglass pools for sale, fiberglass pool shell</td><td class="tag-gold">Moderate — room to improve</td></tr>
+    <tr><td class="tag-gold">5</td><td>swimming pool installation, in ground pools, prefab pools, pool installation, pool builders</td><td class="tag-gold">Borderline — generic terms, ad relevance diluted</td></tr>
+    <tr><td><span class="tag-red">3</span></td><td>pool companies, leisure pools</td><td><span class="tag-red">Low — structural mismatch, ad copy not matching query intent</span></td></tr>
+    <tr><td class="tag-muted">0</td><td>best swimming pool design, swimming pool contractors, in ground swimming pool, fiberglass pools canada, others</td><td class="tag-muted">Insufficient data (new or no impressions)</td></tr>
+  </table>
+  <div class="finding" style="margin-top:14px;">
+    <span class="sev p2">P2</span>
+    <div class="body">
+      <strong>Overall QS Average Dragged Down by High-Spend / Low-QS Keywords</strong>
+      <p>"pool companies" (QS 3) alone accounted for $158.83 and 521 impressions. "swimming pool installation" (QS 5) and "in ground pools" (QS 5) each account for $90–120 with zero conversions. The single-ad-group structure prevents Google from showing query-specific ad copy — fiberglass queries get the same ad as generic pool company queries, keeping QS suppressed on non-fiberglass terms.</p>
+      <div class="rec"><strong>Recommendation:</strong> The ad group restructure (Section 02) would naturally improve QS by aligning ad copy to keyword theme. "pool companies" and "swimming pool contractors" in their own ad group with pool-company-specific RSA would improve QS from 3→5+ over time.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 12: LANDING PAGE ASSESSMENT -->
+<div class="section">
+  <div class="section-title"><span class="section-num">12</span><h2>Landing Page Assessment</h2></div>
+  <div class="finding">
+    <span class="sev info">INFO</span>
+    <div class="body">
+      <strong>Landing Page URLs Not Verifiable via API</strong>
+      <p>RSA final_urls are not accessible via the API for this account (ad content serialization limitation). Landing page review should be done in the UI. Key checks:</p>
+      <div class="rec">
+        — Verify the main landing page is fiberglass-pool-specific (not generic homepage)<br>
+        — Confirm page load speed is acceptable on mobile (affects LP Quality component of QS)<br>
+        — Check that the contact form is prominent above the fold — this drives the Contact Dealer conversion<br>
+        — Confirm the brochure download form triggers the conversion tag<br>
+        — Verify page contains "Delaware", "Wilmington", or "Delaware County" for local relevance signals<br>
+        — Check that pool models are featured (Eclipse™, Pinnacle™, Supreme™, Elegance™, Fiji Plunge™, Palladium Plunge™) — LP model relevance affects QS
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 13: BRAND ALIGNMENT -->
+<div class="section">
+  <div class="section-title"><span class="section-num">13</span><h2>Brand Alignment — Leisure Pools</h2></div>
+  <div class="finding">
+    <span class="sev p3">P3</span>
+    <div class="body">
+      <strong>Leisure Pools Brand Models Not Referenced in Keyword Set</strong>
+      <p>The keyword list contains no model-specific terms. Searches for "Eclipse pool", "Pinnacle pool", "fiberglass plunge pool", "small fiberglass pool" (which did convert) are only partially captured through phrase matching. The Leisure Pools product registry for this market includes: Eclipse™, Pinnacle™, Supreme™, Elegance™, Fiji Plunge™, Palladium Plunge™.</p>
+      <div class="rec"><strong>Recommendation:</strong> Consider adding a small-pool / plunge-pool ad group or keyword targeting for plunge pool searches ("small fiberglass pool" confirmed converting). Don't add model-specific terms unless the LP features those models prominently — LP relevance matters for QS.</div>
+    </div>
+  </div>
+  <div class="finding">
+    <span class="sev ok">OK</span>
+    <div class="body">
+      <strong>No Cross-Brand Contamination Detected</strong>
+      <p>No references to Aviva Pools, Imagine Pools, Evo Pools, or Explore Industries detected in visible keyword/sitelink data. Brand separation appears intact in the available data.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION 14: CHANGE LOG -->
+<div class="section">
+  <div class="section-title"><span class="section-num">14</span><h2>Change History (30 Days)</h2></div>
+  <div class="change-entry">
+    <span class="date">2026-03-16 13:07</span>
+    <span class="op">UPDATE</span>
+    <span>Resource type: 6 (Campaign) — modified by eli.bunyi@exploreindustries.com</span>
+  </div>
+  <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Only 1 change event found in the 30-day window. Change event detail (changed_fields) not available at this granularity via MCP. The 3/16 campaign modification was made by Eli. Prior audit entries from 3/16 and 3/18 are excluded per audit rules.</p>
+</div>
+
+<!-- SECTION 15: PRIORITY ACTION PLAN -->
+<div class="section">
+  <div class="section-title"><span class="section-num">15</span><h2>Priority Action Plan</h2></div>
+  <table class="data-table">
+    <tr><th>#</th><th>Priority</th><th>Action</th><th>Impact</th><th>Where</th></tr>
+    <tr>
+      <td>1</td>
+      <td><span class="tag-red">P2</span></td>
+      <td>Add campaign-level negative keywords for confirmed waste terms (above ground, gunite, diy, semi inground, shipping container, competitor brands)</td>
+      <td>Reduce waste ~$150–200/mo</td>
+      <td>Google Ads UI → Negative Keywords</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><span class="tag-red">P2</span></td>
+      <td>Investigate and fix call asset (primary_status=7 / not eligible) — re-create with verified phone number</td>
+      <td>Restore call conversion tracking</td>
+      <td>Google Ads UI → Assets → Call</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><span class="tag-red">P2</span></td>
+      <td>Review "pool companies" keyword — move to its own ad group or pause if zero conversions persist</td>
+      <td>Recover $159/mo in wasted spend</td>
+      <td>Google Ads UI → Keywords</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><span class="tag-orange">P2</span></td>
+      <td>Add "small fiberglass pools" as a dedicated phrase keyword (confirmed converter)</td>
+      <td>Protect and grow converting traffic</td>
+      <td>Google Ads UI → Keywords</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><span class="tag-orange">P3</span></td>
+      <td>Add callout assets (Lifetime Warranty, Installed in Weeks, Free Quote, Serving DE &amp; PA)</td>
+      <td>CTR improvement, ad quality</td>
+      <td>Google Ads UI → Assets → Callout</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><span class="tag-orange">P3</span></td>
+      <td>Add descriptions to account-level sitelinks (4 currently description-free)</td>
+      <td>CTR improvement</td>
+      <td>Google Ads UI → Assets → Sitelinks</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><span class="tag-orange">P3</span></td>
+      <td>Pause or remove "fiberglass pools canada" keyword (geo-irrelevant)</td>
+      <td>Minor cleanup</td>
+      <td>Google Ads UI → Keywords</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><span class="tag-orange">P3</span></td>
+      <td>Review RSA copy in UI — verify fiberglass + local market + warranty headlines are present</td>
+      <td>QS improvement</td>
+      <td>Google Ads UI → Ads</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><span class="tag-orange">P3</span></td>
+      <td>Investigate device performance and apply mobile bid modifier if mobile CPA &gt;&gt; desktop CPA</td>
+      <td>Budget efficiency</td>
+      <td>Google Ads UI → Campaigns → Devices</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td class="tag-muted">P3</td>
+      <td>Verify "Submit lead form" conversion action status — clean up if actually removed</td>
+      <td>Data hygiene</td>
+      <td>Google Ads UI → Conversions</td>
+    </tr>
+    <tr>
+      <td>11</td>
+      <td class="tag-muted">P3</td>
+      <td>Long-term: restructure into 3–4 themed ad groups with dedicated RSA copy per theme</td>
+      <td>QS improvement, CPA reduction</td>
+      <td>Google Ads UI — Campaign Rebuild</td>
+    </tr>
+  </table>
+</div>
+
+<!-- SECTION 16: NEGATIVE KEYWORD ADDITIONS (CLICK-TO-COPY) -->
+<div class="section">
+  <div class="section-title"><span class="section-num">16</span><h2>Ready-to-Use Negative Keywords</h2></div>
+  <p style="color:var(--text-muted);font-size:13px;margin-bottom:12px;">These are campaign-level additions — do not modify the shared set for dealer-specific terms. Copy each list into Google Ads UI → Negative Keywords.</p>
+
+  <strong style="color:var(--accent-bright);font-size:13px;">Campaign-Level Phrase Negatives (add as PHRASE match):</strong>
+  <div class="copy-block" onclick="copyText(this)">above ground pool
+above ground pools
+semi inground pool
+semi-inground pool
+shipping container pool
+container pool
+how to build a pool
+diy pool
+diy plunge pool
+gunite pool
+esther williams
+budds pools
+pool store
+pool supply
+pool supplies
+pool parts
+pool chemicals
+semi inground
+build your own pool
+pool repair
+pool maintenance
+pool cleaning
+pool service
+fiberglass pools canada</div>
+
+  <strong style="color:var(--accent-bright);font-size:13px;display:block;margin-top:12px;">Add to Master Exclusion Shared Set (fleet-wide protection — escalate to Eli):</strong>
+  <div class="copy-block" onclick="copyText(this)">esther williams
+budds pools
+semi inground
+shipping container pool
+diy plunge pool kit</div>
+
+  <strong style="color:var(--accent-bright);font-size:13px;display:block;margin-top:12px;">Do NOT Negate (Leisure Pools sells these):</strong>
+  <div class="pill-grid">
+    <span class="pill pos">plunge pool</span>
+    <span class="pill pos">plunge pools</span>
+    <span class="pill pos">small plunge pool</span>
+    <span class="pill pos">plunge pools for small backyards</span>
+    <span class="pill pos">fiberglass plunge pool</span>
+  </div>
+</div>
+
+<!-- SECTION 17: AUDIT NOTES & LIMITATIONS -->
+<div class="section">
+  <div class="section-title"><span class="section-num">17</span><h2>Audit Notes &amp; API Limitations</h2></div>
+  <div class="finding">
+    <span class="sev info">INFO</span>
+    <div class="body">
+      <strong>Known API Limitations in This Report</strong>
+      <p>The following data was unverifiable via API and should be confirmed in the Google Ads UI:</p>
+      <ul style="margin-top:8px;padding-left:18px;font-size:13px;color:var(--text-light);">
+        <li><strong>RSA headlines and descriptions</strong> — serialization error on responsive_search_ad fields (expected/known API limitation)</li>
+        <li><strong>Ad final URLs</strong> — not retrievable via current API configuration</li>
+        <li><strong>Structured snippet asset values</strong> — serialization limitation</li>
+        <li><strong>Device performance breakdown</strong> — campaign_criterion device query returned type error; device modifiers confirmed absent via bid_modifier &gt; 0 query returning empty</li>
+        <li><strong>Call asset phone number</strong> — field returned empty (may be a serialization or permissions issue); call asset presence confirmed via field_type=18, not-eligible status via primary_status=7</li>
+      </ul>
+    </div>
+  </div>
+  <div class="finding">
+    <span class="sev info">INFO</span>
+    <div class="body">
+      <strong>Prior Audit Notes Ignored Per Instructions</strong>
+      <p>Per audit rules, prior audit entries from 3/16 and 3/18 have been excluded from this report. The 3/20 Obsidian note's claim that geo targeting was "PRESENCE_OR_INTEREST (finding)" was incorrect — enum 7 = PRESENCE (correct), as confirmed by this audit. The 3/20 note's bidding claim ("Maximize Conversions enum 9") was also incorrect — enum 9 = TARGET_SPEND (Max Clicks), not Maximize Conversions.</p>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="report-footer">
+  <strong>Pronto Pools — Google Ads Audit</strong> | Generated: 2026-03-23 | Audited by: Claude Code (Sonnet 4.6) | Account: 859-932-2758 | MCC: 836-765-6694<br>
+  READ-ONLY audit. No changes made to the account. All recommendations require manual implementation in Google Ads UI.
+</div>
+
+<script>
+function copyText(el) {
+  const text = el.innerText.replace(/Click to copy|Copied!/g, '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>

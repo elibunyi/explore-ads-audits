@@ -1,0 +1,826 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit — Leisure Pools Boston North — 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2e45;
+    --navy-light: #243b55;
+    --accent: #0095C8;
+    --accent-gold: #FFB81C;
+    --white: #ffffff;
+    --off-white: #f4f7fb;
+    --text: #1a1a2e;
+    --text-muted: #5a6882;
+    --critical: #c0392b;
+    --critical-bg: #fdf0ee;
+    --high: #e67e22;
+    --high-bg: #fef5ec;
+    --medium: #f39c12;
+    --medium-bg: #fefbe8;
+    --low: #27ae60;
+    --low-bg: #edfaf3;
+    --info: #2980b9;
+    --info-bg: #eaf4fb;
+    --unverified: #7f8c8d;
+    --unverified-bg: #f2f3f4;
+    --border: #dde3ee;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: 'Roboto', 'Segoe UI', Arial, sans-serif;
+    background: var(--off-white);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 36px 48px 32px;
+    border-bottom: 4px solid var(--accent);
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 4px; }
+  .header .subtitle { font-size: 14px; color: rgba(255,255,255,0.7); margin-bottom: 16px; }
+  .header-meta { display: flex; gap: 32px; margin-top: 16px; flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; }
+  .meta-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: rgba(255,255,255,0.5); margin-bottom: 2px; }
+  .meta-value { font-size: 16px; font-weight: 600; color: var(--white); }
+  .meta-value.accent { color: var(--accent-gold); }
+  .badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .badge-medium { background: var(--medium); color: #000; }
+  .badge-critical { background: var(--critical); color: #fff; }
+  .badge-high { background: var(--high); color: #fff; }
+  .badge-low { background: var(--low); color: #fff; }
+  .badge-info { background: var(--info); color: #fff; }
+  /* SCORE PANEL */
+  .score-panel {
+    background: var(--white);
+    border-radius: 10px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    padding: 28px 36px;
+    margin: 28px 32px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+    border-left: 5px solid var(--accent);
+  }
+  .score-circle {
+    width: 90px; height: 90px;
+    border-radius: 50%;
+    background: var(--navy);
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .score-number { font-size: 32px; font-weight: 800; color: var(--accent-gold); line-height: 1; }
+  .score-denom { font-size: 12px; color: rgba(255,255,255,0.5); }
+  .score-summary h2 { font-size: 20px; font-weight: 700; margin-bottom: 6px; }
+  .score-summary p { color: var(--text-muted); font-size: 13px; max-width: 600px; }
+  .score-change {
+    margin-left: auto;
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .score-change .prev { font-size: 12px; color: var(--text-muted); }
+  .score-change .delta { font-size: 22px; font-weight: 700; color: var(--medium); }
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 16px;
+    margin: 0 32px 28px;
+  }
+  .kpi-card {
+    background: var(--white);
+    border-radius: 8px;
+    padding: 18px 20px;
+    box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+    border-top: 3px solid var(--accent);
+  }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-muted); margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: var(--navy); }
+  .kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .kpi-flag { border-top-color: var(--critical); }
+  .kpi-warn { border-top-color: var(--high); }
+  /* SECTION */
+  .section {
+    margin: 0 32px 28px;
+  }
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--navy);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title span.count {
+    background: var(--navy);
+    color: var(--white);
+    font-size: 11px;
+    padding: 1px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  /* FINDING CARDS */
+  .finding {
+    background: var(--white);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+    margin-bottom: 12px;
+    overflow: hidden;
+    border-left: 4px solid transparent;
+  }
+  .finding.critical { border-left-color: var(--critical); }
+  .finding.high { border-left-color: var(--high); }
+  .finding.medium { border-left-color: var(--medium); }
+  .finding.low { border-left-color: var(--low); }
+  .finding.info { border-left-color: var(--info); }
+  .finding.unverified { border-left-color: var(--unverified); }
+  .finding-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 20px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .finding-header:hover { background: var(--off-white); }
+  .finding-title { font-weight: 600; font-size: 14px; flex: 1; }
+  .finding-impact { font-size: 12px; color: var(--text-muted); margin-left: auto; margin-right: 12px; white-space: nowrap; }
+  .toggle { font-size: 16px; color: var(--text-muted); }
+  .finding-body {
+    padding: 0 20px 16px 20px;
+    border-top: 1px solid var(--border);
+    background: #fafbfd;
+  }
+  .finding-body p { margin-top: 12px; font-size: 13px; }
+  .finding-body ul { margin-top: 10px; padding-left: 20px; }
+  .finding-body li { font-size: 13px; margin-bottom: 5px; }
+  .finding-body .rec {
+    margin-top: 12px;
+    padding: 10px 14px;
+    border-radius: 6px;
+    border-left: 3px solid var(--accent);
+    background: var(--info-bg);
+    font-size: 13px;
+  }
+  .finding-body .rec strong { color: var(--navy); }
+  .finding-body .data-table { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+  .finding-body .data-table th {
+    background: var(--navy-mid);
+    color: var(--white);
+    padding: 6px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+  }
+  .finding-body .data-table td { padding: 6px 10px; border-bottom: 1px solid var(--border); }
+  .finding-body .data-table tr:nth-child(even) { background: var(--off-white); }
+  .flag { color: var(--critical); font-weight: 700; }
+  .ok { color: var(--low); font-weight: 700; }
+  .warn { color: var(--high); font-weight: 700; }
+  /* FOOTER */
+  footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.5);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+  footer strong { color: var(--white); }
+  /* COPY BUTTON */
+  .copy-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 8px;
+  }
+  .copy-btn:hover { background: var(--navy); }
+  /* DETAIL TOGGLE */
+  details > summary { list-style: none; }
+  details > summary::-webkit-details-marker { display: none; }
+  details[open] .toggle::before { content: '▲'; }
+  details:not([open]) .toggle::before { content: '▼'; }
+  .pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .pill-red { background: #fde8e6; color: var(--critical); }
+  .pill-orange { background: #fef0e6; color: var(--high); }
+  .pill-yellow { background: #fefce6; color: #b7760a; }
+  .pill-green { background: #e8faf0; color: var(--low); }
+  .pill-blue { background: #e6f4fb; color: var(--info); }
+  .pill-gray { background: #efefef; color: #555; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>Google Ads Audit — Leisure Pools Boston North</h1>
+      <div class="subtitle">Pool Visions Corp &nbsp;|&nbsp; Account 186-757-8797 &nbsp;|&nbsp; Leisure Pools &nbsp;|&nbsp; North of Boston, MA</div>
+    </div>
+    <span class="badge badge-medium">Priority: Medium</span>
+  </div>
+  <div class="header-meta">
+    <div class="meta-item">
+      <span class="meta-label">Audit Date</span>
+      <span class="meta-value">March 23, 2026</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Period</span>
+      <span class="meta-value">Feb 21 – Mar 23, 2026 (30d)</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">30d Spend</span>
+      <span class="meta-value accent">$1,019</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Conversions</span>
+      <span class="meta-value">10</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">CPA</span>
+      <span class="meta-value">$101.93</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Impr. Share</span>
+      <span class="meta-value">19.77%</span>
+    </div>
+    <div class="meta-item">
+      <span class="meta-label">Auditor</span>
+      <span class="meta-value">Claude Code</span>
+    </div>
+  </div>
+</div>
+
+<!-- SCORE PANEL -->
+<div class="score-panel">
+  <div class="score-circle">
+    <span class="score-number">41</span>
+    <span class="score-denom">/ 100</span>
+  </div>
+  <div class="score-summary">
+    <h2>Structurally Compromised — Immediate Action Needed</h2>
+    <p>Every dollar in this account flows through a single ad group with 24 broad match keywords and zero match type diversity. The account is spending $1,019/month to capture 10 conversions — a pace that should produce 15–20 at this budget if structural issues are resolved. Impression share of 19.77% (67.4% lost to rank) signals the campaign is severely underpowered relative to the opportunity.</p>
+  </div>
+  <div class="score-change">
+    <div class="prev">Previous health: <strong>48/100</strong> (3/20/26)</div>
+    <div class="delta">▼ 7 pts</div>
+    <div class="prev" style="margin-top:4px; font-size:11px;">Decline: structural issues persisted;<br>broad match waste newly quantified</div>
+  </div>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-grid">
+  <div class="kpi-card kpi-flag">
+    <div class="kpi-label">Impr. Share</div>
+    <div class="kpi-value">19.77%</div>
+    <div class="kpi-sub">67.4% lost to rank</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">30d Clicks</div>
+    <div class="kpi-value">430</div>
+    <div class="kpi-sub">8.84% CTR</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Avg CPC</div>
+    <div class="kpi-value">$2.37</div>
+    <div class="kpi-sub">CPC cap $3.50</div>
+  </div>
+  <div class="kpi-card kpi-warn">
+    <div class="kpi-label">Conversions</div>
+    <div class="kpi-value">10</div>
+    <div class="kpi-sub">$101.93 CPA</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Daily Budget</div>
+    <div class="kpi-value">$32.25</div>
+    <div class="kpi-sub">~$967/mo pacing</div>
+  </div>
+  <div class="kpi-card kpi-flag">
+    <div class="kpi-label">Match Diversity</div>
+    <div class="kpi-value">0%</div>
+    <div class="kpi-sub">All 24 kws = BROAD</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Ad Groups</div>
+    <div class="kpi-value">1</div>
+    <div class="kpi-sub">Single structure</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Sitelinks</div>
+    <div class="kpi-value">4</div>
+    <div class="kpi-sub">Campaign-level ✓</div>
+  </div>
+</div>
+
+<!-- FINDINGS: CRITICAL -->
+<div class="section">
+  <div class="section-title">Critical Findings <span class="count">2</span></div>
+
+  <!-- C1: All Broad Match -->
+  <details class="finding critical" open>
+    <summary class="finding-header">
+      <span class="badge badge-critical">Critical</span>
+      <span class="finding-title">All 24 Keywords Are Broad Match — Entire Budget Exposed to Irrelevant Queries</span>
+      <span class="finding-impact">~$200–300 estimated wasted spend</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>Every keyword in the campaign uses Broad match (match_type=3). There is not a single Phrase or Exact keyword in the account. Broad match gives Google license to match to any loosely related query — and the search term data proves it is doing exactly that.</p>
+      <p><strong>Confirmed wasted search terms from 30-day data:</strong></p>
+      <ul>
+        <li><span class="flag">$8.58</span> — "above ground pools near me" (triggered by: in ground pools)</li>
+        <li><span class="flag">$7.86</span> — "how much does a 12x24 inground pool cost" (pure research, no install intent)</li>
+        <li><span class="flag">$7.51</span> — "above ground pool installation near me"</li>
+        <li><span class="flag">$6.90</span> — "above ground pool installation massachusetts"</li>
+        <li><span class="flag">$6.61</span> — "semi inground pool massachusetts"</li>
+        <li><span class="flag">$6.59</span> — "above ground pool with deck packages prices"</li>
+        <li><span class="flag">$5.78</span> — "lathampools com" (competitor brand)</li>
+        <li><span class="flag">$5.45</span> — "inground pool ideas" (early research, low intent)</li>
+        <li><span class="flag">$5.05</span> — "gibraltar pools cost" (competitor brand)</li>
+        <li><span class="flag">$4.56</span> — "doughboy pool" (above-ground competitor brand)</li>
+        <li><span class="flag">$4.52</span> — "above ground pools with installation"</li>
+        <li><span class="flag">$3.79</span> — "gibraltar pool cost"</li>
+        <li><span class="flag">$3.70</span> — "above ground pool installation cost calculator"</li>
+        <li><span class="flag">$3.49</span> — "how much do in ground pools cost" (research)</li>
+        <li><span class="flag">$3.48</span> — "leslie pool" (competitor brand)</li>
+        <li><span class="flag">$3.46</span> — "above ground pool showroom near me"</li>
+        <li><span class="flag">$3.45</span> — "inground pool kit" (DIY, not installer intent)</li>
+        <li><span class="flag">$3.45</span> — "above ground pools in my area"</li>
+        <li><span class="flag">$3.45</span> — "leslies pool" (competitor brand)</li>
+        <li><span class="flag">$3.45</span> — "price for inground pool" (research)</li>
+      </ul>
+      <div class="rec">
+        <strong>Action:</strong> Add Phrase and Exact match variants of your top performers (fiberglass pools, fiberglass pool installation, fiberglass pool installer). Add the above-ground terms as EXACT negatives immediately. Do NOT remove Broad entirely — use it alongside Phrase/Exact, not as your only match type.
+      </div>
+    </div>
+  </details>
+
+  <!-- C2: Single Ad Group -->
+  <details class="finding critical">
+    <summary class="finding-header">
+      <span class="badge badge-critical">Critical</span>
+      <span class="finding-title">Single Ad Group for All 24 Keywords — No Segmentation</span>
+      <span class="finding-impact">QS, relevance, and budget control all suffer</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>All 24 keywords live in one ad group ("Ad group 1"). This means a person searching "fiberglass pool installer near me" and a person searching "pool companies" see the same ad. Google cannot optimize ad-to-keyword relevance, Quality Scores suffer, and there is no ability to control budget or bidding by theme.</p>
+      <p>QS breakdown on top-spend keywords confirms the problem:</p>
+      <table class="data-table">
+        <thead><tr><th>Keyword</th><th>30d Spend</th><th>QS</th><th>Note</th></tr></thead>
+        <tbody>
+          <tr><td>pool companies</td><td>$215.78</td><td class="flag">0</td><td>Largest spender — insufficient data or landing page mismatch</td></tr>
+          <tr><td>fiberglass pools</td><td>$149.33</td><td class="warn">5</td><td>Core term — QS below target</td></tr>
+          <tr><td>build swimming pool</td><td>$138.21</td><td class="flag">0</td><td>High spend, no QS signal</td></tr>
+          <tr><td>in ground pools</td><td>$68.99</td><td class="warn">3</td><td>Too generic, low QS</td></tr>
+          <tr><td>pool installation</td><td>$70.95</td><td class="warn">3</td><td>High-value but needs own ad group</td></tr>
+          <tr><td>in ground swimming pool</td><td>$67.65</td><td class="flag">0</td><td>Redundant with "in ground pools"</td></tr>
+          <tr><td>swimming pool installation</td><td>$67.34</td><td class="flag">0</td><td>High-value intent, low QS</td></tr>
+          <tr><td>swimming pool contractors</td><td>$65.64</td><td class="warn">5</td><td>Strong intent — deserves dedicated group</td></tr>
+          <tr><td>leisure pools</td><td>$59.56</td><td class="ok">8</td><td>Brand term — best performer, should be isolated</td></tr>
+        </tbody>
+      </table>
+      <div class="rec">
+        <strong>Action:</strong> Minimum viable restructure — 3 ad groups: (1) Brand ("leisure pools"), (2) Fiberglass-specific ("fiberglass pool installer/contractor"), (3) General inground ("pool installation/pool contractor/swimming pool installation"). This alone will lift QS on core terms.
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- FINDINGS: HIGH -->
+<div class="section">
+  <div class="section-title">High Priority Findings <span class="count">3</span></div>
+
+  <!-- H1: IS + Rank Lost -->
+  <details class="finding high">
+    <summary class="finding-header">
+      <span class="badge badge-high">High</span>
+      <span class="finding-title">19.77% Impression Share — 67.4% Lost to Rank</span>
+      <span class="finding-impact">Losing ~4 of every 5 eligible impressions</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>The campaign is being outranked on 67.4% of eligible impressions. With an actual avg CPC of ~$2.37 against a $3.50 CPC cap, this suggests either (a) ad quality is suppressing the effective rank, or (b) competition peaks above $3.50 during high-value queries and the cap cuts the account out of those auctions.</p>
+      <p>Max Clicks bidding with a $3.50 CPC cap on a $32.25/day budget is a conservative configuration. The cap needs to be removed or raised to $5–6 to remain competitive on high-intent queries in the Boston metro.</p>
+      <div class="rec">
+        <strong>Action:</strong> Raise CPC cap to $5.00 or remove it entirely and let Max Clicks optimize freely. Monitor avg CPC for 2 weeks. Alternatively, switch to Target CPA bidding once sufficient conversion history (20+ conv) exists — this account is close.
+      </div>
+    </div>
+  </details>
+
+  <!-- H2: Wasted above-ground spend -->
+  <details class="finding high">
+    <summary class="finding-header">
+      <span class="badge badge-high">High</span>
+      <span class="finding-title">Above-Ground Pool Terms Wasting Budget — Multiple Search Term Hits</span>
+      <span class="finding-impact">~$65–80 wasted on above-ground queries</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>Leisure Pools only installs inground fiberglass pools. The account is paying for clicks from homeowners looking for above-ground pools, semi-inground options, and Doughboy/inflatable pool products. These will never convert.</p>
+      <p>Confirmed above-ground wasted terms (30-day data, incomplete list):</p>
+      <ul>
+        <li>"above ground pools near me" — $8.58</li>
+        <li>"above ground pool installation near me" — $7.51</li>
+        <li>"above ground pool installation massachusetts" — $6.90</li>
+        <li>"semi inground pool massachusetts" — $6.61</li>
+        <li>"above ground pool with deck packages prices" — $6.59</li>
+        <li>"above ground pools with installation" — $4.52</li>
+        <li>"above ground pool installation cost calculator" — $3.70</li>
+        <li>"above ground pool showroom near me" — $3.46</li>
+        <li>"above ground pools in my area" — $3.45</li>
+        <li>"doughboy pool" — $4.56</li>
+      </ul>
+      <div class="rec">
+        <strong>Action:</strong> Add the following as EXACT negatives immediately: [above ground pool], [above ground pools], [semi inground pool], [doughboy pool], [above ground pool installation], [above ground pool near me]. These terms are clearly not in the shared exclusion list (Master Exclusion List 3.18).
+      </div>
+    </div>
+  </details>
+
+  <!-- H3: Third-party account access -->
+  <details class="finding high">
+    <summary class="finding-header">
+      <span class="badge badge-high">High</span>
+      <span class="finding-title">Unrecognized Third-Party User Made 40+ Changes on Feb 23</span>
+      <span class="finding-impact">Unauthorized or undisclosed account access</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>The change log shows a batch of 40+ operations on <strong>2026-02-23</strong> by user <strong>jan.stevens@bizitconseil.fr</strong> — a French-domain email address not associated with Eli or Explore Industries. This user:</p>
+      <ul>
+        <li>REMOVED the existing ad (ID: 734039122027)</li>
+        <li>CREATED 20+ AD_IMAGE assets at campaign level</li>
+        <li>CREATED a new BUSINESS_NAME asset</li>
+        <li>REMOVED the prior BUSINESS_NAME asset</li>
+      </ul>
+      <p>This is the only change event period where Eli is NOT the listed editor. All other logged changes (3/16, 3/5) are confirmed as Eli's budget updates.</p>
+      <p>Note: The account currently has 20 AD_IMAGE assets on a Search-only campaign. Images are not served on Search — these assets are unused. If this account ever expands to Performance Max or Display, the imagery from this third party would be the default.</p>
+      <div class="rec">
+        <strong>Action:</strong> Verify with Pool Visions Corp (Bruno — bruno@poolvisionscorp.com) whether jan.stevens@bizitconseil.fr is an authorized account manager or vendor. If not authorized, remove access immediately and audit what ad was deleted. Check whether the replacement ad (if any) is currently active and serving appropriate copy.
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- FINDINGS: MEDIUM -->
+<div class="section">
+  <div class="section-title">Medium Priority Findings <span class="count">3</span></div>
+
+  <!-- M1: Business Name not serving -->
+  <details class="finding medium">
+    <summary class="finding-header">
+      <span class="badge badge-medium">Medium</span>
+      <span class="finding-title">BUSINESS_NAME Asset Not Serving (primary_status = LIMITED)</span>
+      <span class="finding-impact">Missing brand name from ads</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>The campaign-level BUSINESS_NAME asset has primary_status=7 (LIMITED/not serving). The prior Business Name asset was removed by the third-party user on 2026-02-23 and replaced. The replacement is not serving. Without this asset, ads may not display the business name in the prominent brand position.</p>
+      <div class="rec">
+        <strong>Action:</strong> Review the Business Name asset in the campaign assets panel. If the name is incorrect or the status is tied to a policy issue, remove and re-add with the correct name (likely "Leisure Pools" or "Pool Visions Corp"). This is a quick fix with visible impact on ad appearance.
+      </div>
+    </div>
+  </details>
+
+  <!-- M2: fiberglass pools canada -->
+  <details class="finding medium">
+    <summary class="finding-header">
+      <span class="badge badge-medium">Medium</span>
+      <span class="finding-title">"fiberglass pools canada" Keyword — Wrong Geography, Zero Impressions</span>
+      <span class="finding-impact">Deadweight keyword, potential to waste budget if match loosens</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>The keyword "fiberglass pools canada" has 0 impressions and 0 spend in the 30-day window. The campaign geo targets the Boston North MA metro (PRESENCE targeting, correct). This keyword should never serve and never convert — it's from the wrong country.</p>
+      <div class="rec">
+        <strong>Action:</strong> Pause or remove "fiberglass pools canada" immediately. It's harmless now but adds noise to the keyword list and could occasionally trigger off-target broad match behavior.
+      </div>
+    </div>
+  </details>
+
+  <!-- M3: Competitor brand terms in search terms -->
+  <details class="finding medium">
+    <summary class="finding-header">
+      <span class="badge badge-medium">Medium</span>
+      <span class="finding-title">Competitor Brand Terms Generating Clicks — $18+ Spend</span>
+      <span class="finding-impact">~$18 in competitor-branded clicks this period</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>Broad match keywords are triggering on competitor brand searches. These clicks are unlikely to convert — a consumer searching for Latham Pools or Leslie's pool supply is not looking for Leisure Pools.</p>
+      <table class="data-table">
+        <thead><tr><th>Search Term</th><th>Spend</th><th>Type</th></tr></thead>
+        <tbody>
+          <tr><td>lathampools com</td><td class="flag">$5.78</td><td>Competitor pool brand</td></tr>
+          <tr><td>gibraltar pools cost</td><td class="flag">$5.05</td><td>Competitor pool brand</td></tr>
+          <tr><td>doughboy pool</td><td class="flag">$4.56</td><td>Above-ground brand</td></tr>
+          <tr><td>gibraltar pool cost</td><td class="flag">$3.79</td><td>Competitor pool brand</td></tr>
+          <tr><td>leslies pool</td><td class="flag">$3.45</td><td>Pool supply retailer</td></tr>
+          <tr><td>leslie pool</td><td class="flag">$3.48</td><td>Pool supply retailer</td></tr>
+        </tbody>
+      </table>
+      <div class="rec">
+        <strong>Action:</strong> Add exact negatives: [latham pools], [lathampools], [gibraltar pools], [doughboy], [doughboy pool], [leslies pool], [leslie pool], [leslie's pool]. These are definitional negatives for any fiberglass installer account.
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- FINDINGS: INFO -->
+<div class="section">
+  <div class="section-title">Informational <span class="count">4</span></div>
+
+  <!-- I1: Sitelinks present -->
+  <details class="finding info">
+    <summary class="finding-header">
+      <span class="badge badge-info">Info</span>
+      <span class="finding-title">4 Sitelinks Present at Campaign Level — Good</span>
+      <span class="finding-impact">Assets healthy</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>4 sitelink assets (field_type=13) are active at the campaign level with primary_status=2 (ELIGIBLE). Sitelinks are serving correctly. No action needed.</p>
+    </div>
+  </details>
+
+  <!-- I2: Shared Negative List -->
+  <details class="finding info">
+    <summary class="finding-header">
+      <span class="badge badge-info">Info</span>
+      <span class="finding-title">Master Exclusion List (3.18) Applied — 165 EXACT Negatives Confirmed</span>
+      <span class="finding-impact">Prior recommendation implemented</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>Shared set ID 12012201802 is linked to this campaign via campaign_shared_set, confirmed via API. Per the 3/20/2026 audit notes in the dealer vault, this set contains 165 EXACT match negatives from the Master Exclusion List 3.18 applied on 3/20/2026.</p>
+      <p>Note: The shared set contents cannot be enumerated via the API in this session (shared_criterion query returned a type error). The application of the list is confirmed; individual keyword contents are taken from vault records.</p>
+      <p>Despite the shared list, above-ground pool terms and competitor brands are still triggering (see High and Medium findings above). These may not have been included in the 3.18 list version — they should be added directly to the campaign or to the shared list.</p>
+    </div>
+  </details>
+
+  <!-- I3: 20 AD_IMAGE assets -->
+  <details class="finding info">
+    <summary class="finding-header">
+      <span class="badge badge-info">Info</span>
+      <span class="finding-title">20 AD_IMAGE Assets Present on Search-Only Campaign</span>
+      <span class="finding-impact">Not serving; flagged for awareness</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>20 image assets (field_type=26) were created by the third-party user on 2026-02-23. Images are not served on Search campaigns and will have no effect on current performance. If this campaign is ever expanded to Performance Max or if a Display campaign is created, these images become the default creative pool.</p>
+      <p>This is worth noting in context of the unauthorized third-party access finding — the images came from an external vendor and should be reviewed before they are used in any campaign expansion.</p>
+    </div>
+  </details>
+
+  <!-- I4: Brand keyword performance -->
+  <details class="finding info">
+    <summary class="finding-header">
+      <span class="badge badge-info">Info</span>
+      <span class="finding-title">Brand Keyword "Leisure Pools" Is Top Performer — Should Be Isolated</span>
+      <span class="finding-impact">Best QS=8; protect this traffic</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>The keyword "leisure pools" has QS=8, 2 conversions, $59.56 spend, and 31 clicks — the best efficiency in the account. Mixing it in with generic terms (pool companies, in ground pools) means its budget competes with lower-quality keywords and its ad relevance is diluted.</p>
+      <div class="rec">
+        <strong>Action:</strong> Isolate "leisure pools" (and variants like "leisure pools usa", "leisure pools fiberglass") into a dedicated Brand campaign or Brand ad group with a separate budget. This protects brand traffic and improves reporting clarity.
+      </div>
+    </div>
+  </details>
+</div>
+
+<!-- FINDINGS: UNABLE TO VERIFY -->
+<div class="section">
+  <div class="section-title">Unable to Verify (API Limitations) <span class="count">2</span></div>
+
+  <details class="finding unverified">
+    <summary class="finding-header">
+      <span class="badge" style="background:#ccc;color:#333;">Unverified</span>
+      <span class="finding-title">RSA Ad Copy — Text Not Retrievable via API</span>
+      <span class="finding-impact">Unable to assess headline/description quality</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>Queries for <code>ad.responsive_search_ad.headlines</code> and <code>ad.responsive_search_ad.descriptions</code> return a type error via this MCP. RSA ad text is consistently unreadable via the API in this environment. This is a known limitation, not an indication of missing or broken ads — the ad is confirmed as ENABLED and serving.</p>
+      <p>Verify ad copy manually in the Google Ads UI to ensure: (1) at least one headline references fiberglass, (2) at least one headline includes a local signal (Boston / Massachusetts / North Shore), (3) lifetime warranty is mentioned, (4) a CTA is present.</p>
+    </div>
+  </details>
+
+  <details class="finding unverified">
+    <summary class="finding-header">
+      <span class="badge" style="background:#ccc;color:#333;">Unverified</span>
+      <span class="finding-title">Conversion Action Configuration — Unable to Verify</span>
+      <span class="finding-impact">Conversion tracking health unknown</span>
+      <span class="toggle"></span>
+    </summary>
+    <div class="finding-body">
+      <p>The <code>conversion_action</code> resource query returned a type error in this session. The account reports 10 conversions in 30 days, which implies tracking is functioning. However, conversion action type, category (e.g., CONTACT_FORM vs. PAGE_VISIT), and counting method could not be verified.</p>
+      <p>Verify manually: confirm conversions are tracking form fills, calls, or other high-intent actions — not simply pageviews or bounce events.</p>
+    </div>
+  </details>
+</div>
+
+<!-- CHANGE LOG SUMMARY -->
+<div class="section">
+  <div class="section-title">30-Day Change Log Summary</div>
+  <div style="background:var(--white); border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,0.06); overflow:hidden;">
+    <table class="data-table" style="width:100%; margin-top:0;">
+      <thead><tr><th>Date</th><th>User</th><th>Operation</th><th>Resource</th><th>Note</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-03-16</td>
+          <td>eli.bunyi@exploreindustries.com</td>
+          <td><span class="pill pill-blue">UPDATE</span></td>
+          <td>Campaign Budget</td>
+          <td>Scheduled budget adjustment</td>
+        </tr>
+        <tr>
+          <td>2026-03-05</td>
+          <td>eli.bunyi@exploreindustries.com</td>
+          <td><span class="pill pill-blue">UPDATE</span></td>
+          <td>Campaign Budget</td>
+          <td>Scheduled budget adjustment</td>
+        </tr>
+        <tr>
+          <td>2026-02-23</td>
+          <td class="flag">jan.stevens@bizitconseil.fr</td>
+          <td><span class="pill pill-red">REMOVE</span></td>
+          <td>Ad (734039122027)</td>
+          <td class="flag">Third-party — removed existing ad</td>
+        </tr>
+        <tr>
+          <td>2026-02-23</td>
+          <td class="flag">jan.stevens@bizitconseil.fr</td>
+          <td><span class="pill pill-green">CREATE</span></td>
+          <td>AD_IMAGE (×20+)</td>
+          <td class="flag">Third-party — batch image asset upload</td>
+        </tr>
+        <tr>
+          <td>2026-02-23</td>
+          <td class="flag">jan.stevens@bizitconseil.fr</td>
+          <td><span class="pill pill-green">CREATE</span></td>
+          <td>BUSINESS_NAME</td>
+          <td class="flag">Third-party — replaced business name asset</td>
+        </tr>
+        <tr>
+          <td>2026-02-23</td>
+          <td class="flag">jan.stevens@bizitconseil.fr</td>
+          <td><span class="pill pill-red">REMOVE</span></td>
+          <td>BUSINESS_NAME</td>
+          <td class="flag">Third-party — removed prior business name</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- RECOMMENDATIONS PRIORITY LIST -->
+<div class="section">
+  <div class="section-title">Action Priority List</div>
+  <div style="background:var(--white); border-radius:8px; box-shadow:0 1px 4px rgba(0,0,0,0.06); overflow:hidden;">
+    <table class="data-table" style="width:100%; margin-top:0;">
+      <thead><tr><th>#</th><th>Action</th><th>Priority</th><th>Effort</th><th>Expected Impact</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>Add EXACT negatives for above-ground, semi-inground, and competitor brand terms</td>
+          <td><span class="pill pill-red">Critical</span></td>
+          <td>15 min</td>
+          <td>Stops $65–80/mo in confirmed waste immediately</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td>Verify and resolve jan.stevens@bizitconseil.fr access — contact Bruno</td>
+          <td><span class="pill pill-orange">High</span></td>
+          <td>30 min</td>
+          <td>Identify whether ad deletion was authorized; review replacement ad</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td>Add Phrase/Exact match for core fiberglass installer terms</td>
+          <td><span class="pill pill-red">Critical</span></td>
+          <td>1–2 hrs</td>
+          <td>Better relevance, higher QS, more controlled spend</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>Restructure into 3 ad groups: Brand / Fiberglass-specific / General inground</td>
+          <td><span class="pill pill-red">Critical</span></td>
+          <td>2–3 hrs</td>
+          <td>QS improvement, better ad-to-keyword relevance, cleaner reporting</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td>Raise CPC cap from $3.50 to $5.00 or remove it</td>
+          <td><span class="pill pill-orange">High</span></td>
+          <td>5 min</td>
+          <td>Recover rank-lost IS; more auction wins on high-intent queries</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td>Fix BUSINESS_NAME asset (remove and re-add if needed)</td>
+          <td><span class="pill pill-yellow">Medium</span></td>
+          <td>10 min</td>
+          <td>Restores brand name display in ads</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>Pause/remove "fiberglass pools canada" keyword</td>
+          <td><span class="pill pill-yellow">Medium</span></td>
+          <td>2 min</td>
+          <td>Cleanup; removes deadweight keyword</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td>Verify RSA ad copy and conversion actions in UI</td>
+          <td><span class="pill pill-yellow">Medium</span></td>
+          <td>15 min</td>
+          <td>Confirm copy quality and conversion tracking validity</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ACCOUNT SNAPSHOT -->
+<div class="section">
+  <div class="section-title">Account Structure Snapshot</div>
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+    <div style="background:var(--white); border-radius:8px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+      <div style="font-weight:700; margin-bottom:12px; color:var(--navy);">Campaign</div>
+      <table style="width:100%; font-size:13px; border-collapse:collapse;">
+        <tr><td style="color:var(--text-muted); padding:4px 0; width:50%">Name</td><td>Leisure Pools Boston North Campaign</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Status</td><td><span class="ok">ENABLED</span></td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Bidding</td><td>Max Clicks (TARGET_SPEND)</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">CPC Cap</td><td>$3.50</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Daily Budget</td><td>$32.25</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Network</td><td>Search only</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Geo targeting</td><td>PRESENCE (enum 7) ✓</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Ad Groups</td><td class="flag">1 (single structure)</td></tr>
+      </table>
+    </div>
+    <div style="background:var(--white); border-radius:8px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.06);">
+      <div style="font-weight:700; margin-bottom:12px; color:var(--navy);">Assets &amp; Negatives</div>
+      <table style="width:100%; font-size:13px; border-collapse:collapse;">
+        <tr><td style="color:var(--text-muted); padding:4px 0; width:50%">Sitelinks</td><td><span class="ok">4 ELIGIBLE</span></td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Call asset</td><td><span class="ok">1 ELIGIBLE</span></td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Business Name</td><td><span class="flag">1 LIMITED</span></td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Image assets</td><td>20 (unused on Search)</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Campaign negatives</td><td>0 direct</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Shared neg list</td><td>1 applied (165 EXACT)</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Device bids</td><td>None set</td></tr>
+        <tr><td style="color:var(--text-muted); padding:4px 0">Demo bids</td><td>None set</td></tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <strong>Leisure Pools Boston North — Google Ads Audit — March 23, 2026</strong><br>
+  Generated by Claude Code &nbsp;|&nbsp; Account: 186-757-8797 &nbsp;|&nbsp; MCC: 836-765-6694 &nbsp;|&nbsp; Read-only audit — no changes made<br>
+  Dealer: Pool Visions Corp &nbsp;|&nbsp; Contact: bruno@poolvisionscorp.com &nbsp;|&nbsp; Brand: Leisure Pools
+</footer>
+
+<script>
+  // Make all details elements toggle on header click
+  document.querySelectorAll('details').forEach(function(d) {
+    d.addEventListener('toggle', function() {});
+  });
+</script>
+</body>
+</html>

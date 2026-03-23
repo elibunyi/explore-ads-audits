@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bluefin Contracting &amp; Design — Google Ads Audit — 2026-03-23</title>
+  <style>
+    :root {
+      --navy: #0d1b2a;
+      --navy-mid: #1a2f47;
+      --navy-light: #243b55;
+      --accent: #1e90ff;
+      --accent-hover: #4daaff;
+      --gold: #f4b942;
+      --red: #e05252;
+      --orange: #e07b35;
+      --green: #3abf7b;
+      --grey-text: #b0bec5;
+      --border: #2e4460;
+      --bg: #0a1520;
+      --card: #132030;
+      --card2: #0f1c2c;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--bg);
+      color: #d0dce8;
+      line-height: 1.6;
+    }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+
+    /* ── Header ── */
+    .header {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy) 100%);
+      border-bottom: 2px solid var(--accent);
+      padding: 32px 40px;
+    }
+    .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+    .dealer-name { font-size: 26px; font-weight: 700; color: #ffffff; letter-spacing: -0.3px; }
+    .dealer-meta { font-size: 13px; color: var(--grey-text); margin-top: 6px; }
+    .dealer-meta span { margin-right: 18px; }
+    .health-badge {
+      background: var(--orange);
+      color: #fff;
+      font-size: 22px;
+      font-weight: 800;
+      padding: 10px 22px;
+      border-radius: 8px;
+      text-align: center;
+      min-width: 110px;
+    }
+    .health-badge small { display: block; font-size: 10px; font-weight: 500; letter-spacing: 1px; text-transform: uppercase; opacity: 0.85; margin-bottom: 2px; }
+
+    /* ── Score History ── */
+    .score-history {
+      display: flex; gap: 10px; margin-top: 20px; flex-wrap: wrap;
+    }
+    .score-pill {
+      background: var(--navy-light); border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--grey-text);
+    }
+    .score-pill strong { color: #d0dce8; }
+
+    /* ── Perf Banner ── */
+    .perf-banner {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      padding: 20px 40px;
+      display: flex; flex-wrap: wrap; gap: 24px;
+    }
+    .metric-block { text-align: center; min-width: 90px; }
+    .metric-val { font-size: 22px; font-weight: 700; color: #ffffff; }
+    .metric-lbl { font-size: 11px; color: var(--grey-text); text-transform: uppercase; letter-spacing: 0.8px; }
+    .metric-sub { font-size: 11px; color: var(--orange); margin-top: 2px; }
+
+    /* ── Layout ── */
+    .container { max-width: 1100px; margin: 0 auto; padding: 32px 40px; }
+    .section { margin-bottom: 36px; }
+    .section-title {
+      font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 1.2px;
+      color: var(--accent); margin-bottom: 14px; padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    /* ── Finding Cards ── */
+    .finding {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 12px;
+      overflow: hidden;
+    }
+    .finding-header {
+      display: flex; align-items: flex-start; gap: 14px;
+      padding: 16px 20px; cursor: pointer;
+    }
+    .finding-header:hover { background: var(--navy-light); }
+    .severity-badge {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.8px;
+      text-transform: uppercase; padding: 3px 10px; border-radius: 12px;
+      white-space: nowrap; margin-top: 2px;
+    }
+    .sev-p1 { background: rgba(224,82,82,0.2); color: var(--red); border: 1px solid rgba(224,82,82,0.4); }
+    .sev-p2 { background: rgba(224,123,53,0.2); color: var(--orange); border: 1px solid rgba(224,123,53,0.4); }
+    .sev-pass { background: rgba(58,191,123,0.15); color: var(--green); border: 1px solid rgba(58,191,123,0.3); }
+    .sev-info { background: rgba(176,190,197,0.15); color: var(--grey-text); border: 1px solid rgba(176,190,197,0.2); }
+    .finding-title { font-size: 15px; font-weight: 600; color: #e8f0f8; flex: 1; }
+    .finding-summary { font-size: 13px; color: var(--grey-text); margin-top: 4px; }
+    .finding-body {
+      padding: 0 20px 16px 56px;
+      font-size: 13px;
+      color: #b8cad8;
+      display: none;
+    }
+    .finding-body.open { display: block; }
+    .finding-body p { margin-bottom: 8px; }
+    .finding-body ul { margin: 8px 0 8px 18px; }
+    .finding-body li { margin-bottom: 5px; }
+    .finding-body strong { color: #d8e8f4; }
+
+    /* ── Tables ── */
+    .data-table { width: 100%; border-collapse: collapse; margin: 12px 0; font-size: 12px; }
+    .data-table th {
+      background: var(--navy-light); color: var(--grey-text);
+      text-align: left; padding: 8px 12px; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.6px; font-size: 11px;
+      border-bottom: 1px solid var(--border);
+    }
+    .data-table td {
+      padding: 8px 12px; border-bottom: 1px solid var(--border);
+      vertical-align: top;
+    }
+    .data-table tr:last-child td { border-bottom: none; }
+    .data-table tr:hover td { background: var(--navy-light); }
+    .tag-waste { color: var(--red); font-size: 11px; font-weight: 600; }
+    .tag-ok { color: var(--green); font-size: 11px; }
+    .tag-brand { color: var(--gold); font-size: 11px; }
+    .tag-warn { color: var(--orange); font-size: 11px; }
+
+    /* ── Code / Copy blocks ── */
+    .copy-block {
+      background: var(--navy); border: 1px solid var(--border); border-radius: 6px;
+      padding: 12px 16px; font-family: 'SF Mono', Menlo, monospace; font-size: 12px;
+      color: #a8d0f0; margin: 10px 0; position: relative; cursor: pointer;
+      user-select: all;
+    }
+    .copy-block:hover { border-color: var(--accent); }
+    .copy-hint { position: absolute; top: 8px; right: 10px; font-size: 10px; color: var(--grey-text); font-family: sans-serif; }
+
+    /* ── Summary Grid ── */
+    .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 12px; margin-bottom: 24px; }
+    .summary-card {
+      background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+      padding: 16px 20px;
+    }
+    .summary-card .count { font-size: 28px; font-weight: 800; }
+    .summary-card .label { font-size: 12px; color: var(--grey-text); text-transform: uppercase; letter-spacing: 0.7px; margin-top: 4px; }
+    .c-red { color: var(--red); }
+    .c-orange { color: var(--orange); }
+    .c-green { color: var(--green); }
+    .c-grey { color: var(--grey-text); }
+
+    /* ── Rebuild Spec ── */
+    .rebuild-section { background: var(--card2); border: 1px solid var(--accent); border-radius: 8px; padding: 24px; }
+    .rebuild-section h3 { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; }
+    .rebuild-row { display: flex; gap: 12px; margin-bottom: 10px; font-size: 13px; }
+    .rebuild-label { min-width: 180px; color: var(--grey-text); font-weight: 600; flex-shrink: 0; }
+    .rebuild-value { color: #d0dce8; }
+
+    /* ── Footer ── */
+    .footer {
+      background: var(--navy); border-top: 1px solid var(--border);
+      padding: 20px 40px; font-size: 12px; color: var(--grey-text);
+      display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+    }
+
+    /* ── Toggle chevron ── */
+    .chevron { font-size: 11px; color: var(--grey-text); margin-left: auto; padding-left: 10px; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ HEADER ═══════════════════ -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="dealer-name">Bluefin Contracting &amp; Design</div>
+      <div class="dealer-meta">
+        <span>Account: 2494415491</span>
+        <span>Brand: Leisure Pools</span>
+        <span>Market: Mobile &amp; Baldwin County, AL</span>
+        <span>Audit: 2026-03-23</span>
+        <span>Period: 2026-02-21 → 2026-03-23 (30d)</span>
+      </div>
+      <div class="score-history">
+        <div class="score-pill">3/16: <strong>35</strong>/100</div>
+        <div class="score-pill">3/20: <strong>32</strong>/100</div>
+        <div class="score-pill">3/23: <strong>42</strong>/100 ↑</div>
+      </div>
+    </div>
+    <div class="health-badge"><small>Health Score</small>42 / 100</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ PERF BANNER ═══════════════════ -->
+<div class="perf-banner">
+  <div class="metric-block">
+    <div class="metric-val">$760.72</div>
+    <div class="metric-lbl">Spend (30d)</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">$16.12</div>
+    <div class="metric-lbl">Daily Budget</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">2,310</div>
+    <div class="metric-lbl">Impressions</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">255</div>
+    <div class="metric-lbl">Clicks</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">11.0%</div>
+    <div class="metric-lbl">CTR</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">$2.98</div>
+    <div class="metric-lbl">Avg CPC</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">7</div>
+    <div class="metric-lbl">Conversions</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">$108.67</div>
+    <div class="metric-lbl">CPA</div>
+  </div>
+  <div class="metric-block">
+    <div class="metric-val">28.1%</div>
+    <div class="metric-lbl">Impr. Share</div>
+    <div class="metric-sub">53% rank-lost · 18.9% budget-lost</div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MAIN CONTENT ═══════════════════ -->
+<div class="container">
+
+  <!-- Summary Grid -->
+  <div class="summary-grid">
+    <div class="summary-card"><div class="count c-red">4</div><div class="label">P1 — Critical</div></div>
+    <div class="summary-card"><div class="count c-orange">4</div><div class="label">P2 — Significant</div></div>
+    <div class="summary-card"><div class="count c-green">5</div><div class="label">Passing</div></div>
+    <div class="summary-card"><div class="count c-grey">5</div><div class="label">Unable to Verify</div></div>
+  </div>
+
+  <!-- ── P1 FINDINGS ── -->
+  <div class="section">
+    <div class="section-title">P1 — Critical Issues</div>
+
+    <!-- P1-1: No CPC Cap -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p1">P1</span>
+        <div style="flex:1">
+          <div class="finding-title">Target Spend — No CPC Cap Set (cpc_bid_ceiling_micros = 0)</div>
+          <div class="finding-summary">Max Clicks with no ceiling is a budget bleed risk at this spend level.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Campaign "Bluefin Contracting &amp; Design Campaign" is using <strong>Target Spend (Max Clicks, type=9)</strong> bidding — the correct strategy for an account with only 7 conversions in 30 days. However, <strong>cpc_bid_ceiling_micros = 0</strong>, meaning there is no upper bound on what Google can bid per click.</p>
+        <p>Without a cap, Smart Bidding can push individual clicks to $8–$15+ on broad-intent queries where a $3–$5 click limit would be appropriate for this market size and budget. At $16.12/day, even 2–3 blown clicks wipes out the day's budget.</p>
+        <p><strong>Recommended fix:</strong> Set cpc_bid_ceiling to $6–$8. This preserves Max Clicks volume while preventing runaway individual clicks. Revisit after 30 more days of data or once conversions reach 15–20/month.</p>
+      </div>
+    </div>
+
+    <!-- P1-2: Duplicate Call Conversions -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p1">P1</span>
+        <div style="flex:1">
+          <div class="finding-title">Duplicate Call Conversion Actions — Double-Counting Risk</div>
+          <div class="finding-summary">"Call from Ads" (ONE_PER_CLICK) and "Calls from ads" (EVERY_CONVERSION) both enabled and counting. Two actions for the same call type with different counting methods.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Two call conversion actions are simultaneously ENABLED with <strong>include_in_conversions = true</strong>:</p>
+        <table class="data-table">
+          <thead><tr><th>Action Name</th><th>Counting Type</th><th>Category</th><th>Include in Conv.</th></tr></thead>
+          <tbody>
+            <tr><td>Call from Ads</td><td>ONE_PER_CLICK (2)</td><td>11 (PHONE_CALL_LEAD)</td><td>Yes</td></tr>
+            <tr><td>Calls from ads</td><td>EVERY_CONVERSION (3)</td><td>11 (PHONE_CALL_LEAD)</td><td>Yes</td></tr>
+          </tbody>
+        </table>
+        <p>A single phone click triggers both actions simultaneously. The reported conversion total (7 conv) is inflated by this double-count — the true number of distinct call events is lower. Smart Bidding is also optimizing against a noisy signal.</p>
+        <p><strong>Recommended fix:</strong> Retain ONE call action (recommend keeping "Calls from ads" at EVERY_CONVERSION for richer signal) and set the other to <em>not include in conversions</em>. Do not delete — archive it.</p>
+      </div>
+    </div>
+
+    <!-- P1-3: No Pool-Specific Negatives -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p1">P1</span>
+        <div style="flex:1">
+          <div class="finding-title">No Pool-Specific Negative Keywords — Significant Wasted Spend</div>
+          <div class="finding-summary">Master Exclusion List has 162 generic terms but zero pool-industry exclusions. Account-level list is empty. Competitors, DIY, wrong pool type, cost researchers all triggering.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Two shared negative lists are attached to this account:</p>
+        <ul>
+          <li><strong>account-level negative keywords list</strong> — 0 members. Empty.</li>
+          <li><strong>Master Exclusion List 3.18</strong> — 162 members, linked to campaign. Content is generic only: cheap, free, sale, jobs, DIY, training, how to, tips, etc. Zero pool-specific terms.</li>
+        </ul>
+        <p>The following search term categories are actively wasting budget with no negative coverage:</p>
+        <table class="data-table">
+          <thead><tr><th>Category</th><th>Example Terms</th><th>Spend</th></tr></thead>
+          <tbody>
+            <tr><td><span class="tag-waste">Competitor Brand</span></td><td>barrier reef pools, stealth pool, doug wilson pools, crystal pools, aqua technics</td><td>~$18–20</td></tr>
+            <tr><td><span class="tag-waste">Wrong Pool Type</span></td><td>vinyl pool liner installers near me, gunite pool</td><td>~$8</td></tr>
+            <tr><td><span class="tag-waste">DIY / Wholesale</span></td><td>where to buy fiberglass pool shell, fiberglass inground pool kits clearance, cheapest inground pool kits</td><td>~$13</td></tr>
+            <tr><td><span class="tag-waste">Cost Researcher</span></td><td>how much does a 12x24 inground pool cost, inground pool cost estimator, plunge pool cost</td><td>~$18</td></tr>
+            <tr><td><span class="tag-waste">Out-of-Market Geo</span></td><td>pool contractors birmingham al</td><td>~$3</td></tr>
+            <tr><td><span class="tag-waste">Irrelevant</span></td><td>modular pools, mini inground pools</td><td>~$12</td></tr>
+          </tbody>
+        </table>
+        <p>Estimated wasted spend from these categories: <strong>~$70–$90 of $761 total (9–12%)</strong>. On a $16/day budget this is material.</p>
+        <p><strong>Recommended fix:</strong> Add a pool-specific negative list to the account. At minimum: competitor names (barrier reef, stealth, doug wilson, crystal, aqua technics, blue haven), wrong types (vinyl, gunite, above ground, above-ground), DIY signals (kit, kits, diy, how to build, shell, wholesale, clearance), cost research (cost estimator, how much does, price comparison), out-of-market geos (birmingham, tuscaloosa, huntsville for this market).</p>
+      </div>
+    </div>
+
+    <!-- P1-4: Search Term Waste -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p1">P1</span>
+        <div style="flex:1">
+          <div class="finding-title">Documented Search Term Waste — Competitors, DIY, Wrong Intent Served</div>
+          <div class="finding-summary">Top search terms include $10.68 on a competitor brand, $13+ on DIY/wholesale queries, $11+ on cost research only — no conversions from these categories.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Confirmed wasteful terms in the 30-day window:</p>
+        <table class="data-table">
+          <thead><tr><th>Search Term</th><th>Spend</th><th>Conv</th><th>Issue</th></tr></thead>
+          <tbody>
+            <tr><td>barrier reef pools</td><td>$10.68</td><td>0</td><td><span class="tag-waste">Competitor brand</span></td></tr>
+            <tr><td>stealth pool</td><td>$6.93</td><td>0</td><td><span class="tag-waste">Competitor brand</span></td></tr>
+            <tr><td>how much does a 12x24 inground pool cost</td><td>$11.85</td><td>0</td><td><span class="tag-waste">Cost researcher</span></td></tr>
+            <tr><td>inground pool cost</td><td>$11.33</td><td>0</td><td><span class="tag-waste">Cost researcher</span></td></tr>
+            <tr><td>where to buy fiberglass pool shell</td><td>$6.63</td><td>0</td><td><span class="tag-waste">DIY/wholesale</span></td></tr>
+            <tr><td>cheapest inground pool kits</td><td>$6.26</td><td>0</td><td><span class="tag-waste">DIY/wholesale</span></td></tr>
+            <tr><td>vinyl pool liner installers near me</td><td>$4.08</td><td>0</td><td><span class="tag-waste">Wrong pool type</span></td></tr>
+            <tr><td>gunite pool</td><td>$3.93</td><td>0</td><td><span class="tag-waste">Wrong pool type</span></td></tr>
+            <tr><td>modular pools</td><td>$8.95</td><td>0</td><td><span class="tag-waste">Irrelevant category</span></td></tr>
+            <tr><td>pool contractors birmingham al</td><td>$3.39</td><td>0</td><td><span class="tag-waste">Out-of-market geo</span></td></tr>
+            <tr><td>bluefin pool and spa</td><td>$10.07</td><td>3</td><td><span class="tag-brand">Brand query — seg. needed</span></td></tr>
+          </tbody>
+        </table>
+        <p>Note: "bluefin pool and spa" generated 3 of the 7 total conversions. That traffic should be captured by a dedicated brand campaign at near-zero CPC — not burning budget in the main campaign where it competes with commercial keywords for impression share.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── P2 FINDINGS ── -->
+  <div class="section">
+    <div class="section-title">P2 — Significant Issues</div>
+
+    <!-- P2-1: Single Ad Group -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p2">P2</span>
+        <div style="flex:1">
+          <div class="finding-title">Single Ad Group — No Intent Segmentation</div>
+          <div class="finding-summary">All 13 keywords and 100% of traffic funnel through "Ad group 1." Brand, high-intent commercial, and generic queries compete in the same bucket.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>The entire campaign runs through one ad group: <strong>"Ad group 1" (ID: 179608256386)</strong>. This creates several compounding problems:</p>
+        <ul>
+          <li>Brand keywords ("bluefin contracting," "blue fin contracting") sit alongside generic commercial keywords — brand CTR inflates the overall group average, masking poor performance on non-brand terms.</li>
+          <li>Ad relevance and Quality Score cannot be optimized per intent tier — one RSA must serve every query from "pool builder" to "fiberglass pool companies" to brand terms.</li>
+          <li>3 of 7 conversions come from brand queries; without segmentation, it's impossible to measure true commercial (non-brand) efficiency.</li>
+          <li>Budget allocation cannot be controlled between brand and commercial intent — brand clicks burn commercial budget.</li>
+        </ul>
+        <p><strong>Recommended fix:</strong> Split into at minimum 3 ad groups: (1) Brand only — "bluefin contracting," "blue fin contracting" — or ideally a separate brand campaign; (2) High-intent commercial — "pool builder," "pool contractor," "pool installation," "pool builders near me"; (3) Product-specific — "fiberglass pool companies," "fiberglass inground swimming pool."</p>
+      </div>
+    </div>
+
+    <!-- P2-2: Brand Keywords in Commercial Campaign -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p2">P2</span>
+        <div style="flex:1">
+          <div class="finding-title">Brand Keywords Mixed With Commercial Keywords</div>
+          <div class="finding-summary">"bluefin contracting" and "blue fin contracting" are phrase match in the same ad group as all commercial terms — no brand/non-brand separation.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Keywords confirmed in the campaign:</p>
+        <table class="data-table">
+          <thead><tr><th>Keyword</th><th>Match</th><th>Type</th><th>QS</th></tr></thead>
+          <tbody>
+            <tr><td>bluefin contracting</td><td>PHRASE</td><td><span class="tag-brand">Brand</span></td><td>—</td></tr>
+            <tr><td>blue fin contracting</td><td>PHRASE</td><td><span class="tag-brand">Brand</span></td><td>—</td></tr>
+            <tr><td>swimming pool installation</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>—</td></tr>
+            <tr><td>pool contractor</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>—</td></tr>
+            <tr><td>pool builder / pool builders</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>—</td></tr>
+            <tr><td>pool builders near me</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>QS 5</td></tr>
+            <tr><td>fiberglass pool companies</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>QS 8</td></tr>
+            <tr><td>swimming pool builders</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>—</td></tr>
+            <tr><td>swimming pool contractors</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>—</td></tr>
+            <tr><td>pool installation</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>QS 5</td></tr>
+            <tr><td>pool construction</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>QS 3</td></tr>
+            <tr><td>fiberglass inground swimming pool</td><td>PHRASE</td><td><span class="tag-ok">Commercial</span></td><td>—</td></tr>
+          </tbody>
+        </table>
+        <p>No broad match keywords found — all 13 keywords are PHRASE match. This passes the broad match check.</p>
+        <p>Brand keyword "bluefin pool and spa" (a common misspelling/variation triggering via phrase match) generated $10.07 spend and 3 of the 7 total conversions — at a CPA far below the commercial terms. These conversions are essentially free brand defense. They should be isolated into a brand campaign with a $2–3 budget cap so they don't consume commercial budget.</p>
+      </div>
+    </div>
+
+    <!-- P2-3: Low Impression Share + IS Rank Lost -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p2">P2</span>
+        <div style="flex:1">
+          <div class="finding-title">28.1% Impression Share — 53% Lost to Rank</div>
+          <div class="finding-summary">The account is winning less than a third of available impressions. Rank (Quality Score + bid) is the primary driver of lost share, not budget.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Impression Share breakdown:</p>
+        <ul>
+          <li><strong>28.1%</strong> — won impressions</li>
+          <li><strong>53.0%</strong> — lost to rank (ad quality or bid too low)</li>
+          <li><strong>18.9%</strong> — lost to budget</li>
+        </ul>
+        <p>Over half of missed impressions are rank-driven, not budget-driven. This means adding budget without first addressing quality will not meaningfully improve reach. The low QS scores on core keywords (QS 3 on "pool construction," QS 5 on "pool installation" and "pool builders near me") are contributing to rank loss.</p>
+        <p>The no-CPC-cap issue (P1-1) may also be causing Smart Bidding to push per-click costs too high on some auctions, exhausting budget early in the day.</p>
+        <p><strong>Recommended fix:</strong> Improve ad relevance (segment ad groups by theme, tighten RSA copy to match keyword intent), set a CPC cap to control cost/click, and add negative keywords to eliminate quality-damaging queries that lower overall account health signals.</p>
+      </div>
+    </div>
+
+    <!-- P2-4: Callout Count Low -->
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-p2">P2</span>
+        <div style="flex:1">
+          <div class="finding-title">Only 3 Callout Extensions — Expansion Opportunity</div>
+          <div class="finding-summary">Google recommends 4–8 callouts. Current set: "Lifetime Pool Warranty", "Leisure Fiberglass Pools", "Expert Installation Team."</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Current callouts (3 total):</p>
+        <ul>
+          <li>Lifetime Pool Warranty</li>
+          <li>Leisure Fiberglass Pools</li>
+          <li>Expert Installation Team</li>
+        </ul>
+        <p>Suggested additions (5–6 total recommended):</p>
+        <ul>
+          <li>Installed in Weeks, Not Months</li>
+          <li>Serving Mobile &amp; Baldwin County</li>
+          <li>Free Consultation Available</li>
+          <li>Low Maintenance Design</li>
+          <li>AquaGuard® Color Options</li>
+        </ul>
+        <p>More callouts increase rotation variety and ad space utilization, and locally-specific ones ("Mobile &amp; Baldwin County") improve ad relevance signals.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── PASSING ── -->
+  <div class="section">
+    <div class="section-title">Passing</div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-pass">PASS</span>
+        <div style="flex:1">
+          <div class="finding-title">No Broad Match Keywords — All 13 Keywords Are PHRASE Match</div>
+          <div class="finding-summary">Zero match_type=4 (BROAD) found among ENABLED keywords. Full compliance.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>All 13 active ENABLED keywords use match_type=3 (PHRASE). No broad match found at any level. Compliant with account rules.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-pass">PASS</span>
+        <div style="flex:1">
+          <div class="finding-title">Geo Targeting — PRESENCE Confirmed (Enum 7)</div>
+          <div class="finding-summary">positive_geo_target_type=7 verified as PRESENCE. Targeting is location-based, not intent-based. Correct.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Campaign geo targeting confirmed: <strong>positive_geo_target_type = 7 (PRESENCE)</strong>. Ads serve to people physically in the target area — not just people who mention the location in their query. This is the correct setting for a local installer.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-pass">PASS</span>
+        <div style="flex:1">
+          <div class="finding-title">4 Sitelinks with Descriptions Present — Campaign Level</div>
+          <div class="finding-summary">Contact Us, Modern Pool Designs, Stunning Pool Colors, Pool Financing — all with 2 description lines each.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Campaign-level sitelinks (4 total, all with descriptions):</p>
+        <table class="data-table">
+          <thead><tr><th>Link Text</th><th>Desc 1</th><th>Desc 2</th></tr></thead>
+          <tbody>
+            <tr><td>Contact Us</td><td>Want To Learn More?</td><td>We'd Love To Answer Your Questions.</td></tr>
+            <tr><td>Modern Pool Designs</td><td>Rectangular &amp; Freeform Pool Shapes.</td><td>Discover Our Collection</td></tr>
+            <tr><td>Stunning Pool Colors</td><td>Stylize and Customize Your Pool</td><td>Premier Gelcoat Colors</td></tr>
+            <tr><td>Pool Financing</td><td>Flexible Financing Options</td><td>Make Your Dream Pool Affordable</td></tr>
+          </tbody>
+        </table>
+        <p>No sitelinks at account or ad group level. Campaign level only — acceptable. All 4 have descriptions, which is correct. Sitelinks cover the right purchase-cycle angles: contact, design exploration, color selection, financing.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-pass">PASS</span>
+        <div style="flex:1">
+          <div class="finding-title">Bidding Strategy — Target Spend (Max Clicks) Appropriate for Volume</div>
+          <div class="finding-summary">With 7 conversions in 30 days, Max Clicks is the correct strategy. Prior audits' flag of Max Conversions no longer applies — strategy was updated.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Campaign uses bidding_strategy_type=9 (TARGET_SPEND / Max Clicks). Smart Bidding requires 30–50 conversions/month minimum for stable optimization. With 7 conversions in 30 days, Max Clicks is the correct approach — volume first, conversion optimization when data supports it.</p>
+        <p>Prior audits (3/16, 3/20) flagged the strategy as Max Conversions (type=10). The account appears to have been updated since. This is now correct. <strong>Exception:</strong> No CPC cap remains a P1 — Max Clicks without a ceiling is a risk.</p>
+      </div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-pass">PASS</span>
+        <div style="flex:1">
+          <div class="finding-title">Brochure Download + Contact Dealer Conversions Enabled</div>
+          <div class="finding-summary">Both web conversion actions count correctly and are included in reported conversions. Brochure downloads verified as real conversions (require form fill).</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body">
+        <p>Two web conversion actions are ENABLED and include_in_conversions = true:</p>
+        <ul>
+          <li>"Blue Fin Contracting and Design (web) Download Brochure" — EVERY_CONVERSION, category=13</li>
+          <li>"Blue Fin Contracting and Design (web) Contact Dealer" — EVERY_CONVERSION, category=13</li>
+        </ul>
+        <p>Brochure downloads require a contact form fill — these are real lead conversions and correctly counted. No issue with this setup.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── UNABLE TO VERIFY ── -->
+  <div class="section">
+    <div class="section-title">Unable to Verify — API Limitations</div>
+    <div style="font-size: 13px; color: var(--grey-text); margin-bottom: 12px;">The following items could not be confirmed due to known Google Ads API serialization or resource limitations. These are not findings — they are data gaps. Do not action these without manual verification in the UI.</div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-info">N/V</span>
+        <div style="flex:1">
+          <div class="finding-title">RSA Ad Copy — Content Unreadable via API</div>
+          <div class="finding-summary">ad_group_ad resource returns status and approval data but not headline/description text. Cannot evaluate copy quality.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body"><p>RSA ad copy (headlines and descriptions) cannot be retrieved via GAQL. The API confirms 1 RSA is ENABLED in "Ad group 1" but content is not accessible via the search API. Evaluate ad copy manually in Google Ads UI.</p></div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-info">N/V</span>
+        <div style="flex:1">
+          <div class="finding-title">Structured Snippet Values — Serialization Error</div>
+          <div class="finding-summary">Asset ID query for the structured snippet asset returns RepeatedScalarContainer error on .values field. Header confirmed (asset exists) but values unreadable.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body"><p>One structured snippet (field_type=18) is present on the campaign. Attempts to read structured_snippet.values fail with a serialization error — this is a known API limitation with repeated string fields. Cannot confirm whether pool model names from the Leisure Pools brand list are present. Verify in UI.</p></div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-info">N/V</span>
+        <div style="flex:1">
+          <div class="finding-title">Call Extension Phone Number — Serialization Error</div>
+          <div class="finding-summary">Call asset present (field_type=16) but phone number content unreadable via API.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body"><p>1 call extension (field_type=16) confirmed present on the campaign. Phone number content could not be retrieved due to serialization errors. Verify the phone number is correct and active in the UI.</p></div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-info">N/V</span>
+        <div style="flex:1">
+          <div class="finding-title">Device Bid Adjustments — API Filter Error</div>
+          <div class="finding-summary">campaign_criterion with device type filter throws "type" error. Cannot confirm mobile bid adjustments.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body"><p>Device-level bid adjustments for the campaign could not be retrieved. The campaign_criterion.type filter causes an API error. Whether mobile, tablet, or desktop bid adjustments are set (or absent) cannot be verified. Check in UI — at $16/day, mobile bid adjustments can have a meaningful effect on where spend goes.</p></div>
+    </div>
+
+    <div class="finding">
+      <div class="finding-header" onclick="toggle(this)">
+        <span class="severity-badge sev-info">N/V</span>
+        <div style="flex:1">
+          <div class="finding-title">Audience Targeting / Observations — Not Pulled</div>
+          <div class="finding-summary">Audience segment configuration at campaign and ad group level not retrieved in this audit cycle.</div>
+        </div>
+        <span class="chevron">▼</span>
+      </div>
+      <div class="finding-body"><p>Audience segments (in-market, affinity, customer match, remarketing) were not queried in this audit. Verification of audience observations or targeting layers requires a separate campaign_criterion query for audience-type criteria. Not a finding — a data gap for a future audit cycle.</p></div>
+    </div>
+  </div>
+
+  <!-- ── REBUILD SPEC ── -->
+  <div class="section">
+    <div class="section-title">Rebuild Specification — Ideal Account Structure</div>
+    <div class="rebuild-section">
+      <h3>Target State for Bluefin Contracting &amp; Design</h3>
+      <div class="rebuild-row"><div class="rebuild-label">Campaign Structure</div><div class="rebuild-value">2 campaigns: (1) Commercial — all non-brand keywords, Target Spend + CPC cap $6–8; (2) Brand Defense — "bluefin contracting" variants, Max Clicks, $3–4/day budget cap</div></div>
+      <div class="rebuild-row"><div class="rebuild-label">Ad Group Split</div><div class="rebuild-value">Commercial campaign: 3 ad groups — High Intent (pool builder, pool contractor, pool installation), Product Specific (fiberglass pool companies, fiberglass inground), Geo Commercial (fiberglass pools mobile al, fiberglass pools foley al)</div></div>
+      <div class="rebuild-row"><div class="rebuild-label">Negative Keywords</div><div class="rebuild-value">Add pool-specific negative list: competitor names, wrong pool types (vinyl, gunite, above ground), DIY (kit, kits, diy, shell, wholesale), cost research (cost estimator, how much, price comparison), out-of-market geos (birmingham, tuscaloosa)</div></div>
+      <div class="rebuild-row"><div class="rebuild-label">Conversion Cleanup</div><div class="rebuild-value">Retain "Calls from ads" (EVERY_CONVERSION) as primary call action; set "Call from Ads" (ONE_PER_CLICK) to not include in conversions</div></div>
+      <div class="rebuild-row"><div class="rebuild-label">CPC Cap</div><div class="rebuild-value">Set cpc_bid_ceiling_micros = 6,000,000–8,000,000 ($6–8) on commercial campaign; $3 on brand campaign</div></div>
+      <div class="rebuild-row"><div class="rebuild-label">Callouts</div><div class="rebuild-value">Expand to 6–8: add "Installed in Weeks, Not Months," "Serving Mobile &amp; Baldwin County," "Free Consultation," "Low Maintenance Design"</div></div>
+      <div class="rebuild-row"><div class="rebuild-label">Priority on Next Audit</div><div class="rebuild-value">Confirm duplicate call conversion is resolved; check IS trend after CPC cap is added; pull audience segments; verify RSA copy in UI</div></div>
+    </div>
+  </div>
+
+  <!-- ── SCORE NOTE ── -->
+  <div class="section">
+    <div class="section-title">Health Score Rationale</div>
+    <table class="data-table">
+      <thead><tr><th>Dimension</th><th>Score</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Negative Keywords</td><td>10/25</td><td>Master list linked (+10), but generic-only — no pool-specific coverage (−15)</td></tr>
+        <tr><td>Bidding Strategy</td><td>8/15</td><td>Strategy correct (Max Clicks for volume), but no CPC cap (−7)</td></tr>
+        <tr><td>Conversion Tracking</td><td>6/15</td><td>Web conversions correct, brochure downloads correct, but duplicate call actions inflate count</td></tr>
+        <tr><td>Structure / Segmentation</td><td>6/20</td><td>Single ad group, brand mixed with commercial, no brand campaign</td></tr>
+        <tr><td>Assets / Extensions</td><td>7/10</td><td>4 sitelinks with descriptions, call extension present, only 3 callouts (−3)</td></tr>
+        <tr><td>Geo / Network</td><td>5/5</td><td>PRESENCE confirmed, search-only network</td></tr>
+        <tr><td>Match Types</td><td>5/5</td><td>Zero broad match, all phrase — full compliance</td></tr>
+        <tr><td><strong>Total</strong></td><td><strong>42/100</strong></td><td>↑ from 32 (3/20) — bidding strategy corrected, shared neg list confirmed linked</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<!-- ═══════════════════ FOOTER ═══════════════════ -->
+<div class="footer">
+  <span>Bluefin Contracting &amp; Design · Account 2494415491 · Leisure Pools</span>
+  <span>Generated 2026-03-23 · Read-only audit · MCC 836-765-6694</span>
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const chevron = header.querySelector('.chevron');
+  if (body.classList.contains('open')) {
+    body.classList.remove('open');
+    if (chevron) chevron.textContent = '▼';
+  } else {
+    body.classList.add('open');
+    if (chevron) chevron.textContent = '▲';
+  }
+}
+// Auto-open all P1s on load
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.sev-p1').forEach(badge => {
+    const body = badge.closest('.finding').querySelector('.finding-body');
+    const chevron = badge.closest('.finding').querySelector('.chevron');
+    if (body) body.classList.add('open');
+    if (chevron) chevron.textContent = '▲';
+  });
+});
+</script>
+</body>
+</html>

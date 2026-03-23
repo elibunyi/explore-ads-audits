@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit Report — Elite Aviva Pools Terre Haute | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2e;
+    --navy-mid: #1a2d45;
+    --navy-light: #243654;
+    --accent: #8C8FC7;
+    --accent-light: #b5b8dc;
+    --accent-dim: #4a4d7a;
+    --white: #f8f9fc;
+    --muted: #a8b3c4;
+    --red: #e05252;
+    --orange: #e07c3a;
+    --yellow: #d4b84a;
+    --green: #4caf7d;
+    --border: rgba(140,143,199,0.2);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: 'Segoe UI', system-ui, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .page-header {
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    border-bottom: 2px solid var(--accent);
+    padding: 32px 48px;
+  }
+  .page-header .brand-tag {
+    color: var(--accent-light);
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .page-header h1 {
+    font-size: 26px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .page-header .meta {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .page-header .meta span { margin-right: 20px; }
+  .container { max-width: 1100px; margin: 0 auto; padding: 40px 48px; }
+
+  /* HEALTH SCORE */
+  .health-bar-wrap {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 28px;
+    margin-bottom: 32px;
+  }
+  .health-score-big {
+    font-size: 52px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1;
+    min-width: 80px;
+  }
+  .health-label { color: var(--muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .health-bar-outer {
+    flex: 1;
+    background: rgba(255,255,255,0.08);
+    border-radius: 6px;
+    height: 12px;
+    overflow: hidden;
+  }
+  .health-bar-inner {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--red), var(--orange));
+    width: 20%;
+  }
+  .health-delta {
+    font-size: 13px;
+    color: var(--muted);
+    text-align: right;
+    min-width: 130px;
+  }
+  .health-delta .delta-val { font-size: 18px; font-weight: 600; color: var(--orange); }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 12px;
+    margin-bottom: 32px;
+  }
+  .kpi-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .kpi-label { font-size: 10px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .kpi-val { font-size: 22px; font-weight: 700; color: var(--white); }
+  .kpi-val.bad { color: var(--red); }
+  .kpi-val.warn { color: var(--orange); }
+  .kpi-val.ok { color: var(--green); }
+  .kpi-val.accent { color: var(--accent-light); }
+  .kpi-sub { font-size: 11px; color: var(--muted); margin-top: 3px; }
+
+  /* SECTION */
+  section { margin-bottom: 40px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .section-header h2 {
+    font-size: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-light);
+  }
+  .section-divider {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+  }
+
+  /* FINDING CARDS */
+  .finding {
+    background: var(--navy-mid);
+    border-left: 4px solid var(--border);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .finding.p1 { border-left-color: var(--red); }
+  .finding.p2 { border-left-color: var(--orange); }
+  .finding.p3 { border-left-color: var(--yellow); }
+  .finding.info { border-left-color: var(--accent); }
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 8px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge.p1 { background: rgba(224,82,82,0.2); color: var(--red); }
+  .badge.p2 { background: rgba(224,124,58,0.2); color: var(--orange); }
+  .badge.p3 { background: rgba(212,184,74,0.2); color: var(--yellow); }
+  .badge.info { background: rgba(140,143,199,0.2); color: var(--accent-light); }
+  .badge.ok { background: rgba(76,175,125,0.2); color: var(--green); }
+  .finding-title { font-size: 15px; font-weight: 600; color: var(--white); }
+  .finding-body { color: var(--muted); font-size: 13px; line-height: 1.7; }
+  .finding-body strong { color: var(--white); }
+  .finding-action {
+    margin-top: 10px;
+    padding: 10px 14px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 6px;
+    font-size: 12px;
+    color: var(--accent-light);
+  }
+  .finding-action::before { content: "→ "; font-weight: 700; }
+
+  /* TABLE */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead tr { background: rgba(255,255,255,0.05); }
+  th {
+    text-align: left;
+    padding: 10px 12px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--muted);
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid rgba(255,255,255,0.04); }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  .tbl-wrap {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .qs-0 { color: var(--red); font-weight: 600; }
+  .qs-low { color: var(--orange); }
+  .qs-ok { color: var(--yellow); }
+  .qs-good { color: var(--green); }
+  .cost-high { color: var(--red); font-weight: 600; }
+  .cost-med { color: var(--orange); }
+  .tag-waste { background: rgba(224,82,82,0.15); color: var(--red); padding: 1px 6px; border-radius: 3px; font-size: 10px; }
+  .tag-brand { background: rgba(140,143,199,0.15); color: var(--accent-light); padding: 1px 6px; border-radius: 3px; font-size: 10px; }
+  .tag-good { background: rgba(76,175,125,0.15); color: var(--green); padding: 1px 6px; border-radius: 3px; font-size: 10px; }
+
+  /* DEVICE BARS */
+  .device-row { display: flex; align-items: center; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .device-row:last-child { border-bottom: none; }
+  .device-name { width: 80px; font-size: 13px; color: var(--white); }
+  .device-bar-outer { flex: 1; background: rgba(255,255,255,0.06); border-radius: 4px; height: 8px; overflow: hidden; }
+  .device-bar-inner { height: 100%; border-radius: 4px; }
+  .bar-mobile { background: var(--accent); }
+  .bar-desktop { background: var(--orange); }
+  .bar-tablet { background: var(--muted); }
+  .device-stats { width: 200px; display: flex; gap: 16px; font-size: 12px; color: var(--muted); }
+  .device-conv { font-size: 12px; color: var(--green); font-weight: 600; min-width: 70px; text-align: right; }
+
+  /* VIABILITY VERDICT */
+  .verdict-box {
+    background: linear-gradient(135deg, rgba(224,82,82,0.12), rgba(224,82,82,0.04));
+    border: 1px solid rgba(224,82,82,0.4);
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 32px;
+  }
+  .verdict-box.orange {
+    background: linear-gradient(135deg, rgba(224,124,58,0.12), rgba(224,124,58,0.04));
+    border-color: rgba(224,124,58,0.4);
+  }
+  .verdict-label { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 6px; }
+  .verdict-title { font-size: 22px; font-weight: 700; color: var(--red); margin-bottom: 12px; }
+  .verdict-title.orange { color: var(--orange); }
+  .verdict-body { color: var(--muted); font-size: 13px; line-height: 1.8; }
+  .verdict-body strong { color: var(--white); }
+
+  /* CLICK TO COPY */
+  .ctc-wrap { margin-bottom: 16px; }
+  .ctc-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+  .ctc-block {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 14px 16px;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--accent-light);
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+    white-space: pre-wrap;
+    word-break: break-all;
+    position: relative;
+  }
+  .ctc-block:hover { border-color: var(--accent); background: rgba(140,143,199,0.08); }
+  .ctc-block::after {
+    content: "Click to copy";
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    font-size: 10px;
+    color: var(--accent-dim);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-family: 'Segoe UI', sans-serif;
+  }
+  .ctc-block.copied::after { content: "Copied!"; color: var(--green); }
+
+  /* SUMMARY TABLE */
+  .summary-2col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .summary-item {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .summary-item .s-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 4px; }
+  .summary-item .s-val { font-size: 15px; font-weight: 600; color: var(--white); }
+  .summary-item .s-sub { font-size: 12px; color: var(--muted); margin-top: 3px; }
+
+  /* FOOTER */
+  .audit-footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 0;
+    color: var(--muted);
+    font-size: 12px;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* INLINE STAT */
+  .inline-stat { display: inline-block; background: rgba(140,143,199,0.1); border-radius: 4px; padding: 1px 7px; font-size: 12px; color: var(--accent-light); margin: 0 2px; }
+
+  /* WARN CALLOUT */
+  .callout {
+    background: rgba(224,82,82,0.08);
+    border: 1px solid rgba(224,82,82,0.25);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    color: var(--muted);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .callout.orange { background: rgba(224,124,58,0.08); border-color: rgba(224,124,58,0.25); }
+  .callout.accent { background: rgba(140,143,199,0.08); border-color: rgba(140,143,199,0.25); }
+  .callout strong { color: var(--white); }
+  .callout .callout-head { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--red); margin-bottom: 6px; }
+  .callout.orange .callout-head { color: var(--orange); }
+  .callout.accent .callout-head { color: var(--accent-light); }
+
+  .pill-row { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .pill { padding: 3px 10px; border-radius: 20px; font-size: 11px; background: rgba(255,255,255,0.06); color: var(--muted); }
+  .pill.red { background: rgba(224,82,82,0.15); color: var(--red); }
+  .pill.orange { background: rgba(224,124,58,0.15); color: var(--orange); }
+  .pill.green { background: rgba(76,175,125,0.15); color: var(--green); }
+  .pill.accent { background: rgba(140,143,199,0.15); color: var(--accent-light); }
+
+  /* SEARCH TERM TABLE scroll */
+  .tbl-scroll { max-height: 380px; overflow-y: auto; }
+  .tbl-scroll thead { position: sticky; top: 0; z-index: 1; background: var(--navy-mid); }
+
+  /* IMPRESSION SHARE BARS */
+  .is-row { margin-bottom: 10px; }
+  .is-label { font-size: 12px; color: var(--muted); margin-bottom: 4px; display: flex; justify-content: space-between; }
+  .is-bar-outer { background: rgba(255,255,255,0.06); border-radius: 4px; height: 10px; overflow: hidden; }
+  .is-bar-inner { height: 100%; border-radius: 4px; }
+  .is-won { background: var(--accent); }
+  .is-budget { background: var(--orange); }
+  .is-rank { background: var(--red); }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="brand-tag">Aviva Pools · Elite Dealer Network · Terre Haute IN</div>
+  <h1>Elite - Aviva Pools Terre Haute — Google Ads Audit</h1>
+  <div class="meta">
+    <span>Account: 9225188086</span>
+    <span>Date Range: Feb 21 – Mar 23, 2026</span>
+    <span>Audited: Mar 23, 2026</span>
+    <span>Prior Audit: Mar 20, 2026</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- HEALTH SCORE -->
+  <div class="health-bar-wrap">
+    <div>
+      <div class="health-label">Health Score</div>
+      <div class="health-score-big">20</div>
+      <div class="health-label">/ 100</div>
+    </div>
+    <div style="flex:1;">
+      <div class="health-bar-outer">
+        <div class="health-bar-inner" style="width:20%"></div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);margin-top:8px;">Critical — structural failure across all dimensions. Zero negatives, zero extensions, zero match type diversification, zero improvement since inception.</div>
+    </div>
+    <div class="health-delta">
+      <div class="delta-val">→ 32</div>
+      <div style="font-size:11px;color:var(--muted);">3/20 prior score</div>
+      <div style="font-size:11px;color:var(--red);margin-top:4px;">↓ Downgraded<br>no fixes made</div>
+    </div>
+  </div>
+
+  <!-- KPI GRID -->
+  <div class="kpi-grid">
+    <div class="kpi-card">
+      <div class="kpi-label">30d Spend</div>
+      <div class="kpi-val">$835</div>
+      <div class="kpi-sub">$32.25/day</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Impressions</div>
+      <div class="kpi-val accent">1,421</div>
+      <div class="kpi-sub">53.3% IS</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Clicks</div>
+      <div class="kpi-val accent">141</div>
+      <div class="kpi-sub">9.9% CTR</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Avg CPC</div>
+      <div class="kpi-val warn">$5.92</div>
+      <div class="kpi-sub">$250 cap (ineffective)</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">Conversions</div>
+      <div class="kpi-val bad">2</div>
+      <div class="kpi-sub">30-day period</div>
+    </div>
+    <div class="kpi-card">
+      <div class="kpi-label">CPA</div>
+      <div class="kpi-val bad">$417</div>
+      <div class="kpi-sub">Target: ≤$150</div>
+    </div>
+  </div>
+
+  <!-- IMPRESSION SHARE -->
+  <section>
+    <div class="section-header">
+      <h2>Impression Share Breakdown</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="tbl-wrap" style="padding:20px 24px;">
+      <div class="is-row">
+        <div class="is-label"><span>Won (53.3%)</span><span style="color:var(--accent-light);">53.3%</span></div>
+        <div class="is-bar-outer"><div class="is-bar-inner is-won" style="width:53.3%"></div></div>
+      </div>
+      <div class="is-row">
+        <div class="is-label"><span>Lost to Budget (23.0%)</span><span style="color:var(--orange);">23.0%</span></div>
+        <div class="is-bar-outer"><div class="is-bar-inner is-budget" style="width:23%"></div></div>
+      </div>
+      <div class="is-row">
+        <div class="is-label"><span>Lost to Rank (23.8%)</span><span style="color:var(--red);">23.8%</span></div>
+        <div class="is-bar-outer"><div class="is-bar-inner is-rank" style="width:23.8%"></div></div>
+      </div>
+      <div style="margin-top:14px;font-size:12px;color:var(--muted);">46.8% of available impressions lost — evenly split between budget ceiling and poor Quality Scores. A budget increase would partially help, but QS improvements are needed to address rank losses. Given zero ROI to date, neither fix justifies spend without structural reform first.</div>
+    </div>
+  </section>
+
+  <!-- MARKET VIABILITY VERDICT -->
+  <section>
+    <div class="section-header">
+      <h2>Market Viability Analysis</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="verdict-box orange">
+      <div class="verdict-label">Primary Verdict</div>
+      <div class="verdict-title orange">CONDITIONAL PAUSE — Reboot Required Before Any Further Spend</div>
+      <div class="verdict-body">
+        <strong>Market:</strong> Terre Haute, IN metro (~170,000 population). Small/mid-tier Midwest market with limited organic pool search volume and strong seasonal compression (Feb–Mar is off-peak).<br><br>
+        <strong>$417 CPA viability:</strong> For fiberglass pools averaging $60,000–$90,000, a $417 CPA is defensible on paper — <em>if conversions close to sales.</em> The fundamental problem is that <strong>this account has been running for 7+ months and has never closed a pool sale.</strong> Reported conversions (7 lifetime) are tracking events of uncertain quality, not closed deals. In this market, at this spend rate ($32/day), generating 0 closed sales across $3,282 total spend is a clear signal the account needs structural intervention — not more budget.<br><br>
+        <strong>Market size reality:</strong> Terre Haute is inherently limited. Search volume for pool installation, inground pools, and fiberglass pools in this DMA is low. Competitors (Sparkle Pools locally, plus regional players) are actively competing. The account is capturing ~53% impression share on a $32/day budget — meaning the market ceiling is being approached, not that there's significant room to grow by spending more.<br><br>
+        <strong>Recommendation:</strong> <strong>Pause current campaign. Execute a full rebuild before resuming.</strong> The structural issues documented in this audit (zero negatives, zero extensions, single ad group, no Exact match keywords, $417 CPA with no closed sales in 7 months) mean continued spend in the current configuration is waste. A properly structured account — with negative lists, proper match types, sitelinks, and refined targeting — may perform acceptably in this market at $25–30/day. The current configuration will not.
+      </div>
+    </div>
+  </section>
+
+  <!-- P1 FINDINGS -->
+  <section>
+    <div class="section-header">
+      <h2>Priority 1 — Critical</h2>
+      <div class="section-divider"></div>
+      <span class="badge p1">P1</span>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="badge p1">P1</span>
+        <div class="finding-title">Zero Negative Keywords — Account-Wide</div>
+      </div>
+      <div class="finding-body">
+        <strong>Confirmed: 0 negative keywords at campaign level and ad group level.</strong> This is the same finding from the 3/16 and 3/20 audits — zero fixes have been made.<br><br>
+        Search term data from the 30-day period reveals the direct cost of this:
+        <div class="pill-row">
+          <span class="pill red">sparkle pools terre haute — $35.17</span>
+          <span class="pill red">sparkle pools terre haute indiana — $26.09</span>
+          <span class="pill red">latham fiberglass pools — $16.46</span>
+          <span class="pill red">aquasport pools — $9.07</span>
+          <span class="pill red">above ground pool — $28.64+</span>
+          <span class="pill red">pool stores near me — $15.22</span>
+          <span class="pill red">pool service / pool repair — wasted spend</span>
+          <span class="pill red">lil bob pools — competitor</span>
+          <span class="pill red">elizabeth pools — competitor</span>
+          <span class="pill red">gopher pools — competitor</span>
+        </div>
+        <br>Estimated waste from clearly irrelevant/competitor queries: <strong>$150–$200 of the $835 30-day spend (~18–24%).</strong> Every dollar spent on competitor brand terms and above-ground pool searchers is money that will never convert for this dealer.
+      </div>
+      <div class="finding-action">Build a negative keyword list immediately: all identified competitor brand names, above-ground pool terms (above ground, aboveground, above-ground, inflatable, intex, bestway), service/repair terms (pool service, pool repair, pool cleaning, pool maintenance), retail terms (pool store, pool supply), DIY terms (how to build a pool, diy pool), wrong geography (Lafayette IN, Indianapolis, Illinois cities outside service area).</div>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="badge p1">P1</span>
+        <div class="finding-title">Zero Extensions Active — No Sitelinks, No Callouts, No Call, No Structured Snippets</div>
+      </div>
+      <div class="finding-body">
+        <strong>Confirmed: No assets of any type are active on this account.</strong> For a local service business selling $60K+ pools, this is a critical gap. Extensions directly impact:<br>
+        — Ad rank (more assets = better rank = lower CPCs)<br>
+        — CTR (industry average extension uplift: +10–15%)<br>
+        — Lead qualification (sitelinks help users self-select, reducing unqualified clicks)<br>
+        — Local presence (no call extension means no phone number in the ad)<br><br>
+        With 23.8% IS lost to rank, extensions alone could meaningfully recover some of that lost share without increasing budget.
+      </div>
+      <div class="finding-action">Add minimum viable extension set: Call extension (812-233-1057), 4 Sitelinks (View Pool Designs / Request a Consultation / Aviva Pool Models / About Aviva Pools Terre Haute), 4 Callouts (Certified Aviva Dealer · Lifetime Structural Warranty · Premium Fiberglass Pools · Serving Terre Haute &amp; Surrounding Areas), 1 Structured Snippet (Pool Models: The Apex, The Dynasty, The Intrigue, The Serene, The Luxe). All items require manual setup by Eli — READ-ONLY access in this audit.</div>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="badge p1">P1</span>
+        <div class="finding-title">No Exact Match Keywords — All 21 Keywords Are Phrase Match Only</div>
+      </div>
+      <div class="finding-body">
+        <strong>Every keyword in the account is Phrase match.</strong> Zero Exact match keywords. This limits the ability to:<br>
+        — Isolate high-value, high-intent terms for aggressive bidding<br>
+        — Control which queries trigger the most valuable keywords<br>
+        — Protect against semantic drift from Phrase match variants<br><br>
+        High-priority terms that should have Exact match versions: [fiberglass pools], [inground pool installation], [pool installation terre haute], [fiberglass pool installation]. These terms show conversion intent — they deserve dedicated Exact variants with potentially higher bids and tighter ad copy alignment.
+      </div>
+      <div class="finding-action">Add Exact match variants for top converting and highest-intent keywords. Fiberglass pools (1 conv), pool companies (1 conv), inground pools — prioritize these three for Exact match. Do not remove Phrase versions; run both in parallel.</div>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="badge p1">P1</span>
+        <div class="finding-title">Single Ad Group — No Thematic Segmentation</div>
+      </div>
+      <div class="finding-body">
+        The entire account runs as one campaign with a single ad group containing all 21 keywords — ranging from branded terms (aviva pools) to generic terms (outdoor pool installation) to competitor adjacents. This means:<br>
+        — One set of ads serves all intent levels<br>
+        — No ability to customize ad copy by keyword theme<br>
+        — No ability to set different bids for different intent clusters<br>
+        — QS suffers because ad relevance cannot be optimized per keyword group<br><br>
+        <strong>Minimum recommended structure:</strong> 3 ad groups — (1) Fiberglass Pool Install [installation/inground terms], (2) Aviva Brand [branded terms], (3) Pool Companies/Contractors [generic contractor terms].
+      </div>
+      <div class="finding-action">Restructure into 3+ thematic ad groups with tightly themed ad copy per group. This is a rebuild task — coordinate with campaign-builder skill for new structure specification.</div>
+    </div>
+  </section>
+
+  <!-- P2 FINDINGS -->
+  <section>
+    <div class="section-header">
+      <h2>Priority 2 — High</h2>
+      <div class="section-divider"></div>
+      <span class="badge p2">P2</span>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="badge p2">P2</span>
+        <div class="finding-title">Desktop Spend With Zero Conversions — $141.50 Wasted</div>
+      </div>
+      <div class="finding-body">
+        Device breakdown for the 30-day period:
+        <br><br>
+      </div>
+      <!-- DEVICE BARS -->
+      <div style="padding:4px 0 12px;">
+        <div class="device-row">
+          <div class="device-name">Mobile</div>
+          <div class="device-bar-outer"><div class="device-bar-inner bar-mobile" style="width:80.2%"></div></div>
+          <div class="device-stats"><span>115 clicks</span><span>$669.17</span></div>
+          <div class="device-conv">2 conv ✓</div>
+        </div>
+        <div class="device-row">
+          <div class="device-name">Desktop</div>
+          <div class="device-bar-outer"><div class="device-bar-inner bar-desktop" style="width:16.9%"></div></div>
+          <div class="device-stats"><span>24 clicks</span><span>$141.50</span></div>
+          <div class="device-conv" style="color:var(--red);">0 conv ✗</div>
+        </div>
+        <div class="device-row">
+          <div class="device-name">Tablet</div>
+          <div class="device-bar-outer"><div class="device-bar-inner bar-tablet" style="width:2.9%"></div></div>
+          <div class="device-stats"><span>2 clicks</span><span>$24.19</span></div>
+          <div class="device-conv" style="color:var(--red);">0 conv ✗</div>
+        </div>
+      </div>
+      <div class="finding-body">
+        All 2 conversions came from Mobile. Desktop spent $141.50 (17% of budget) with zero conversions. In a 30-day window this is within expected variance for low-volume accounts — but the pattern warrants a Desktop bid adjustment of -20% to -30% to redirect budget toward the converting device. Do not fully exclude Desktop; the sample size is small.
+      </div>
+      <div class="finding-action">Apply -25% Desktop bid adjustment at campaign level. Monitor over 60 days before adjusting further. Tablet: apply -30% (2 clicks, minimal data).</div>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="badge p2">P2</span>
+        <div class="finding-title">6 Keywords With Quality Score of 0 or Insufficient Data</div>
+      </div>
+      <div class="finding-body">
+        Multiple keywords are not receiving enough impressions to establish Quality Scores. This is a signal of poor relevance, low search volume, or serving issues. Keywords with QS=0 (insufficient data):
+        <div class="pill-row">
+          <span class="pill red">outdoor pool installation — $279.72 spent, 0 conv, QS=0</span>
+          <span class="pill red">prefab pools — $44.68 spent, 0 conv, QS=0</span>
+          <span class="pill red">backyard swimming pools — $0 spent, QS=0</span>
+          <span class="pill red">fiberglass swimming pools — $0 spent, QS=0</span>
+          <span class="pill red">custom pool builders — $0 spent, QS=0</span>
+        </div>
+        <br>
+        "Outdoor pool installation" is particularly notable — it's the <strong>top spender at $279.72 with zero conversions and QS=0.</strong> This term likely matches broad installation-related queries across geographies and use cases (commercial installs, contractors, etc.).
+      </div>
+      <div class="finding-action">"Outdoor pool installation" — pause or tighten with a geographic modifier (e.g., "pool installation terre haute"). "Prefab pools" — evaluate whether Aviva aligns with "prefab" buyer intent (these buyers may be shopping for cheaper modular options). Backyard swimming pools, fiberglass swimming pools, custom pool builders — monitor impressions; if no data in 60 days, pause.</div>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="badge p2">P2</span>
+        <div class="finding-title">Max Clicks Bidding With $250 CPC Cap — Ineffective Strategy</div>
+      </div>
+      <div class="finding-body">
+        The campaign uses <strong>Target Spend (Max Clicks)</strong> with a $250 CPC cap — a cap so high it functions as no cap at all. Max Clicks is a volume-oriented strategy that optimizes for clicks without regard to conversion likelihood. For a low-volume market with high ticket products:<br>
+        — Max Clicks can drive irrelevant clicks to exhaust budget<br>
+        — No conversion signal is fed back to the bidding algorithm<br>
+        — With only 2 conversions in 30 days, the account does not have sufficient conversion data for Smart Bidding (Target CPA requires ~50 conv/month baseline)<br><br>
+        <strong>However:</strong> switching to Target CPA is not currently viable given conversion volume. The correct path is to fix structural issues first (negatives, extensions, ad groups), accumulate conversion data, then re-evaluate bidding strategy at 60-day review.
+      </div>
+      <div class="finding-action">Reduce Max CPC cap from $250 to $15–20 as a guardrail against outlier CPCs. Do not switch bidding strategy until conversion volume improves. Revisit at 60-day post-rebuild review.</div>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="badge p2">P2</span>
+        <div class="finding-title">12 of 21 Keywords Generated $0 Spend — Dead Weight</div>
+      </div>
+      <div class="finding-body">
+        More than half the keyword list is inactive — generating no impressions and no spend. In a small-volume market, an oversized keyword list dilutes the account's ability to accumulate data on the terms that do work. Dead keywords (30-day $0 spend):
+        <div class="pill-row">
+          <span class="pill orange">custom swimming pools</span>
+          <span class="pill orange">backyard pool companies</span>
+          <span class="pill orange">backyard swimming pools</span>
+          <span class="pill orange">new pool construction</span>
+          <span class="pill orange">in ground pool companies</span>
+          <span class="pill orange">fiberglass pool installers</span>
+          <span class="pill orange">pool construction near me</span>
+          <span class="pill orange">fiberglass swimming pools</span>
+          <span class="pill orange">inground fiberglass pools</span>
+          <span class="pill orange">custom pool builders</span>
+          <span class="pill orange">swimming pool builders</span>
+          <span class="pill orange">backyard pool builders</span>
+        </div>
+      </div>
+      <div class="finding-action">Keep these keywords — they may be seasonally inactive (Feb/Mar off-peak) and will pick up in spring. Do not pause yet; monitor in April/May. If still zero by May 15, pause and consolidate.</div>
+    </div>
+  </section>
+
+  <!-- P3 FINDINGS -->
+  <section>
+    <div class="section-header">
+      <h2>Priority 3 — Medium</h2>
+      <div class="section-divider"></div>
+      <span class="badge p3">P3</span>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="badge p3">P3</span>
+        <div class="finding-title">Aviva Brand Keyword Spending With No Conversion Payoff</div>
+      </div>
+      <div class="finding-body">
+        "aviva pools" (Phrase) spent <strong>$63.84</strong> in the 30-day period — 7.6% of total budget — with <strong>0 conversions.</strong> Brand terms for a luxury pool brand in Terre Haute represent a narrow audience of people who already know the brand. Paying $63.84 to show up for "aviva pools" searches when there's no evidence this traffic converts is questionable spend. People searching the brand by name may be existing customers, dealers, or curious browsers.<br><br>
+        Additionally: "aviva pools" QS=7 (good), suggesting strong relevance — so this isn't a quality problem. It's a volume/intent problem specific to this small market.
+      </div>
+      <div class="finding-action">Keep the brand keyword active — brand protection has value and QS=7 means efficient spend. But consider reducing bid on "aviva pools" by 20% to redirect budget toward higher-intent generic terms. Monitor separately once ad groups are restructured.</div>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="badge p3">P3</span>
+        <div class="finding-title">RSA Copy Unverifiable — Cannot Confirm Aviva Brand Compliance</div>
+      </div>
+      <div class="finding-body">
+        The RSA headline and description content could not be retrieved via API — the Google Ads API returns a type that cannot be serialized through the current MCP interface. <strong>This is not a confirmed finding — it is an unverified gap.</strong><br><br>
+        From prior audit context and what the account structure suggests, the RSA copy may not include Aviva-specific model references (The Apex, The Dynasty, The Intrigue, etc.) or leverage the brand's luxury positioning ("Elevate Your Lifestyle"). This is worth manually verifying given Aviva's strict voice guidelines.
+      </div>
+      <div class="finding-action">Manual verification required: Log into the account and review RSA headlines/descriptions against Aviva brand skill requirements. Check for: (1) luxury language vs. generic pool copy, (2) at least one Aviva model name referenced, (3) no affordability language, no exclamation points. If copy is generic, update with Aviva-aligned headlines (see brand skill).</div>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="badge p3">P3</span>
+        <div class="finding-title">Conversion Actions Unverifiable — Unclear What Is Tracking</div>
+      </div>
+      <div class="finding-body">
+        Conversion action definitions could not be retrieved (API serialization error on the <code>conversion_action</code> resource). The 2 conversions recorded in this period are of unknown type — they could be form fills, page visits, phone calls, or brochure downloads.<br><br>
+        <strong>Brochure downloads are real conversions</strong> (they require a contact form fill on avivapoolsterrehaute.com) and should not be demoted. However, if conversions are tracking page visits or button clicks without form submission, they may be inflating the conversion count.
+      </div>
+      <div class="finding-action">Manually verify conversion actions in account settings. Confirm each tracked conversion requires genuine user intent (form fill, call, brochure download). Remove any purely behavioral micro-conversions (scroll depth, time on page) that do not indicate purchase intent.</div>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="badge p3">P3</span>
+        <div class="finding-title">Geographic Waste — Lafayette IN and Out-of-Market Queries Visible</div>
+      </div>
+      <div class="finding-body">
+        Search term data shows "Lafayette" appearing in query variants — Lafayette IN is a separate DMA (~100 miles north of Terre Haute, different market). With 47 geo-target locations configured in this account, it's possible some targeting is pulling in neighboring markets that the dealer does not serve. Clicks from Lafayette or Bloomington users are likely non-converting.<br><br>
+        The geo targeting uses Presence (7) which is correct — but the combination of a wide location list and Phrase match keywords creates geographic bleed risk.
+      </div>
+      <div class="finding-action">Add geographic negative keywords for cities and towns clearly outside the service area: Lafayette IN, Bloomington IN, Crawfordsville IN, Danville IL. Also audit the 47-location targeting list to confirm all locations are markets the dealer actively serves.</div>
+    </div>
+  </section>
+
+  <!-- KEYWORD TABLE -->
+  <section>
+    <div class="section-header">
+      <h2>Keyword Performance (30d)</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Match</th>
+            <th>QS</th>
+            <th>Impressions</th>
+            <th>Clicks</th>
+            <th>Cost</th>
+            <th>Conversions</th>
+            <th>CPA</th>
+            <th>Flag</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>outdoor pool installation</td>
+            <td>Phrase</td>
+            <td><span class="qs-0">0</span></td>
+            <td>376</td>
+            <td>47</td>
+            <td><span class="cost-high">$279.72</span></td>
+            <td>0</td>
+            <td>—</td>
+            <td><span class="tag-waste">Review</span></td>
+          </tr>
+          <tr>
+            <td>pool companies</td>
+            <td>Phrase</td>
+            <td><span class="qs-low">3</span></td>
+            <td>395</td>
+            <td>40</td>
+            <td><span class="cost-high">$240.56</span></td>
+            <td>1</td>
+            <td>$240.56</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>fiberglass pools</td>
+            <td>Phrase</td>
+            <td><span class="qs-good">8</span></td>
+            <td>213</td>
+            <td>19</td>
+            <td><span class="cost-med">$115.05</span></td>
+            <td>1</td>
+            <td>$115.05</td>
+            <td><span class="tag-good">Best</span></td>
+          </tr>
+          <tr>
+            <td>aviva pools</td>
+            <td>Phrase</td>
+            <td><span class="qs-ok">7</span></td>
+            <td>64</td>
+            <td>11</td>
+            <td>$63.84</td>
+            <td>0</td>
+            <td>—</td>
+            <td><span class="tag-brand">Brand</span></td>
+          </tr>
+          <tr>
+            <td>inground pools</td>
+            <td>Phrase</td>
+            <td><span class="qs-low">3</span></td>
+            <td>140</td>
+            <td>10</td>
+            <td>$55.60</td>
+            <td>0</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>prefab pools</td>
+            <td>Phrase</td>
+            <td><span class="qs-0">0</span></td>
+            <td>83</td>
+            <td>7</td>
+            <td>$44.68</td>
+            <td>0</td>
+            <td>—</td>
+            <td><span class="tag-waste">Intent?</span></td>
+          </tr>
+          <tr>
+            <td>pool installation</td>
+            <td>Phrase</td>
+            <td><span class="qs-low">4</span></td>
+            <td>47</td>
+            <td>4</td>
+            <td>$23.76</td>
+            <td>0</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>swimming pool installation</td>
+            <td>Phrase</td>
+            <td><span class="qs-low">4</span></td>
+            <td>33</td>
+            <td>2</td>
+            <td>$11.65</td>
+            <td>0</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>pool contractor</td>
+            <td>Phrase</td>
+            <td><span class="qs-ok">5</span></td>
+            <td>18</td>
+            <td>1</td>
+            <td>$0</td>
+            <td>0</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>custom swimming pools</td>
+            <td>Phrase</td>
+            <td><span class="qs-low">4</span></td>
+            <td>0</td>
+            <td>0</td>
+            <td>$0</td>
+            <td>0</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td colspan="9" style="color:var(--muted);font-style:italic;font-size:12px;">+ 11 additional keywords with $0 spend (seasonal inactivity — monitor through May)</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- SEARCH TERM WASTE -->
+  <section>
+    <div class="section-header">
+      <h2>Search Term Waste Analysis (Top 30d)</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="callout orange">
+      <div class="callout-head">Waste Summary</div>
+      Competitor brand terms and clearly irrelevant queries represent an estimated <strong>$150–200 of the $835 30-day spend</strong>. With zero negative keywords, every search type — competitors, above-ground pool shoppers, pool service queries — triggers ads. Below are the highest-cost waste terms identified.
+    </div>
+
+    <div class="tbl-wrap">
+      <div class="tbl-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Search Term</th>
+              <th>Category</th>
+              <th>Cost</th>
+              <th>Clicks</th>
+              <th>Conv</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>sparkle pools terre haute</td><td><span class="tag-waste">Competitor</span></td><td class="cost-high">$35.17</td><td>5</td><td>0</td></tr>
+            <tr><td>sparkle pools terre haute indiana</td><td><span class="tag-waste">Competitor</span></td><td class="cost-high">$26.09</td><td>4</td><td>0</td></tr>
+            <tr><td>above ground pool [variants]</td><td><span class="tag-waste">Wrong Intent</span></td><td class="cost-high">~$28.64</td><td>~4</td><td>0</td></tr>
+            <tr><td>latham fiberglass pools</td><td><span class="tag-waste">Competitor</span></td><td class="cost-med">$16.46</td><td>2</td><td>0</td></tr>
+            <tr><td>pool stores near me</td><td><span class="tag-waste">Retail</span></td><td class="cost-med">$15.22</td><td>2</td><td>0</td></tr>
+            <tr><td>aquasport pools</td><td><span class="tag-waste">Competitor</span></td><td class="cost-med">$9.07</td><td>1</td><td>0</td></tr>
+            <tr><td>lil bob pools</td><td><span class="tag-waste">Competitor</span></td><td>~$7.50</td><td>1</td><td>0</td></tr>
+            <tr><td>elizabeth pools</td><td><span class="tag-waste">Competitor</span></td><td>~$6.80</td><td>1</td><td>0</td></tr>
+            <tr><td>gopher pools</td><td><span class="tag-waste">Competitor</span></td><td>~$5.40</td><td>1</td><td>0</td></tr>
+            <tr><td>pool service terre haute / pool repair</td><td><span class="tag-waste">Wrong Service</span></td><td>~$12.00</td><td>~2</td><td>0</td></tr>
+            <tr><td>Lafayette IN variants</td><td><span class="tag-waste">Wrong Geo</span></td><td>~$8.00</td><td>~1</td><td>0</td></tr>
+            <tr><td>fiberglass pools</td><td><span class="tag-good">Converting</span></td><td>~$45</td><td>~7</td><td>1</td></tr>
+            <tr><td>pool companies [variants]</td><td><span class="tag-good">Converting</span></td><td>~$60</td><td>~9</td><td>1</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- NEGATIVE LIST CTC -->
+    <div style="margin-top:20px;">
+      <div class="section-header" style="margin-bottom:12px;">
+        <h2 style="font-size:14px;">Recommended Negative Keyword List</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="ctc-wrap">
+        <div class="ctc-label">Campaign-Level Negatives — Click to Copy (Exact Match)</div>
+        <div class="ctc-block" id="neg-exact" onclick="copyText(this)">[sparkle pools]
+[latham pools]
+[aquasport pools]
+[lil bob pools]
+[elizabeth pools]
+[gopher pools]
+[san juan pools]
+[above ground pool]
+[aboveground pool]
+[above-ground pool]
+[inflatable pool]
+[intex pool]
+[bestway pool]
+[pool service]
+[pool repair]
+[pool cleaning]
+[pool maintenance]
+[pool store]
+[pool supply]
+[pool stores near me]
+[diy pool]
+[how to build a pool]
+[lafayette]
+[bloomington indiana]
+[crawfordsville]</div>
+      </div>
+      <div class="ctc-wrap">
+        <div class="ctc-label">Campaign-Level Negatives — Click to Copy (Phrase Match)</div>
+        <div class="ctc-block" id="neg-phrase" onclick="copyText(this)">"sparkle pools"
+"latham pools"
+"aquasport"
+"lil bob"
+"above ground"
+"above-ground"
+"aboveground"
+"pool service"
+"pool repair"
+"pool cleaning"
+"pool maintenance"
+"pool store"
+"pool supply"
+"pool parts"
+"pool chemicals"
+"pool heater"
+"hot tub"
+"jacuzzi"
+"swim spa"
+"used pool"
+"portable pool"
+"prefab above"</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STRUCTURAL CHECKLIST -->
+  <section>
+    <div class="section-header">
+      <h2>Structural Audit Checklist</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="tbl-wrap">
+      <table>
+        <thead>
+          <tr><th>Item</th><th>Status</th><th>Detail</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Campaign status</td><td><span class="badge ok">PASS</span></td><td>ENABLED — active and serving</td></tr>
+          <tr><td>Search network only</td><td><span class="badge ok">PASS</span></td><td>Confirmed search network only</td></tr>
+          <tr><td>Geographic targeting</td><td><span class="badge ok">PASS</span></td><td>47 locations, Enum 7 = PRESENCE ✓</td></tr>
+          <tr><td>Match type compliance (no broad)</td><td><span class="badge ok">PASS</span></td><td>All 21 keywords = Phrase (3). No broad match found.</td></tr>
+          <tr><td>Exact match keywords</td><td><span class="badge p1">MISSING</span></td><td>Zero Exact match variants across all 21 keywords</td></tr>
+          <tr><td>Negative keywords</td><td><span class="badge p1">CRITICAL</span></td><td>Zero negatives at campaign level AND ad group level</td></tr>
+          <tr><td>Shared negative lists</td><td><span class="badge info">UNVERIFIED</span></td><td>API serialization error — unable to confirm via MCP</td></tr>
+          <tr><td>Ad group structure</td><td><span class="badge p1">FAIL</span></td><td>1 ad group, 21 keywords — no thematic segmentation</td></tr>
+          <tr><td>Sitelink extensions</td><td><span class="badge p1">MISSING</span></td><td>Zero assets active on account</td></tr>
+          <tr><td>Call extension</td><td><span class="badge p1">MISSING</span></td><td>No call extension — phone (812) 233-1057 not in ads</td></tr>
+          <tr><td>Callout extensions</td><td><span class="badge p1">MISSING</span></td><td>Zero callouts active</td></tr>
+          <tr><td>Structured snippets</td><td><span class="badge p1">MISSING</span></td><td>No pool models or product types featured</td></tr>
+          <tr><td>RSA ad copy</td><td><span class="badge info">UNVERIFIED</span></td><td>API cannot return RSA headline/description content — manual review required</td></tr>
+          <tr><td>Conversion tracking</td><td><span class="badge info">UNVERIFIED</span></td><td>2 conversions recorded; action type unconfirmed via API</td></tr>
+          <tr><td>Budget pacing</td><td><span class="badge ok">PASS</span></td><td>$32.25/day — on pace, 23% lost to budget ceiling</td></tr>
+          <tr><td>Bidding strategy</td><td><span class="badge p3">REVIEW</span></td><td>Max Clicks / Target Spend — acceptable for low-volume account; $250 cap is ineffective</td></tr>
+          <tr><td>Device bid adjustments</td><td><span class="badge p2">MISSING</span></td><td>No device adjustments; Desktop 0 conv with $141.50 spend</td></tr>
+          <tr><td>Brand stuffing in copy</td><td><span class="badge info">UNVERIFIED</span></td><td>RSA copy unverifiable — manual check required</td></tr>
+          <tr><td>Aviva brand voice compliance</td><td><span class="badge info">UNVERIFIED</span></td><td>RSA copy unverifiable — manual check required</td></tr>
+          <tr><td>Campaign running since</td><td><span class="badge info">INFO</span></td><td>~7+ months active; $3,282 total lifetime spend; 0 closed sales</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- PRIOR AUDIT DELTA -->
+  <section>
+    <div class="section-header">
+      <h2>Change Since Prior Audit (Mar 20, 2026)</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="callout">
+      <div class="callout-head" style="color:var(--red);">Zero Changes Implemented</div>
+      Every finding from the Mar 16 and Mar 20 audits remains completely unaddressed. This account has had the same structural failures documented across multiple audit cycles with no remediation:
+      <ul style="margin-top:10px;padding-left:20px;line-height:2;">
+        <li>Zero negatives — <strong>unchanged since audit #1</strong></li>
+        <li>Zero extensions — <strong>unchanged since audit #1</strong></li>
+        <li>Single ad group structure — <strong>unchanged since audit #1</strong></li>
+        <li>All Phrase match, no Exact — <strong>unchanged since audit #1</strong></li>
+        <li>$417 CPA — no improvement in efficiency</li>
+      </ul>
+      <br>This pattern combined with the dealer's history (Lindsay, not tech-savvy; account labeled "set up terribly — needs attention but low priority"; "hasn't sold a pool") suggests the dealer is not engaged with optimizing the account. Further auditing without intervention is diminishing returns.
+    </div>
+  </section>
+
+  <!-- REBUILD SPEC -->
+  <section>
+    <div class="section-header">
+      <h2>Rebuild Specification</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="callout accent">
+      <div class="callout-head">Recommended Path: Pause → Rebuild → Relaunch</div>
+      The current campaign should be paused and rebuilt with proper structure before any further spend. The following spec defines the minimum viable rebuild for this market.
+    </div>
+
+    <div class="summary-2col">
+      <div class="summary-item">
+        <div class="s-label">Campaign Structure</div>
+        <div class="s-val">1 Campaign → 3 Ad Groups</div>
+        <div class="s-sub">Fiberglass Install | Aviva Brand | Pool Contractors</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">Daily Budget</div>
+        <div class="s-val">$30–35/day</div>
+        <div class="s-sub">Hold current level — market ceiling limits return on increased spend</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">Match Types</div>
+        <div class="s-val">Exact + Phrase</div>
+        <div class="s-sub">Exact for top-intent terms; Phrase for discovery</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">Bidding</div>
+        <div class="s-val">Max Clicks</div>
+        <div class="s-sub">With $15–20 CPC cap; revisit when 50+ conv/month</div>
+      </div>
+    </div>
+
+    <div class="ctc-wrap">
+      <div class="ctc-label">Ad Group 1: Fiberglass Pool Installation — Core Keywords</div>
+      <div class="ctc-block" onclick="copyText(this)">[fiberglass pool installation]
+[inground pool installation]
+[fiberglass pool installer]
+[inground fiberglass pools terre haute]
+"fiberglass pool installation"
+"inground pool installation"
+"fiberglass pool"
+"inground pool"
+"pool installation near me"
+"fiberglass swimming pool"</div>
+    </div>
+
+    <div class="ctc-wrap">
+      <div class="ctc-label">Ad Group 2: Aviva Brand</div>
+      <div class="ctc-block" onclick="copyText(this)">[aviva pools]
+[aviva fiberglass pools]
+"aviva pools"
+"aviva pool"</div>
+    </div>
+
+    <div class="ctc-wrap">
+      <div class="ctc-label">Ad Group 3: Pool Contractors / Companies</div>
+      <div class="ctc-block" onclick="copyText(this)">[pool companies terre haute]
+[pool contractor terre haute]
+[swimming pool builder terre haute]
+"pool companies"
+"pool contractor"
+"pool builder"
+"swimming pool builder"
+"custom pool builder"
+"backyard pool company"</div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section>
+    <div class="section-header">
+      <h2>Audit Summary</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="summary-2col">
+      <div class="summary-item">
+        <div class="s-label">Health Score</div>
+        <div class="s-val" style="color:var(--red);">20 / 100</div>
+        <div class="s-sub">↓ from 32 on 3/20 — no fixes made</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">P1 Findings</div>
+        <div class="s-val" style="color:var(--red);">4</div>
+        <div class="s-sub">Critical — all structural, all pre-existing</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">P2 Findings</div>
+        <div class="s-val" style="color:var(--orange);">4</div>
+        <div class="s-sub">High — device split, QS issues, bidding, dead keywords</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">P3 Findings</div>
+        <div class="s-val" style="color:var(--yellow);">4</div>
+        <div class="s-sub">Medium — brand term spend, RSA copy, conversions, geo waste</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">Estimated Waste (30d)</div>
+        <div class="s-val" style="color:var(--red);">$150–200</div>
+        <div class="s-sub">~18–24% of $835 spend on irrelevant/competitor queries</div>
+      </div>
+      <div class="summary-item">
+        <div class="s-label">Market Verdict</div>
+        <div class="s-val" style="color:var(--orange);">Pause + Rebuild</div>
+        <div class="s-sub">$417 CPA with 0 closed sales in 7 months — not viable as-is</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="audit-footer">
+    <span>Elite - Aviva Pools Terre Haute · Account 9225188086 · Audit by Claude Code · Mar 23, 2026</span>
+    <span>Read-only audit — no account changes made</span>
+  </div>
+
+</div>
+
+<script>
+function copyText(el) {
+  const text = el.innerText.replace('Click to copy', '').replace('Copied!', '').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>

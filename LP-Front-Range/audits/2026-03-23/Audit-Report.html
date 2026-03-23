@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Front Range — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #1a3560;
+    --accent: #1e6fbf;
+    --accent-light: #2e88e0;
+    --accent-pale: #e8f2fc;
+    --red: #c0392b;
+    --red-pale: #fdf0ef;
+    --amber: #d68910;
+    --amber-pale: #fef9ec;
+    --green: #1e7a4e;
+    --green-pale: #eaf7f1;
+    --text: #1a1a2e;
+    --text-muted: #5a6a80;
+    --border: #d0dae8;
+    --bg: #f5f8fc;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; font-size: 14px; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+  /* HEADER */
+  .report-header { background: var(--navy); color: white; padding: 32px 40px; }
+  .report-header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; margin-bottom: 6px; }
+  .report-header .meta { font-size: 13px; color: #aabbcc; }
+  .report-header .meta span { margin-right: 24px; }
+
+  /* HEALTH SCORE BAR */
+  .health-strip { background: var(--navy-mid); padding: 16px 40px; display: flex; align-items: center; gap: 32px; }
+  .health-score-box { text-align: center; }
+  .health-score-num { font-size: 48px; font-weight: 800; color: var(--amber); line-height: 1; }
+  .health-score-label { font-size: 11px; color: #aabbcc; text-transform: uppercase; letter-spacing: 0.8px; margin-top: 4px; }
+  .health-bar-container { flex: 1; }
+  .health-bar-track { background: rgba(255,255,255,0.15); height: 12px; border-radius: 6px; overflow: hidden; margin-bottom: 6px; }
+  .health-bar-fill { height: 100%; border-radius: 6px; background: linear-gradient(90deg, var(--accent), var(--accent-light)); }
+  .health-bar-labels { display: flex; justify-content: space-between; font-size: 11px; color: #aabbcc; }
+  .prev-score { font-size: 13px; color: #aabbcc; white-space: nowrap; }
+
+  /* SUMMARY ROW */
+  .summary-strip { background: white; border-bottom: 1px solid var(--border); padding: 16px 40px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .stat-pill { text-align: center; padding: 10px 16px; background: var(--accent-pale); border-radius: 8px; min-width: 100px; }
+  .stat-pill .val { font-size: 22px; font-weight: 700; color: var(--accent); line-height: 1; }
+  .stat-pill .lbl { font-size: 11px; color: var(--text-muted); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 1200px; margin: 0 auto; padding: 28px 40px 60px; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 15px; font-weight: 700; color: var(--navy); text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 2px solid var(--navy); padding-bottom: 6px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .badge { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; text-transform: none; letter-spacing: 0; }
+  .badge-red { background: var(--red-pale); color: var(--red); border: 1px solid #e8b4b0; }
+  .badge-amber { background: var(--amber-pale); color: var(--amber); border: 1px solid #f0d9a0; }
+  .badge-green { background: var(--green-pale); color: var(--green); border: 1px solid #a0d8be; }
+  .badge-blue { background: var(--accent-pale); color: var(--accent); border: 1px solid #a0c4e8; }
+
+  /* FINDINGS */
+  .finding { border-left: 4px solid; padding: 14px 16px; margin-bottom: 12px; border-radius: 0 6px 6px 0; }
+  .finding-p1 { border-color: var(--red); background: var(--red-pale); }
+  .finding-p2 { border-color: var(--amber); background: var(--amber-pale); }
+  .finding-p3 { border-color: var(--accent); background: var(--accent-pale); }
+  .finding-ok { border-color: var(--green); background: var(--green-pale); }
+  .finding-title { font-weight: 700; font-size: 14px; display: flex; align-items: center; gap: 8px; margin-bottom: 4px; }
+  .finding-title .pri { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .pri-p1 { background: var(--red); color: white; }
+  .pri-p2 { background: var(--amber); color: white; }
+  .pri-p3 { background: var(--accent); color: white; }
+  .pri-ok { background: var(--green); color: white; }
+  .finding p { font-size: 13px; color: var(--text); margin-top: 4px; }
+  .finding .action { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+  .finding .action strong { color: var(--text); font-style: normal; }
+
+  /* TABLES */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-bottom: 16px; }
+  .data-table th { background: var(--navy); color: white; text-align: left; padding: 8px 12px; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: #f8fafc; }
+  .qs-0 { color: var(--red); font-weight: 700; }
+  .qs-low { color: var(--amber); font-weight: 700; }
+  .qs-mid { color: var(--accent); }
+  .qs-ok { color: var(--green); }
+  .tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 3px; font-weight: 600; margin-left: 4px; }
+  .tag-phrase { background: #e8f0fe; color: #1a56db; }
+  .tag-exact { background: #fef3c7; color: #92400e; }
+  .tag-waste { background: var(--red-pale); color: var(--red); }
+  .tag-conv { background: var(--green-pale); color: var(--green); }
+  .tag-mixed { background: var(--amber-pale); color: var(--amber); }
+
+  /* TWO-COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 800px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* CARD */
+  .card { background: white; border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .card-title { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* MINI STAT */
+  .mini-stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .mini-stat { background: white; border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; text-align: center; }
+  .mini-stat .v { font-size: 18px; font-weight: 700; color: var(--navy); }
+  .mini-stat .l { font-size: 11px; color: var(--text-muted); }
+
+  /* DEVICE BAR */
+  .device-bar { display: flex; height: 24px; border-radius: 4px; overflow: hidden; margin-bottom: 8px; }
+  .device-seg { display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 600; color: white; }
+  .seg-mobile { background: var(--navy-mid); }
+  .seg-desktop { background: var(--accent); }
+  .seg-tablet { background: var(--accent-light); }
+
+  /* COPY BUTTON */
+  .copy-btn { font-size: 11px; cursor: pointer; background: var(--navy); color: white; border: none; padding: 3px 10px; border-radius: 4px; float: right; opacity: 0.75; }
+  .copy-btn:hover { opacity: 1; }
+
+  /* NEGATIVE KW GRID */
+  .neg-grid { columns: 3; column-gap: 12px; font-size: 12px; color: var(--text-muted); }
+  .neg-grid li { margin-bottom: 2px; break-inside: avoid; list-style: none; padding-left: 14px; position: relative; }
+  .neg-grid li::before { content: "–"; position: absolute; left: 0; color: var(--text-muted); }
+  @media (max-width: 700px) { .neg-grid { columns: 2; } }
+
+  /* WASTE TABLE */
+  .waste-category { font-weight: 600; color: var(--red); font-size: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* FOOTER */
+  .report-footer { background: var(--navy); color: #aabbcc; text-align: center; padding: 16px; font-size: 12px; margin-top: 40px; }
+
+  /* PRINTING */
+  @media print {
+    .copy-btn { display: none; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <h1>Leisure Pools Front Range — Google Ads Deep Audit</h1>
+  <div class="meta">
+    <span>Account: 761-964-5742</span>
+    <span>Brand: Leisure Pools</span>
+    <span>Market: Colorado Front Range / Denver Metro</span>
+    <span>Period: Feb 21 – Mar 23, 2026 (30 days)</span>
+    <span>Audited: 2026-03-23</span>
+  </div>
+</div>
+
+<!-- HEALTH SCORE -->
+<div class="health-strip">
+  <div class="health-score-box">
+    <div class="health-score-num">52</div>
+    <div class="health-score-label">Health Score</div>
+  </div>
+  <div class="health-bar-container">
+    <div class="health-bar-track">
+      <div class="health-bar-fill" style="width:52%"></div>
+    </div>
+    <div class="health-bar-labels"><span>0 — Critical</span><span>50 — Needs Work</span><span>75 — Solid</span><span>100 — Excellent</span></div>
+  </div>
+  <div class="prev-score">Fleet audit 3/20: 52<br><span style="font-size:11px;color:#7a9abb;">No prior deep audit on record</span></div>
+</div>
+
+<!-- KPI SUMMARY -->
+<div class="summary-strip">
+  <div class="stat-pill"><div class="val">$2,461</div><div class="lbl">Spend</div></div>
+  <div class="stat-pill"><div class="val">379</div><div class="lbl">Clicks</div></div>
+  <div class="stat-pill"><div class="val">4,439</div><div class="lbl">Impressions</div></div>
+  <div class="stat-pill"><div class="val">21</div><div class="lbl">Conversions</div></div>
+  <div class="stat-pill"><div class="val">$117</div><div class="lbl">CPA</div></div>
+  <div class="stat-pill"><div class="val">8.54%</div><div class="lbl">CTR</div></div>
+  <div class="stat-pill"><div class="val">$6.49</div><div class="lbl">Avg CPC</div></div>
+  <div class="stat-pill"><div class="val">44.5%</div><div class="lbl">Search IS</div></div>
+  <div class="stat-pill" style="background:var(--red-pale)"><div class="val" style="color:var(--red)">36.4%</div><div class="lbl" style="color:var(--red)">IS Lost (Rank)</div></div>
+  <div class="stat-pill" style="background:var(--amber-pale)"><div class="val" style="color:var(--amber)">19%</div><div class="lbl" style="color:var(--amber)">IS Lost (Budget)</div></div>
+</div>
+
+<!-- MAIN BODY -->
+<div class="main">
+
+<!-- ═══════════ SECTION: CRITICAL FINDINGS ═══════════ -->
+<div class="section">
+  <div class="section-title">Critical Findings <span class="badge badge-red">3 Issues</span></div>
+
+  <div class="finding finding-p1">
+    <div class="finding-title"><span class="pri pri-p1">P1</span> Single Ad Group — All Traffic Funneled Through "Pool Builder"</div>
+    <p>The entire account runs through one ad group with 25 keywords spanning intent ranges from "pool contractor" ($6.54 CPC, QS 5) to "pool company Colorado" ($6.63 CPC, QS 0). Mixing high-intent contractor queries with lower-intent "pool company" and "fiberglass pool" queries in a single ad group forces one RSA to serve all query types. QS suffers because headlines cannot simultaneously be highly relevant to contractor queries AND pool cost queries AND specific geo queries. This is the primary driver of 36.4% IS lost to rank.</p>
+    <div class="action"><strong>Recommended fix:</strong> Split into at least 3 themed ad groups — (1) Contractor/Builder queries, (2) Pool type/material queries ("fiberglass pool Colorado"), (3) Cost/quote queries ("pool cost," "pool price"). Each group gets its own RSA with matched headlines.</div>
+  </div>
+
+  <div class="finding finding-p1">
+    <div class="finding-title"><span class="pri pri-p1">P1</span> 36.4% Impression Share Lost to Rank — QS-Driven, Not Bid-Driven</div>
+    <p>Campaign is on Max Clicks (TARGET_SPEND) with <strong>no CPC cap</strong> (<code>cpc_bid_ceiling_micros = 0</code>), meaning Google can bid any amount per click. Despite uncapped bidding, 36.4% of eligible auctions are being lost to rank — confirming the problem is Quality Score, not bid floor. "pool company Colorado" has QS 0 (unrated/not enough data but no conversions on $199 spend). "pool contractor Colorado" has QS 3 on $296 spend — the geo-modified variant of the top keyword is significantly underperforming the unmodified "pool contractor" (QS 5).</p>
+    <div class="action"><strong>Recommended fix:</strong> Ad group segmentation (above) is the primary lever. Additionally, review RSA pinning — if headlines are pinned to positions that don't align with query intent, unpin and let Google optimize. Ensure landing page copy mentions Colorado and Front Range prominently to improve landing page QS component.</div>
+  </div>
+
+  <div class="finding finding-p1">
+    <div class="finding-title"><span class="pri pri-p1">P1</span> Competitor Brands and Non-Converting Categories Burning ~$200–$300+ in 30 Days</div>
+    <p>Search terms analysis reveals meaningful spend on queries that should convert at zero or near-zero for this business. Key categories of waste from top-75 search terms (see full search terms section below):</p>
+    <ul style="margin-top:6px;margin-left:16px;font-size:13px;">
+      <li><strong>Pool service/maintenance:</strong> "pool maintenance service colorado" ($18), "pool cleaning service" ($11), "pool repair companies" ($17), "pool resurfacing" — wrong intent, no conversions</li>
+      <li><strong>Above-ground pool queries:</strong> "above ground pool colorado springs" ($10, 1 conv anomaly), "colorado above ground pool" ($6, 1 conv anomaly) — these conversions are suspicious mismatches for a fiberglass in-ground installer</li>
+      <li><strong>Competitor queries:</strong> "premier pools and spas" ($21, 2 conv), "front range pools" ($19, 1 conv), "denver pool and spa" ($7, 1 conv) — note: "premier pools and spas" and "front range pools" are in the shared set but still generated spend — verify these are phrase/exact match lookthrough, not loose matching of shorter query variants that escaped the negatives</li>
+      <li><strong>Wrong product types:</strong> "shipping container pool colorado" ($15, 1 conv), "how much to make a small pool" ($7), "small in ground pool cost" ($8)</li>
+    </ul>
+    <div class="action"><strong>Recommended fix:</strong> Add campaign-level negatives immediately. Priority list at end of this report. Estimated recoverable waste: $150–$250/month redirected to high-intent queries.</div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: CAMPAIGN SETTINGS ═══════════ -->
+<div class="section">
+  <div class="section-title">Campaign Settings <span class="badge badge-green">Mostly Clean</span></div>
+
+  <table class="data-table">
+    <tr><th>Setting</th><th>Value</th><th>Status</th></tr>
+    <tr><td>Campaign Name</td><td>Leisure Pools Front Range Search</td><td>✓ Clear</td></tr>
+    <tr><td>Status</td><td>ENABLED</td><td>✓</td></tr>
+    <tr><td>Budget</td><td>$80/day (~$2,400/mo)</td><td>✓ Consistent with actual spend</td></tr>
+    <tr><td>Bidding Strategy</td><td>Max Clicks (TARGET_SPEND) — no CPC cap</td><td>⚠ Uncapped Max Clicks limits CPA accountability</td></tr>
+    <tr><td>Search Network</td><td>ON</td><td>✓</td></tr>
+    <tr><td>Display Network</td><td>OFF</td><td>✓</td></tr>
+    <tr><td>Search Partners</td><td>OFF</td><td>✓</td></tr>
+    <tr><td>Geo Targeting (Positive)</td><td>PRESENCE (enum 7)</td><td>✓ Correct — targeting physical presence only</td></tr>
+    <tr><td>Geo Targeting (Negative)</td><td>Not verified separately (no negative geo exclusions observed)</td><td>—</td></tr>
+    <tr><td>Broad Match Keywords</td><td>None — all PHRASE or EXACT</td><td>✓ Compliant</td></tr>
+    <tr><td>IS Lost to Budget</td><td>19%</td><td>⚠ Budget is lightly constraining — worth monitoring as QS improves</td></tr>
+    <tr><td>IS Lost to Rank</td><td>36.4%</td><td>🔴 Primary issue — QS-driven</td></tr>
+  </table>
+
+  <div class="finding finding-p3">
+    <div class="finding-title"><span class="pri pri-p3">P3</span> Bidding: Max Clicks with No CPC Cap — Consider Adding Guard Rails</div>
+    <p>Max Clicks (TARGET_SPEND) with no CPC ceiling means Google may occasionally pay inflated CPCs for high-competition queries. Avg CPC is $6.49 which is reasonable for this market, but without a cap there's no downside protection. With 21 conversions over 30 days, this account is approaching the data threshold to test Max Conversions — however, don't switch until ad group structure is fixed first (smart bidding needs clean signals to learn from).</p>
+    <div class="action"><strong>Recommended:</strong> Set a CPC cap of $12–$15 as a guard rail. After restructure accumulates 30+ conversions/month, test Max Conversions with $130 target CPA.</div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: KEYWORDS ═══════════ -->
+<div class="section">
+  <div class="section-title">Keyword Performance — Top 15 <span class="badge badge-amber">QS Issues on High-Spend Terms</span></div>
+
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Keyword</th>
+        <th>Match</th>
+        <th>QS</th>
+        <th>Clicks</th>
+        <th>Impr</th>
+        <th>CTR</th>
+        <th>Spend</th>
+        <th>Conv</th>
+        <th>CPA</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>"pool contractor"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>224</td><td>2,429</td><td>9.2%</td><td>$1,466</td><td>11.5</td><td>$127</td>
+        <td>Top spend driver — healthy CTR but QS 5 is mid-range; room to improve</td>
+      </tr>
+      <tr>
+        <td>"pool contractor Colorado"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-low">3</td>
+        <td>45</td><td>425</td><td>10.6%</td><td>$296</td><td>5.5</td><td>$54</td>
+        <td style="color:var(--amber)">⚠ QS 3 despite best CPA ($54) — investigate ad relevance component; likely low expected CTR pulling it down</td>
+      </tr>
+      <tr>
+        <td>"pool builders"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>37</td><td>443</td><td>8.4%</td><td>$223</td><td>3</td><td>$74</td>
+        <td>Good performer — solid CPA</td>
+      </tr>
+      <tr>
+        <td>"pool company Colorado"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-0">0</td>
+        <td>30</td><td>407</td><td>7.4%</td><td>$199</td><td>1</td><td>$199</td>
+        <td style="color:var(--red)">🔴 QS unrated + $199 CPA — needs dedicated ad group or pause if restructure doesn't help</td>
+      </tr>
+      <tr>
+        <td>"pool company near me"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>21</td><td>269</td><td>7.8%</td><td>$134</td><td>0</td><td>—</td>
+        <td>Zero conversions in 30 days; "near me" queries typically high-intent — check landing page experience</td>
+      </tr>
+      <tr>
+        <td>"fiberglass pool"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>14</td><td>182</td><td>7.7%</td><td>$87</td><td>0.5</td><td>$174</td>
+        <td>Lower intent — research phase queries likely</td>
+      </tr>
+      <tr>
+        <td>"inground pool cost"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>8</td><td>97</td><td>8.2%</td><td>$52</td><td>0</td><td>—</td>
+        <td>Cost queries — need dedicated landing page with pricing context</td>
+      </tr>
+      <tr>
+        <td>"fiberglass pool installation"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>6</td><td>72</td><td>8.3%</td><td>$38</td><td>0.5</td><td>$76</td>
+        <td>Good CPA but low volume</td>
+      </tr>
+      <tr>
+        <td>[pool contractor]</td><td><span class="tag tag-exact">EXACT</span></td>
+        <td class="qs-mid">5</td>
+        <td>6</td><td>46</td><td>13.0%</td><td>$36</td><td>0.5</td><td>$72</td>
+        <td>Exact match performing well — consider increasing prominence in structure</td>
+      </tr>
+      <tr>
+        <td>"swimming pool contractor"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>5</td><td>64</td><td>7.8%</td><td>$30</td><td>0</td><td>—</td>
+        <td>Low volume — valid target keyword</td>
+      </tr>
+      <tr>
+        <td>"pool installation"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>5</td><td>58</td><td>8.6%</td><td>$31</td><td>0</td><td>—</td>
+        <td>Zero conv — check match type expansion; may be triggering informational queries</td>
+      </tr>
+      <tr>
+        <td>"pool builders near me"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>4</td><td>42</td><td>9.5%</td><td>$26</td><td>0</td><td>—</td>
+        <td>"Near me" intent — investigate</td>
+      </tr>
+      <tr>
+        <td>[fiberglass pool]</td><td><span class="tag tag-exact">EXACT</span></td>
+        <td class="qs-mid">5</td>
+        <td>3</td><td>41</td><td>7.3%</td><td>$17</td><td>0</td><td>—</td>
+        <td>Low volume research query</td>
+      </tr>
+      <tr>
+        <td>"custom pool builder"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>3</td><td>31</td><td>9.7%</td><td>$18</td><td>0</td><td>—</td>
+        <td>Strong intent keyword — too low volume to judge</td>
+      </tr>
+      <tr>
+        <td>"pool company"</td><td><span class="tag tag-phrase">PHRASE</span></td>
+        <td class="qs-mid">5</td>
+        <td>2</td><td>24</td><td>8.3%</td><td>$12</td><td>0</td><td>—</td>
+        <td>Broad-ish; likely triggering mixed queries</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="finding finding-p2">
+    <div class="finding-title"><span class="pri pri-p2">P2</span> "pool contractor Colorado" — QS 3 Despite Being Best Performer by CPA ($54)</div>
+    <p>This keyword has the account's best CPA ($54) yet sits at QS 3. This disconnect — great conversion performance, poor QS — almost always means low Expected CTR is dragging the score. The ad may not be using "Colorado" prominently enough in served headlines. With a dedicated ad group and a Colorado-specific RSA headline, QS should improve to 6–7, which would significantly reduce CPC and increase IS.</p>
+    <div class="action"><strong>Recommended:</strong> In restructured ad group for geo-modified contractor queries, pin "Fiberglass Pool Contractors in Colorado" or "Colorado's Premier Pool Builder" to headline position 1.</div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: SEARCH TERMS ═══════════ -->
+<div class="section">
+  <div class="section-title">Search Term Analysis — Waste & Opportunity <span class="badge badge-red">Significant Waste</span></div>
+
+  <div class="two-col">
+    <div>
+      <div class="card">
+        <div class="card-title">Waste Buckets (No/Low Converting, Active Spend)</div>
+        <table class="data-table" style="font-size:12px">
+          <thead><tr><th>Category</th><th>Example Terms</th><th>~Spend</th></tr></thead>
+          <tbody>
+            <tr><td class="waste-category">Pool Service / Maintenance</td><td>"pool maintenance service colorado," "pool cleaning service," "pool repair companies near me," "pool resurfacing colorado"</td><td>~$60</td></tr>
+            <tr><td class="waste-category">Above-Ground Queries</td><td>"above ground pool colorado springs," "colorado above ground pool," "above ground pool installation"</td><td>~$30</td></tr>
+            <tr><td class="waste-category">Competitor Brands</td><td>"premier pools and spas," "front range pools," "mr pool boulder," "beachscape lagoons," "platinum pools denver"</td><td>~$70</td></tr>
+            <tr><td class="waste-category">Wrong Product Type</td><td>"shipping container pool colorado," "swim spa," "endless pool," "stock tank pool"</td><td>~$30</td></tr>
+            <tr><td class="waste-category">DIY / Informational</td><td>"how much to make a small pool," "small in ground pool cost," "pools with prices"</td><td>~$25</td></tr>
+          </tbody>
+        </table>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px">Note: some competitor queries (premier pools, front range pools) ARE in the shared set but still generated spend — likely because shorter term variants matching phrase keywords escaped the broad-match-only negatives. Shared set negatives are all BROAD match (type 4). Recommend adding exact match negatives for high-priority competitors.</p>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <div class="card-title">Converting / Positive Terms to Consider Adding as Keywords</div>
+        <table class="data-table" style="font-size:12px">
+          <thead><tr><th>Term</th><th>Spend</th><th>Conv</th><th>Note</th></tr></thead>
+          <tbody>
+            <tr><td>"premier pools and spas"</td><td>$21</td><td>2</td><td class="tag tag-mixed">Competitor — converting but shouldn't target</td></tr>
+            <tr><td>"front range pools"</td><td>$19</td><td>1</td><td class="tag tag-mixed">Competitor name — ambiguous, monitor</td></tr>
+            <tr><td>"denver pool and spa"</td><td>$7</td><td>1</td><td class="tag tag-conv">Possible local intent — could add as KW</td></tr>
+            <tr><td>"pools with prices"</td><td>$6</td><td>1</td><td class="tag tag-conv">Cost-conscious buyer — good intent</td></tr>
+            <tr><td>"how much does a pool cost in colorado"</td><td>$9</td><td>0.5</td><td class="tag tag-conv">Strong local intent — add [exact]</td></tr>
+            <tr><td>"pool builder colorado"</td><td>$14</td><td>0.5</td><td class="tag tag-conv">High value — likely already covered by KWs</td></tr>
+            <tr><td>"fiberglass pool colorado"</td><td>$11</td><td>0.5</td><td class="tag tag-conv">Strong — ensure this is an active keyword</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: DEVICE BREAKDOWN ═══════════ -->
+<div class="section">
+  <div class="section-title">Device Breakdown</div>
+  <div class="two-col">
+    <div>
+      <div class="device-bar">
+        <div class="device-seg seg-mobile" style="width:68%">Mobile 68%</div>
+        <div class="device-seg seg-desktop" style="width:30%">Desktop 30%</div>
+        <div class="device-seg seg-tablet" style="width:2%"></div>
+      </div>
+      <p style="font-size:11px;color:var(--text-muted);margin-top:4px">By clicks: Mobile 258 | Desktop 112 | Tablet 9</p>
+      <table class="data-table" style="margin-top:12px">
+        <thead><tr><th>Device</th><th>Clicks</th><th>Impr</th><th>Spend</th><th>Conv</th><th>CPA</th><th>CTR</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Mobile</td><td>258</td><td>2,956</td><td>$1,644</td><td>13</td><td>$127</td><td>8.7%</td>
+          </tr>
+          <tr>
+            <td>Desktop</td><td>112</td><td>1,399</td><td>$762</td><td>8</td><td>$95</td><td>8.0%</td>
+          </tr>
+          <tr>
+            <td>Tablet</td><td>9</td><td>84</td><td>$54</td><td>0</td><td>—</td><td>10.7%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Device Assessment</div>
+      <div class="finding finding-p3" style="margin-bottom:8px">
+        <div class="finding-title"><span class="pri pri-p3">P3</span> Desktop CPA ($95) is Better Than Mobile ($127)</div>
+        <p style="font-size:13px">Desktop converts ~33% more efficiently per dollar. Mobile drives 68% of clicks but the higher CPA may indicate mobile landing page friction (form UX, load speed, click-to-call accessibility). No mobile bid adjustment is currently set, which is a missed optimization opportunity.</p>
+        <div class="action"><strong>Recommended:</strong> Add a -15% to -20% mobile bid adjustment to shift spend toward higher-converting desktop sessions. Alternatively, ensure the mobile landing page has a prominent click-to-call button above the fold.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: CONVERSION ACTIONS ═══════════ -->
+<div class="section">
+  <div class="section-title">Conversion Actions <span class="badge badge-green">3 Active — Correctly Configured</span></div>
+
+  <table class="data-table">
+    <thead><tr><th>Name</th><th>Category</th><th>Counting</th><th>Include in Conv</th><th>Primary</th><th>Assessment</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>Submit lead form</td>
+        <td>Contact Form (cat 13)</td>
+        <td>Many per click (3)</td>
+        <td>✓ Yes</td>
+        <td>✓ Yes</td>
+        <td class="qs-ok">✓ Correct — form submissions, counts multiples</td>
+      </tr>
+      <tr>
+        <td>Northern Colorado Pools -GA4 (web) Contact Dealer</td>
+        <td>Contact Page Visit (cat 15)</td>
+        <td>Many per click (3)</td>
+        <td>✓ Yes</td>
+        <td>✓ Yes</td>
+        <td class="qs-ok">✓ GA4-linked — contact intent signal</td>
+      </tr>
+      <tr>
+        <td>Northern Colorado Pools -GA4 (web) Download Brochure</td>
+        <td>Contact Form (cat 13)</td>
+        <td>Many per click (3)</td>
+        <td>✓ Yes</td>
+        <td>✓ Yes</td>
+        <td class="qs-ok">✓ Brochure downloads = real conversions (require contact form fill). Correctly configured as primary.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="finding finding-ok">
+    <div class="finding-title"><span class="pri pri-ok">OK</span> Conversion Setup is Solid</div>
+    <p>All three conversion actions are active, included in conversions, and set as primary. Brochure downloads are correctly treated as real conversions (they require contact info). GA4 integration confirmed. Counting type "many per click" is appropriate for form fills. No issues.</p>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: ASSETS ═══════════ -->
+<div class="section">
+  <div class="section-title">Assets — Sitelinks, Callouts, Call <span class="badge badge-amber">Older Sitelinks Missing Descriptions</span></div>
+
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Campaign-Level Sitelinks (5 — With Descriptions)</div>
+      <table class="data-table" style="font-size:12px">
+        <thead><tr><th>Link Text</th><th>Desc 1</th><th>Desc 2</th></tr></thead>
+        <tbody>
+          <tr><td>Pool Financing</td><td>Flexible payment options</td><td>Make your dream affordable</td></tr>
+          <tr><td>Service Areas</td><td>Front Range Urban Corridor</td><td>Berthoud, Brighton, Erie &amp; others</td></tr>
+          <tr><td>Free Estimate</td><td>Request your free quote</td><td>No obligation consultation</td></tr>
+          <tr><td>Pool Colors</td><td>Explore color options</td><td>Premium gelcoat finishes</td></tr>
+          <tr><td>Pool Designs</td><td>Browse 30+ stunning models</td><td>Find your perfect pool shape</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <div class="card-title">Account-Level Sitelinks (5 — Missing Descriptions)</div>
+      <table class="data-table" style="font-size:12px">
+        <thead><tr><th>Link Text</th><th>Desc 1</th><th>Desc 2</th></tr></thead>
+        <tbody>
+          <tr><td>Outdoor Living Services</td><td style="color:var(--red)">Empty</td><td style="color:var(--red)">Empty</td></tr>
+          <tr><td>Fiberglass Swimming Pools</td><td style="color:var(--red)">Empty</td><td style="color:var(--red)">Empty</td></tr>
+          <tr><td>Our Services</td><td style="color:var(--red)">Empty</td><td style="color:var(--red)">Empty</td></tr>
+          <tr><td>Fiberglass Pool Install</td><td style="color:var(--red)">Empty</td><td style="color:var(--red)">Empty</td></tr>
+          <tr><td>Swimming Pool Design</td><td style="color:var(--red)">Empty</td><td style="color:var(--red)">Empty</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="finding finding-p2" style="margin-top:12px">
+    <div class="finding-title"><span class="pri pri-p2">P2</span> Account-Level Sitelinks Have No Descriptions — Losing Ad Real Estate</div>
+    <p>The 5 account-level sitelinks (Outdoor Living Services, Fiberglass Swimming Pools, Our Services, Fiberglass Pool Install, Swimming Pool Design) have no description lines. Google can show up to 2 description lines per sitelink in expanded formats, providing ~70 additional characters of persuasion space. These sitelinks are also less specific than the campaign-level ones — "Our Services" and "Outdoor Living Services" are generic and likely underperform.</p>
+    <div class="action"><strong>Recommended:</strong> Add descriptions to all 5 account-level sitelinks. Consider replacing "Our Services" and "Outdoor Living Services" with more specific links: "Pool Financing Options," "See Customer Pools," "Pool Warranty Info."</div>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-title">Callouts (10 — Campaign Level)</div>
+    <div style="display:flex;flex-wrap:wrap;gap:6px;font-size:12px">
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Free Estimates</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">BBB A+ Rated</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Team Dave Logan Approved</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Financing Available</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">30+ Pool Designs</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Lifetime Warranty</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Fast Installation</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Serving Front Range</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Award-Winning Builder</span>
+      <span style="background:var(--accent-pale);padding:4px 10px;border-radius:12px;color:var(--navy)">Locally Owned</span>
+    </div>
+    <p style="font-size:12px;color:var(--text-muted);margin-top:8px">✓ Strong set — 10 callouts covering trust signals, social proof, local relevance, and product depth. "Team Dave Logan Approved" is a strong Colorado-specific trust signal. No issues.</p>
+  </div>
+
+  <div class="card" style="margin-top:12px">
+    <div class="card-title">Call Asset</div>
+    <p style="font-size:13px">Phone: <strong>(970) 408-1414</strong> (US) — Active. ✓ Correct area code for Northern Colorado (Loveland/Fort Collins market area).</p>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: SHARED NEGATIVES ═══════════ -->
+<div class="section">
+  <div class="section-title">Shared Negative Keyword Set <span class="badge badge-amber">Gaps Identified</span></div>
+
+  <div class="finding finding-p2">
+    <div class="finding-title"><span class="pri pri-p2">P2</span> Shared Set Has 120 Keywords — All Broad Match — Missing Critical Negatives</div>
+    <p>Shared set 12012201802 contains 120 negative keywords, all BROAD match (type 4). The broad match negatives provide basic protection but miss terms that only appear as part of longer phrases. Critically, "premier pools and spas" and "front range pools" ARE in the shared set but still generated spend — this happens because broad match negatives match on query terms, and if a short version of the query doesn't trigger the negative, the longer version can still serve.</p>
+    <p style="margin-top:8px"><strong>Confirmed in shared set:</strong> pool repair, pool service, pool maintenance, pool cleaning, inflatable pool, above ground, swim spa, shipping container pool, stock tank pool, concrete pool, gunite pool, kiddie pool, san juan pools, blue haven pools, anthony sylvan, river pools, semi inground, facebook marketplace, reddit, youtube — good coverage overall.</p>
+    <p style="margin-top:8px"><strong>Missing from shared set (recommended additions):</strong></p>
+  </div>
+
+  <div class="card" style="margin-top:0">
+    <div class="card-title">Priority Negative Keywords to Add (Campaign-Level)</div>
+    <button class="copy-btn" onclick="copyNegatives()">Copy List</button>
+    <div id="neg-list">
+      <table class="data-table" style="font-size:12px;margin-top:8px">
+        <thead><tr><th>Negative Keyword</th><th>Match Type</th><th>Reason</th></tr></thead>
+        <tbody>
+          <tr><td>pool liner replacement</td><td>PHRASE</td><td>Service query, not construction</td></tr>
+          <tr><td>pool liner</td><td>PHRASE</td><td>Vinyl liner queries — wrong product type</td></tr>
+          <tr><td>pool resurfacing</td><td>PHRASE</td><td>Already in shared set but verify phrase match</td></tr>
+          <tr><td>above ground pool</td><td>PHRASE</td><td>Generating spend — add phrase match version</td></tr>
+          <tr><td>aboveground pool</td><td>PHRASE</td><td>Variant of above</td></tr>
+          <tr><td>pool painting</td><td>PHRASE</td><td>Service not construction</td></tr>
+          <tr><td>pool remodel</td><td>PHRASE</td><td>Renovation queries — not a new build</td></tr>
+          <tr><td>container pool</td><td>PHRASE</td><td>Generating spend — add phrase match</td></tr>
+          <tr><td>shipping container pool</td><td>PHRASE</td><td>Already in shared set as broad; add phrase</td></tr>
+          <tr><td>hot tub</td><td>PHRASE</td><td>Different product</td></tr>
+          <tr><td>jacuzzi</td><td>PHRASE</td><td>Different product</td></tr>
+          <tr><td>spa installation</td><td>PHRASE</td><td>Different product</td></tr>
+          <tr><td>premier pools</td><td>EXACT</td><td>Competitor — exact match to close gap</td></tr>
+          <tr><td>front range pools</td><td>EXACT</td><td>Competitor name</td></tr>
+          <tr><td>mr pool</td><td>PHRASE</td><td>Competitor</td></tr>
+          <tr><td>beachscape</td><td>PHRASE</td><td>Competitor</td></tr>
+          <tr><td>platinum pools</td><td>PHRASE</td><td>Competitor</td></tr>
+          <tr><td>pool pricing</td><td>PHRASE</td><td>High research/comparison intent — monitor then decide</td></tr>
+          <tr><td>pool waterfall</td><td>PHRASE</td><td>Feature/accessory — not construction lead</td></tr>
+          <tr><td>pool deck</td><td>PHRASE</td><td>Hardscape — different contractor</td></tr>
+          <tr><td>pool fence</td><td>PHRASE</td><td>Safety — different contractor</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: AD STRENGTH / STRUCTURE ═══════════ -->
+<div class="section">
+  <div class="section-title">Ad Structure &amp; RSA Notes</div>
+
+  <div class="finding finding-p2">
+    <div class="finding-title"><span class="pri pri-p2">P2</span> One Ad Group = One RSA Serving All 25 Keywords</div>
+    <p>The account runs exactly 1 ad group ("Pool Builder") containing all keywords. RSA headlines are not readable via API, but with the single-ad-group structure, the RSA must serve 25 different keyword intent variations. Google cannot optimize ad-to-query matching when there's no segmentation. This contributes directly to the QS issues noted above.</p>
+    <div class="action"><strong>Recommended 3-group restructure:</strong>
+      <br>• <strong>Group 1 — Contractor/Builder:</strong> "pool contractor," "pool builder," "pool contractor Colorado," "custom pool builder," "swimming pool contractor"
+      <br>• <strong>Group 2 — Fiberglass/Installation:</strong> "fiberglass pool," "fiberglass pool installation," "fiberglass pool cost," "fiberglass pool Colorado," "inground fiberglass pool"
+      <br>• <strong>Group 3 — Cost/Quote/Local:</strong> "pool company near me," "pool builders near me," "inground pool cost," "pool installation cost," "pool company Colorado"
+    </div>
+  </div>
+
+  <div class="finding finding-ok">
+    <div class="finding-title"><span class="pri pri-ok">OK</span> Ad Assets Are Rich and Market-Appropriate</div>
+    <p>Campaign has: 5 sitelinks (with descriptions), 10 callouts, 1 call asset, business name asset (field_type 27), logo (field_type 26, 12 image variants), lead form (field_type 18). Asset coverage is strong. The 12 image assets at field_type 26 suggest image extensions or automated asset testing is active. No missing critical asset types for a Search campaign of this type.</p>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: GEO / MARKET ═══════════ -->
+<div class="section">
+  <div class="section-title">Geographic Targeting &amp; Market Context</div>
+
+  <div class="finding finding-ok">
+    <div class="finding-title"><span class="pri pri-ok">OK</span> Geo Targeting Confirmed Correct (PRESENCE only)</div>
+    <p>Positive geo target type = 7 (PRESENCE). Campaign is correctly set to serve only to users physically located in the target area, not users who have shown interest in Colorado from elsewhere. This is the right setting for a local service business. No flag.</p>
+  </div>
+
+  <div class="finding finding-p3">
+    <div class="finding-title"><span class="pri pri-p3">P3</span> Colorado Market Seasonality — Budget Positioning for April Peak</div>
+    <p>Colorado Front Range has a compressed pool installation season (May–September). The audit period (Feb 21 – Mar 23) is pre-season — searches are ramping but installs don't begin until late April/May. Current 30-day CPA of $117 on 21 conversions is respectable for pre-season. As the market heats up in April, competition for "pool contractor Colorado" and "pool builder" queries will intensify from established competitors (Premier Pools, San Juan Pools, local players). The current $80/day budget will face harder budget constraints as CPCs rise 20–30% at peak season.</p>
+    <div class="action"><strong>Recommended:</strong> Plan a budget increase to $100–$120/day by April 1, timed with the seasonal ramp. Monitor IS lost to budget — if it exceeds 25%, budget is the primary constraint.</div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: ACCOUNT-LEVEL CONTEXT ═══════════ -->
+<div class="section">
+  <div class="section-title">Account-Level Context</div>
+  <div class="two-col">
+    <div class="card">
+      <div class="card-title">Business Name Asset</div>
+      <p style="font-size:13px">Asset ID 336357772444 (field_type 27) — Business name confirmed active. This helps brand consistency in ad display.</p>
+    </div>
+    <div class="card">
+      <div class="card-title">Business Profile Asset (field_type 12)</div>
+      <p style="font-size:13px">Asset ID 332920263933 — GBP-linked asset active at account level. Enables location extensions and GBP data in ads. Verify GBP listing is current with correct address, hours, and photos.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECTION: PRIORITY ACTION PLAN ═══════════ -->
+<div class="section">
+  <div class="section-title">Priority Action Plan</div>
+
+  <table class="data-table">
+    <thead><tr><th>#</th><th>Action</th><th>Priority</th><th>Est. Impact</th><th>Effort</th></tr></thead>
+    <tbody>
+      <tr>
+        <td>1</td>
+        <td><strong>Add 20+ campaign-level negative keywords</strong> (list above — service queries, competitor names, wrong product types)</td>
+        <td><span class="tag tag-waste">P1 — IMMEDIATE</span></td>
+        <td>Reduce wasted spend by $150–$250/mo; improve QS by removing non-converting signals</td>
+        <td>Low — 20 min</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td><strong>Restructure into 3 themed ad groups</strong> (Contractor/Builder, Fiberglass/Installation, Cost/Quote/Local) with dedicated RSAs per group</td>
+        <td><span class="tag tag-waste">P1 — HIGH IMPACT</span></td>
+        <td>Improve QS across keywords; expected IS gain of 8–15 percentage points; reduce CPA toward $90–$100</td>
+        <td>High — 3–4 hrs</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td><strong>Add mobile bid adjustment -15% to -20%</strong> to shift budget toward desktop's better-converting sessions</td>
+        <td style="color:var(--amber)">P2</td>
+        <td>Marginal CPA improvement — $5–$10/conv</td>
+        <td>Very Low — 5 min</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td><strong>Add descriptions to 5 account-level sitelinks</strong>; replace generic ones (Our Services, Outdoor Living Services)</td>
+        <td style="color:var(--amber)">P2</td>
+        <td>Improved ad real estate; better CTR on sitelink clicks</td>
+        <td>Low — 30 min</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td><strong>Set CPC bid cap of $12–$15</strong> on Max Clicks strategy</td>
+        <td style="color:var(--accent)">P3</td>
+        <td>Downside protection on spend efficiency</td>
+        <td>Very Low — 5 min</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td><strong>Plan April budget increase to $100–$120/day</strong> ahead of Colorado pool season ramp</td>
+        <td style="color:var(--accent)">P3 — Scheduled</td>
+        <td>Capture peak-season demand without IS budget loss</td>
+        <td>Very Low</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td><strong>After restructure accumulates 30+ conv/month: test Max Conversions</strong> bidding with $130 target CPA</td>
+        <td style="color:var(--green)">Future — Q2</td>
+        <td>Automated optimization aligned to conversion goals</td>
+        <td>Low when ready</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ═══════════ SECTION: HEALTH SCORE BREAKDOWN ═══════════ -->
+<div class="section">
+  <div class="section-title">Health Score Breakdown</div>
+  <table class="data-table">
+    <thead><tr><th>Category</th><th>Score</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>Campaign Settings &amp; Network</td><td>17/20</td><td>Clean — Search only, PRESENCE geo, no broad match. Docked 3 for uncapped Max Clicks and 19% budget IS loss.</td></tr>
+      <tr><td>Keyword Structure &amp; Quality Score</td><td>10/20</td><td>Single ad group with mixed intent; multiple QS issues (3, 0) on meaningful spend keywords. Heavy docking.</td></tr>
+      <tr><td>Search Term Hygiene</td><td>8/20</td><td>~$200+ in clear waste; shared negatives exist but have gaps; no exact-match competitor negatives.</td></tr>
+      <tr><td>Conversion Tracking</td><td>15/15</td><td>3 actions, all primary, correctly configured, GA4-linked, brochure downloads treated as real conversions.</td></tr>
+      <tr><td>Assets (Ad Extensions)</td><td>8/10</td><td>Strong callouts &amp; call asset. Campaign sitelinks good. Account sitelinks missing descriptions. Docked 2.</td></tr>
+      <tr><td>Bidding Strategy</td><td>5/10</td><td>Max Clicks uncapped — functional but not conversion-optimized. Not enough conversion volume yet for smart bidding.</td></tr>
+      <tr><td>Market &amp; Seasonality Prep</td><td>4/5</td><td>PRESENCE geo correct; Front Range market understood. Minor docking for no documented budget plan for season ramp.</td></tr>
+      <tr style="font-weight:700"><td>TOTAL</td><td>52/100</td><td>Needs Work — addressable issues, not structural failures. Top 2 actions (negatives + restructure) could move this to 65–70.</td></tr>
+    </tbody>
+  </table>
+</div>
+
+</div><!-- end .main -->
+
+<div class="report-footer">
+  Leisure Pools Front Range | Google Ads Audit | 2026-03-23 | Explore Industries — Eli Bunyi | Read-only audit — no changes made to account
+</div>
+
+<script>
+function copyNegatives() {
+  const terms = [
+    'pool liner replacement', 'pool liner', 'pool resurfacing', 'above ground pool',
+    'aboveground pool', 'pool painting', 'pool remodel', 'container pool',
+    'shipping container pool', 'hot tub', 'jacuzzi', 'spa installation',
+    'premier pools', 'front range pools', 'mr pool', 'beachscape', 'platinum pools',
+    'pool pricing', 'pool waterfall', 'pool deck', 'pool fence'
+  ];
+  const text = terms.map(t => '-"' + t + '"').join('\n');
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = document.querySelector('.copy-btn');
+    btn.textContent = 'Copied!';
+    setTimeout(() => btn.textContent = 'Copy List', 2000);
+  });
+}
+</script>
+</body>
+</html>

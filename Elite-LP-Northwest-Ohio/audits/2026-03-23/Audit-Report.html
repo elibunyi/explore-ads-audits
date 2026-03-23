@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite – Leisure Pools NW Ohio | Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --accent: #1a8fe3;
+    --accent-light: #4fb3f7;
+    --gold: #f0a500;
+    --red: #e84040;
+    --orange: #e87c1e;
+    --yellow: #e8c41e;
+    --green: #29c46e;
+    --grey-light: #f4f6fa;
+    --grey-mid: #dde2ec;
+    --text: #1a1f2e;
+    --text-muted: #5a6480;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--grey-light); color: var(--text); font-size: 14px; line-height: 1.5; }
+
+  /* HEADER */
+  .header { background: var(--navy); color: var(--white); padding: 32px 40px 28px; border-bottom: 3px solid var(--accent); }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+  .header .sub { font-size: 13px; color: #8fa8c8; margin-top: 4px; }
+  .badge { display: inline-block; background: var(--accent); color: white; font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 12px; letter-spacing: 0.5px; text-transform: uppercase; }
+  .score-block { text-align: right; }
+  .score-num { font-size: 52px; font-weight: 800; color: var(--red); line-height: 1; }
+  .score-label { font-size: 12px; color: #8fa8c8; margin-top: 2px; }
+  .meta-row { display: flex; gap: 32px; margin-top: 20px; flex-wrap: wrap; }
+  .meta-item { font-size: 12px; color: #8fa8c8; }
+  .meta-item strong { color: var(--white); display: block; font-size: 13px; }
+
+  /* LAYOUT */
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* SECTION */
+  .section { margin-bottom: 32px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--navy); padding: 0 0 10px; border-bottom: 2px solid var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .count { background: var(--accent); color: white; font-size: 11px; font-weight: 700; padding: 2px 8px; border-radius: 10px; }
+
+  /* ISSUE CARDS */
+  .issue-card { background: var(--white); border-radius: 8px; border-left: 4px solid var(--grey-mid); padding: 16px 20px; margin-bottom: 12px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .issue-card.p1 { border-left-color: var(--red); }
+  .issue-card.p2 { border-left-color: var(--orange); }
+  .issue-card.p3 { border-left-color: var(--yellow); }
+  .issue-card.pass { border-left-color: var(--green); }
+  .issue-card.info { border-left-color: var(--accent); }
+  .issue-header { display: flex; align-items: flex-start; gap: 12px; }
+  .priority-tag { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; margin-top: 2px; }
+  .p1 .priority-tag { background: #fde8e8; color: var(--red); }
+  .p2 .priority-tag { background: #fde9d6; color: var(--orange); }
+  .p3 .priority-tag { background: #fdf8d6; color: #b8960f; }
+  .pass .priority-tag { background: #d6f5e5; color: #1a8a52; }
+  .info .priority-tag { background: #d6eeff; color: var(--accent); }
+  .issue-title { font-weight: 600; font-size: 14px; }
+  .issue-detail { font-size: 13px; color: var(--text-muted); margin-top: 6px; line-height: 1.6; }
+  .issue-action { margin-top: 10px; padding: 10px 14px; background: var(--grey-light); border-radius: 6px; font-size: 12px; }
+  .issue-action strong { color: var(--navy); }
+
+  /* COPY BLOCKS */
+  .copy-block { background: var(--navy-mid); color: #c8d8f0; font-family: 'SF Mono', 'Consolas', monospace; font-size: 12px; padding: 12px 16px; border-radius: 6px; margin-top: 10px; cursor: pointer; border: 1px solid rgba(255,255,255,0.08); transition: background 0.2s; position: relative; }
+  .copy-block:hover { background: #213554; }
+  .copy-block::after { content: 'click to copy'; position: absolute; top: 6px; right: 10px; font-size: 10px; color: #5a7a9a; font-family: -apple-system, sans-serif; }
+  .copy-block.copied::after { content: 'copied!'; color: var(--green); }
+
+  /* STATS GRID */
+  .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 24px; }
+  .stat-card { background: var(--white); border-radius: 8px; padding: 16px 18px; box-shadow: 0 1px 4px rgba(0,0,0,0.07); border-top: 3px solid var(--accent); }
+  .stat-value { font-size: 26px; font-weight: 800; color: var(--navy); line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .stat-card.warn .stat-value { color: var(--orange); }
+  .stat-card.flag .stat-value { color: var(--red); }
+  .stat-card.good .stat-value { color: var(--green); }
+
+  /* TABLE */
+  .data-table { width: 100%; border-collapse: collapse; background: var(--white); border-radius: 8px; overflow: hidden; box-shadow: 0 1px 4px rgba(0,0,0,0.07); }
+  .data-table th { background: var(--navy); color: var(--white); font-size: 11px; font-weight: 600; padding: 10px 14px; text-align: left; text-transform: uppercase; letter-spacing: 0.5px; }
+  .data-table td { padding: 9px 14px; font-size: 13px; border-bottom: 1px solid var(--grey-mid); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) { background: #fafbfd; }
+  .data-table tr:hover { background: #f0f4fc; }
+  .tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; }
+  .tag.phrase { background: #ddeeff; color: #1060b0; }
+  .tag.exact { background: #e0f0e0; color: #1a7040; }
+  .tag.broad { background: #fff0d0; color: #9a6010; }
+  .tag.warn { background: #fde9d6; color: var(--orange); }
+  .tag.bad { background: #fde8e8; color: var(--red); }
+  .tag.ok { background: #d6f5e5; color: #1a8a52; }
+  .tag.info { background: #d6eeff; color: var(--accent); }
+
+  /* SEARCH TERMS LEGEND */
+  .st-waste { color: var(--red); font-weight: 600; }
+  .st-comp { color: var(--orange); font-weight: 600; }
+  .st-ok { color: var(--green); }
+
+  /* SEARCH TERM TABLE cost bar */
+  .cost-bar-wrap { width: 80px; background: var(--grey-mid); border-radius: 3px; height: 6px; display: inline-block; vertical-align: middle; margin-left: 6px; }
+  .cost-bar { height: 6px; border-radius: 3px; background: var(--accent); }
+
+  /* DIVIDER */
+  .divider { border: none; border-top: 1px solid var(--grey-mid); margin: 20px 0; }
+
+  /* CHANGE LOG */
+  .change-tag { display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 7px; border-radius: 10px; background: #d6f5e5; color: #1a8a52; }
+
+  /* FOOTER */
+  .footer { background: var(--navy); color: #8fa8c8; text-align: center; padding: 20px; font-size: 12px; margin-top: 40px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 700px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .header { padding: 20px; }
+    .header-top { flex-direction: column; gap: 16px; }
+    .score-block { text-align: left; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="badge">Leisure Pools</div>
+      <h1 style="margin-top:8px;">Elite – Leisure Pools Northwest Ohio</h1>
+      <div class="sub">Account 386-816-0717 &nbsp;|&nbsp; Market: Findlay / Toledo / NW Ohio &nbsp;|&nbsp; Audit: 2026-03-23</div>
+      <div class="meta-row">
+        <div class="meta-item"><strong>Period</strong>2026-02-21 – 2026-03-23 (30 days)</div>
+        <div class="meta-item"><strong>Campaign</strong>Leisure Pools Northwest Ohio Campaign</div>
+        <div class="meta-item"><strong>Budget</strong>$16.12/day</div>
+        <div class="meta-item"><strong>Strategy</strong>Maximize Clicks (changed ~3/16)</div>
+        <div class="meta-item"><strong>Priority</strong>Low-Medium</div>
+      </div>
+    </div>
+    <div class="score-block">
+      <div class="score-num">36</div>
+      <div class="score-label">Health Score / 100</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PERFORMANCE SNAPSHOT -->
+  <div class="section">
+    <div class="section-title">Performance Snapshot — Last 30 Days</div>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <div class="stat-value">$523</div>
+        <div class="stat-label">Total Spend</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">121</div>
+        <div class="stat-label">Clicks</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-value">3</div>
+        <div class="stat-label">Conversions ⚠ Low Confidence</div>
+      </div>
+      <div class="stat-card flag">
+        <div class="stat-value">$174</div>
+        <div class="stat-label">Cost / Conversion</div>
+      </div>
+      <div class="stat-card good">
+        <div class="stat-value">842</div>
+        <div class="stat-label">Impressions</div>
+      </div>
+      <div class="stat-card good">
+        <div class="stat-value">14.4%</div>
+        <div class="stat-label">CTR</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-value">56.2%</div>
+        <div class="stat-label">Impression Share</div>
+      </div>
+      <div class="stat-card warn">
+        <div class="stat-value">$4.32</div>
+        <div class="stat-label">Avg CPC</div>
+      </div>
+    </div>
+    <table class="data-table" style="margin-top:4px;">
+      <thead><tr><th>IS Lost — Rank</th><th>IS Lost — Budget</th><th>Max CPC Cap</th><th>Bid Strategy</th><th>Geo Setting</th></tr></thead>
+      <tbody><tr>
+        <td><span class="tag warn">26.0% rank</span></td>
+        <td><span class="tag warn">17.8% budget</span></td>
+        <td><span class="tag bad">$250 (250,000,000 µ)</span></td>
+        <td><span class="tag ok">Max Clicks (changed 3/16)</span></td>
+        <td><span class="tag ok">PRESENCE (enum 7)</span></td>
+      </tr></tbody>
+    </table>
+  </div>
+
+  <!-- P1 ISSUES -->
+  <div class="section">
+    <div class="section-title">Priority 1 — Fix Now <span class="count">3</span></div>
+
+    <div class="issue-card p1">
+      <div class="issue-header">
+        <span class="priority-tag">P1</span>
+        <div>
+          <div class="issue-title">Max CPC Cap is $250 — 25× too high for this market</div>
+          <div class="issue-detail">The campaign switched to Maximize Clicks (good — P1 fix from the 3/20 audit) but the target_spend.cpc_bid_ceiling_micros = 250,000,000 = <strong>$250 max CPC</strong>. This is dangerously uncapped. Google can bid $250 per click in a rural Ohio market where the fair CPC is $8–$16. The current Avg CPC of $4.32 suggests Google hasn't hit it yet, but this is a ticking clock — one competitive auction day could burn the entire monthly budget in hours. Per skill guidance: set Max CPC cap to $12–$15 for NW Ohio pool market.</div>
+          <div class="issue-action"><strong>Action:</strong> In Campaign Settings &rarr; Bidding, update the Max CPC cap to <strong>$12.00</strong> (or $10–$15 range). This protects budget while still allowing Max Clicks to optimize.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p1">
+      <div class="issue-header">
+        <span class="priority-tag">P1</span>
+        <div>
+          <div class="issue-title">Zero Ad Extensions / Assets — Account is completely bare</div>
+          <div class="issue-detail">customer_asset query returned 0 results. Campaign-level assets returned 12 items but all have field_type values indicating they are <strong>auto-generated by Google AI</strong> (field types 11, 13, 16, 18, 27 = Automated assets, not human-created sitelinks/callouts/snippets/call). This account has never had a single manually created sitelink, callout, structured snippet, or call extension — confirmed across 2 consecutive audits (3/16, 3/20, and now 3/23). Auto-assets cannot substitute for genuine extension strategy. Ads are running as bare headlines + descriptions only, losing significant SERP real estate vs. competitors who have full extension suites.</div>
+          <div class="issue-action"><strong>Action (immediately addable):</strong></div>
+          <div class="copy-block" onclick="copyBlock(this)" data-text="SITELINKS (4 minimum):
+1. 'View Pool Gallery' → leisurepoolsnorthwestohio.com/gallery
+2. 'Get a Free Quote' → leisurepoolsnorthwestohio.com/contact
+3. 'Fiberglass Pool Benefits' → leisurepoolsnorthwestohio.com/fiberglass
+4. 'Financing Available' → leisurepoolsnorthwestohio.com/financing
+
+CALLOUTS (4 minimum):
+'Lifetime Structural Warranty' | 'Installed in Weeks Not Months' | 'Local NW Ohio Installer' | 'Free 3D Pool Design'
+
+STRUCTURED SNIPPET – header 'Pool Styles':
+The Eclipse, The Supreme, The Pinnacle, The Allure, The Wave
+
+CALL EXTENSION: (740) 244-3960">SITELINKS (4 minimum):
+1. "View Pool Gallery" → leisurepoolsnorthwestohio.com/gallery
+2. "Get a Free Quote" → leisurepoolsnorthwestohio.com/contact
+3. "Fiberglass Pool Benefits" → leisurepoolsnorthwestohio.com/fiberglass
+4. "Financing Available" → leisurepoolsnorthwestohio.com/financing
+
+CALLOUTS (4 minimum):
+"Lifetime Structural Warranty" | "Installed in Weeks Not Months" | "Local NW Ohio Installer" | "Free 3D Pool Design"
+
+STRUCTURED SNIPPET – header "Pool Styles":
+The Eclipse, The Supreme, The Pinnacle, The Allure, The Wave
+
+CALL EXTENSION: (740) 244-3960</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p1">
+      <div class="issue-header">
+        <span class="priority-tag">P1</span>
+        <div>
+          <div class="issue-title">Search Terms: 40%+ of spend going to waste/off-topic queries</div>
+          <div class="issue-detail">Top 50 search terms analyzed. Status 5 = added to account (can be negated). Status 2 = active (eligible). Major waste categories identified:
+          <br><br>
+          <strong class="st-waste">Above-Ground / Semi-Inground (wrong product type):</strong> "above ground pool installation near me" ($6.41), "concrete above ground pools" ($6.44), "semi inground pool cost" ($5.37), "semi inground pools near me" ($5.01), "above ground pool installers" ($3.96), "how much are above ground pools installed" ($4.50), "installing above ground pool" ($4.80), "above ground fiberglass pool" ($3.11), "stealth above ground pool" ($4.45) — Elite installs inground fiberglass only.
+          <br><br>
+          <strong class="st-comp">Competitor Brand Queries:</strong> "mossing pools and spas" ($7.69), "shawnee pools lima" ($2.98), "tredway pools fort wayne indiana" ($3.07), "fox pool prices" ($4.97), "buckeye pools ottawa ohio" ($3.71) — clicks going to competitor-branded searches, no conversion possible.
+          <br><br>
+          <strong class="st-comp">DIY / Kit Queries:</strong> "fiberglass pools kit" ($2.95), "buy container pool" ($2.96) — not purchase-intent for installer.
+          <br><br>
+          <strong class="st-waste">Geographic Misses:</strong> "by pools poland ohio" ($9.11), "leisure time pool marion ohio" ($5.61), "tredway pools fort wayne indiana" ($3.07) — serving outside NW Ohio service area.
+          <br><br>
+          Estimated wasted spend this window: ~$110–$130 (21–25% of total).</div>
+          <div class="issue-action"><strong>Action — Negative Keywords to add immediately:</strong></div>
+          <div class="copy-block" onclick="copyBlock(this)">CAMPAIGN NEGATIVES (EXACT):
+[above ground pool]
+[above ground pools]
+[semi inground pool]
+[semi inground pools]
+[above ground pool installation]
+[above ground pool installers]
+[fiberglass pool kit]
+[pool kit]
+[container pool]
+[mossing pools]
+[shawnee pools]
+[tredway pools]
+[fox pool]
+[buckeye pools]
+[poland ohio]
+[fort wayne indiana]
+
+CAMPAIGN NEGATIVES (PHRASE):
+"above ground"
+"semi inground"
+"semi-inground"
+"diy pool"
+"pool kit"
+"above-ground"
+"stealth pool"</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P2 ISSUES -->
+  <div class="section">
+    <div class="section-title">Priority 2 — Address Soon <span class="count">4</span></div>
+
+    <div class="issue-card p2">
+      <div class="issue-header">
+        <span class="priority-tag">P2</span>
+        <div>
+          <div class="issue-title">RSA Ad Copy — Unverifiable via API (expected limitation)</div>
+          <div class="issue-detail">The ad_group_ad RSA query errored with a serialization fault on the headlines/descriptions arrays. This is an API limitation noted in the audit skill — RSA text assets cannot be read via this API method. Based on 3/20 audit findings (confirmed GOOD ad strength, APPROVED), the RSA is serving and approved. Known issue from 3/20: RSA paths (path1/path2) were confirmed blank. Blank paths miss an opportunity to show local qualifier in the display URL (e.g., "Fiberglass-Pools" / "Northwest-Ohio").</div>
+          <div class="issue-action"><strong>Action:</strong> In the ad editor, add RSA paths: Path 1 = "Fiberglass-Pools", Path 2 = "NW-Ohio" (or "Findlay"). This adds geo/product context to the display URL at no character cost to headlines.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p2">
+      <div class="issue-header">
+        <span class="priority-tag">P2</span>
+        <div>
+          <div class="issue-title">Flat Single Ad Group — 13 keywords, zero thematic separation</div>
+          <div class="issue-detail">All 13 active keywords live in a single "Ad group 1" driving one RSA. The keyword set spans at least 3 distinct intents: (1) Brand/awareness — "leisure pools", "pool designs", "prefab pools"; (2) Commercial installation — "pool installation", "in ground pools", "inground pools", "fiberglass pools"; (3) Contractor discovery — "pool contractor", "pool builder", "pool construction companies", "fiberglass pool builders". A flat structure means all intents share one ad and one set of bids — Google can't optimize message relevance by theme. This directly contributes to Quality Scores of 0 for 7 of 13 keywords.</div>
+          <div class="issue-action"><strong>Action (lower priority, restructure when budget allows):</strong> Split into 3 ad groups — (1) Fiberglass Pool Installation, (2) Pool Contractors/Builders, (3) Leisure Pools Brand. Each group gets a tailored RSA headline set matching the intent.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p2">
+      <div class="issue-header">
+        <span class="priority-tag">P2</span>
+        <div>
+          <div class="issue-title">Conversion Tracking — Persistent Low Confidence</div>
+          <div class="issue-detail">conversion_action API query errored both this and last audit cycle (API type error). 3 conversions recorded this window — same low count as prior periods. The Obsidian note flags: "Tracking on their campaign is probably broken — Eli can't figure it out." With only 3 conversions across 30 days and inconsistent counts across windows ($174 CPA this period, $270 in prior window on similar spend), the conversion data should not be trusted for bidding decisions. This also means the switch to Max Clicks (vs. Max Conversions) was correct — there isn't enough reliable conversion signal to justify conversion-based bidding.</div>
+          <div class="issue-action"><strong>Action:</strong> Inspect conversion action setup in the account UI. Check if tag fires on contact form submissions and phone call clicks. Consider using Google Tag Assistant to verify. Priority: medium — tracking accuracy affects all future optimization decisions.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p2">
+      <div class="issue-header">
+        <span class="priority-tag">P2</span>
+        <div>
+          <div class="issue-title">7 of 13 Keywords Have Quality Score = 0 (Not Enough Data)</div>
+          <div class="issue-detail">Active keywords with QS = 0 (insufficient data): "swimming pool construction", "inground pools", "pool contractor", "pool builder", "pool construction companies", "outdoor pool installation", "fiberglass pool builders". Only 6 keywords have meaningful QS: "leisure pools" (9), "fiberglass pools" (8), "pool designs" (8), "in ground pools" (6), "pool installation" (6). Flat structure contributes to low QS — keywords that don't match closely to a single themed RSA will tend to underperform on Expected CTR and Ad Relevance components. "Outdoor pool installation" and "pool construction companies" generated $0 spend this period — potential deadweight keywords.</div>
+          <div class="issue-action"><strong>Action:</strong> Pause "outdoor pool installation" and "pool construction companies" (zero impressions, zero spend this period). Review "fiberglass pool builders" — also zero activity. These are diluting the ad group without contributing traffic.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- P3 / INFO -->
+  <div class="section">
+    <div class="section-title">Priority 3 — Monitor / Optimize <span class="count">3</span></div>
+
+    <div class="issue-card p3">
+      <div class="issue-header">
+        <span class="priority-tag">P3</span>
+        <div>
+          <div class="issue-title">No Audience Segments Applied (Observation Audiences)</div>
+          <div class="issue-detail">No ad_group_criterion audience entries found. Adding in-market audiences for "Home &amp; Garden &gt; Swimming Pools" and "Home Improvement" in observation mode (no bid modifier) would allow Google to gather audience performance data without restricting reach. This data becomes actionable once conversion tracking is fixed — can then add positive bid modifiers for high-converting segments.</div>
+          <div class="issue-action"><strong>Action (low effort):</strong> Add these in-market audiences in Observation mode: "Home &amp; Garden / Swimming Pools", "Home Improvement", "Homeowners". No bid adjustment initially — just data collection.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p3">
+      <div class="issue-header">
+        <span class="priority-tag">P3</span>
+        <div>
+          <div class="issue-title">Impression Share: 56.2% — 26% lost to rank, 17.8% to budget</div>
+          <div class="issue-detail">IS is passable for a low-priority account but split between rank and budget losses is notable: rank losses (26%) slightly exceed budget losses (17.8%). With a $12 Max CPC cap (P1 fix), rank losses may increase slightly — monitor after implementing. Budget at $16.12/day is borderline for NW Ohio pool market during peak season (March–May). If conversions improve post-tracking fix, consider increasing to $20/day in April.</div>
+          <div class="issue-action"><strong>Action:</strong> Monitor IS breakdown after P1 Max CPC cap fix. If rank-lost IS increases above 35%, evaluate budget increase to $18–20/day.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card p3">
+      <div class="issue-header">
+        <span class="priority-tag">P3</span>
+        <div>
+          <div class="issue-title">"Leisure Pools" Keyword Spending Without Converting</div>
+          <div class="issue-detail">"leisure pools" keyword: 27 impressions, 12 clicks, $36.38 spend, 0 conversions this window. QS = 9 (excellent), so it's a high-quality keyword that's generating traffic — but zero conversions. People searching "leisure pools" are likely researching the brand, not actively looking for an installer. This is lower-funnel awareness traffic. Not necessarily waste, but worth monitoring — if pattern continues, consider applying a lower bid modifier or moving to a separate awareness ad group with a different landing page angle.</div>
+          <div class="issue-action"><strong>Action:</strong> Monitor for 2 more months. If still 0 conversions, isolate in its own ad group with a brand-specific RSA headline ("Authorized Leisure Pools Dealer | Northwest Ohio | Free 3D Design").</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PASSING CHECKS -->
+  <div class="section">
+    <div class="section-title">Passing Checks <span class="count" style="background:var(--green)">4</span></div>
+
+    <div class="issue-card pass">
+      <div class="issue-header">
+        <span class="priority-tag">PASS</span>
+        <div>
+          <div class="issue-title">Bid Strategy Fixed — Now Max Clicks (changed 3/16)</div>
+          <div class="issue-detail">Campaign bidding_strategy_type = 9 = TARGET_SPEND (Maximize Clicks). This was the #1 P1 finding in both prior audits (Max Conversions on 2–3 conv/month). The strategy change happened 2026-03-16 per change_event log (operation type 3 = UPDATE, resource type 6 = Campaign, user: eli.bunyi@exploreindustries.com). Max Clicks is the correct strategy for this volume level. <strong>Note:</strong> CPC cap still needs to be set appropriately (see P1 above).</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card pass">
+      <div class="issue-header">
+        <span class="priority-tag">PASS</span>
+        <div>
+          <div class="issue-title">Geo Targeting — PRESENCE Only (Correct)</div>
+          <div class="issue-detail">positive_geo_target_type = 7 = PRESENCE. This means ads only show to users physically located in the targeted area — not users who are interested in the area from elsewhere. This is the correct setting for a local service business. Prior audits flagged country-level targeting; this has been addressed or was already set correctly at the geo_target_type level.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card pass">
+      <div class="issue-header">
+        <span class="priority-tag">PASS</span>
+        <div>
+          <div class="issue-title">Network Settings — Search Only (No Display Expansion)</div>
+          <div class="issue-detail">target_google_search = true, target_search_network = false (Search Partners OFF), target_content_network = false (Display OFF). Clean — no budget leaking to Display network or Search Partners.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="issue-card pass">
+      <div class="issue-header">
+        <span class="priority-tag">PASS</span>
+        <div>
+          <div class="issue-title">Shared Negative List — Confirmed Attached</div>
+          <div class="issue-detail">Shared set 12012201802 is attached to the campaign (status ENABLED). This is the Explore-wide negative keyword list (99 exact-match terms per 3/20 audit). However, the shared list only blocks exact-match queries — it will not catch phrase or broad variants like "above ground pool installation" or "semi inground pools near me" (both found in search terms this period). Campaign-level phrase negatives are still needed (see P1 action).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- KEYWORD TABLE -->
+  <div class="section">
+    <div class="section-title">Keyword Performance — Feb 21 – Mar 23</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Match</th>
+          <th>QS</th>
+          <th>Impr.</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv.</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>pool installation</td><td><span class="tag phrase">Phrase</span></td><td>6</td><td>185</td><td>28</td><td>$136.41</td><td>1</td><td><span class="tag ok">Lead KW</span></td></tr>
+        <tr><td>in ground pools</td><td><span class="tag phrase">Phrase</span></td><td>6</td><td>136</td><td>21</td><td>$97.40</td><td>1</td><td><span class="tag ok">Good</span></td></tr>
+        <tr><td>fiberglass pools</td><td><span class="tag phrase">Phrase</span></td><td>8</td><td>110</td><td>21</td><td>$74.20</td><td>1</td><td><span class="tag ok">Best</span></td></tr>
+        <tr><td>pool contractor</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>137</td><td>12</td><td>$62.45</td><td>0</td><td><span class="tag warn">0 conv</span></td></tr>
+        <tr><td>inground pools</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>78</td><td>10</td><td>$42.39</td><td>0</td><td><span class="tag warn">0 conv</span></td></tr>
+        <tr><td>leisure pools</td><td><span class="tag phrase">Phrase</span></td><td>9</td><td>27</td><td>12</td><td>$36.38</td><td>0</td><td><span class="tag info">Brand</span></td></tr>
+        <tr><td>pool designs</td><td><span class="tag phrase">Phrase</span></td><td>8</td><td>97</td><td>10</td><td>$35.11</td><td>0</td><td><span class="tag warn">0 conv</span></td></tr>
+        <tr><td>prefab pools</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>42</td><td>4</td><td>$22.35</td><td>0</td><td><span class="tag warn">Review</span></td></tr>
+        <tr><td>pool builder</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>27</td><td>2</td><td>$10.47</td><td>0</td><td><span class="tag info">Low vol</span></td></tr>
+        <tr><td>swimming pool construction</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>3</td><td>1</td><td>$6.18</td><td>0</td><td><span class="tag info">Low vol</span></td></tr>
+        <tr><td>pool construction companies</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>0</td><td>0</td><td>$0</td><td>0</td><td><span class="tag bad">Pause</span></td></tr>
+        <tr><td>outdoor pool installation</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>0</td><td>0</td><td>$0</td><td>0</td><td><span class="tag bad">Pause</span></td></tr>
+        <tr><td>fiberglass pool builders</td><td><span class="tag phrase">Phrase</span></td><td>0</td><td>0</td><td>0</td><td>$0</td><td>0</td><td><span class="tag bad">Pause</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEARCH TERMS -->
+  <div class="section">
+    <div class="section-title">Search Terms — Top 30 by Spend (Notable)</div>
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Impr.</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv.</th>
+          <th>Classification</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td class="st-ok">inground pool</td><td>15</td><td>5</td><td>$20.16</td><td>0</td><td><span class="tag warn">Broad — monitor</span></td></tr>
+        <tr><td class="st-ok">fiberglass pools</td><td>13</td><td>5</td><td>$18.58</td><td>1</td><td><span class="tag ok">On-target</span></td></tr>
+        <tr><td class="st-ok">leisure pools</td><td>13</td><td>7</td><td>$17.49</td><td>0</td><td><span class="tag info">Brand search</span></td></tr>
+        <tr><td>inground pool cost</td><td>9</td><td>2</td><td>$9.62</td><td>0</td><td><span class="tag warn">Research intent</span></td></tr>
+        <tr><td class="st-waste">by pools poland ohio</td><td>2</td><td>1</td><td>$9.11</td><td>0</td><td><span class="tag bad">Geo waste</span></td></tr>
+        <tr><td class="st-waste">mini inground swimming pools</td><td>2</td><td>1</td><td>$7.90</td><td>0</td><td><span class="tag bad">Wrong type</span></td></tr>
+        <tr><td class="st-waste">cement pool cost</td><td>2</td><td>1</td><td>$7.83</td><td>0</td><td><span class="tag bad">Concrete/cement</span></td></tr>
+        <tr><td class="st-comp">mossing pools and spas</td><td>2</td><td>1</td><td>$7.69</td><td>0</td><td><span class="tag bad">Competitor</span></td></tr>
+        <tr><td>in ground pool</td><td>10</td><td>1</td><td>$7.40</td><td>0</td><td><span class="tag warn">Monitor</span></td></tr>
+        <tr><td>prices of swimming pools</td><td>1</td><td>1</td><td>$7.40</td><td>0</td><td><span class="tag warn">Price research</span></td></tr>
+        <tr><td>pool installation near me</td><td>3</td><td>1</td><td>$7.20</td><td>0</td><td><span class="tag ok">On-target</span></td></tr>
+        <tr><td class="st-waste">concrete above ground pools</td><td>2</td><td>1</td><td>$6.44</td><td>0</td><td><span class="tag bad">Above ground</span></td></tr>
+        <tr><td class="st-waste">above ground pool installation near me</td><td>9</td><td>1</td><td>$6.41</td><td>0</td><td><span class="tag bad">Above ground</span></td></tr>
+        <tr><td>pools in backyards</td><td>2</td><td>1</td><td>$6.28</td><td>0</td><td><span class="tag warn">Awareness</span></td></tr>
+        <tr><td>how much does a small inground pool cost</td><td>3</td><td>1</td><td>$6.26</td><td>0</td><td><span class="tag warn">Research</span></td></tr>
+        <tr><td class="st-waste">cheapest pool installation</td><td>2</td><td>1</td><td>$5.87</td><td>0</td><td><span class="tag bad">Price shopper</span></td></tr>
+        <tr><td class="st-waste">thursday pools photos</td><td>4</td><td>2</td><td>$5.76</td><td>0</td><td><span class="tag bad">Competitor brand</span></td></tr>
+        <tr><td class="st-waste">leisure time pool marion ohio</td><td>3</td><td>1</td><td>$5.61</td><td>0</td><td><span class="tag bad">Competitor</span></td></tr>
+        <tr><td>cost to add spillover spa to existing pool</td><td>1</td><td>1</td><td>$5.49</td><td>0</td><td><span class="tag warn">Niche intent</span></td></tr>
+        <tr><td>small inground pools</td><td>4</td><td>1</td><td>$5.46</td><td>0</td><td><span class="tag warn">Monitor</span></td></tr>
+        <tr><td class="st-waste">semi inground pool cost</td><td>2</td><td>1</td><td>$5.37</td><td>0</td><td><span class="tag bad">Semi-inground</span></td></tr>
+        <tr><td class="st-waste">semi inground pools near me</td><td>2</td><td>1</td><td>$5.01</td><td>0</td><td><span class="tag bad">Semi-inground</span></td></tr>
+        <tr><td class="st-comp">fox pool prices</td><td>2</td><td>1</td><td>$4.97</td><td>0</td><td><span class="tag bad">Competitor</span></td></tr>
+        <tr><td class="st-waste">installing above ground pool</td><td>1</td><td>1</td><td>$4.80</td><td>0</td><td><span class="tag bad">Above ground</span></td></tr>
+        <tr><td>pool installation findlay ohio</td><td>3</td><td>1</td><td>$4.78</td><td>0</td><td><span class="tag ok">On-target (geo)</span></td></tr>
+        <tr><td class="st-waste">how much are above ground pools installed</td><td>2</td><td>1</td><td>$4.50</td><td>0</td><td><span class="tag bad">Above ground</span></td></tr>
+        <tr><td class="st-waste">stealth above ground pool</td><td>1</td><td>1</td><td>$4.45</td><td>0</td><td><span class="tag bad">Above ground</span></td></tr>
+        <tr><td>large inground fiberglass pools</td><td>1</td><td>1</td><td>$4.42</td><td>0</td><td><span class="tag ok">On-target</span></td></tr>
+        <tr><td>inground pool hot tub combo cost</td><td>2</td><td>1</td><td>$4.41</td><td>0</td><td><span class="tag warn">Niche</span></td></tr>
+        <tr><td class="st-waste">above ground pool installers</td><td>1</td><td>1</td><td>$3.96</td><td>0</td><td><span class="tag bad">Above ground</span></td></tr>
+      </tbody>
+    </table>
+    <div style="margin-top:10px; font-size:12px; color: var(--text-muted);">
+      <span class="st-waste">■ Red</span> = Waste/off-target &nbsp;|&nbsp; <span class="st-comp">■ Orange</span> = Competitor &nbsp;|&nbsp; <span class="st-ok">■ Green</span> = On-target
+    </div>
+  </div>
+
+  <!-- CHANGE LOG -->
+  <div class="section">
+    <div class="section-title">Recent Changes Detected</div>
+    <table class="data-table">
+      <thead><tr><th>Date/Time</th><th>Type</th><th>Operation</th><th>By</th></tr></thead>
+      <tbody>
+        <tr>
+          <td>2026-03-16 12:23 UTC</td>
+          <td>Campaign (type 6)</td>
+          <td><span class="change-tag">UPDATE</span></td>
+          <td>eli.bunyi@exploreindustries.com</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top:8px; font-size:12px; color:var(--text-muted);">One change detected in March: campaign-level update on 3/16 aligns with the bid strategy switch from Max Conversions → Max Clicks. No other structural changes this period.</div>
+  </div>
+
+  <!-- ACCOUNT STRUCTURE -->
+  <div class="section">
+    <div class="section-title">Account Structure</div>
+    <table class="data-table">
+      <thead><tr><th>Level</th><th>Item</th><th>Count</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Campaigns</td><td>Leisure Pools Northwest Ohio Campaign</td><td>1</td><td>Search, $16.12/day</td></tr>
+        <tr><td>Ad Groups</td><td>Ad group 1</td><td>1</td><td>Flat — all keywords</td></tr>
+        <tr><td>Keywords</td><td>All phrase match</td><td>13</td><td>3 with zero activity (pause candidates)</td></tr>
+        <tr><td>Ads (RSA)</td><td>1 RSA</td><td>1</td><td>APPROVED, strength unverifiable via API</td></tr>
+        <tr><td>Extensions (manual)</td><td>None</td><td>0</td><td>⚠ Zero manual assets — P1 issue</td></tr>
+        <tr><td>Extensions (auto)</td><td>AI-generated assets</td><td>12</td><td>Types 11, 13, 16, 18, 27 (Google AI only)</td></tr>
+        <tr><td>Shared Negatives</td><td>List 12012201802</td><td>1</td><td>99 exact-match terms, campaign-attached</td></tr>
+        <tr><td>Campaign Negatives</td><td>None</td><td>0</td><td>Phrase negatives needed</td></tr>
+        <tr><td>Ad Group Negatives</td><td>None</td><td>0</td><td>—</td></tr>
+        <tr><td>Audiences</td><td>None</td><td>0</td><td>Observation audiences recommended</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RECOMMENDED AD COPY -->
+  <div class="section">
+    <div class="section-title">Recommended RSA Update — Headlines &amp; Path Fix</div>
+    <div class="issue-card info">
+      <div class="issue-header">
+        <span class="priority-tag">COPY</span>
+        <div>
+          <div class="issue-title">RSA Paths + Headline Refresh (Leisure Pools Brand Voice)</div>
+          <div class="copy-block" onclick="copyBlock(this)">DISPLAY URL PATHS:
+Path 1: Fiberglass-Pools
+Path 2: Northwest-Ohio
+
+HEADLINES (add/swap in — 30 chars max):
+[1] NW Ohio Fiberglass Pool Experts
+[2] Leisure Pools Certified Dealer
+[3] Installed in Weeks, Not Months
+[4] Lifetime Structural Warranty
+[5] Free 3D Pool Design Consultation
+[6] 150,000+ Pools Worldwide
+[7] Findlay's Pool Installation Pros
+[8] Financing Available — Apply Now
+
+DESCRIPTIONS (90 chars max):
+[1] Custom fiberglass pools installed across NW Ohio in weeks. Lifetime warranty. Get a free quote.
+[2] Authorized Leisure Pools dealer serving Findlay, Toledo, Defiance &amp; surrounding areas. Call today.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMMARY SCORECARD -->
+  <div class="section">
+    <div class="section-title">Audit Scorecard</div>
+    <table class="data-table">
+      <thead><tr><th>Check</th><th>Status</th><th>Score Impact</th></tr></thead>
+      <tbody>
+        <tr><td>Bid Strategy</td><td><span class="tag ok">PASS — Max Clicks (fixed 3/16)</span></td><td>+15</td></tr>
+        <tr><td>Max CPC Cap</td><td><span class="tag bad">FAIL — $250 (should be $12)</span></td><td>-15</td></tr>
+        <tr><td>Extensions / Assets</td><td><span class="tag bad">FAIL — Zero manual assets</span></td><td>-20</td></tr>
+        <tr><td>Search Term Quality</td><td><span class="tag bad">FAIL — 25%+ wasteful spend</span></td><td>-10</td></tr>
+        <tr><td>Account Structure</td><td><span class="tag warn">PARTIAL — Flat, 1 ad group</span></td><td>-5</td></tr>
+        <tr><td>Conversion Tracking</td><td><span class="tag warn">UNVERIFIED — Low confidence</span></td><td>-5</td></tr>
+        <tr><td>Geo Targeting Type</td><td><span class="tag ok">PASS — PRESENCE (enum 7)</span></td><td>+5</td></tr>
+        <tr><td>Network Settings</td><td><span class="tag ok">PASS — Search only</span></td><td>+5</td></tr>
+        <tr><td>Negative Keywords</td><td><span class="tag warn">PARTIAL — Shared list only, no phrase negatives</span></td><td>-5</td></tr>
+        <tr><td>RSA Approval Status</td><td><span class="tag ok">PASS — APPROVED (per 3/20)</span></td><td>+5</td></tr>
+        <tr><td>Audience Segments</td><td><span class="tag warn">MISSING — No audiences applied</span></td><td>-3</td></tr>
+        <tr><td>Keyword Activity</td><td><span class="tag warn">3 of 13 zero activity (pause candidates)</span></td><td>-3</td></tr>
+        <tr style="font-weight:700; background:#f0f4fc;"><td>TOTAL HEALTH SCORE</td><td colspan="2">36 / 100</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ACTION PRIORITY LIST -->
+  <div class="section">
+    <div class="section-title">Action Priority List — Ordered by Impact</div>
+    <table class="data-table">
+      <thead><tr><th>#</th><th>Action</th><th>Priority</th><th>Effort</th><th>Expected Impact</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Set Max CPC cap to $12.00 in campaign bidding settings</td><td><span class="tag bad">P1</span></td><td>2 min</td><td>Budget protection — critical</td></tr>
+        <tr><td>2</td><td>Add sitelinks (4), callouts (4), structured snippet, call extension</td><td><span class="tag bad">P1</span></td><td>30 min</td><td>CTR +15–25%, ad rank improvement</td></tr>
+        <tr><td>3</td><td>Add campaign phrase negatives: "above ground", "semi inground", competitor names</td><td><span class="tag bad">P1</span></td><td>15 min</td><td>Eliminate ~$100–130/mo wasted spend</td></tr>
+        <tr><td>4</td><td>Add RSA display URL paths (Path 1: Fiberglass-Pools, Path 2: Northwest-Ohio)</td><td><span class="tag warn">P2</span></td><td>5 min</td><td>Display URL relevance boost</td></tr>
+        <tr><td>5</td><td>Pause 3 zero-activity keywords: "pool construction companies", "outdoor pool installation", "fiberglass pool builders"</td><td><span class="tag warn">P2</span></td><td>5 min</td><td>Cleaner account, reduces QS dilution</td></tr>
+        <tr><td>6</td><td>Investigate conversion tracking — verify tag fires on form + phone</td><td><span class="tag warn">P2</span></td><td>1–2 hrs</td><td>Enables future conversion-based decisions</td></tr>
+        <tr><td>7</td><td>Add in-market audiences in Observation mode</td><td><span class="tag info">P3</span></td><td>10 min</td><td>Data collection for future bid adjustments</td></tr>
+        <tr><td>8</td><td>Restructure into 3 thematic ad groups (when time allows)</td><td><span class="tag info">P3</span></td><td>2–3 hrs</td><td>Long-term QS and CPC improvement</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+</div>
+
+<div class="footer">
+  Elite – Leisure Pools Northwest Ohio &nbsp;|&nbsp; Account 386-816-0717 &nbsp;|&nbsp; Audit Date: 2026-03-23 &nbsp;|&nbsp; Explore Industries — Eli Bunyi
+</div>
+
+<script>
+function copyBlock(el) {
+  const text = el.getAttribute('data-text') || el.innerText.replace(' click to copy','').replace(' copied!','').trim();
+  navigator.clipboard.writeText(text).then(() => {
+    el.classList.add('copied');
+    setTimeout(() => el.classList.remove('copied'), 2000);
+  });
+}
+</script>
+</body>
+</html>

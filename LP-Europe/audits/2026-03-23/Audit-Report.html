@@ -1,0 +1,1028 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools Europe — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a3a5c;
+    --accent: #2196f3;
+    --accent-light: #64b5f6;
+    --red: #d32f2f;
+    --orange: #f57c00;
+    --yellow: #f9a825;
+    --green: #388e3c;
+    --green-light: #c8e6c9;
+    --red-light: #ffcdd2;
+    --orange-light: #ffe0b2;
+    --yellow-light: #fff9c4;
+    --bg: #f4f7fb;
+    --white: #ffffff;
+    --border: #dde3ec;
+    --text: #1c2b3a;
+    --muted: #6b7d93;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); color: white; padding: 32px 40px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .sub { color: var(--accent-light); font-size: 14px; margin-top: 6px; }
+  .header .meta { display: flex; gap: 32px; margin-top: 20px; flex-wrap: wrap; }
+  .header .meta-item { font-size: 12px; color: #a0b4c8; }
+  .header .meta-item span { display: block; color: white; font-size: 15px; font-weight: 600; margin-top: 2px; }
+
+  .score-band { background: var(--navy-mid); padding: 20px 40px; display: flex; align-items: center; gap: 40px; border-bottom: 3px solid var(--accent); }
+  .score-circle { width: 72px; height: 72px; border-radius: 50%; background: var(--red); display: flex; align-items: center; justify-content: center; font-size: 22px; font-weight: 700; color: white; flex-shrink: 0; border: 3px solid rgba(255,255,255,0.2); }
+  .score-info { color: white; }
+  .score-info .label { font-size: 12px; color: #a0b4c8; text-transform: uppercase; letter-spacing: 0.5px; }
+  .score-info .value { font-size: 20px; font-weight: 700; }
+  .score-info .note { font-size: 12px; color: #a0b4c8; margin-top: 2px; }
+  .score-sep { color: rgba(255,255,255,0.2); font-size: 24px; }
+
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  .section { background: white; border-radius: 10px; border: 1px solid var(--border); margin-bottom: 24px; overflow: hidden; }
+  .section-header { padding: 16px 24px; background: var(--navy); color: white; display: flex; align-items: center; gap: 12px; }
+  .section-header h2 { font-size: 15px; font-weight: 600; }
+  .section-header .badge { font-size: 11px; padding: 2px 8px; border-radius: 12px; font-weight: 600; }
+  .badge-red { background: var(--red); }
+  .badge-orange { background: var(--orange); }
+  .badge-yellow { background: var(--yellow); color: #333; }
+  .badge-green { background: var(--green); }
+  .badge-blue { background: var(--accent); }
+  .section-body { padding: 20px 24px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: #f0f4fa; color: var(--navy); font-weight: 600; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--border); font-size: 12px; text-transform: uppercase; letter-spacing: 0.3px; }
+  td { padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8fafd; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+  .finding { padding: 14px 18px; border-radius: 8px; margin-bottom: 12px; border-left: 4px solid; }
+  .finding-p1 { background: var(--red-light); border-color: var(--red); }
+  .finding-p2 { background: var(--orange-light); border-color: var(--orange); }
+  .finding-p3 { background: var(--yellow-light); border-color: var(--yellow); }
+  .finding-good { background: var(--green-light); border-color: var(--green); }
+  .finding .label { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .finding-p1 .label { color: var(--red); }
+  .finding-p2 .label { color: var(--orange); }
+  .finding-p3 .label { color: #856404; }
+  .finding-good .label { color: var(--green); }
+  .finding .title { font-size: 14px; font-weight: 600; color: var(--navy); margin-bottom: 4px; }
+  .finding .desc { font-size: 13px; color: #444; line-height: 1.5; }
+  .finding .fix { font-size: 12px; color: #555; margin-top: 6px; padding-top: 6px; border-top: 1px solid rgba(0,0,0,0.08); }
+  .finding .fix strong { color: var(--navy); }
+
+  .pill { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 600; }
+  .pill-red { background: #ffebee; color: var(--red); border: 1px solid #ef9a9a; }
+  .pill-green { background: #e8f5e9; color: var(--green); border: 1px solid #a5d6a7; }
+  .pill-orange { background: #fff3e0; color: var(--orange); border: 1px solid #ffcc80; }
+  .pill-blue { background: #e3f2fd; color: var(--accent); border: 1px solid #90caf9; }
+  .pill-gray { background: #f0f0f0; color: #666; border: 1px solid #ccc; }
+
+  .waste-tag { background: #ffebee; color: var(--red); padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .ok-tag { background: #e8f5e9; color: var(--green); padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+  .warn-tag { background: #fff3e0; color: var(--orange); padding: 2px 7px; border-radius: 4px; font-size: 11px; font-weight: 600; }
+
+  .copy-btn { background: var(--accent); color: white; border: none; padding: 4px 10px; border-radius: 4px; font-size: 11px; cursor: pointer; margin-left: 8px; }
+  .copy-btn:hover { background: #1976d2; }
+  pre.neg-block { background: #f4f7fb; border: 1px solid var(--border); border-radius: 6px; padding: 14px; font-size: 12px; font-family: 'Menlo', 'Courier New', monospace; white-space: pre-wrap; line-height: 1.6; color: var(--text); }
+
+  .campaign-card { border: 1px solid var(--border); border-radius: 8px; margin-bottom: 16px; overflow: hidden; }
+  .campaign-card .card-header { padding: 12px 16px; background: #f8fafd; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; }
+  .campaign-card .card-header h3 { font-size: 14px; font-weight: 600; color: var(--navy); }
+  .campaign-card .card-body { padding: 12px 16px; }
+  .stat-row { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 8px; }
+  .stat { font-size: 12px; color: var(--muted); }
+  .stat span { display: block; font-size: 15px; font-weight: 700; color: var(--navy); }
+
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-bottom: 0; }
+  .summary-tile { background: #f8fafd; border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .summary-tile .tile-val { font-size: 24px; font-weight: 700; color: var(--navy); }
+  .summary-tile .tile-label { font-size: 12px; color: var(--muted); margin-top: 4px; }
+  .summary-tile.highlight { background: var(--navy); border-color: var(--navy); }
+  .summary-tile.highlight .tile-val { color: white; }
+  .summary-tile.highlight .tile-label { color: var(--accent-light); }
+
+  .alert-box { padding: 14px 18px; border-radius: 8px; margin-bottom: 16px; }
+  .alert-critical { background: #ffebee; border: 1px solid var(--red); color: var(--red); }
+  .alert-warn { background: #fff3e0; border: 1px solid var(--orange); color: var(--orange); }
+  .alert-info { background: #e3f2fd; border: 1px solid var(--accent); color: var(--accent); }
+  .alert-success { background: #e8f5e9; border: 1px solid var(--green); color: var(--green); }
+  .alert-box strong { font-weight: 700; }
+
+  .neg-kw-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .kw-chip { background: #e3f2fd; border: 1px solid #90caf9; border-radius: 14px; padding: 3px 10px; font-size: 12px; color: var(--navy); }
+  .kw-chip-neg { background: #ffebee; border: 1px solid #ef9a9a; border-radius: 14px; padding: 3px 10px; font-size: 12px; color: var(--red); }
+  .kw-chip-broad { background: #fff3e0; border: 1px solid #ffcc80; border-radius: 14px; padding: 3px 10px; font-size: 12px; color: var(--orange); }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 720px) { .two-col { grid-template-columns: 1fr; } }
+
+  footer { text-align: center; color: var(--muted); font-size: 12px; padding: 32px 24px; }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <h1>Leisure Pools Europe — Google Ads Audit</h1>
+  <div class="sub">Account ID: 958-165-2837 &nbsp;·&nbsp; DACH Region (Germany, Austria, Switzerland) &nbsp;·&nbsp; German-Language Campaigns</div>
+  <div class="meta">
+    <div class="meta-item">Audit Date<span>2026-03-23</span></div>
+    <div class="meta-item">Date Range<span>2026-02-21 – 2026-03-23</span></div>
+    <div class="meta-item">Campaigns<span>6 Active</span></div>
+    <div class="meta-item">Total Spend<span>$2,534.74</span></div>
+    <div class="meta-item">Conversions<span>5 Total</span></div>
+    <div class="meta-item">Avg CPA<span>$506.95</span></div>
+    <div class="meta-item">Brand<span>Leisure Pools</span></div>
+    <div class="meta-item">Contact<span>Robert Zweigers</span></div>
+  </div>
+</div>
+
+<!-- HEALTH SCORE -->
+<div class="score-band">
+  <div class="score-circle">34</div>
+  <div class="score-info">
+    <div class="label">Health Score</div>
+    <div class="value">34 / 100</div>
+    <div class="note">▼4 from 38 (2026-03-20) &nbsp;·&nbsp; Critical structural issues remain</div>
+  </div>
+  <div class="score-sep">|</div>
+  <div class="score-info">
+    <div class="label">Primary Issue</div>
+    <div class="value">Zero Negative Keywords (5 of 6 Campaigns)</div>
+    <div class="note">Broad match waste + ipoolgo/stahlwandpool competitor spend across all campaigns</div>
+  </div>
+  <div class="score-sep">|</div>
+  <div class="score-info">
+    <div class="label">Resolved Since Last Audit</div>
+    <div class="value" style="color:#81c784;">OWL Toxic Keywords Fixed ✓</div>
+    <div class="note">50+ toxic positives moved to negatives (job, karriere, intex, etc.)</div>
+  </div>
+</div>
+
+<div class="main">
+
+<!-- ACCOUNT SUMMARY -->
+<div class="section">
+  <div class="section-header">
+    <h2>Account Performance Summary</h2>
+    <span class="badge badge-blue">L30D: 2026-02-21 – 2026-03-23</span>
+  </div>
+  <div class="section-body">
+    <div class="summary-grid" style="margin-bottom:20px;">
+      <div class="summary-tile highlight"><div class="tile-val">$2,534.74</div><div class="tile-label">Total Spend (USD)</div></div>
+      <div class="summary-tile"><div class="tile-val">1,673</div><div class="tile-label">Total Clicks</div></div>
+      <div class="summary-tile"><div class="tile-val">29,856</div><div class="tile-label">Impressions</div></div>
+      <div class="summary-tile"><div class="tile-val">5</div><div class="tile-label">Conversions</div></div>
+      <div class="summary-tile"><div class="tile-val">$506.95</div><div class="tile-label">Avg CPA</div></div>
+      <div class="summary-tile"><div class="tile-val">5.6%</div><div class="tile-label">Avg CTR</div></div>
+      <div class="summary-tile"><div class="tile-val">$1.52</div><div class="tile-label">Avg CPC</div></div>
+      <div class="summary-tile"><div class="tile-val">$102/day</div><div class="tile-label">Total Daily Budget</div></div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>Region</th>
+          <th class="num">Spend</th>
+          <th class="num">Clicks</th>
+          <th class="num">Impr</th>
+          <th class="num">Conv</th>
+          <th class="num">CPA</th>
+          <th class="num">CTR</th>
+          <th class="num">IS</th>
+          <th class="num">Rank-Lost IS</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Wien</strong></td>
+          <td>Vienna, Austria</td>
+          <td class="num">$513.29</td>
+          <td class="num">454</td>
+          <td class="num">8,547</td>
+          <td class="num"><strong>3</strong></td>
+          <td class="num"><strong>$171.10</strong></td>
+          <td class="num">5.3%</td>
+          <td class="num"><span class="pill pill-red">12.1%</span></td>
+          <td class="num">71.3%</td>
+          <td><span class="pill pill-orange">Underinvested</span></td>
+        </tr>
+        <tr>
+          <td><strong>München</strong></td>
+          <td>Munich, Germany</td>
+          <td class="num">$523.95</td>
+          <td class="num">346</td>
+          <td class="num">7,595</td>
+          <td class="num">1</td>
+          <td class="num">$523.95</td>
+          <td class="num">4.6%</td>
+          <td class="num"><span class="pill pill-red">13.8%</span></td>
+          <td class="num">69.0%</td>
+          <td><span class="pill pill-blue">Active</span></td>
+        </tr>
+        <tr>
+          <td><strong>Düsseldorf</strong></td>
+          <td>Düsseldorf, Germany</td>
+          <td class="num">$512.80</td>
+          <td class="num">370</td>
+          <td class="num">6,023</td>
+          <td class="num">0</td>
+          <td class="num">—</td>
+          <td class="num">6.1%</td>
+          <td class="num"><span class="pill pill-red">12.4%</span></td>
+          <td class="num">71.2%</td>
+          <td><span class="pill pill-red">0 Conv</span></td>
+        </tr>
+        <tr>
+          <td><strong>Basel</strong></td>
+          <td>Basel, Switzerland</td>
+          <td class="num">$475.79</td>
+          <td class="num">248</td>
+          <td class="num">3,748</td>
+          <td class="num">0</td>
+          <td class="num">—</td>
+          <td class="num">6.6%</td>
+          <td class="num"><span class="pill pill-orange">29.7%</span></td>
+          <td class="num">66.7%</td>
+          <td><span class="pill pill-red">0 Conv</span></td>
+        </tr>
+        <tr>
+          <td><strong>Sauerland</strong></td>
+          <td>Sauerland, Germany</td>
+          <td class="num">$400.23</td>
+          <td class="num">216</td>
+          <td class="num">3,374</td>
+          <td class="num">0</td>
+          <td class="num">—</td>
+          <td class="num">6.4%</td>
+          <td class="num"><span class="pill pill-orange">28.3%</span></td>
+          <td class="num">54.7%</td>
+          <td><span class="pill pill-red">0 Conv</span></td>
+        </tr>
+        <tr style="background:#f8fafd;">
+          <td><strong>OWL</strong></td>
+          <td>Ostwestfalen-Lippe, DE</td>
+          <td class="num">$108.68</td>
+          <td class="num">39</td>
+          <td class="num">569</td>
+          <td class="num">1</td>
+          <td class="num">$108.68</td>
+          <td class="num">6.9%</td>
+          <td class="num"><span class="pill pill-green">55.7%</span></td>
+          <td class="num">44.3%</td>
+          <td><span class="pill pill-green">Best IS</span></td>
+        </tr>
+        <tr style="background:#eef3fa; font-weight:600;">
+          <td>TOTAL</td>
+          <td></td>
+          <td class="num">$2,534.74</td>
+          <td class="num">1,673</td>
+          <td class="num">29,856</td>
+          <td class="num">5</td>
+          <td class="num">$506.95</td>
+          <td class="num">5.6%</td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--muted);margin-top:10px;">Note: Account billing in USD despite EUR market. All spend figures in USD as reported by API. Wien best CPA ($171.10) with lowest IS (12.1%) — strong case for budget reallocation post-cleanup.</p>
+  </div>
+</div>
+
+<!-- OWL RESOLUTION STATUS -->
+<div class="section">
+  <div class="section-header">
+    <h2>OWL Campaign — Prior Audit Carry-Forward Verification</h2>
+    <span class="badge badge-green">RESOLVED ✓</span>
+  </div>
+  <div class="section-body">
+    <div class="finding finding-good">
+      <div class="label">Resolved</div>
+      <div class="title">OWL Toxic Keyword Structural Failure — FIXED</div>
+      <div class="desc">
+        Prior audits (2026-03-16 and 2026-03-20) flagged OWL campaign as having 50+ irrelevant and toxic keywords entered as <em>positive</em> keywords (job, karriere, ausbildung, intex, frame pool, etc.). This has been corrected. Current API pull confirms <strong>29 ad-group-level negative keywords</strong> are now in place in OWL. The formerly toxic terms are confirmed as negatives.
+        <br><br>
+        OWL now has the best impression share in the account at 55.7% and the lowest rank-lost IS (44.3%), consistent with a cleaner, tighter keyword structure. OWL also recorded 1 conversion at a $108.68 CPA — the second-best CPA after Wien.
+      </div>
+    </div>
+
+    <div class="finding finding-p2">
+      <div class="label">P2 — New Issue</div>
+      <div class="title">OWL: Broad Match Keywords Now Present (New This Audit)</div>
+      <div class="desc">
+        OWL's keyword set has expanded to include BROAD match variants alongside PHRASE match. This is a new development not flagged in prior audits. Broad match keywords observed in OWL: poolbau [BROAD], pool bauen [BROAD], pool kaufen [BROAD], pool einbauen lassen [BROAD], pool im garten kosten [BROAD], poolbauer in der nähe [BROAD], GFK pool kaufen [BROAD].
+      </div>
+      <div class="fix"><strong>Fix:</strong> Convert OWL broad match keywords to PHRASE or EXACT. Broad match on short-tail German pool terms will expand into the same waste traffic seen across other campaigns (stahlwandpool, ipoolgo, container pool, planschbecken, etc.). Given OWL's strong IS improvement, don't introduce broad match waste risk now.</div>
+    </div>
+
+    <p style="font-size:13px;margin-top:8px;"><strong>OWL confirmed negatives include (ad-group level, 29 total):</strong></p>
+    <div class="neg-kw-list" style="margin-top:8px;">
+      <span class="kw-chip-neg">job</span><span class="kw-chip-neg">karriere</span><span class="kw-chip-neg">ausbildung</span><span class="kw-chip-neg">intex</span><span class="kw-chip-neg">frame pool</span><span class="kw-chip-neg">bestway</span><span class="kw-chip-neg">aufstellpool</span><span class="kw-chip-neg">planschbecken</span><span class="kw-chip-neg">stahlwandpool</span><span class="kw-chip-neg">container pool</span><span class="kw-chip-neg">ipoolgo</span><span class="kw-chip-neg">laghetto</span><span class="kw-chip-neg">pool selber bauen</span><span class="kw-chip-neg">schwimmbad selber bauen</span><span class="kw-chip-neg">styropor pool</span><span class="kw-chip-neg">folie</span><span class="kw-chip-neg">above ground</span><span class="kw-chip-neg">above-ground</span>
+      <span style="font-size:12px;color:var(--muted);align-self:center;">+ 11 more confirmed via API</span>
+    </div>
+  </div>
+</div>
+
+<!-- P1 FINDINGS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Priority 1 — Critical Issues</h2>
+    <span class="badge badge-red">3 Issues</span>
+  </div>
+  <div class="section-body">
+
+    <div class="finding finding-p1">
+      <div class="label">P1 — Account-Wide</div>
+      <div class="title">Zero Negative Keywords on 5 of 6 Campaigns (Basel, München, Düsseldorf, Wien, Sauerland)</div>
+      <div class="desc">
+        API confirms <strong>zero campaign-level or ad-group-level negative keywords</strong> on 5 campaigns. Only OWL has negatives. This means all 5 campaigns are running fully open — any German search query triggering broad or phrase match keywords can draw spend.
+        <br><br>
+        Search terms data confirms the damage: <strong>ipoolgo</strong> (a direct competitor/alternative brand) is appearing across all 5 campaigns with dozens of clicks. <strong>Stahlwandpool</strong> (steel-wall above-ground pool) is appearing across Wien, München, Düsseldorf, Sauerland — zero conversion potential. <strong>Standalone "pool"</strong> (unqualified, high-volume) is eating budget in München, Düsseldorf, Wien, Sauerland. <strong>Planschbecken</strong> (paddling pool / kiddie pool) is showing in Basel. These are textbook negative keyword failures.
+      </div>
+      <div class="fix">
+        <strong>Fix:</strong> Add the bulk negative keyword list below to all 5 campaigns immediately. Each campaign also needs a campaign-level "pool" [EXACT] negative or tightly qualified match to prevent single-word matches. Minimum viable negative list provided in the Negative Keyword Action Plan section below.
+      </div>
+    </div>
+
+    <div class="finding finding-p1">
+      <div class="label">P1 — Sauerland</div>
+      <div class="title">Sauerland Campaign: "poolbau in Düsseldorf" — Geo-Contaminated Keyword</div>
+      <div class="desc">
+        A positive keyword <strong>"poolbau in Düsseldorf"</strong> exists in the Sauerland campaign (not Düsseldorf). This is a copy-paste error from campaign setup — a Düsseldorf-specific geo-modified keyword is actively bidding in a Sauerland campaign. Users searching "poolbau in Düsseldorf" who convert would be incorrectly attributed to Sauerland, and the ad copy/landing page will be city-mismatched. Sauerland has $400 in spend with zero conversions — this structural contamination is a likely contributor.
+      </div>
+      <div class="fix"><strong>Fix:</strong> Remove "poolbau in Düsseldorf" from Sauerland campaign. Audit all other geo-modified keywords across all 6 campaigns for similar cross-campaign contamination.</div>
+    </div>
+
+    <div class="finding finding-p1">
+      <div class="label">P1 — Conversion Tracking</div>
+      <div class="title">4 of 6 Campaigns Show Zero Conversions Despite Significant Spend</div>
+      <div class="desc">
+        Basel ($475.79), Düsseldorf ($512.80), Wien ($513.29 — wait, Wien shows 3 convs)... corrected: <strong>Basel, Düsseldorf, and Sauerland show zero conversions</strong> with $475, $512, and $400 in spend respectively. Conversion tracking is configured and 29 conversion actions are active across 6 campaigns — each campaign has its own "Contact Dealer" and "Download Brochure" actions enabled.
+        <br><br>
+        Status analysis: For each campaign, <strong>status 2 = ENABLED</strong> (Contact Dealer, Download Brochure). Status 4 = HIDDEN/REMOVED (close_convert_lead, qualify_lead, purchase — all marked include_in_conversions_metric: false). The active conversion actions are correct. The issue is likely tag firing — the conversion tags may not be firing on the landing pages for Basel, Düsseldorf, and Sauerland. OWL is <em>missing</em> the qualify_lead and close_convert_lead conversion actions that the other 5 campaigns have (OWL has only purchase, Contact Dealer, and Download Brochure).
+      </div>
+      <div class="fix"><strong>Fix:</strong> Verify Google Tag/conversion pixel is firing on Basel, Düsseldorf, and Sauerland landing pages. Check Tag Manager or site source for the conversion tag. Also note that the "Submit lead form" conversion action (ID: 7288431323) is STATUS 3 (REMOVED) — verify this was intentional. Use Google Tag Assistant to confirm tag firing live.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- P2 FINDINGS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Priority 2 — Significant Issues</h2>
+    <span class="badge badge-orange">5 Issues</span>
+  </div>
+  <div class="section-body">
+
+    <div class="finding finding-p2">
+      <div class="label">P2 — Account-Wide</div>
+      <div class="title">ipoolgo Brand Waste — Competitor Clicks Across All Campaigns</div>
+      <div class="desc">
+        <strong>ipoolgo</strong> is a competing German pool brand. It appears in the search terms across Düsseldorf, München, Basel, Sauerland, and Wien, consuming significant spend with zero conversions. Top entries:
+        <br><br>
+        Düsseldorf: "ipoolgo kaufen" ($14.30, 11 clicks) + "ipoolgo deutschland kaufen" ($9.01, 6 clicks) + "ipoolgo pool kaufen" ($4.51) + "ipoolgo pool preis" ($7.25) + "ipoolgo pool deutschland" ($3.34) = ~$38.41 Düsseldorf alone<br>
+        München: "ipoolgo kaufen" ($9.13) + "ipoolgo pool preis" ($4.07) + "ipoolgo deutschland" ($3.43) = ~$16.63<br>
+        Basel: "ipoolgo pool kaufen" ($5.86) + "ipoolgo kaufen" ($3.96) = ~$9.82<br>
+        Sauerland: "ipoolgo kaufen" ($6.70) + "ipoolgo alternative" ($2.99) = ~$9.69<br>
+        Wien: "ipoolgo kaufen" ($4.52) + "ipoolgo österreich" ($5.30) = ~$9.82<br>
+        <strong>Total ipoolgo waste estimate: ~$84 in L30D</strong>
+      </div>
+      <div class="fix"><strong>Fix:</strong> Add "ipoolgo" as a broad match negative keyword across all 6 campaigns. This single term (with variants covered) will save ~$84/month immediately.</div>
+    </div>
+
+    <div class="finding finding-p2">
+      <div class="label">P2 — Account-Wide</div>
+      <div class="title">Non-Fiberglass / Above-Ground Pool Waste (Stahlwandpool, Containerpool, Aufstellpool)</div>
+      <div class="desc">
+        Leisure Pools Europe sells fiberglass inground pools. Multiple search terms for above-ground, steel-wall, and container pools are generating clicks and spend with zero conversion potential:
+        <br><br>
+        <strong>stahlwandpool</strong> (steel wall pool): Wien $5.92, München $3.47, Düsseldorf $3.41, Sauerland $4.31 = ~$17.11<br>
+        <strong>containerpool</strong>: Düsseldorf $5.64, München $4.94, Wien $3.57 = ~$14.15<br>
+        <strong>aufstellpool</strong> (setup/above-ground pool): Sauerland $2.98, München $2.98 = ~$5.96<br>
+        <strong>aufstellpool rechteckig</strong>: Wien $4.31<br>
+        <strong>planschbecken kaufen</strong> (paddling pool): Basel $3.76<br>
+        <strong>Total above-ground pool waste estimate: ~$46/month</strong>
+      </div>
+      <div class="fix"><strong>Fix:</strong> Add stahlwandpool, containerpool, container pool, aufstellpool, planschbecken, frame pool, aufbaupool, bestway, intex as negatives across all campaigns.</div>
+    </div>
+
+    <div class="finding finding-p2">
+      <div class="label">P2 — Account-Wide</div>
+      <div class="title">Competitor Brand Terms Triggering: ipoolgo, phoebe sun, laghetto, compass, ocean future, poolsana</div>
+      <div class="desc">
+        In addition to ipoolgo, other competitor brand terms are generating paid clicks:
+        <ul style="margin:8px 0 0 20px;font-size:13px;">
+          <li>"phoebe sun pools" — Düsseldorf $4.42, München $3.34 (~$7.76)</li>
+          <li>"phoebe sun pool kaufen" — München $3.34</li>
+          <li>"laghetto pool gebraucht" — München $3.36</li>
+          <li>"compass xl lounger 95" — OWL $3.00</li>
+          <li>"ocean future pool" — Basel $3.34</li>
+          <li>"poolsana komplettset" — Düsseldorf $3.09</li>
+          <li>"kwad pool" — OWL $2.98</li>
+          <li>"riviera pool" (prior audit confirmed) — ongoing</li>
+        </ul>
+        <strong>Total competitor brand waste estimate: ~$30/month</strong>
+      </div>
+      <div class="fix"><strong>Fix:</strong> Add brand name negatives: phoebe sun, laghetto, compass pools, ocean future, poolsana, kwad, riviera pool (and rivierapool), RivieraPool, desjoyaux, waterair, mon de pra.</div>
+    </div>
+
+    <div class="finding finding-p2">
+      <div class="label">P2 — Account-Wide</div>
+      <div class="title">DIY / Self-Build Search Terms Consuming Budget</div>
+      <div class="desc">
+        Multiple search terms indicate DIY intent — users who want to build their own pools or are researching costs rather than buying:
+        <ul style="margin:8px 0 0 20px;font-size:13px;">
+          <li>"pool selber bauen" — Sauerland $3.62</li>
+          <li>"gartengestaltung mit pool ideen bilder" — München $5.76, Düsseldorf $4.40 (~$10.16)</li>
+          <li>"gartengestaltung kleiner garten mit pool" — Düsseldorf $3.60</li>
+          <li>"gestaltung um den pool" — Sauerland $3.34</li>
+          <li>"gartengestaltung mit pool" — prior audit + ongoing</li>
+          <li>"pool betonieren" — OWL $2.99</li>
+          <li>"pool bauen kosten" — Sauerland $3.45</li>
+        </ul>
+        "Gartengestaltung" (garden design) is triggering from "pool garten" broad match — this is a structural broad match problem.
+      </div>
+      <div class="fix"><strong>Fix:</strong> Add negatives: selber bauen, betonieren, selber machen, DIY, gartengestaltung (as phrase), ideen bilder, gestaltung, kosten rechner. Consider adding [pool bauen kosten] as a phrase match negative (those searching costs aren't buying yet).</div>
+    </div>
+
+    <div class="finding finding-p2">
+      <div class="label">P2 — Account-Wide</div>
+      <div class="title">Standalone "pool" Single-Keyword Waste Across 4 Campaigns</div>
+      <div class="desc">
+        The single keyword "pool" is triggering as a search term (status 5 = EXCLUDED after first match, but still costing money) across München ($12.02, 8 clicks), Düsseldorf ($9.65, 7 clicks), Wien ($6.50, 6 clicks), Sauerland ($5.41, 3 clicks) = <strong>~$33.58 on just the word "pool"</strong> — unqualified, zero conversion. This is driving impressions but zero conversions.
+      </div>
+      <div class="fix"><strong>Fix:</strong> Add [pool] as an EXACT MATCH negative across all campaigns. The word alone is too broad for a premium fiberglass inground pool company. Retain "pool kaufen", "pool im garten", "gfk pool" and other qualified variants.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- P3 FINDINGS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Priority 3 — Structural & Optimization Issues</h2>
+    <span class="badge badge-yellow">6 Issues</span>
+  </div>
+  <div class="section-body">
+
+    <div class="finding finding-p3">
+      <div class="label">P3 — Structure</div>
+      <div class="title">Single Ad Group Per Campaign — No Keyword Theming</div>
+      <div class="desc">All 6 campaigns have exactly one ad group named "Ad group 1." This means all keywords — whether branded (GFK pool), model-specific (Limitless, Linear), geo-specific (poolbauer münchen), or generic (pool kaufen) — serve the same RSA. No keyword-to-message alignment is possible.</div>
+      <div class="fix"><strong>Fix (Medium-Term):</strong> Break each campaign into 3–4 themed ad groups: Brand Terms, GFK/Fiberglass Generic, Competitor Adjacent (negative out the irrelevant ones), Pool Installation Intent. This allows tailored ad copy per intent.</div>
+    </div>
+
+    <div class="finding finding-p3">
+      <div class="label">P3 — Structure</div>
+      <div class="title">Basel Campaign Missing "pool garten" Keyword</div>
+      <div class="desc">All other 5 campaigns have "pool garten" as a keyword. Basel does not. Given Basel has the second-highest IS (29.7%), this gap is notable — Basel may be missing volume because a core keyword isn't present.</div>
+      <div class="fix"><strong>Fix:</strong> Add "pool garten" [PHRASE] to Basel. Ensure it's phrase, not broad.</div>
+    </div>
+
+    <div class="finding finding-p3">
+      <div class="label">P3 — Assets</div>
+      <div class="title">Sitelink / Callout Asset Data Unavailable via API</div>
+      <div class="desc">Campaign_asset and customer_asset queries failed with API type errors. Unable to verify sitelinks, callouts, or structured snippets for this audit. Prior audits (3/20) confirmed Düsseldorf, Wien, Sauerland, and OWL were missing callouts. RSA copy remains unverifiable via API (known serialization limit).</div>
+      <div class="fix"><strong>Verify in UI:</strong> Confirm sitelinks and callouts are present for all 6 campaigns. Prior audit found gaps in Düsseldorf, Wien, Sauerland, OWL. All campaigns should have 4 sitelinks minimum with German copy.</div>
+    </div>
+
+    <div class="finding finding-p3">
+      <div class="label">P3 — Bid Strategy</div>
+      <div class="title">Maximize Conversions Without Target CPA — Low Conversion Signal</div>
+      <div class="desc">All 6 campaigns use Maximize Conversions with no Target CPA constraint. With only 5 conversions in 30 days across 6 campaigns, Google's ML has almost no signal to optimize against. The algorithm is essentially spending to find conversions it can't see.</div>
+      <div class="fix"><strong>Fix:</strong> Once conversion tracking is verified and negatives are cleaned up, consider setting a Target CPA on Wien ($200) and München ($400). Do not set Target CPA before fixing conversion tracking — the algorithm will chase phantom signals.</div>
+    </div>
+
+    <div class="finding finding-p3">
+      <div class="label">P3 — Performance</div>
+      <div class="title">Wien Critically Underinvested Relative to Performance</div>
+      <div class="desc">Wien has the best CPA ($171.10), the most conversions (3 of 5 total), the most clicks (454), and the most impressions (8,547) — but the <em>lowest impression share</em> in the account (12.1%) and the highest rank-lost IS (71.3%). Wien is winning when it shows, but it's being outbid constantly. At $17/day it can't compete in Austria's Vienna market.</div>
+      <div class="fix"><strong>Fix:</strong> Reallocate budget from Düsseldorf or Sauerland (zero conversions) to Wien. A $5–7/day shift from each of the zero-performing campaigns to Wien would meaningfully increase Wien's IS without increasing total spend.</div>
+    </div>
+
+    <div class="finding finding-p3">
+      <div class="label">P3 — Quality</div>
+      <div class="title">Fabricated Model Names in Snippets (Prior Audit Finding — Unverified as Resolved)</div>
+      <div class="desc">The 2026-03-16 QA review flagged structured snippet values containing model names "Odyssey," "Tranquility," and "Artisan" — none of which exist in the Leisure Pools EU registry. The 2026-03-20 audit was unable to verify resolution due to API serialization limits on RSA headlines/descriptions. Asset queries in this audit also failed. Status remains unverifiable.</div>
+      <div class="fix"><strong>Verify in UI:</strong> Check all structured snippet assets account-wide. Legitimate EU models: The Definitive, The Cube, The Linear, The Elite, The Precision, The Encore, The Limitless, The Reflection, The Harmony, The Esprit, The Fiji Plunge. Remove any fabricated names.</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- SEARCH TERMS ANALYSIS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Search Terms Analysis — Top 50 by Spend</h2>
+    <span class="badge badge-blue">100 Terms Analyzed</span>
+  </div>
+  <div class="section-body">
+    <div class="alert-box alert-critical" style="margin-bottom:16px;">
+      <strong>Waste Estimate:</strong> Based on top 100 search terms, estimated wasteful spend (competitor brands, above-ground, unqualified, DIY) = <strong>~$193–$220 / 30 days</strong> (~8–9% of total spend, but concentrated in high-impression waste terms). Status 5 = EXCLUDED (already added as negative after firing); Status 2 = INCLUDED (still actively matching).
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Campaign</th>
+          <th class="num">Spend</th>
+          <th class="num">Clicks</th>
+          <th class="num">Conv</th>
+          <th>Category</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>ipoolgo kaufen</td><td>Düsseldorf</td><td class="num">$14.30</td><td class="num">11</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>pool <em>(standalone)</em></td><td>München</td><td class="num">$12.02</td><td class="num">8</td><td class="num">0</td><td><span class="waste-tag">Unqualified</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>pool kaufen</td><td>Basel</td><td class="num">$9.84</td><td class="num">5</td><td class="num">0</td><td><span class="ok-tag">Qualified</span></td><td><span class="pill pill-green">Active</span></td></tr>
+        <tr><td>pool <em>(standalone)</em></td><td>Düsseldorf</td><td class="num">$9.65</td><td class="num">7</td><td class="num">0</td><td><span class="waste-tag">Unqualified</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo kaufen</td><td>München</td><td class="num">$9.13</td><td class="num">6</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo deutschland kaufen</td><td>Düsseldorf</td><td class="num">$9.01</td><td class="num">6</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>poolwanne zum eingraben</td><td>Basel</td><td class="num">$8.72</td><td class="num">5</td><td class="num">0</td><td><span class="ok-tag">Relevant</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>stahlwandpool rund 400x135</td><td>Basel</td><td class="num">$7.89</td><td class="num">4</td><td class="num">0</td><td><span class="waste-tag">Above-ground</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo pool preis</td><td>Düsseldorf</td><td class="num">$7.25</td><td class="num">5</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo kaufen</td><td>Sauerland</td><td class="num">$6.70</td><td class="num">4</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>pool <em>(standalone)</em></td><td>Wien</td><td class="num">$6.50</td><td class="num">6</td><td class="num">0</td><td><span class="waste-tag">Unqualified</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>pool garten</td><td>München</td><td class="num">$6.33</td><td class="num">5</td><td class="num">0</td><td><span class="ok-tag">Relevant</span></td><td><span class="pill pill-green">Active</span></td></tr>
+        <tr><td>pool komplettangebot mit montage österreich</td><td>Wien</td><td class="num">$5.95</td><td class="num">5</td><td class="num">0</td><td><span class="ok-tag">High Intent</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>stahlwandpool</td><td>Wien</td><td class="num">$5.92</td><td class="num">5</td><td class="num">0</td><td><span class="waste-tag">Above-ground</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>fertigpool komplettset</td><td>Basel</td><td class="num">$5.86</td><td class="num">3</td><td class="num">0</td><td><span class="ok-tag">Relevant</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo pool kaufen</td><td>Basel</td><td class="num">$5.86</td><td class="num">3</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>outdoor pool</td><td>München</td><td class="num">$5.86</td><td class="num">4</td><td class="num">0</td><td><span class="warn-tag">Ambiguous</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>gfk pool komplettset mit einbau</td><td>OWL</td><td class="num">$5.81</td><td class="num">2</td><td class="num">0</td><td><span class="ok-tag">High Intent</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>gartengestaltung mit pool ideen bilder</td><td>München</td><td class="num">$5.76</td><td class="num">3</td><td class="num">0</td><td><span class="waste-tag">DIY/Research</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>poolbauer schweiz</td><td>Basel</td><td class="num">$5.68</td><td class="num">3</td><td class="num">0</td><td><span class="ok-tag">Relevant</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>containerpool kaufen</td><td>Düsseldorf</td><td class="num">$5.64</td><td class="num">5</td><td class="num">0</td><td><span class="waste-tag">Above-ground</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>pool <em>(standalone)</em></td><td>Sauerland</td><td class="num">$5.41</td><td class="num">3</td><td class="num">0</td><td><span class="waste-tag">Unqualified</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo österreich</td><td>Wien</td><td class="num">$5.30</td><td class="num">5</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>container pool österreich</td><td>Wien</td><td class="num">$4.66</td><td class="num">4</td><td class="num">0</td><td><span class="waste-tag">Above-ground</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>stahlwandpool eckig</td><td>Wien</td><td class="num">$4.63</td><td class="num">4</td><td class="num">0</td><td><span class="waste-tag">Above-ground</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+        <tr><td>ipoolgo kaufen</td><td>Wien</td><td class="num">$4.52</td><td class="num">4</td><td class="num">0</td><td><span class="waste-tag">Competitor</span></td><td><span class="pill pill-orange">Excl'd</span></td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:var(--muted);margin-top:8px;">Showing top 26 of 100 terms analyzed. Status 5 (Excl'd) = term triggered once then auto-excluded. Status 2 (Active) = still actively matching and spend ongoing. Note: "Excl'd" in search terms report does NOT mean a permanent negative — it means the search term was excluded <em>post-facto</em>. Without campaign-level negatives, new variant queries matching the same intent continue to trigger.</p>
+  </div>
+</div>
+
+<!-- CONVERSION TRACKING ANALYSIS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Conversion Tracking Audit</h2>
+    <span class="badge badge-orange">Verify Tag Firing</span>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px;font-size:13px;">29 conversion actions configured. Each campaign has campaign-specific actions. Summary by campaign:</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>Contact Dealer</th>
+          <th>Download Brochure</th>
+          <th>close_convert_lead</th>
+          <th>qualify_lead</th>
+          <th>purchase</th>
+          <th>Note</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Basel</td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td>Also has "Submit lead form" (Removed)</td>
+        </tr>
+        <tr>
+          <td>Düsseldorf</td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td>Contact Dealer category shows as 15 (OTHER) — verify mapping</td>
+        </tr>
+        <tr>
+          <td>München</td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td>1 conversion recorded</td>
+        </tr>
+        <tr>
+          <td>Sauerland</td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td>Zero conversions — verify tag firing</td>
+        </tr>
+        <tr>
+          <td>Wien</td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td>3 conversions recorded — tracking working</td>
+        </tr>
+        <tr>
+          <td>OWL</td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-green">Active</span></td>
+          <td><span class="pill pill-red">Missing</span></td>
+          <td><span class="pill pill-red">Missing</span></td>
+          <td><span class="pill pill-gray">Hidden</span></td>
+          <td>Missing close_convert_lead and qualify_lead — add these</td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="alert-box alert-warn" style="margin-top:16px;">
+      <strong>Category Discrepancy:</strong> "Contact Dealer" conversion actions show category = 15 for Düsseldorf, München, Sauerland, Wien, OWL — and category = 13 for Basel "Contact Dealer." Category 15 = OTHER, Category 13 = SUBMIT_LEAD_FORM. Basel's Contact Dealer is correctly categorized. Verify other campaigns' "Contact Dealer" conversion type is configured correctly for form submissions.
+    </div>
+    <div class="alert-box alert-info" style="margin-top:10px;">
+      <strong>Note on "Submit lead form" (ID: 7288431323):</strong> Status = 3 (REMOVED). This was the global lead form action. If this was removed intentionally in favor of per-campaign Contact Dealer actions, that's fine. Verify this was deliberate.
+    </div>
+  </div>
+</div>
+
+<!-- NEGATIVE KEYWORD ACTION PLAN -->
+<div class="section">
+  <div class="section-header">
+    <h2>Negative Keyword Action Plan</h2>
+    <span class="badge badge-red">Apply to All 5 Campaigns (Not OWL)</span>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px;font-size:13px;">Paste each category as campaign-level negative keywords. Add as BROAD MATCH negative unless marked [PHRASE] or [EXACT]. OWL already has 29 negatives — review for gaps against this list but do not bulk-paste without QA.</p>
+
+    <div class="two-col">
+      <div>
+        <h4 style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--navy);">Category 1: Competitor Brands</h4>
+        <button class="copy-btn" onclick="copyBlock('block1')">Copy</button>
+        <pre class="neg-block" id="block1">ipoolgo
+phoebe sun
+laghetto
+compass pools
+ocean future
+poolsana
+kwad
+riviera pool
+rivierapool
+desjoyaux
+waterair
+mon de pra
+bestway
+intex</pre>
+
+        <h4 style="font-size:13px;font-weight:600;margin:16px 0 8px;color:var(--navy);">Category 2: Above-Ground / Non-Fiberglass</h4>
+        <button class="copy-btn" onclick="copyBlock('block2')">Copy</button>
+        <pre class="neg-block" id="block2">stahlwandpool
+stahlwand pool
+containerpool
+container pool
+aufstellpool
+planschbecken
+frame pool
+aufbaupool
+folienpool
+folienbecken
+above ground pool
+above-ground pool</pre>
+      </div>
+      <div>
+        <h4 style="font-size:13px;font-weight:600;margin-bottom:8px;color:var(--navy);">Category 3: DIY / Research Intent</h4>
+        <button class="copy-btn" onclick="copyBlock('block3')">Copy</button>
+        <pre class="neg-block" id="block3">selber bauen
+selber machen
+betonieren
+bauen kosten
+pool betonieren
+gartengestaltung
+ideen bilder
+gestaltung um
+pool anlegen anleitung
+schwimmbad selber bauen
+styropor pool
+bilder galerie</pre>
+
+        <h4 style="font-size:13px;font-weight:600;margin:16px 0 8px;color:var(--navy);">Category 4: Unqualified Single-Word / Mass Market</h4>
+        <button class="copy-btn" onclick="copyBlock('block4')">Copy</button>
+        <pre class="neg-block" id="block4">[pool]
+outdoor pool
+mini pool
+minipool
+plunge pool
+kleinpool
+poolwanne
+pool plastik
+pool 2 wahl
+gebraucht
+planschbecken
+aufblasbarer pool
+swimmingpool klein</pre>
+
+        <h4 style="font-size:13px;font-weight:600;margin:16px 0 8px;color:var(--navy);">Category 5: Employment / HR (Prevent Recurrence)</h4>
+        <button class="copy-btn" onclick="copyBlock('block5')">Copy</button>
+        <pre class="neg-block" id="block5">job
+karriere
+ausbildung
+praktikum
+stellenangebot
+stellen
+mitarbeiter
+bewerben
+bewerbung</pre>
+      </div>
+    </div>
+
+    <div class="alert-box alert-info" style="margin-top:16px;">
+      <strong>Sauerland-Specific:</strong> Also remove "poolbau in Düsseldorf" from Sauerland campaign positive keywords. This is a P1 geo-contamination issue.
+    </div>
+  </div>
+</div>
+
+<!-- CAMPAIGN COMPARISON & RECOMMENDATIONS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Campaign Investment Assessment: Which Campaigns Are Worth the Spend?</h2>
+    <span class="badge badge-blue">Budget Reallocation Analysis</span>
+  </div>
+  <div class="section-body">
+    <p style="margin-bottom:16px;font-size:13px;">At €102/day total budget across 6 campaigns, the current distribution is equal at $17/day each. Performance warrants rebalancing:</p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>Verdict</th>
+          <th>Current Budget</th>
+          <th>Recommended</th>
+          <th>Rationale</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Wien</strong></td>
+          <td><span class="pill pill-green">Increase</span></td>
+          <td class="num">$17/day</td>
+          <td class="num"><strong>$24–$27/day</strong></td>
+          <td>Best CPA ($171), most conversions (3), lowest IS (12.1%) — every extra dollar here has highest probability of return</td>
+        </tr>
+        <tr>
+          <td><strong>München</strong></td>
+          <td><span class="pill pill-blue">Maintain</span></td>
+          <td class="num">$17/day</td>
+          <td class="num">$17/day</td>
+          <td>1 conversion, reasonable CPA ($524). Negatives + match type fixes could unlock more at same spend</td>
+        </tr>
+        <tr>
+          <td><strong>OWL</strong></td>
+          <td><span class="pill pill-blue">Maintain/Monitor</span></td>
+          <td class="num">$17/day</td>
+          <td class="num">$17/day</td>
+          <td>Toxic keywords fixed, best IS (55.7%), 1 conversion, lowest CPA ($109). OWL needs broad match cleanup before budget increase</td>
+        </tr>
+        <tr>
+          <td><strong>Basel</strong></td>
+          <td><span class="pill pill-orange">Hold</span></td>
+          <td class="num">$17/day</td>
+          <td class="num">$14–$17/day</td>
+          <td>0 conversions but second-best IS (29.7%). Switzerland market may be structurally harder. Fix negatives first</td>
+        </tr>
+        <tr>
+          <td><strong>Sauerland</strong></td>
+          <td><span class="pill pill-red">Reduce</span></td>
+          <td class="num">$17/day</td>
+          <td class="num"><strong>$12–$14/day</strong></td>
+          <td>Zero conversions, geo-contaminated keyword, weak IS (28.3%). Reduce until structural issues resolved. Reallocate $3–5 to Wien</td>
+        </tr>
+        <tr>
+          <td><strong>Düsseldorf</strong></td>
+          <td><span class="pill pill-red">Reduce</span></td>
+          <td class="num">$17/day</td>
+          <td class="num"><strong>$12–$14/day</strong></td>
+          <td>Zero conversions, worst IS (12.4%), highest rank-lost IS (71.2%). Heavy ipoolgo competitor exposure. Fix negatives and reduce until clean</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="alert-box alert-warn" style="margin-top:16px;">
+      <strong>Note on Total Budget:</strong> At $102/day total for 6 campaigns targeting DACH premium pool market, the account is significantly underfunded relative to competition. European fiberglass pool queries likely have CPCs of €1.50–€4.00 for quality terms. Budget increases should only follow negative keyword implementation and conversion tracking verification.
+    </div>
+  </div>
+</div>
+
+<!-- KEYWORD INVENTORY SUMMARY -->
+<div class="section">
+  <div class="section-header">
+    <h2>Keyword Structure Summary</h2>
+    <span class="badge badge-blue">Per Campaign</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr>
+          <th>Campaign</th>
+          <th>Positive KWs</th>
+          <th>Match Types</th>
+          <th>Negative KWs</th>
+          <th>CPC Cap</th>
+          <th>Key Issues</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Basel</td>
+          <td>Missing "pool garten"</td>
+          <td>BROAD + PHRASE</td>
+          <td><span class="pill pill-red">ZERO</span></td>
+          <td>$2.00</td>
+          <td>Planschbecken, ipoolgo, stahlwandpool waste; missing "pool garten"</td>
+        </tr>
+        <tr>
+          <td>München</td>
+          <td>Standard set</td>
+          <td>BROAD + PHRASE</td>
+          <td><span class="pill pill-red">ZERO</span></td>
+          <td>$2.00</td>
+          <td>Heavy ipoolgo, stahlwandpool, gartengestaltung waste</td>
+        </tr>
+        <tr>
+          <td>Düsseldorf</td>
+          <td>Standard set</td>
+          <td>BROAD + PHRASE</td>
+          <td><span class="pill pill-red">ZERO</span></td>
+          <td>$2.00</td>
+          <td>Most ipoolgo waste ($38+), zero conversions</td>
+        </tr>
+        <tr>
+          <td>Wien</td>
+          <td>Standard set</td>
+          <td>BROAD + PHRASE</td>
+          <td><span class="pill pill-red">ZERO</span></td>
+          <td>$2.00</td>
+          <td>Container pool, stahlwandpool, ipoolgo waste despite best perf</td>
+        </tr>
+        <tr>
+          <td>Sauerland</td>
+          <td>Geo-contaminated</td>
+          <td>BROAD + PHRASE</td>
+          <td><span class="pill pill-red">ZERO</span></td>
+          <td>$3.00</td>
+          <td>"poolbau in Düsseldorf" P1 error; ipoolgo, stahlwandpool waste</td>
+        </tr>
+        <tr style="background:#f8fafd;">
+          <td>OWL</td>
+          <td>Cleaned up; BROAD added</td>
+          <td>BROAD + PHRASE (NEW)</td>
+          <td><span class="pill pill-green">29 negatives</span></td>
+          <td>$3.00</td>
+          <td>New broad match expansion is a risk; monitor closely</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ACTION PLAN -->
+<div class="section">
+  <div class="section-header">
+    <h2>Prioritized Action Plan</h2>
+    <span class="badge badge-red">Immediate + Short-Term</span>
+  </div>
+  <div class="section-body">
+    <table>
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Priority</th>
+          <th>Action</th>
+          <th>Campaign(s)</th>
+          <th>Impact</th>
+          <th>Effort</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="pill pill-red">P1</span></td>
+          <td>Add bulk negative keywords (5 categories above) to Basel, München, Düsseldorf, Wien, Sauerland</td>
+          <td>5 campaigns</td>
+          <td>~$150–200/mo waste reduction</td>
+          <td>30 min</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="pill pill-red">P1</span></td>
+          <td>Remove "poolbau in Düsseldorf" from Sauerland positive keywords</td>
+          <td>Sauerland</td>
+          <td>Fix geo contamination</td>
+          <td>5 min</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="pill pill-red">P1</span></td>
+          <td>Verify conversion tags firing on Basel, Düsseldorf, Sauerland landing pages using Tag Assistant</td>
+          <td>3 campaigns</td>
+          <td>Fix invisible conversion data</td>
+          <td>1–2 hrs</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="pill pill-orange">P2</span></td>
+          <td>Convert OWL broad match keywords to PHRASE match</td>
+          <td>OWL</td>
+          <td>Protect IS gains, prevent waste regression</td>
+          <td>15 min</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="pill pill-orange">P2</span></td>
+          <td>Add "pool garten" [PHRASE] to Basel campaign</td>
+          <td>Basel</td>
+          <td>Fill volume gap</td>
+          <td>5 min</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="pill pill-orange">P2</span></td>
+          <td>Shift $5–7/day from Düsseldorf and Sauerland to Wien</td>
+          <td>Account-wide</td>
+          <td>Improve best-performing campaign's IS</td>
+          <td>10 min</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="pill pill-yellow">P3</span></td>
+          <td>Verify sitelinks and callouts on all 6 campaigns in UI (Düsseldorf, Wien, Sauerland, OWL suspected missing)</td>
+          <td>All campaigns</td>
+          <td>CTR and Quality Score improvement</td>
+          <td>30 min</td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td><span class="pill pill-yellow">P3</span></td>
+          <td>Audit RSA copy account-wide — verify no fabricated model names (Odyssey, Tranquility, Artisan) remain in structured snippets</td>
+          <td>All campaigns</td>
+          <td>Policy compliance + brand accuracy</td>
+          <td>20 min</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><span class="pill pill-yellow">P3</span></td>
+          <td>Add qualify_lead and close_convert_lead conversion actions to OWL</td>
+          <td>OWL</td>
+          <td>Full conversion visibility parity</td>
+          <td>15 min</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><span class="pill pill-yellow">P3</span></td>
+          <td>Once conversion tracking verified: set Target CPA on Wien ($200) and München ($400)</td>
+          <td>Wien, München</td>
+          <td>Algorithm signal improvement</td>
+          <td>10 min</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- end .main -->
+
+<footer>
+  Leisure Pools Europe Google Ads Audit &nbsp;·&nbsp; Account 958-165-2837 &nbsp;·&nbsp; Generated 2026-03-23 &nbsp;·&nbsp; Explore Industries / Eli Bunyi &nbsp;·&nbsp; READ-ONLY — No changes made to account
+</footer>
+
+<script>
+function copyBlock(id) {
+  const el = document.getElementById(id);
+  const text = el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btn = el.previousElementSibling;
+    const orig = btn.textContent;
+    btn.textContent = 'Copied!';
+    btn.style.background = '#388e3c';
+    setTimeout(() => { btn.textContent = orig; btn.style.background = ''; }, 1500);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools DFW — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --navy-light: #243b55;
+    --accent: #2e9cca;
+    --accent-light: #5bb8e0;
+    --accent-dark: #1a7fa8;
+    --gold: #f4a261;
+    --green: #2ec4b6;
+    --red: #e63946;
+    --yellow: #f9c74f;
+    --text: #e8eef4;
+    --text-muted: #8fa8bf;
+    --border: #2a4560;
+    --card: #162233;
+    --card-alt: #1c2e42;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 60%, var(--accent-dark) 100%); padding: 40px 48px 32px; border-bottom: 2px solid var(--accent); }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .header h1 span { color: var(--accent-light); }
+  .header .meta { margin-top: 8px; color: var(--text-muted); font-size: 13px; }
+  .health-badge { text-align: right; }
+  .health-score { font-size: 52px; font-weight: 800; line-height: 1; color: var(--yellow); }
+  .health-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 2px; }
+  .health-delta { font-size: 12px; color: var(--green); margin-top: 2px; }
+  .container { max-width: 1400px; margin: 0 auto; padding: 32px 48px; }
+  .priority-banner { background: linear-gradient(90deg, rgba(244,162,97,0.15) 0%, rgba(244,162,97,0.05) 100%); border: 1px solid var(--gold); border-radius: 8px; padding: 16px 20px; margin-bottom: 32px; }
+  .priority-banner strong { color: var(--gold); }
+  .kpi-grid { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; margin-bottom: 32px; }
+  .kpi-card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 18px 20px; }
+  .kpi-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; color: #fff; }
+  .kpi-sub { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+  .kpi-good { border-top: 2px solid var(--green); }
+  .kpi-warn { border-top: 2px solid var(--yellow); }
+  .kpi-bad { border-top: 2px solid var(--red); }
+  .section { margin-bottom: 40px; }
+  .section-title { font-size: 16px; font-weight: 700; text-transform: uppercase; letter-spacing: 1px; color: var(--accent-light); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+  .section-title::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; }
+  .card-title { font-size: 13px; font-weight: 600; color: var(--accent-light); margin-bottom: 14px; text-transform: uppercase; letter-spacing: 0.5px; }
+  table { width: 100%; border-collapse: collapse; }
+  th { text-align: left; font-size: 11px; font-weight: 600; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  td { padding: 9px 12px; border-bottom: 1px solid rgba(42,69,96,0.5); font-size: 13px; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(46,156,202,0.04); }
+  .tag { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: rgba(46,196,182,0.15); color: var(--green); }
+  .tag-yellow { background: rgba(249,199,79,0.15); color: var(--yellow); }
+  .tag-red { background: rgba(230,57,70,0.15); color: var(--red); }
+  .tag-blue { background: rgba(46,156,202,0.15); color: var(--accent); }
+  .tag-gold { background: rgba(244,162,97,0.15); color: var(--gold); }
+  .finding { padding: 12px 16px; border-radius: 6px; margin-bottom: 10px; border-left: 3px solid; }
+  .finding-p1 { background: rgba(230,57,70,0.08); border-color: var(--red); }
+  .finding-p2 { background: rgba(249,199,79,0.08); border-color: var(--yellow); }
+  .finding-p3 { background: rgba(46,156,202,0.08); border-color: var(--accent); }
+  .finding strong { display: block; font-size: 13px; margin-bottom: 3px; }
+  .finding-p1 strong { color: var(--red); }
+  .finding-p2 strong { color: var(--yellow); }
+  .finding-p3 strong { color: var(--accent-light); }
+  .finding p { font-size: 12px; color: var(--text-muted); }
+  .progress-bar { height: 6px; background: rgba(255,255,255,0.08); border-radius: 3px; overflow: hidden; margin-top: 6px; }
+  .progress-fill { height: 100%; border-radius: 3px; }
+  .rec-item { display: flex; gap: 12px; padding: 14px 0; border-bottom: 1px solid rgba(42,69,96,0.5); }
+  .rec-item:last-child { border-bottom: none; }
+  .rec-num { width: 24px; height: 24px; border-radius: 50%; background: var(--accent); color: #fff; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .rec-body strong { font-size: 13px; color: #fff; display: block; margin-bottom: 3px; }
+  .rec-body p { font-size: 12px; color: var(--text-muted); }
+  .impact-badge { display: inline-block; margin-top: 6px; font-size: 10px; padding: 2px 6px; border-radius: 2px; }
+  .impact-high { background: rgba(230,57,70,0.2); color: var(--red); }
+  .impact-med { background: rgba(249,199,79,0.2); color: var(--yellow); }
+  .impact-low { background: rgba(46,156,202,0.2); color: var(--accent); }
+  .copy-btn { cursor: pointer; background: var(--accent-dark); border: none; color: #fff; padding: 4px 10px; border-radius: 3px; font-size: 11px; margin-left: 8px; opacity: 0.7; transition: opacity 0.2s; }
+  .copy-btn:hover { opacity: 1; }
+  .neg-section { margin-bottom: 12px; }
+  .neg-section h4 { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .neg-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .neg-chip { background: rgba(42,69,96,0.5); border: 1px solid var(--border); border-radius: 3px; padding: 3px 8px; font-size: 11px; color: var(--text-muted); }
+  .neg-chip.exact { border-color: var(--accent); color: var(--accent-light); }
+  .neg-chip.phrase { border-color: rgba(91,184,224,0.4); color: #8ec8e4; }
+  .footer { border-top: 1px solid var(--border); padding: 24px 48px; margin-top: 48px; color: var(--text-muted); font-size: 12px; display: flex; justify-content: space-between; }
+  .summary-box { background: linear-gradient(135deg, var(--card) 0%, var(--card-alt) 100%); border: 1px solid var(--border); border-radius: 8px; padding: 20px 24px; margin-bottom: 24px; }
+  .summary-box p { color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+  .summary-box p + p { margin-top: 10px; }
+  .highlight { color: var(--accent-light); font-weight: 600; }
+  .nowrap { white-space: nowrap; }
+  .text-right { text-align: right; }
+  .text-center { text-align: center; }
+  .good { color: var(--green); }
+  .warn { color: var(--yellow); }
+  .bad { color: var(--red); }
+  .dim { color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div style="font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Google Ads Audit</div>
+      <h1>Leisure Pools <span>DFW</span></h1>
+      <div class="meta">Account 796-655-5131 &nbsp;·&nbsp; Brand: Leisure Pools &nbsp;·&nbsp; Market: Dallas–Fort Worth, TX &nbsp;·&nbsp; Dealer Network: Pools 123</div>
+      <div class="meta" style="margin-top:4px;">Audit Period: Feb 21 – Mar 23, 2026 (30 days) &nbsp;·&nbsp; Generated: 2026-03-23</div>
+    </div>
+    <div class="health-badge">
+      <div class="health-score">55</div>
+      <div class="health-label">Health Score / 100</div>
+      <div class="health-delta">↑ +11 from 3/20 audit (44)</div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- PRIORITY CONTEXT -->
+  <div class="priority-banner">
+    <strong>⚠ HIGH PRIORITY</strong> — Pools 123 meeting this week. Contact: Donovan Norris / Donavan Naras. This account is the primary LP DFW retail presence (700 N. Freeway, Fort Worth TX). Key concerns: "Pool Builder / Contractor" campaign severely budget-constrained (71% rank-lost IS), broad-intent keyword driving $1,444 with mixed quality, and RSA paths need attention. Bring specific numbers and the three recommendations below.
+  </div>
+
+  <!-- KPI STRIP -->
+  <div class="kpi-grid">
+    <div class="kpi-card kpi-warn">
+      <div class="kpi-label">Total Spend</div>
+      <div class="kpi-value">$4,046</div>
+      <div class="kpi-sub">$129/day avg · $4,043/mo budget</div>
+    </div>
+    <div class="kpi-card kpi-good">
+      <div class="kpi-label">Conversions</div>
+      <div class="kpi-value">32</div>
+      <div class="kpi-sub">4 types · all tracked correctly</div>
+    </div>
+    <div class="kpi-card kpi-warn">
+      <div class="kpi-label">Blended CPA</div>
+      <div class="kpi-value">$126</div>
+      <div class="kpi-sub">P1: $99 · P2: $171 · wide gap</div>
+    </div>
+    <div class="kpi-card kpi-good">
+      <div class="kpi-label">Clicks</div>
+      <div class="kpi-value">1,472</div>
+      <div class="kpi-sub">Avg CPC $2.75 blended</div>
+    </div>
+    <div class="kpi-card kpi-bad">
+      <div class="kpi-label">Impression Share</div>
+      <div class="kpi-value">~36%</div>
+      <div class="kpi-sub">P2: only 16% IS — rank-constrained</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="section">
+    <div class="section-title">Executive Summary</div>
+    <div class="summary-box">
+      <p>Leisure Pools DFW is a <span class="highlight">two-campaign account</span> running Max Clicks (Target Spend) with a shared $129/day budget. The <span class="highlight">Fiberglass Pools (Primary)</span> campaign is performing reasonably well — 56% IS, $99 CPA, strong conversion rate on the /fiberglass-pool-designs/ landing page. The <span class="highlight">Pool Builder / Contractor</span> campaign is structurally impaired: 16% IS with 71% rank-lost share means it's losing most auctions on bid quality, not budget. The headline issue across both campaigns is <span class="highlight">"swimming pool builder" [phrase]</span> — $1,444 spend, 438 clicks, 8 conversions at $180 CPA. That's 36% of total budget on a keyword that's delivering below average at 1.8% CVR vs. 2.2% account average.</p>
+      <p>Negatives are better than the 3/20 audit indicated. The shared negative list "Master Exclusion List 3.18" (162 keywords, linked to both campaigns) is active and catching the right traffic — container pools, cold plunge, Leslie's supply, stock tanks, and local competitor variants are all blocked. Campaign-level negatives (~95+ keywords per campaign) add further coverage. The geo targeting is confirmed correct (PRESENCE only). Bidding is Max Clicks with $15 CPC cap — not Max Conversions as the Obsidian note stated; the cap is good hygiene. Conversion setup is clean: 4 active actions, all ONE_PER_CLICK, brochures counted correctly.</p>
+    </div>
+  </div>
+
+  <!-- CAMPAIGNS -->
+  <div class="section">
+    <div class="section-title">Campaigns</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Strategy</th>
+            <th>Budget/Day</th>
+            <th>Spend</th>
+            <th>Clicks</th>
+            <th>Conv.</th>
+            <th>CPA</th>
+            <th>CTR</th>
+            <th>Avg CPC</th>
+            <th>Imp. Share</th>
+            <th>Budget Lost IS</th>
+            <th>Rank Lost IS</th>
+            <th>Geo</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Fiberglass Pools (Primary)</strong></td>
+            <td><span class="tag tag-blue">Max Clicks / $15 CPC cap</span></td>
+            <td>$64.50</td>
+            <td>$1,996</td>
+            <td>850</td>
+            <td>20</td>
+            <td class="good"><strong>$99.79</strong></td>
+            <td class="good">17.5%</td>
+            <td>$2.35</td>
+            <td>56.4%</td>
+            <td class="warn">12.4%</td>
+            <td class="warn">31.2%</td>
+            <td><span class="tag tag-green">PRESENCE ✓</span></td>
+          </tr>
+          <tr>
+            <td><strong>Pool Builder / Contractor</strong></td>
+            <td><span class="tag tag-blue">Max Clicks / $15 CPC cap</span></td>
+            <td>$64.50</td>
+            <td>$2,050</td>
+            <td>622</td>
+            <td>12</td>
+            <td class="bad"><strong>$170.87</strong></td>
+            <td class="warn">6.8%</td>
+            <td>$3.30</td>
+            <td class="bad">16.3%</td>
+            <td class="warn">12.8%</td>
+            <td class="bad">70.9%</td>
+            <td><span class="tag tag-green">PRESENCE ✓</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:14px;font-size:12px;color:var(--text-muted);">
+        <strong style="color:var(--yellow);">Note on Pool Builder / Contractor:</strong> 70.9% rank-lost IS is a structural quality signal problem, not a budget problem. Max Clicks with no target CPA tells Google to chase clicks — but lower QS keywords in this campaign are getting outbid. Consider switching to Maximize Conversions or raising the keyword bids/improving ad relevance before adding budget.
+      </div>
+    </div>
+  </div>
+
+  <!-- AD GROUPS -->
+  <div class="section">
+    <div class="section-title">Ad Groups (30-day)</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Ad Group</th>
+            <th>Impressions</th>
+            <th>Clicks</th>
+            <th>Conv.</th>
+            <th>CVR</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="dim" rowspan="4">Fiberglass Pools (Primary)</td>
+            <td>Fiberglass Pools General</td>
+            <td>961K</td>
+            <td>407</td>
+            <td class="good">13</td>
+            <td class="good">3.2%</td>
+            <td><span class="tag tag-green">ENABLED</span></td>
+          </tr>
+          <tr>
+            <td>Fiberglass Pools Cost/Pricing</td>
+            <td>873K</td>
+            <td>377</td>
+            <td class="warn">6</td>
+            <td class="warn">1.6%</td>
+            <td><span class="tag tag-green">ENABLED</span></td>
+          </tr>
+          <tr>
+            <td>Fiberglass vs Concrete</td>
+            <td>151K</td>
+            <td>62</td>
+            <td class="warn">1</td>
+            <td class="warn">1.6%</td>
+            <td><span class="tag tag-green">ENABLED</span></td>
+          </tr>
+          <tr>
+            <td>Fiberglass Pool Installation</td>
+            <td>11K</td>
+            <td>4</td>
+            <td class="bad">0</td>
+            <td>—</td>
+            <td><span class="tag tag-yellow">LOW VOLUME</span></td>
+          </tr>
+          <tr>
+            <td class="dim" rowspan="2">Pool Builder / Contractor</td>
+            <td>Pool Builder General</td>
+            <td>1,742K</td>
+            <td>528</td>
+            <td class="warn">10</td>
+            <td class="warn">1.9%</td>
+            <td><span class="tag tag-green">ENABLED</span></td>
+          </tr>
+          <tr>
+            <td>Pool Contractor</td>
+            <td>309K</td>
+            <td>94</td>
+            <td class="warn">2</td>
+            <td class="warn">2.1%</td>
+            <td><span class="tag tag-green">ENABLED</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- KEYWORDS -->
+  <div class="section">
+    <div class="section-title">Top Keywords by Spend</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Match</th>
+            <th>Spend</th>
+            <th>Clicks</th>
+            <th>Conv.</th>
+            <th>CPA</th>
+            <th>CVR</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>"swimming pool builder"</strong></td>
+            <td><span class="tag tag-blue">Phrase</span></td>
+            <td class="bad">$1,444</td>
+            <td>438</td>
+            <td>8</td>
+            <td class="bad">$180</td>
+            <td>1.8%</td>
+            <td><span class="tag tag-red">REVIEW — 36% of budget, above-avg CPA</span></td>
+          </tr>
+          <tr>
+            <td><strong>"fiberglass pool price"</strong></td>
+            <td><span class="tag tag-blue">Phrase</span></td>
+            <td>$507</td>
+            <td>221</td>
+            <td>4</td>
+            <td class="warn">$127</td>
+            <td>1.8%</td>
+            <td><span class="tag tag-yellow">MONITOR — pricing intent, avg CPA</span></td>
+          </tr>
+          <tr>
+            <td><strong>"fiberglass pools"</strong></td>
+            <td><span class="tag tag-blue">Phrase</span></td>
+            <td>$468</td>
+            <td>201</td>
+            <td>2</td>
+            <td class="bad">$234</td>
+            <td>1.0%</td>
+            <td><span class="tag tag-red">HIGH SPEND, LOW CVR — check search terms</span></td>
+          </tr>
+          <tr>
+            <td><strong>"fiberglass pool"</strong></td>
+            <td><span class="tag tag-blue">Phrase</span></td>
+            <td>$143</td>
+            <td>62</td>
+            <td>5</td>
+            <td class="good">$28.59</td>
+            <td>8.1%</td>
+            <td><span class="tag tag-green">TOP PERFORMER — protect &amp; scale</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted);">
+        <strong style="color:var(--yellow);">Key insight:</strong> "fiberglass pool" [phrase] (no "s") is converting at 8.1% CVR vs 1.8% for "fiberglass pools" — nearly 5x better. Likely triggering tighter, higher-intent searches. Consider adding [exact] version and allocating more budget toward it via ad group restructure.
+      </div>
+    </div>
+  </div>
+
+  <!-- ANALYSIS SECTIONS -->
+  <div class="two-col">
+
+    <!-- WHAT'S WORKING -->
+    <div class="card">
+      <div class="card-title">What's Working</div>
+      <div class="finding finding-p3">
+        <strong>"fiberglass pool" [phrase] — $28 CPA, 8.1% CVR</strong>
+        <p>Best-performing keyword in the account. Tight intent, low cost, high conversion rate. 5x better CVR than broader "fiberglass pools".</p>
+      </div>
+      <div class="finding finding-p3">
+        <strong>/fiberglass-pool-designs/ landing page — 15 conversions, best CPA</strong>
+        <p>$1,083 spend, 15 conversions. Design-focused landing page is resonating most with DFW buyers. More traffic should flow here.</p>
+      </div>
+      <div class="finding finding-p3">
+        <strong>Fiberglass Pools General ad group — 3.2% CVR, 13 conversions</strong>
+        <p>Strongest ad group in the account. CTR of 17.5% campaign-wide confirms general intent keywords are well-matched to ads.</p>
+      </div>
+      <div class="finding finding-p3">
+        <strong>Negative keyword hygiene — 162 shared + ~95 campaign-level</strong>
+        <p>Master Exclusion List 3.18 is active and well-populated. Competitor terms (Latham, Leslie's, Premier Pools, Aqua Pools DFW), container pools, cold plunge, and supply stores all blocked.</p>
+      </div>
+      <div class="finding finding-p3">
+        <strong>Geo targeting correct — PRESENCE mode on both campaigns</strong>
+        <p>No PRESENCE_OR_INTEREST contamination seen on other fleet accounts. DFW is clean.</p>
+      </div>
+      <div class="finding finding-p3">
+        <strong>Conversion setup clean</strong>
+        <p>4 active actions (Calls from ads, Contact Form, Brochure Download, Free Estimate), all ONE_PER_CLICK, all counted — no duplicates, no over-counting.</p>
+      </div>
+    </div>
+
+    <!-- WHAT NEEDS ATTENTION -->
+    <div class="card">
+      <div class="card-title">What Needs Attention</div>
+      <div class="finding finding-p1">
+        <strong>P1: Pool Builder campaign — 70.9% rank-lost IS</strong>
+        <p>Only 16.3% IS. The campaign is losing 7 in 10 auctions on ad rank quality. Adding budget won't fix this — keyword QS and ad relevance need to improve, or bid strategy should shift to Maximize Conversions to let Google optimize on conversion signals.</p>
+      </div>
+      <div class="finding finding-p1">
+        <strong>P1: "swimming pool builder" [phrase] — $1,444 / 36% of budget / $180 CPA</strong>
+        <p>Dominant spend driver with above-average CPA. The phrase match is pulling through general builder searches that may not be fiberglass-intent. Top wasted search terms in this bucket: "inground pool cost" ($38, 0 conv), "pool cost" ($13, 0 conv). Needs tighter control — consider adding [swimming pool builder dallas] [exact] and negating generic builder terms.</p>
+      </div>
+      <div class="finding finding-p2">
+        <strong>P2: "fiberglass pools" [phrase] — $468 spend / 1.0% CVR / $234 CPA</strong>
+        <p>High spend but only 2 conversions in the period. While the 3/20 audit noted $1,371 waste on "swimming pool builder" broad match — that broad match issue is resolved or was overstated, but "fiberglass pools" phrase is now the attention item at 1.0% CVR.</p>
+      </div>
+      <div class="finding finding-p2">
+        <strong>P2: Fiberglass Pool Installation ad group — 4 clicks, 0 conversions</strong>
+        <p>Very low volume. If this is an intentional niche ad group it may need broader keywords or a landing page review. Currently underperforming with thin traffic.</p>
+      </div>
+      <div class="finding finding-p2">
+        <strong>P2: Homepage absorbing $1,510 spend at higher CPA than /fiberglass-pool-designs/</strong>
+        <p>Homepage conversions: 10 at $151 CPA. Design page: 15 at $72 CPA. Redirecting traffic to the design page through ad-level final URL control could meaningfully drop CPA.</p>
+      </div>
+    </div>
+  </div>
+
+  <div style="height: 20px;"></div>
+
+  <!-- SEARCH TERMS -->
+  <div class="section">
+    <div class="section-title">Search Terms — Lead Sources &amp; Waste</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Converting Search Terms</div>
+        <table>
+          <thead><tr><th>Search Term</th><th class="text-right">Conv.</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>"fiberglass pool"</td><td class="text-right good">2</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>"fiberglass pools fort worth"</td><td class="text-right good">1</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>"cost of a fiberglass inground pool"</td><td class="text-right good">1</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>"in ground pool cost"</td><td class="text-right good">1</td><td><span class="tag tag-green">Active</span></td></tr>
+            <tr><td>"small inground pools cost"</td><td class="text-right good">1</td><td><span class="tag tag-green">Active</span></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:12px;color:var(--text-muted);">Local geo-qualified terms convert well. "fiberglass pools fort worth" is the ideal search and it's converting. More local variants should be added as exact match keywords.</div>
+      </div>
+      <div class="card">
+        <div class="card-title">Top Wasted Spend (No Conversions)</div>
+        <table>
+          <thead><tr><th>Search Term</th><th class="text-right">Spend</th><th>Status</th></tr></thead>
+          <tbody>
+            <tr><td>"inground pool cost"</td><td class="text-right bad">$38</td><td><span class="tag tag-blue">Active</span></td></tr>
+            <tr><td>"fiberglass pools with prices"</td><td class="text-right bad">$34</td><td><span class="tag tag-blue">Active</span></td></tr>
+            <tr><td>"stealth inground pool"</td><td class="text-right warn">$8</td><td><span class="tag tag-blue">Active</span></td></tr>
+            <tr><td>"crown pools desoto photos"</td><td class="text-right warn">$7</td><td><span class="tag tag-blue">Active</span></td></tr>
+            <tr><td>"pila pools texas"</td><td class="text-right warn">$7</td><td><span class="tag tag-blue">Active</span></td></tr>
+            <tr><td>"pool cost"</td><td class="text-right warn">$13</td><td><span class="tag tag-blue">Active</span></td></tr>
+            <tr><td>"texas pocket pools"</td><td class="text-right dim">$13</td><td><span class="tag tag-green">Negated ✓</span></td></tr>
+            <tr><td>"plunge pool cost"</td><td class="text-right dim">$11</td><td><span class="tag tag-green">Negated ✓</span></td></tr>
+          </tbody>
+        </table>
+        <div style="margin-top:10px;font-size:12px;color:var(--text-muted);">"crown pools desoto" and "pila pools texas" = competitor searches slipping through phrase match. Add as exact negatives. "stealth inground pool" is a competitor brand — negative it.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- LANDING PAGES -->
+  <div class="section">
+    <div class="section-title">Landing Pages</div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>Landing Page</th>
+            <th>Spend</th>
+            <th>Conv.</th>
+            <th>CPA</th>
+            <th>% of Spend</th>
+            <th>Assessment</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>leisurepoolsdfw.com/fiberglass-pool-designs/</td>
+            <td>$1,083</td>
+            <td class="good">15</td>
+            <td class="good">$72</td>
+            <td>27%</td>
+            <td><span class="tag tag-green">BEST — prioritize traffic here</span></td>
+          </tr>
+          <tr>
+            <td>leisurepoolsdfw.com (homepage)</td>
+            <td>$1,510</td>
+            <td>10</td>
+            <td class="warn">$151</td>
+            <td>37%</td>
+            <td><span class="tag tag-yellow">REVIEW — higher CPA, consider overriding to /designs/</span></td>
+          </tr>
+          <tr>
+            <td>leisurepoolsdfw.com/pool-pricing/</td>
+            <td>$824</td>
+            <td>5</td>
+            <td class="warn">$165</td>
+            <td>20%</td>
+            <td><span class="tag tag-yellow">MONITOR — pricing page serving cost queries</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted);">All landing pages on <strong>leisurepoolsdfw.com</strong> — correct dealer site, not manufacturer. No landing page issues. The /fiberglass-pool-designs/ page delivers 2.1x better CPA than the homepage — a strong signal to route more traffic there via final URL overrides in ad settings.</div>
+    </div>
+  </div>
+
+  <!-- DEVICES -->
+  <div class="section">
+    <div class="section-title">Device Breakdown</div>
+    <div class="card">
+      <table>
+        <thead><tr><th>Device</th><th>% of Spend (P1)</th><th>% of Spend (P2)</th><th>Pattern</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Mobile</td>
+            <td class="warn">~85%</td>
+            <td class="warn">~84%</td>
+            <td><span class="tag tag-yellow">Dominant — verify mobile landing page UX</span></td>
+          </tr>
+          <tr>
+            <td>Desktop</td>
+            <td>~13%</td>
+            <td>~14%</td>
+            <td><span class="tag tag-blue">Secondary but likely higher intent</span></td>
+          </tr>
+          <tr>
+            <td>Tablet</td>
+            <td class="dim">&lt;2%</td>
+            <td class="dim">&lt;2%</td>
+            <td><span class="tag tag-blue">Negligible</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:12px;color:var(--text-muted);">Mobile dominance is typical for pool research. Verify that leisurepoolsdfw.com loads fast on mobile and the contact/brochure form is frictionless on phone. High mobile spend with pool purchases being considered decisions — if desktop converts better, a device bid adjustment down on mobile could improve efficiency.</div>
+    </div>
+  </div>
+
+  <!-- NEGATIVE KEYWORDS -->
+  <div class="section">
+    <div class="section-title">Negative Keyword Coverage</div>
+    <div class="two-col">
+      <div class="card">
+        <div class="card-title">Shared List: Master Exclusion List 3.18</div>
+        <div style="font-size:13px;margin-bottom:10px;color:var(--text-muted);">162 keywords · linked to both campaigns · Shared Set ID: 12012201802</div>
+        <div class="neg-section">
+          <h4>Job/Employment (broad)</h4>
+          <div class="neg-chips">
+            <span class="neg-chip">repair</span><span class="neg-chip">jobs</span><span class="neg-chip">employment</span><span class="neg-chip">hiring</span><span class="neg-chip">careers</span><span class="neg-chip">salary</span><span class="neg-chip">wage</span>
+          </div>
+        </div>
+        <div class="neg-section">
+          <h4>Wrong Product Type</h4>
+          <div class="neg-chips">
+            <span class="neg-chip">above ground</span><span class="neg-chip">aboveground</span><span class="neg-chip">inflatable</span><span class="neg-chip">portable</span><span class="neg-chip">stock tank pool</span><span class="neg-chip">container pool</span><span class="neg-chip">cold plunge pool</span><span class="neg-chip">plungie pool</span><span class="neg-chip">dipping pool</span><span class="neg-chip">swim spa</span><span class="neg-chip">diy</span>
+          </div>
+        </div>
+        <div class="neg-section">
+          <h4>Competitors Blocked</h4>
+          <div class="neg-chips">
+            <span class="neg-chip exact">[latham pools]</span><span class="neg-chip exact">[latham pool]</span><span class="neg-chip phrase">"leslie"</span><span class="neg-chip phrase">"leslie pools"</span><span class="neg-chip exact">[premier pools]</span><span class="neg-chip exact">[aqua pools dfw]</span><span class="neg-chip exact">[aqua pools]</span>
+          </div>
+        </div>
+        <div class="neg-section">
+          <h4>Pool Supply / Retail</h4>
+          <div class="neg-chips">
+            <span class="neg-chip">pool store near me</span><span class="neg-chip">pool supply near me</span><span class="neg-chip">pool supplies near me</span><span class="neg-chip">leslies pool supply</span>
+          </div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-title">Campaign-Level Negatives (Selected — Fiberglass Pools Primary)</div>
+        <div style="font-size:13px;margin-bottom:10px;color:var(--text-muted);">~95 campaign-level negatives on Fiberglass Pools Primary (similar set on Pool Builder)</div>
+        <div class="neg-section">
+          <h4>Container / Cowboy / Prefab</h4>
+          <div class="neg-chips">
+            <span class="neg-chip">container pools texas</span><span class="neg-chip">cowboy pool</span><span class="neg-chip">cowboy pools</span><span class="neg-chip">prefab pool</span><span class="neg-chip">prefab pools</span>
+          </div>
+        </div>
+        <div class="neg-section">
+          <h4>Competitor Variants</h4>
+          <div class="neg-chips">
+            <span class="neg-chip">latham pool cost</span><span class="neg-chip">soake pools cost</span><span class="neg-chip">ipoolgo</span><span class="neg-chip">plungie pool cost</span><span class="neg-chip">scp poolcorp</span><span class="neg-chip">premier pools and spas</span>
+          </div>
+        </div>
+        <div class="neg-section">
+          <h4>Gaps to Add</h4>
+          <div class="neg-chips" style="gap:8px;">
+            <span class="neg-chip" style="border-color:var(--red);color:var(--red);">crown pools desoto ⚠</span>
+            <span class="neg-chip" style="border-color:var(--red);color:var(--red);">pila pools ⚠</span>
+            <span class="neg-chip" style="border-color:var(--red);color:var(--red);">stealth inground pool ⚠</span>
+            <span class="neg-chip" style="border-color:var(--yellow);color:var(--yellow);">inground pool cost ⚠</span>
+            <span class="neg-chip" style="border-color:var(--yellow);color:var(--yellow);">pool cost ⚠</span>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--text-muted);">The first three are local DFW competitors leaking through phrase match. Add as exact match negatives to the Master Exclusion List.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONVERSION TRACKING -->
+  <div class="section">
+    <div class="section-title">Conversion Tracking</div>
+    <div class="card">
+      <table>
+        <thead><tr><th>Conversion Action</th><th>Counting</th><th>In Conversions</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Calls from ads</td><td>ONE_PER_CLICK</td><td class="good">Yes</td><td><span class="tag tag-green">ACTIVE ✓</span></td></tr>
+          <tr><td>Contact Form</td><td>ONE_PER_CLICK</td><td class="good">Yes</td><td><span class="tag tag-green">ACTIVE ✓</span></td></tr>
+          <tr><td>Download Brochure</td><td>ONE_PER_CLICK</td><td class="good">Yes</td><td><span class="tag tag-green">ACTIVE ✓</span></td></tr>
+          <tr><td>Free Estimate</td><td>ONE_PER_CLICK</td><td class="good">Yes</td><td><span class="tag tag-green">ACTIVE ✓</span></td></tr>
+        </tbody>
+      </table>
+      <div style="margin-top:10px;font-size:12px;color:var(--text-muted);">Brochure downloads require contact form fills per account setup — legitimate conversions, counted correctly. All 4 actions are ONE_PER_CLICK preventing double-counting. Tracking configuration is clean.</div>
+    </div>
+  </div>
+
+  <!-- ASSETS / SITELINKS -->
+  <div class="section">
+    <div class="section-title">Assets &amp; Sitelinks</div>
+    <div class="card">
+      <div style="padding: 10px 0; font-size:13px; color: var(--text-muted);">
+        <strong style="color: var(--yellow);">Unable to verify via API.</strong> The campaign_asset resource returned a serialization error when querying sitelink and callout asset fields (RepeatedScalarContainer error — known MCP limitation with composite asset types). No customer-level assets were found at the account level. Sitelinks and callouts should be verified directly in the Google Ads UI. Previous audit noted blank RSA paths — see RSA section below.
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPETITIVE -->
+  <div class="section">
+    <div class="section-title">Competitive Landscape</div>
+    <div class="card">
+      <div style="padding: 8px 0;">
+        <strong style="color: var(--yellow); font-size:13px;">Auction Insights — unable to verify.</strong>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:6px;">The MCP token does not have access to auction insight metrics (PERMISSION_DENIED / METRIC_ACCESS_DENIED). Auction insights must be pulled from the Google Ads UI directly.</p>
+        <p style="font-size:12px;color:var(--text-muted);margin-top:8px;">Known DFW competitors from Obsidian notes and negatives data: <strong style="color:var(--text);">Metroplex Pools, AquaPools DFW</strong> (negated), <strong style="color:var(--text);">Fiberglass Pool Guyz</strong>, <strong style="color:var(--text);">Crown Pools (DeSoto)</strong> (leaking through — not yet negated), and <strong style="color:var(--text);">Pila Pools Texas</strong> (leaking through). The DFW market is competitive on pool builder terms — the 70.9% rank-lost IS in Pool Builder / Contractor suggests competitors are winning auctions, likely bidding aggressively on exact-match contractor queries.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-title">Prioritized Recommendations</div>
+
+    <div class="card">
+      <div class="rec-item">
+        <div class="rec-num">1</div>
+        <div class="rec-body">
+          <strong>Switch Pool Builder / Contractor to Maximize Conversions</strong>
+          <p>70.9% rank-lost IS is a QS/bid-quality problem, not a budget problem. Max Clicks doesn't tell Google what matters — Maximize Conversions will use the 12 confirmed conversions from this campaign to optimize bid strategy toward auction winners. This should significantly improve IS without touching budget. Pair with a tCPA of ~$150 once enough data accrues.</p>
+          <span class="impact-badge impact-high">HIGH IMPACT</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">2</div>
+        <div class="rec-body">
+          <strong>Control "swimming pool builder" spend — add negative terms, test [exact] variants</strong>
+          <p>"swimming pool builder" [phrase] is 36% of total budget at $180 CPA — above account average. The phrase is triggering generic builder queries ("inground pool cost", "pool cost") that don't convert. Add [inground pool cost], [pool cost], [pool builder near me] as campaign-level exact negatives. Then add [swimming pool builder dallas], [swimming pool builder fort worth] as exact match positives to capture the intent without the waste.</p>
+          <span class="impact-badge impact-high">HIGH IMPACT — ~$200+/month recoverable</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">3</div>
+        <div class="rec-body">
+          <strong>Route more traffic to /fiberglass-pool-designs/ — override homepage as final URL</strong>
+          <p>The designs page converts at $72 CPA vs. $151 on the homepage — more than 2x better. For ads currently landing on the homepage, add a final URL override at the ad level pointing to /fiberglass-pool-designs/. This is a zero-cost optimization that could cut CPA meaningfully. Also review why /pool-pricing/ traffic is landing at $165 CPA — consider whether the pricing page has a clear CTA.</p>
+          <span class="impact-badge impact-med">MEDIUM IMPACT — structural</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">4</div>
+        <div class="rec-body">
+          <strong>Add local competitor negatives to Master Exclusion List</strong>
+          <p>Crown Pools (DeSoto), Pila Pools Texas, and Stealth Inground Pool are leaking through phrase match and spending $22 combined with 0 conversions. Add these to the Master Exclusion List 3.18 as exact match negatives so both campaigns block them automatically.</p>
+          <span class="impact-badge impact-med">QUICK WIN — 15 min fix</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">5</div>
+        <div class="rec-body">
+          <strong>Add [fiberglass pool dallas] / [fiberglass pool fort worth] exact match keywords</strong>
+          <p>"fiberglass pools fort worth" is converting — it's the ideal search and only generated 1 verified conversion in the window, suggesting it's not getting enough coverage. Add local geo-qualified exact match variants ([fiberglass pool dallas], [fiberglass pool fort worth tx], [fiberglass pool installer dfw]) to the Fiberglass Pools General ad group to capture high-intent local queries explicitly.</p>
+          <span class="impact-badge impact-med">MEDIUM IMPACT — lead quality</span>
+        </div>
+      </div>
+      <div class="rec-item">
+        <div class="rec-num">6</div>
+        <div class="rec-body">
+          <strong>Verify RSA paths and sitelinks in Google Ads UI</strong>
+          <p>API could not retrieve sitelink/callout assets or RSA path data due to serialization limitations. The 3/20 audit noted blank RSA paths — this should be manually confirmed and fixed if still blank. Strong ad copy paths ("Fort Worth" / "Free Estimate", "Lifetime Warranty" / "DFW's #1 Choice") can meaningfully improve CTR and QS.</p>
+          <span class="impact-badge impact-low">HYGIENE</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="footer">
+  <span>Leisure Pools DFW · Account 796-655-5131 · Pools 123 Network</span>
+  <span>Audit generated 2026-03-23 · Read-only API access · All data from Google Ads API v21</span>
+</div>
+
+<script>
+  document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const text = btn.previousSibling?.textContent || btn.parentElement.textContent;
+      navigator.clipboard.writeText(text.trim()).then(() => {
+        const orig = btn.textContent;
+        btn.textContent = 'Copied!';
+        setTimeout(() => btn.textContent = orig, 1500);
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,1165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Blue Orca Pools — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2e;
+    --navy-mid: #132540;
+    --navy-light: #1e3a5f;
+    --accent: #3b9fd1;
+    --accent-light: #5ab8e8;
+    --accent-pale: #dff0f9;
+    --gold: #f0a500;
+    --white: #ffffff;
+    --gray-light: #f5f7fa;
+    --gray-mid: #e2e8f0;
+    --gray-text: #64748b;
+    --red: #e53e3e;
+    --red-light: #fff5f5;
+    --red-border: #fc8181;
+    --orange: #dd6b20;
+    --orange-light: #fffaf0;
+    --orange-border: #fbd38d;
+    --yellow: #d69e2e;
+    --yellow-light: #fffff0;
+    --yellow-border: #faf089;
+    --green: #38a169;
+    --green-light: #f0fff4;
+    --green-border: #9ae6b4;
+    --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: var(--font);
+    background: var(--gray-light);
+    color: #1a202c;
+    line-height: 1.6;
+  }
+
+  /* ── HEADER ── */
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: var(--white);
+    padding: 40px 48px 32px;
+    border-bottom: 3px solid var(--accent);
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+  .dealer-info h1 {
+    font-size: 28px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    color: var(--white);
+  }
+  .dealer-info .subtitle {
+    font-size: 14px;
+    color: var(--accent-light);
+    margin-top: 4px;
+  }
+  .audit-meta {
+    text-align: right;
+  }
+  .audit-meta .badge {
+    display: inline-block;
+    background: var(--accent);
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .audit-meta .date {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+  }
+
+  /* ── SCORE BAND ── */
+  .score-band {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .score-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    padding: 14px 20px;
+    min-width: 140px;
+  }
+  .score-card .label {
+    font-size: 11px;
+    color: rgba(255,255,255,0.6);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    margin-bottom: 4px;
+  }
+  .score-card .value {
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .score-card .value.health-score {
+    font-size: 32px;
+    color: var(--orange);
+  }
+  .score-card .value.health-score.good { color: var(--green); }
+  .score-card .value.health-score.ok { color: var(--yellow); }
+  .score-card .sub {
+    font-size: 11px;
+    color: rgba(255,255,255,0.5);
+    margin-top: 2px;
+  }
+
+  /* ── LAYOUT ── */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .section {
+    background: var(--white);
+    border-radius: 12px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--navy);
+    color: var(--white);
+    padding: 14px 24px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-header h2 {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .section-header .icon {
+    font-size: 16px;
+  }
+  .section-body {
+    padding: 24px;
+  }
+
+  /* ── FINDINGS ── */
+  .finding {
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin-bottom: 14px;
+    border-left: 4px solid;
+    position: relative;
+  }
+  .finding:last-child { margin-bottom: 0; }
+
+  .finding.p1 {
+    background: var(--red-light);
+    border-color: var(--red);
+  }
+  .finding.p2 {
+    background: var(--orange-light);
+    border-color: var(--orange);
+  }
+  .finding.p3 {
+    background: var(--yellow-light);
+    border-color: var(--yellow);
+  }
+  .finding.pass {
+    background: var(--green-light);
+    border-color: var(--green);
+  }
+  .finding.info {
+    background: var(--accent-pale);
+    border-color: var(--accent);
+  }
+
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+  .severity-badge {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .badge-p1 { background: var(--red); color: white; }
+  .badge-p2 { background: var(--orange); color: white; }
+  .badge-p3 { background: var(--yellow); color: #1a202c; }
+  .badge-pass { background: var(--green); color: white; }
+  .badge-info { background: var(--accent); color: white; }
+
+  .finding-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a202c;
+    flex: 1;
+  }
+
+  .finding-body {
+    font-size: 13.5px;
+    color: #374151;
+    line-height: 1.6;
+  }
+  .finding-body p { margin-bottom: 6px; }
+  .finding-body p:last-child { margin-bottom: 0; }
+
+  .action-box {
+    background: rgba(0,0,0,0.04);
+    border-radius: 5px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    color: #1a202c;
+  }
+  .action-box strong { color: var(--navy); }
+
+  /* ── TABLES ── */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+  .data-table th {
+    background: var(--navy);
+    color: white;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.3px;
+  }
+  .data-table th:first-child { border-radius: 6px 0 0 0; }
+  .data-table th:last-child { border-radius: 0 6px 0 0; }
+  .data-table td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--gray-mid);
+    color: #374151;
+    vertical-align: top;
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: var(--gray-light); }
+  .data-table tr:hover td { background: var(--accent-pale); }
+
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .tag {
+    display: inline-block;
+    background: var(--accent-pale);
+    color: var(--navy-light);
+    padding: 1px 7px;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+    margin-right: 3px;
+    margin-bottom: 2px;
+  }
+  .tag.neg { background: #fff5f5; color: var(--red); border-color: var(--red-border); }
+  .tag.broad { background: #fffaf0; color: var(--orange); border-color: var(--orange-border); }
+  .tag.pass-tag { background: var(--green-light); color: var(--green); border-color: var(--green-border); }
+
+  /* ── PERF GRID ── */
+  .perf-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .perf-card {
+    background: var(--gray-light);
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid var(--gray-mid);
+  }
+  .perf-card .label {
+    font-size: 11px;
+    color: var(--gray-text);
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    margin-bottom: 4px;
+  }
+  .perf-card .value {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+  .perf-card .context {
+    font-size: 11px;
+    color: var(--gray-text);
+    margin-top: 2px;
+  }
+  .perf-card.warn .value { color: var(--orange); }
+  .perf-card.good .value { color: var(--green); }
+  .perf-card.bad .value { color: var(--red); }
+
+  /* ── REBUILD ── */
+  .rebuild-section {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .rebuild-section h2 {
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    color: white;
+  }
+  .rebuild-section .desc {
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.75);
+    margin-bottom: 20px;
+  }
+  .rebuild-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 16px;
+  }
+  .rebuild-card {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 8px;
+    padding: 16px 18px;
+  }
+  .rebuild-card .rc-title {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--accent-light);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .rebuild-card .rc-item {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    padding: 3px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+    display: flex;
+    gap: 8px;
+  }
+  .rebuild-card .rc-item:last-child { border-bottom: none; }
+  .rebuild-card .rc-item .dot {
+    color: var(--accent);
+    flex-shrink: 0;
+    font-weight: bold;
+  }
+
+  /* ── SEARCH TERMS ── */
+  .waste-terms {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 10px;
+  }
+  .waste-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--red-light);
+    border: 1px solid var(--red-border);
+    border-radius: 6px;
+    padding: 4px 10px;
+    font-size: 12px;
+    color: var(--red);
+    font-weight: 500;
+  }
+  .waste-chip .cost {
+    font-weight: 700;
+    color: var(--navy);
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  /* ── PRIORITY TABLE ── */
+  .priority-list {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+  }
+  .priority-item {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 12px 16px;
+    border-radius: 8px;
+    background: var(--gray-light);
+    border: 1px solid var(--gray-mid);
+  }
+  .priority-num {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--navy);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: 700;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .priority-num.p1-num { background: var(--red); }
+  .priority-num.p2-num { background: var(--orange); }
+  .priority-num.p3-num { background: var(--yellow); color: #1a202c; }
+  .priority-content strong {
+    display: block;
+    font-size: 14px;
+    color: var(--navy);
+    margin-bottom: 2px;
+  }
+  .priority-content span {
+    font-size: 13px;
+    color: var(--gray-text);
+  }
+
+  /* ── FOOTER ── */
+  .footer {
+    text-align: center;
+    color: var(--gray-text);
+    font-size: 12px;
+    padding: 24px;
+    border-top: 1px solid var(--gray-mid);
+    margin-top: 8px;
+  }
+
+  /* ── CLICK TO COPY ── */
+  .copy-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .copy-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 4px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    margin-left: 6px;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: var(--navy-light); }
+  .copy-btn.copied { background: var(--green); }
+
+  .inline-code {
+    font-family: 'Courier New', monospace;
+    background: rgba(0,0,0,0.06);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-size: 12px;
+    color: var(--navy);
+  }
+</style>
+</head>
+<body>
+
+<!-- ════════════════ HEADER ════════════════ -->
+<div class="header">
+  <div class="header-top">
+    <div class="dealer-info">
+      <h1>Blue Orca Pools</h1>
+      <div class="subtitle">Leisure Pools Dealer &nbsp;·&nbsp; British Columbia, Canada &nbsp;·&nbsp; Account: 978-079-6043</div>
+    </div>
+    <div class="audit-meta">
+      <div class="badge">AUDIT REPORT</div>
+      <div class="date">March 23, 2026</div>
+    </div>
+  </div>
+  <div class="score-band">
+    <div class="score-card">
+      <div class="label">Health Score</div>
+      <div class="value health-score ok">52<span style="font-size:18px">/100</span></div>
+      <div class="sub">Up from 38 on 3/20</div>
+    </div>
+    <div class="score-card">
+      <div class="label">30-Day Spend</div>
+      <div class="value">$1,352</div>
+      <div class="sub">CAD · 2/21–3/23</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Conversions</div>
+      <div class="value">17.96</div>
+      <div class="sub">All conversion actions</div>
+    </div>
+    <div class="score-card">
+      <div class="label">CPA</div>
+      <div class="value">$75.29</div>
+      <div class="sub">CAD · baseline $75</div>
+    </div>
+    <div class="score-card">
+      <div class="label">CTR</div>
+      <div class="value">10.77%</div>
+      <div class="sub">571 clicks / 5,303 impr</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Impr. Share</div>
+      <div class="value">50.3%</div>
+      <div class="sub">49.4% lost to rank</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Active P1s</div>
+      <div class="value" style="color:#e53e3e">3</div>
+      <div class="sub">Down from 5 on 3/20</div>
+    </div>
+  </div>
+</div>
+
+<!-- ════════════════ CONTAINER ════════════════ -->
+<div class="container">
+
+<!-- ── ACCOUNT OVERVIEW ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">📊</span>
+    <h2>Account Overview</h2>
+  </div>
+  <div class="section-body">
+    <div class="perf-grid">
+      <div class="perf-card">
+        <div class="label">Campaign</div>
+        <div class="value" style="font-size:14px;line-height:1.3">Blue Orca Pools Campaign</div>
+        <div class="context">1 active · ENABLED</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">Bid Strategy</div>
+        <div class="value" style="font-size:14px">Max Clicks</div>
+        <div class="context">$2.50 CAD CPC cap</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">Daily Budget</div>
+        <div class="value" style="font-size:14px">$46/day</div>
+        <div class="context">Budget cap: $19.99 CAD</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">Ad Groups</div>
+        <div class="value bad">1</div>
+        <div class="context">All 19 KWs lumped together</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">Keywords</div>
+        <div class="value">19</div>
+        <div class="context">All phrase match — no broad</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">Geo Targeting</div>
+        <div class="value pass" style="font-size:14px">PRESENCE</div>
+        <div class="context">Type 7 — correct</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">Network</div>
+        <div class="value" style="font-size:14px">Search</div>
+        <div class="context">Google Search only</div>
+      </div>
+      <div class="perf-card">
+        <div class="label">RSA Ad Strength</div>
+        <div class="value warn" style="font-size:14px">AVERAGE</div>
+        <div class="context">No display path set</div>
+      </div>
+    </div>
+
+    <table class="data-table">
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Match</th>
+          <th class="num">Clicks</th>
+          <th class="num">Impressions</th>
+          <th class="num">Cost (CAD)</th>
+          <th class="num">Conv.</th>
+          <th class="num">CPA (CAD)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>swimming pool installation</td><td><span class="tag">Phrase</span></td><td class="num">225</td><td class="num">1,682</td><td class="num">$538.75</td><td class="num">9.50</td><td class="num">$56.71</td></tr>
+        <tr><td>fiberglass pools</td><td><span class="tag">Phrase</span></td><td class="num">126</td><td class="num">1,191</td><td class="num">$301.87</td><td class="num">5.51</td><td class="num">$54.79</td></tr>
+        <tr><td>prefab pools</td><td><span class="tag">Phrase</span></td><td class="num">77</td><td class="num">528</td><td class="num">$181.05</td><td class="num">3.00</td><td class="num">$60.35</td></tr>
+        <tr><td>fiberglass swimming pools</td><td><span class="tag">Phrase</span></td><td class="num">44</td><td class="num">397</td><td class="num">$102.42</td><td class="num">~0</td><td class="num">—</td></tr>
+        <tr><td>inground pool</td><td><span class="tag">Phrase</span></td><td class="num">26</td><td class="num">231</td><td class="num">$62.39</td><td class="num">~0</td><td class="num">—</td></tr>
+        <tr><td>leisure pools</td><td><span class="tag">Phrase</span></td><td class="num">6</td><td class="num">90</td><td class="num">$14.18</td><td class="num">0</td><td class="num">∞</td></tr>
+        <tr><td colspan="7" style="font-size:12px;color:#64748b;text-align:center;padding:8px">+ 13 more keywords (lower spend) — all phrase match</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── PRIORITY FINDINGS ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🔴</span>
+    <h2>Priority Findings — P1 (Critical)</h2>
+  </div>
+  <div class="section-body">
+
+    <!-- P1-1 -->
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="severity-badge badge-p1">P1</span>
+        <span class="finding-title">Single Ad Group — All 19 Keywords Lumped Together</span>
+      </div>
+      <div class="finding-body">
+        <p>The entire account runs through one ad group ("Ad group 1") with 19 keywords covering broad intent types including brand, generic installation, and product-type queries. This prevents theme-based Quality Score optimization, limits ad relevance scoring, and makes it impossible to segment budgets or bids by intent. This was flagged on the 3/20 audit and remains unresolved.</p>
+        <p><strong>Impact:</strong> Lower Quality Scores → higher CPCs → poorer IS. $1,352 CAD/30d running through a single, unfocused ad group.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Restructure into at minimum 3 ad groups: (1) <em>Fiberglass Pool Installation</em> — core installation KWs, (2) <em>Pool Type / Product</em> — fiberglass, prefab, inground, (3) <em>Brand</em> — leisure pools, blue orca. Each ad group gets its own RSA with matching copy. Long-term: 5–6 tightly-themed groups.
+        </div>
+      </div>
+    </div>
+
+    <!-- P1-2 -->
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="severity-badge badge-p1">P1</span>
+        <span class="finding-title">Negative Keyword Coverage Critically Thin — Only 2 Campaign-Level Negatives</span>
+      </div>
+      <div class="finding-body">
+        <p>Master Exclusion List 3.18 (162 KWs) is linked — but only 2 campaign-level negatives exist beyond that: <span class="inline-code">"above ground" [phrase]</span> and <span class="inline-code">"fiberglass above ground pool" [exact]</span>. There are zero ad group-level negatives.</p>
+        <p><strong>Active waste in search terms (30-day period):</strong></p>
+        <div class="waste-terms">
+          <div class="waste-chip">container pools <span class="cost">~$15 CAD</span></div>
+          <div class="waste-chip">shipping container pool <span class="cost">~$12 CAD</span></div>
+          <div class="waste-chip">cowboy pool <span class="cost">~$8 CAD</span></div>
+          <div class="waste-chip">partial inground pool <span class="cost">~$10 CAD</span></div>
+          <div class="waste-chip">drop in pool <span class="cost">~$5 CAD</span></div>
+          <div class="waste-chip">ecopool s series <span class="cost">~$7 CAD</span></div>
+          <div class="waste-chip">imagine pools illusion cost <span class="cost">~$6 CAD</span></div>
+          <div class="waste-chip">kelowna pool companies <span class="cost">~$5 CAD</span></div>
+          <div class="waste-chip">pool kits <span class="cost">~$4 CAD</span></div>
+        </div>
+        <p style="margin-top:10px">Estimated wasted spend: <strong>$70–90 CAD/30d</strong> on irrelevant intent. Competitor brand terms (ecopool, imagine pools) are being paid for clicks that cannot convert.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Add negatives immediately: container pool, shipping container, cowboy, above ground (already have but needs phrase+BMM variations), partial inground, drop-in pool, pool kit, kelowna (if outside service area), ecopool, imagine pools, aquatica. Add at ad group level per theme once restructured.
+        </div>
+      </div>
+    </div>
+
+    <!-- P1-3 -->
+    <div class="finding p1">
+      <div class="finding-header">
+        <span class="severity-badge badge-p1">P1</span>
+        <span class="finding-title">RSA Has No Display Path — Wasted Ad Relevance Signal</span>
+      </div>
+      <div class="finding-body">
+        <p>The single RSA (ad ID 688357560677) has no <strong>Path 1</strong> or <strong>Path 2</strong> set, and carries an <strong>AVERAGE</strong> ad strength (score 5). Display paths are a free signal that reinforces keyword relevance in the ad URL, improving CTR and Quality Score. With only one ad serving all 19 keywords, this gap is magnified.</p>
+        <p>Example of what's missing: <em>blueorcapools.com/<strong>Fiberglass-Pools</strong>/<strong>BC-Installer</strong></em></p>
+        <div class="action-box">
+          <strong>Fix:</strong> Set path1 to <em>Fiberglass-Pools</em> and path2 to <em>BC-Installer</em> on current RSA. When restructuring ad groups, write theme-specific paths per ad group. Target EXCELLENT ad strength.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── P2 FINDINGS ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🟠</span>
+    <h2>Priority Findings — P2 (Important)</h2>
+  </div>
+  <div class="section-body">
+
+    <!-- P2-1 -->
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="severity-badge badge-p2">P2</span>
+        <span class="finding-title">Brand Keyword "leisure pools" Generating Zero Conversions — $14 CAD Wasted</span>
+      </div>
+      <div class="finding-body">
+        <p>The phrase match keyword <span class="inline-code">leisure pools</span> generated 6 clicks and $14.18 CAD spend with 0 conversions in the 30-day window. This keyword is Leisure Pools manufacturer brand — searches are likely researching the brand, not looking for an installer. In British Columbia specifically, searchers may find leisurepoolsusa.com directly rather than clicking through to a dealer.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Move "leisure pools" to its own brand ad group with dedicated copy. If spend continues with 0 conv after 60 days, consider pausing or adding negative modifier for informational modifiers (e.g., <em>-cost -price -reviews</em>).
+        </div>
+      </div>
+    </div>
+
+    <!-- P2-2 -->
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="severity-badge badge-p2">P2</span>
+        <span class="finding-title">Calls Bid Modifier Set to Zero — Call Extension Clicks Disabled</span>
+      </div>
+      <div class="finding-body">
+        <p>A <code>campaign_bid_modifier</code> with criterion ID 8000 (calls/interaction type) has a bid modifier of <strong>0</strong>. This suppresses the call asset from generating clicks from the ads. The account has a call asset attached (778-991-7665 CA), but the bid modifier at zero effectively prevents call ad interactions from being served competitively or at all.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Review the calls bid modifier — if this was intentionally set to deprioritize calls from ads (e.g., Laurie prefers form leads), document that. If unintentional, set to 1.0 (neutral) or remove modifier. Call extensions are a free QS signal regardless of conversion tracking.
+        </div>
+      </div>
+    </div>
+
+    <!-- P2-3 -->
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="severity-badge badge-p2">P2</span>
+        <span class="finding-title">49.4% Impression Share Lost to Rank — Bid/Quality Score Headroom Available</span>
+      </div>
+      <div class="finding-body">
+        <p>With only 50.3% IS and 49.4% lost to rank (not budget — only 0.3% lost to budget), the campaign is losing nearly half its eligible impressions due to insufficient Ad Rank. At $2.50 CPC cap on MaxClicks, the algorithm may be limiting bids on high-value queries.</p>
+        <p><strong>Root causes:</strong> Low Quality Scores from single ad group dilution, no display paths, subthemed keywords — all dragging Ad Rank down. Raising the CPC cap alone without fixing structure may not help.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Restructure ad groups first (P1-1), which will improve QS. Then re-evaluate IS. Consider raising CPC cap to $3.00–$3.50 CAD after structure improvement. At $75 CPA, there's room to increase bids on strong performing KWs.
+        </div>
+      </div>
+    </div>
+
+    <!-- P2-4 -->
+    <div class="finding p2">
+      <div class="finding-header">
+        <span class="severity-badge badge-p2">P2</span>
+        <span class="finding-title">Sitelink Landing Pages Have Near-Zero Conversion Rate</span>
+      </div>
+      <div class="finding-body">
+        <p>Landing page data shows the homepage (blueorcapools.com) drives 480 clicks and 15.46 conv ($1,137 CAD). Sitelink destination pages show very weak performance:</p>
+        <table class="data-table" style="margin-top:8px">
+          <thead><tr><th>Landing Page</th><th class="num">Clicks</th><th class="num">Conv.</th><th class="num">Cost (CAD)</th><th class="num">Conv. Rate</th></tr></thead>
+          <tbody>
+            <tr><td>blueorcapools.com (homepage)</td><td class="num">480</td><td class="num">15.46</td><td class="num">$1,137</td><td class="num" style="color:#38a169;font-weight:600">3.22%</td></tr>
+            <tr><td>/download-brochure/</td><td class="num">21</td><td class="num">0.50</td><td class="num">$49</td><td class="num" style="color:#dd6b20">2.38%</td></tr>
+            <tr><td>/fiberglass-pool-gallery/</td><td class="num">21</td><td class="num">0</td><td class="num">$51</td><td class="num" style="color:#e53e3e;font-weight:600">0%</td></tr>
+            <tr><td>/fiberglass-pool-designs/</td><td class="num">6</td><td class="num">0</td><td class="num">$14</td><td class="num" style="color:#e53e3e;font-weight:600">0%</td></tr>
+            <tr><td>/contact/</td><td class="num">0</td><td class="num">0</td><td class="num">$0</td><td class="num">—</td></tr>
+          </tbody>
+        </table>
+        <p style="margin-top:8px">The gallery and designs pages are consuming $65 CAD with zero conversions. The brochure page likely has a download form (Brochure conversion action exists) but conversion tracking may not fire on that page correctly.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Verify brochure download conversion tracking fires on /download-brochure/. Evaluate if gallery and designs sitelinks should be paused or if CTAs need strengthening. Consider replacing gallery sitelink with a direct quote/contact sitelink.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── P3 FINDINGS ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🟡</span>
+    <h2>Priority Findings — P3 (Optimize)</h2>
+  </div>
+  <div class="section-body">
+
+    <!-- P3-1 -->
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="severity-badge badge-p3">P3</span>
+        <span class="finding-title">Only 3 Pool Models Represented — Underutilizing Leisure Pools Catalog</span>
+      </div>
+      <div class="finding-body">
+        <p>The dealer website (blueorcapools.com) only shows 3 Leisure Pools models: <strong>Supreme 30, Eclipse 40, Pinnacle 40</strong>. The full LP catalog offers 34 verified models. The sitelinks reference "Modern Pool Designs" and "Project Gallery" but the limited product range may reduce relevance for searchers with specific size/shape queries.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> This is primarily a website issue — Eli should note for dealer conversation with Laurie. If additional model pages are added, consider model-specific sitelinks for top performers (Eclipse, Supreme).
+        </div>
+      </div>
+    </div>
+
+    <!-- P3-2 -->
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="severity-badge badge-p3">P3</span>
+        <span class="finding-title">Callout "Leisure Fiberglass Pools" — Brand Stuffing Risk</span>
+      </div>
+      <div class="finding-body">
+        <p>One callout reads <strong>"Leisure Fiberglass Pools"</strong>. This is technically fine as it references the brand the dealer sells, but it should be checked against Google's brand trademark policy. More critically, if this callout draws clicks based on brand recognition, those users may expect to reach Leisure Pools' main site — leading to a relevance gap.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Replace with a stronger value-prop callout: <em>"BC's Certified Leisure Dealer"</em> or <em>"Free Pool Design Consultation"</em> would be more conversion-oriented.
+        </div>
+      </div>
+    </div>
+
+    <!-- P3-3 -->
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="severity-badge badge-p3">P3</span>
+        <span class="finding-title">Lead Form Asset Has Limited Status — One of Two Is Not Serving</span>
+      </div>
+      <div class="finding-body">
+        <p>Two lead form assets (field type 27) are attached to the campaign. Asset 193192352524 has <strong>primary_status = 7 (LIMITED)</strong> — not serving. Asset 286660649366 is ELIGIBLE (status 2). A limited lead form may be causing missed lead capture opportunities.</p>
+        <div class="action-box">
+          <strong>Fix:</strong> Review asset 193192352524 in the UI — check for policy disapproval, missing required fields, or scheduling restrictions. Remove or fix the limited form.
+        </div>
+      </div>
+    </div>
+
+    <!-- P3-4 -->
+    <div class="finding p3">
+      <div class="finding-header">
+        <span class="severity-badge badge-p3">P3</span>
+        <span class="finding-title">Sitelink "2025 Brochure" Description Text Uses Manufacturer Voice</span>
+      </div>
+      <div class="finding-body">
+        <p>Sitelink "2025 Brochure" has descriptions: <em>"Dive into 2025's Best Pools"</em> / <em>"Download Your Free Brochure Now"</em>. The first line reads like manufacturer marketing copy, not a local dealer. This is a minor messaging concern — the sitelink URL (/download-brochure/) is correctly pointing to the dealer site.</p>
+        <div class="action-box">
+          <strong>Suggest:</strong> Update desc1 to <em>"Explore Our Fiberglass Pool Catalog"</em> or <em>"See Available Pool Models in BC"</em>.
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── PASS CHECKS ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">✅</span>
+    <h2>Passing Checks</h2>
+  </div>
+  <div class="section-body">
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Master Exclusion List 3.18 Linked — 162 Keywords Applied</span>
+      </div>
+      <div class="finding-body">Shared set "Master Exclusion List 3.18" (ID 12012201802, 162 members) is confirmed linked to the campaign with ENABLED status. This was a P1 finding on the 3/20 audit. Resolved.</div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Geo Targeting = PRESENCE Only (Type 7) — Correct</span>
+      </div>
+      <div class="finding-body">Positive geo target type is 7 (PRESENCE) — targeting users physically in the target area. Not PRESENCE_OR_INTEREST (5). This is correct for a local services dealer. Not a finding.</div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Zero Broad Match Keywords</span>
+      </div>
+      <div class="finding-body">All 19 keywords are phrase match (type 3). No broad match keywords are active. This prevents uncontrolled query expansion.</div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Sitelinks Point to Dealer Website (Not Manufacturer)</span>
+      </div>
+      <div class="finding-body">All 4 sitelinks (2025 Brochure, Project Gallery, Modern Pool Designs, Contact Us) link to blueorcapools.com subdirectories. Prior audit noted sitelinks going to manufacturer URL — this has been corrected.</div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Conversion Tracking: 6 Active Actions, No GA4 Duplicates Detected</span>
+      </div>
+      <div class="finding-body">6 conversion actions are ENABLED: Calls from Ads (call asset), Brochure Download, GreatIdeasPack, ContactDealer, PurchasingGuide, StarterKit. All are website-origin (type 2) with MANY_PER_CLICK counting. No visible GA4 import duplicates (unlike Houston). Brochure downloads count as real conversions (contact form fills).</div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Budget Not Limiting — 0.3% IS Lost to Budget</span>
+      </div>
+      <div class="finding-body">Only 0.3% of impression share is lost to budget. The $46/day budget is not capping the campaign. The Impression Share issue (49.4% lost to rank) is entirely a Quality Score / bid issue, not budget-constrained.</div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-header">
+        <span class="severity-badge badge-pass">PASS</span>
+        <span class="finding-title">Call Asset Active — BC Phone Number Verified</span>
+      </div>
+      <div class="finding-body">Call asset with (778) 991-7665 (CA) is attached at campaign level with ENABLED status. Matches dealer contact on file (swim@blueorcapools.com, 778-991-7665).</div>
+    </div>
+  </div>
+</div>
+
+<!-- ── ASSETS SUMMARY ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🔗</span>
+    <h2>Asset Inventory</h2>
+  </div>
+  <div class="section-body">
+    <table class="data-table">
+      <thead>
+        <tr><th>Type</th><th>Asset</th><th>Details</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="tag">Sitelink</span></td><td>2025 Brochure</td><td>Desc: "Dive into 2025's Best Pools" / "Download Your Free Brochure Now" → /download-brochure/</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Sitelink</span></td><td>Project Gallery</td><td>Desc: "Backyard Oasis Ideas." / "Get Inspired By Beautiful Projects" → /fiberglass-pool-gallery/</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Sitelink</span></td><td>Modern Pool Designs</td><td>Desc: "Rectangular & Freeform Pool Shapes" / "Discover Our Collection" → /fiberglass-pool-designs/</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Sitelink</span></td><td>Contact Us</td><td>Desc: "Want To Learn More?" / "We'd Love To Answer Your Questions." → /contact/</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Callout</span></td><td>Lifetime Pool Warranty</td><td>—</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Callout</span></td><td>Pools Built To Perfection</td><td>—</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Callout</span></td><td>Leisure Fiberglass Pools</td><td>P3: Brand stuffing risk — see findings</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Call</span></td><td>(778) 991-7665</td><td>Country: CA</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Lead Form</span></td><td>Asset 286660649366</td><td>Active lead form</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Lead Form</span></td><td>Asset 193192352524</td><td>⚠️ LIMITED — not serving (P3)</td><td>⚠️ Limited</td></tr>
+        <tr><td><span class="tag">Image</span></td><td>Asset 121468010862</td><td>Field type 12 (image)</td><td>✅ Eligible</td></tr>
+        <tr><td><span class="tag">Business</span></td><td>Asset 121446515767</td><td>Field type 18 (business data)</td><td>✅ Eligible</td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ── SEARCH TERM WASTE ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">🔍</span>
+    <h2>Search Term Waste Analysis (Top 30-Day Wasted Spend)</h2>
+  </div>
+  <div class="section-body">
+    <p style="font-size:13.5px;color:#374151;margin-bottom:14px">The following query categories were identified as irrelevant or out-of-market in the 30-day search term report. These are costing real CAD spend with near-zero conversion probability.</p>
+    <table class="data-table">
+      <thead>
+        <tr><th>Category</th><th>Example Search Terms</th><th>Issue</th><th>Suggested Negative</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Container / Shipping Pools</td>
+          <td>container pool, shipping container pool, container swimming pool</td>
+          <td>Wrong product type — not fiberglass</td>
+          <td><span class="tag neg">container pool</span><span class="tag neg">shipping container</span></td>
+        </tr>
+        <tr>
+          <td>Above-Ground / Cowboy Pools</td>
+          <td>cowboy pool, above ground swimming pool, stock tank pool</td>
+          <td>Wrong product category (partial covered by negatives)</td>
+          <td><span class="tag neg">cowboy</span><span class="tag neg">stock tank</span></td>
+        </tr>
+        <tr>
+          <td>Competitor Brand Terms</td>
+          <td>ecopool s series, aquatica pools, imagine pools illusion cost</td>
+          <td>Competitor research — non-convertable clicks</td>
+          <td><span class="tag neg">ecopool</span><span class="tag neg">aquatica</span><span class="tag neg">imagine pools</span></td>
+        </tr>
+        <tr>
+          <td>Partial / Drop-In Pools</td>
+          <td>partial inground pool, drop in pool, semi inground</td>
+          <td>Different install type Blue Orca may not offer</td>
+          <td><span class="tag neg">partial inground</span><span class="tag neg">drop in</span><span class="tag neg">semi inground</span></td>
+        </tr>
+        <tr>
+          <td>Outside Service Area</td>
+          <td>kelowna pool companies, pool installation kelowna</td>
+          <td>Kelowna is 4hr from Victoria — outside service area</td>
+          <td><span class="tag neg">kelowna</span></td>
+        </tr>
+        <tr>
+          <td>DIY / Kit Pools</td>
+          <td>pool kit, DIY fiberglass pool, fiberglass pool kit</td>
+          <td>Not served by installer — self-installation intent</td>
+          <td><span class="tag neg">pool kit</span><span class="tag neg">DIY pool</span></td>
+        </tr>
+      </tbody>
+    </table>
+    <p style="font-size:12px;color:#64748b;margin-top:8px">Note: Master Exclusion List 3.18 may already cover some of these — verify before adding duplicates.</p>
+  </div>
+</div>
+
+<!-- ── REBUILD BLUEPRINT ── -->
+<div class="rebuild-section">
+  <h2>Account Rebuild Blueprint</h2>
+  <div class="desc">Recommended structure to resolve P1 findings and unlock performance. This is what the account should look like after restructuring.</div>
+  <div class="rebuild-grid">
+
+    <div class="rebuild-card">
+      <div class="rc-title">Ad Group 1 — Fiberglass Installation</div>
+      <div class="rc-item"><span class="dot">▸</span> "swimming pool installation" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> "fiberglass pool installation" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> "pool installation [city]" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> Path: Fiberglass-Pools / BC-Installer</div>
+      <div class="rc-item"><span class="dot">▸</span> RSA: Installation-focused headlines</div>
+    </div>
+
+    <div class="rebuild-card">
+      <div class="rc-title">Ad Group 2 — Fiberglass Pool Type</div>
+      <div class="rc-item"><span class="dot">▸</span> "fiberglass pools" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> "fiberglass swimming pools" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> "prefab pools" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> Path: Fiberglass-Pools / Browse-Designs</div>
+      <div class="rc-item"><span class="dot">▸</span> RSA: Product-focused — models, shapes</div>
+    </div>
+
+    <div class="rebuild-card">
+      <div class="rc-title">Ad Group 3 — Inground / General</div>
+      <div class="rc-item"><span class="dot">▸</span> "inground pool" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> "backyard pool" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> "pool company [city]" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> Path: Pool-Builder / British-Columbia</div>
+      <div class="rc-item"><span class="dot">▸</span> RSA: Local/general installation copy</div>
+    </div>
+
+    <div class="rebuild-card">
+      <div class="rc-title">Ad Group 4 — Brand</div>
+      <div class="rc-item"><span class="dot">▸</span> "leisure pools" [phrase/exact]</div>
+      <div class="rc-item"><span class="dot">▸</span> "blue orca pools" [exact]</div>
+      <div class="rc-item"><span class="dot">▸</span> "leisure pools dealer bc" [phrase]</div>
+      <div class="rc-item"><span class="dot">▸</span> Path: Leisure-Pools / Authorized-Dealer</div>
+      <div class="rc-item"><span class="dot">▸</span> RSA: Brand + dealer authority copy</div>
+    </div>
+
+    <div class="rebuild-card">
+      <div class="rc-title">Negative KW Additions (All Ad Groups)</div>
+      <div class="rc-item"><span class="dot">▸</span> container pool, shipping container</div>
+      <div class="rc-item"><span class="dot">▸</span> cowboy pool, stock tank, pool kit</div>
+      <div class="rc-item"><span class="dot">▸</span> ecopool, aquatica, imagine pools</div>
+      <div class="rc-item"><span class="dot">▸</span> partial inground, drop in, semi inground</div>
+      <div class="rc-item"><span class="dot">▸</span> kelowna (if outside service area)</div>
+    </div>
+
+    <div class="rebuild-card">
+      <div class="rc-title">Bid & Budget Adjustments</div>
+      <div class="rc-item"><span class="dot">▸</span> Post-restructure: raise CPC cap to $3.00</div>
+      <div class="rc-item"><span class="dot">▸</span> Fix calls bid modifier (currently 0)</div>
+      <div class="rc-item"><span class="dot">▸</span> Consider switching to MaxConv once 30+ conv/mo</div>
+      <div class="rc-item"><span class="dot">▸</span> Current $46/day budget — no change needed</div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ── ACTION PRIORITY LIST ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">📋</span>
+    <h2>Prioritized Action List</h2>
+  </div>
+  <div class="section-body">
+    <ul class="priority-list">
+      <li class="priority-item">
+        <div class="priority-num p1-num">1</div>
+        <div class="priority-content">
+          <strong>Add Search Term Negatives — Immediate Waste Stop</strong>
+          <span>Add 15–20 negatives for container pools, competitor brands, DIY/kits, and out-of-area terms. Estimated $70–90 CAD/30d savings. Can be done in 30 minutes today.</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p1-num">2</div>
+        <div class="priority-content">
+          <strong>Add Display Path to RSA (Path1: Fiberglass-Pools, Path2: BC-Installer)</strong>
+          <span>Zero cost, 5-minute change — immediately improves Ad Rank signal and CTR.</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p1-num">3</div>
+        <div class="priority-content">
+          <strong>Restructure Into 4 Ad Groups per Blueprint Above</strong>
+          <span>Highest-impact structural change. Improves QS → Ad Rank → IS. Should resolve 49.4% IS lost to rank. Estimated 2–4 hours work. Plan campaign rebuild before next billing cycle.</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p2-num">4</div>
+        <div class="priority-content">
+          <strong>Review Calls Bid Modifier (Currently 0)</strong>
+          <span>Verify if intentional. If not, remove modifier. Quick UI check required.</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p2-num">5</div>
+        <div class="priority-content">
+          <strong>Isolate "Leisure Pools" Brand Keyword to Dedicated Ad Group</strong>
+          <span>Prevent brand term dilution of performance metrics. Write brand-specific RSA.</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p2-num">6</div>
+        <div class="priority-content">
+          <strong>Fix Limited Lead Form Asset (ID 193192352524)</strong>
+          <span>Review in UI for disapproval reason. Update or remove limited form.</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p3-num">7</div>
+        <div class="priority-content">
+          <strong>Replace "Leisure Fiberglass Pools" Callout</strong>
+          <span>Swap for "BC's Certified Leisure Dealer" or "Free Pool Design Consultation".</span>
+        </div>
+      </li>
+      <li class="priority-item">
+        <div class="priority-num p3-num">8</div>
+        <div class="priority-content">
+          <strong>Evaluate Sitelink Performance — Consider Pausing Gallery</strong>
+          <span>Gallery and Designs sitelinks have 0 conversions on $65 CAD spend. Consider replacing with a stronger CTA sitelink (Get a Free Quote, etc.).</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<!-- ── DEALER CONTEXT ── -->
+<div class="section">
+  <div class="section-header">
+    <span class="icon">👤</span>
+    <h2>Dealer Context</h2>
+  </div>
+  <div class="section-body">
+    <table class="data-table">
+      <tbody>
+        <tr><td style="width:180px;font-weight:600">Owner</td><td>Laurie Wahlberg — described as fiery, blunt. Direct communication preferred.</td></tr>
+        <tr><td style="font-weight:600">Website</td><td>blueorcapools.com</td></tr>
+        <tr><td style="font-weight:600">Phone</td><td>(778) 991-7665</td></tr>
+        <tr><td style="font-weight:600">Email</td><td>swim@blueorcapools.com</td></tr>
+        <tr><td style="font-weight:600">Pool Models on Site</td><td>Supreme 30, Eclipse 40, Pinnacle 40 (only 3 of 34 LP models)</td></tr>
+        <tr><td style="font-weight:600">Budget Cap</td><td>$19.99 CAD/day — note: campaign running at $46/day, may need review</td></tr>
+        <tr><td style="font-weight:600">Currency</td><td>CAD — all cost figures in Canadian dollars</td></tr>
+        <tr><td style="font-weight:600">Prior Audit Health</td><td>38/100 on 2026-03-20 (5 P1s) → 52/100 today (3 P1s). Progress noted on negatives list linkage and sitelink URLs.</td></tr>
+      </tbody>
+    </table>
+    <div class="finding info" style="margin-top:16px">
+      <div class="finding-header">
+        <span class="severity-badge badge-info">NOTE</span>
+        <span class="finding-title">Budget Discrepancy — Campaign Running at $46/day vs $19.99 Cap on File</span>
+      </div>
+      <div class="finding-body">
+        The campaign daily budget is $46 CAD but the vault note says max budget cap is $19.99 CAD/day. Either the cap was raised without updating the vault, or there's a discrepancy to resolve with Laurie. The campaign is not budget-limited (only 0.3% IS lost to budget), so overspend relative to cap should be flagged.
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  Blue Orca Pools Google Ads Audit &nbsp;·&nbsp; Generated 2026-03-23 &nbsp;·&nbsp; Explore Industries / Leisure Pools &nbsp;·&nbsp; Account 978-079-6043 &nbsp;·&nbsp; Read-Only Analysis
+</div>
+
+<script>
+// Click to copy functionality for copy buttons
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const text = this.dataset.copy;
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = this.innerHTML;
+      this.innerHTML = '✓ Copied';
+      this.classList.add('copied');
+      setTimeout(() => {
+        this.innerHTML = orig;
+        this.classList.remove('copied');
+      }, 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

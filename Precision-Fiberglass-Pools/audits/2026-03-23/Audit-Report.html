@@ -1,0 +1,823 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Precision Fiberglass Pools — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3560;
+    --accent: #2e9bff;
+    --accent-light: #5bb3ff;
+    --accent-pale: #e8f4ff;
+    --white: #ffffff;
+    --text: #e8edf5;
+    --text-muted: #8fa3c0;
+    --text-dark: #1e2d42;
+    --border: #1e3a5f;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --red-dark: #dc2626;
+    --orange: #f97316;
+    --surface: #0f1e38;
+    --surface-2: #162847;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* Header */
+  .page-header {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 32px 40px 28px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .dealer-name {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.3px;
+  }
+  .brand-tag {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    margin-left: 12px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    vertical-align: middle;
+  }
+  .paused-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(239,68,68,0.15);
+    border: 1px solid rgba(239,68,68,0.4);
+    color: #fca5a5;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 4px 12px;
+    border-radius: 20px;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .paused-tag::before { content: '⏸'; font-size: 10px; }
+  .header-meta {
+    display: flex;
+    gap: 24px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .header-meta span strong { color: var(--text); font-weight: 500; }
+
+  /* Audit intent banner */
+  .intent-banner {
+    background: rgba(239,68,68,0.08);
+    border: 1px solid rgba(239,68,68,0.25);
+    border-left: 4px solid var(--red);
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 24px 40px 0;
+    font-size: 13px;
+    color: #fca5a5;
+  }
+  .intent-banner strong { color: var(--white); }
+
+  /* Main layout */
+  .main {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 32px 40px 60px;
+  }
+
+  /* Section */
+  .section {
+    margin-bottom: 36px;
+  }
+  .section-title {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+
+  /* KPI row */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    margin-bottom: 4px;
+  }
+  .kpi-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 12px;
+    text-align: center;
+  }
+  .kpi-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+  .kpi-value {
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .kpi-value.warn { color: var(--orange); }
+  .kpi-value.bad { color: var(--red); }
+  .kpi-value.ok { color: var(--green); }
+
+  /* Findings grid */
+  .findings-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  /* Finding card */
+  .finding {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .finding-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--border);
+  }
+  .finding-header.p1 { background: rgba(239,68,68,0.12); border-bottom-color: rgba(239,68,68,0.3); }
+  .finding-header.p2 { background: rgba(249,115,22,0.10); border-bottom-color: rgba(249,115,22,0.3); }
+  .finding-header.p3 { background: rgba(245,158,11,0.08); border-bottom-color: rgba(245,158,11,0.25); }
+  .finding-header.good { background: rgba(34,197,94,0.08); border-bottom-color: rgba(34,197,94,0.25); }
+  .finding-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--white);
+    flex: 1;
+  }
+  .badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+  }
+  .badge.p1 { background: rgba(239,68,68,0.25); color: #fca5a5; }
+  .badge.p2 { background: rgba(249,115,22,0.25); color: #fdba74; }
+  .badge.p3 { background: rgba(245,158,11,0.2); color: #fde68a; }
+  .badge.good { background: rgba(34,197,94,0.2); color: #86efac; }
+  .badge.info { background: rgba(46,155,255,0.2); color: #93c5fd; }
+
+  .finding-body { padding: 14px 16px; }
+
+  .finding-detail {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.5;
+  }
+  .finding-detail:last-child { margin-bottom: 0; }
+
+  .action-label {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--accent-light);
+    margin-bottom: 4px;
+  }
+  .action-text {
+    font-size: 13px;
+    color: var(--accent-pale);
+    padding: 8px 12px;
+    background: rgba(46,155,255,0.07);
+    border-radius: 5px;
+    border-left: 3px solid var(--accent);
+  }
+
+  /* Table */
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+  }
+  .data-table th {
+    text-align: left;
+    padding: 8px 12px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    background: var(--navy-mid);
+    border-bottom: 1px solid var(--border);
+  }
+  .data-table td {
+    padding: 9px 12px;
+    border-bottom: 1px solid rgba(30,58,95,0.5);
+    color: var(--text);
+  }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(255,255,255,0.02); }
+
+  .qs-pill {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+  .qs-good { background: rgba(34,197,94,0.2); color: #86efac; }
+  .qs-mid { background: rgba(245,158,11,0.2); color: #fde68a; }
+  .qs-bad { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .qs-na { background: rgba(143,163,192,0.15); color: var(--text-muted); }
+
+  .flag { font-size: 11px; }
+  .flag.warn { color: var(--orange); }
+  .flag.bad { color: var(--red); }
+  .flag.ok { color: var(--green); }
+
+  /* Reactivation checklist */
+  .checklist {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .checklist-header {
+    background: rgba(46,155,255,0.1);
+    border-bottom: 1px solid rgba(46,155,255,0.25);
+    padding: 12px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--accent-light);
+  }
+  .checklist-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 12px 16px;
+    border-bottom: 1px solid rgba(30,58,95,0.5);
+  }
+  .checklist-item:last-child { border-bottom: none; }
+  .check-box {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--border);
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  .check-box.done {
+    background: var(--green);
+    border-color: var(--green);
+    position: relative;
+  }
+  .check-box.done::after {
+    content: '✓';
+    position: absolute;
+    top: -2px;
+    left: 2px;
+    color: white;
+    font-size: 12px;
+    font-weight: 700;
+  }
+  .check-label { font-size: 13px; color: var(--text); flex: 1; }
+  .check-label strong { color: var(--white); }
+  .check-priority { font-size: 11px; font-weight: 600; padding: 2px 7px; border-radius: 10px; }
+  .check-priority.p1 { background: rgba(239,68,68,0.2); color: #fca5a5; }
+  .check-priority.p2 { background: rgba(249,115,22,0.2); color: #fdba74; }
+  .check-priority.p3 { background: rgba(245,158,11,0.15); color: #fde68a; }
+
+  /* Summary bar */
+  .summary-bar {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+  .summary-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+  .summary-pill.p1-pill { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+  .summary-pill.p2-pill { background: rgba(249,115,22,0.15); color: #fdba74; border: 1px solid rgba(249,115,22,0.3); }
+  .summary-pill.p3-pill { background: rgba(245,158,11,0.12); color: #fde68a; border: 1px solid rgba(245,158,11,0.25); }
+  .summary-pill.good-pill { background: rgba(34,197,94,0.12); color: #86efac; border: 1px solid rgba(34,197,94,0.25); }
+
+  /* Config block */
+  .config-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .config-item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .config-key {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    margin-bottom: 5px;
+  }
+  .config-val {
+    font-size: 13px;
+    color: var(--white);
+    font-weight: 500;
+  }
+  .config-val.accent { color: var(--accent-light); }
+  .config-val.warn { color: var(--orange); }
+  .config-val.ok { color: var(--green); }
+
+  .mono { font-family: 'SF Mono', 'Fira Code', monospace; }
+
+  /* Footer */
+  .page-footer {
+    text-align: center;
+    padding: 24px 40px;
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  /* Responsive */
+  @media (max-width: 900px) {
+    .kpi-grid { grid-template-columns: repeat(4, 1fr); }
+    .findings-grid { grid-template-columns: 1fr; }
+    .config-grid { grid-template-columns: 1fr 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <div class="header-top">
+    <div>
+      <div class="dealer-name">
+        Precision Fiberglass Pools
+        <span class="brand-tag">Leisure Pools</span>
+      </div>
+    </div>
+    <div class="paused-tag">Campaign Paused</div>
+  </div>
+  <div class="header-meta">
+    <span><strong>Account:</strong> 8173063391</span>
+    <span><strong>Audit Date:</strong> March 23, 2026</span>
+    <span><strong>Period:</strong> Feb 21 – Mar 23, 2026</span>
+    <span><strong>MCC:</strong> 836-765-6694</span>
+    <span><strong>Market:</strong> Regional</span>
+  </div>
+</div>
+
+<div class="intent-banner">
+  <strong>Scope:</strong> Account is currently paused. This audit documents current state and identifies what must be resolved before reactivation — not a full performance deep-dive.
+</div>
+
+<div class="main">
+
+  <!-- PERFORMANCE -->
+  <div class="section">
+    <div class="section-title">Performance — Feb 21 to Mar 23, 2026</div>
+    <div class="kpi-grid">
+      <div class="kpi-card">
+        <div class="kpi-label">Spend</div>
+        <div class="kpi-value">$547.52</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Clicks</div>
+        <div class="kpi-value">175</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Impressions</div>
+        <div class="kpi-value">2,665</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CTR</div>
+        <div class="kpi-value warn">1.14%</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Avg CPC</div>
+        <div class="kpi-value ok">$3.13</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">Conversions</div>
+        <div class="kpi-value warn">2</div>
+      </div>
+      <div class="kpi-card">
+        <div class="kpi-label">CPA</div>
+        <div class="kpi-value bad">$274</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CAMPAIGN CONFIG -->
+  <div class="section">
+    <div class="section-title">Campaign Configuration</div>
+    <div class="config-grid">
+      <div class="config-item">
+        <div class="config-key">Campaign</div>
+        <div class="config-val">Precision Fiberglass Pools Campaign</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Status</div>
+        <div class="config-val warn">PAUSED (status 3)</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Bidding Strategy</div>
+        <div class="config-val">Max Clicks (TARGET_SPEND) — $3.50 CPC cap</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Daily Budget</div>
+        <div class="config-val">$28.00 / day</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Network</div>
+        <div class="config-val ok">Google Search only — No Search Partners, No Display</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Geo Targeting</div>
+        <div class="config-val ok">PRESENCE (type 7) — correct</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Ad Groups</div>
+        <div class="config-val">1 (single ad group)</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">Keywords</div>
+        <div class="config-val">14 (all PHRASE match)</div>
+      </div>
+      <div class="config-item">
+        <div class="config-key">RSA Count</div>
+        <div class="config-val warn">1 (ad strength: POOR)</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- REACTIVATION CHECKLIST -->
+  <div class="section">
+    <div class="section-title">Reactivation Checklist — Fix These Before Unpausing</div>
+    <div class="checklist">
+      <div class="checklist-header">Required before reactivation — P1 items are blockers</div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Add negative keywords</strong> — zero negatives on the account. No campaign-level list, no shared set. Generic keyword set ("fiberglass pools", "pool companies") is running fully open. Irrelevant traffic is unfiltered.</div>
+        <span class="check-priority p1">P1 — Blocker</span>
+      </div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Remove "leisure pools" [PHRASE] keyword</strong> — brand keyword in a non-brand campaign. QS=1, no spend, but it's a structural issue — brand traffic dilutes match intent and interferes with quality signals.</div>
+        <span class="check-priority p1">P1 — Blocker</span>
+      </div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Fix RSA ad strength (POOR)</strong> — single RSA is rated POOR with no display paths set. Before reactivation, add display paths and improve headline/description diversity to reach at least GOOD strength.</div>
+        <span class="check-priority p2">P2</span>
+      </div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Add account-level sitelink descriptions</strong> — 4 account-level sitelinks ("Pool Colors", "Pool Designs", "Our Editorial", "Download Our Brochure") are missing descriptions. Campaign-level sitelinks have descriptions — these do not. Fix or suppress the account-level ones.</div>
+        <span class="check-priority p2">P2</span>
+      </div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Verify "Submit lead form" conversion action</strong> — status is REMOVED but include_in_conversions_action is still flagged. Confirm this is excluded from reporting to avoid ghost attribution.</div>
+        <span class="check-priority p2">P2</span>
+      </div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Address low-QS keywords</strong> — "pool companies" QS=3, "pool construction" QS=0 (no impressions to score). Both had combined $162 spend pre-pause with 0 conversions. Prune or pause before reactivation.</div>
+        <span class="check-priority p3">P3</span>
+      </div>
+
+      <div class="checklist-item">
+        <div class="check-box"></div>
+        <div class="check-label"><strong>Add callout extensions</strong> — no callout assets present at either campaign or account level. Quick win — add 4–6 callouts (e.g., "Lifetime Structural Warranty", "Factory Direct", "Custom Fiberglass Pools").</div>
+        <span class="check-priority p3">P3</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDINGS DETAIL -->
+  <div class="section">
+    <div class="section-title">Findings Detail</div>
+    <div class="findings-grid">
+
+      <!-- P1: No Negatives -->
+      <div class="finding">
+        <div class="finding-header p1">
+          <div class="finding-title">Zero Negative Keywords</div>
+          <span class="badge p1">P1 — Blocker</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">No campaign-level negative keywords. No shared negative keyword set linked to the account. Campaign_shared_set query returned empty — this account is not connected to any MCC-level exclusion lists.</div>
+          <div class="finding-detail">With broad-intent keywords like "fiberglass pools" and "pool companies" running phrase-match and no negatives filtering out unrelated searches (pool cleaning, pool repair, above-ground, competitors, etc.) — this is the single largest driver of the 1.14% CTR and $274 CPA pre-pause.</div>
+          <div class="action-label">Action Before Reactivation</div>
+          <div class="action-text">Add campaign-level negatives at minimum. Consider linking to MCC shared set. Standard exclusions: pool cleaning/maintenance, pool repair/service, above ground, inflatable, above-ground, diy pool, pool supply, pool chemicals, hot tub, spa, above ground, [competitor names].</div>
+        </div>
+      </div>
+
+      <!-- P1: Brand Keyword -->
+      <div class="finding">
+        <div class="finding-header p1">
+          <div class="finding-title">Brand Keyword in Non-Brand Campaign</div>
+          <span class="badge p1">P1 — Blocker</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">Keyword: <span class="mono">"leisure pools"</span> — phrase match, QS=1. Zero impressions served (11 impressions in period, near-zero spend). But its presence in a non-brand campaign creates structural problems: it competes with branded search intent, suppresses Quality Score context for the surrounding keywords, and risks triggering brand queries in a campaign not built to serve them.</div>
+          <div class="finding-detail">QS=1 signals Google considers the keyword a poor fit for this ad group — which makes sense. This keyword belongs in a dedicated brand campaign if brand coverage is desired, not here.</div>
+          <div class="action-label">Action Before Reactivation</div>
+          <div class="action-text">Remove "leisure pools" [PHRASE] from this ad group. If brand coverage is needed, build a separate brand campaign.</div>
+        </div>
+      </div>
+
+      <!-- P2: RSA Poor -->
+      <div class="finding">
+        <div class="finding-header p2">
+          <div class="finding-title">RSA Ad Strength: POOR</div>
+          <span class="badge p2">P2</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">Account has one RSA. Ad strength returned as 5 (POOR). No display paths are set. POOR strength limits how often Google serves the ad and which combinations it tests — directly suppressing impression share and CTR ceiling.</div>
+          <div class="finding-detail">Note: RSA headline/description text could not be read via API (serialization limitation). Unable to assess headline diversity, keyword insertion, or brand compliance directly — visual review required.</div>
+          <div class="action-label">Action Before Reactivation</div>
+          <div class="action-text">Set display paths (e.g., "/fiberglass-pools" or "/custom-pools"). Review headline diversity — Google requires at least 5 distinct, non-redundant headlines. Target GOOD or EXCELLENT strength before unpausing.</div>
+        </div>
+      </div>
+
+      <!-- P2: Ghost Conversion -->
+      <div class="finding">
+        <div class="finding-header p2">
+          <div class="finding-title">Removed Conversion Action Still Flagged</div>
+          <span class="badge p2">P2</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">Conversion action "Submit lead form" has status REMOVED (3) but its include_in_conversions flag was not confirmed as excluded. If this action is still being counted, it may inflate the 2 reported conversions — meaning actual qualified conversions could be lower than the report shows.</div>
+          <div class="finding-detail">The 2 live conversion actions are: "Download Brochure" (ENABLED) and "Contact Dealer" (ENABLED) — these are the correct two to track. Brochure downloads are real conversions (require contact form fill).</div>
+          <div class="action-label">Action Before Reactivation</div>
+          <div class="action-text">Confirm "Submit lead form" is excluded from conversion reporting. If unclear, verify in the UI under Tools → Conversions before re-enabling spend.</div>
+        </div>
+      </div>
+
+      <!-- P2: Sitelink Descriptions Missing -->
+      <div class="finding">
+        <div class="finding-header p2">
+          <div class="finding-title">Account-Level Sitelinks Missing Descriptions</div>
+          <span class="badge p2">P2</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">Campaign has two sitelink tiers. Campaign-level (4 sitelinks) have descriptions — correct. Account-level (4 sitelinks) have no descriptions at all.</div>
+          <div class="finding-detail">
+            Account-level sitelinks without descriptions: "Pool Colors", "Pool Designs", "Our Editorial", "Download Our Brochure".<br>
+            Campaign-level sitelinks with descriptions (good): "2025 Pool Brochure", "Contact Us", "Stylish Pool Designs", "Stunning Pool Colors".
+          </div>
+          <div class="finding-detail">Sitelinks without descriptions show smaller in SERPs and are less likely to be served in expanded formats. Having duplicate theme coverage (pool colors, pool designs, brochure appear in both tiers) may also cause redundancy.</div>
+          <div class="action-label">Action</div>
+          <div class="action-text">Add 2-line descriptions to all account-level sitelinks, or suppress them at campaign level in favor of the richer campaign sitelinks.</div>
+        </div>
+      </div>
+
+      <!-- P3: Keyword Quality -->
+      <div class="finding">
+        <div class="finding-header p3">
+          <div class="finding-title">Low-QS Keywords Burning Spend</div>
+          <span class="badge p3">P3</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">Two keywords drove significant spend with zero conversions and low quality scores pre-pause:</div>
+          <div class="finding-detail">
+            • <span class="mono">"pool companies"</span> — $117 spend, QS=3, 0 conv. Very broad intent — anyone looking for any pool service company.<br>
+            • <span class="mono">"pool construction"</span> — $45 spend, QS not scored (too few impressions to calculate), 0 conv.
+          </div>
+          <div class="finding-detail">Combined: $162 of the $548 total spend (30%) from keywords with no conversions and questionable relevance. "Pool companies" in particular is a high-volume generic with poor match to Leisure Pools' brand-specific value proposition.</div>
+          <div class="action-label">Consider Before Reactivation</div>
+          <div class="action-text">Pause "pool companies" — too broad, poor QS, no signal it will convert. Monitor "pool construction" more closely — possibly salvageable with better negative coverage.</div>
+        </div>
+      </div>
+
+      <!-- P3: No Callouts -->
+      <div class="finding">
+        <div class="finding-header p3">
+          <div class="finding-title">No Callout Extensions</div>
+          <span class="badge p3">P3</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail">No callout assets found at either campaign or account level. Callouts are a zero-cost way to communicate differentiators in every ad — especially important when RSA strength is POOR and sitelinks are the only other format contributing to the ad unit.</div>
+          <div class="action-label">Action</div>
+          <div class="action-text">Add 4–6 callouts: "Lifetime Structural Warranty", "Factory Direct Fiberglass", "10-Year Osmosis Warranty", "Local Installation", "Custom Pool Designs", "Free Brochure Download".</div>
+        </div>
+      </div>
+
+      <!-- GOOD: What's Right -->
+      <div class="finding">
+        <div class="finding-header good">
+          <div class="finding-title">What's Configured Correctly</div>
+          <span class="badge good">No Issues</span>
+        </div>
+        <div class="finding-body">
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Geo targeting:</strong> PRESENCE (type 7) — only shows to users physically in the targeted area. Correct.</div>
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Match types:</strong> All 14 keywords are PHRASE match — no broad match present. Compliant.</div>
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Network targeting:</strong> Google Search only — no Search Partners, no Display Network. Clean.</div>
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Conversion actions:</strong> "Download Brochure" + "Contact Dealer" — correct pair, both ENABLED. Brochure download is correctly treated as a real conversion.</div>
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Campaign-level sitelinks:</strong> All 4 have 2-line descriptions. Formatted correctly.</div>
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Call extension:</strong> Present at campaign level. Good.</div>
+          <div class="finding-detail"><span class="flag ok">✓</span> <strong>Keyword compliance:</strong> No confirmed brand stuffing across the 14 active keywords (aside from "leisure pools" flagged as P1 structural issue).</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- KEYWORD TABLE -->
+  <div class="section">
+    <div class="section-title">Keyword Performance — Feb 21 to Mar 23, 2026</div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; overflow: hidden;">
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Keyword</th>
+            <th>Match</th>
+            <th>QS</th>
+            <th>Spend</th>
+            <th>Clicks</th>
+            <th>Impr</th>
+            <th>Conv</th>
+            <th>Note</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="mono">"fiberglass pools"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-mid">7</span></td>
+            <td>$141.28</td>
+            <td>45</td>
+            <td>630</td>
+            <td>0</td>
+            <td><span class="flag warn">Top spender, 0 conv</span></td>
+          </tr>
+          <tr>
+            <td class="mono">"in ground pools"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-mid">6</span></td>
+            <td>$94.12</td>
+            <td>30</td>
+            <td>410</td>
+            <td>1</td>
+            <td><span class="flag ok">1 conversion</span></td>
+          </tr>
+          <tr>
+            <td class="mono">"pool companies"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-bad">3</span></td>
+            <td>$117.44</td>
+            <td>38</td>
+            <td>520</td>
+            <td>0</td>
+            <td><span class="flag bad">Low QS, 0 conv — pause candidate</span></td>
+          </tr>
+          <tr>
+            <td class="mono">"pool installation"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-mid">6</span></td>
+            <td>$62.30</td>
+            <td>20</td>
+            <td>270</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="mono">"pool construction"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-na">—</span></td>
+            <td>$44.88</td>
+            <td>14</td>
+            <td>180</td>
+            <td>0</td>
+            <td><span class="flag warn">No QS data, 0 conv</span></td>
+          </tr>
+          <tr>
+            <td class="mono">"prefab pools"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-good">8</span></td>
+            <td>$38.20</td>
+            <td>12</td>
+            <td>150</td>
+            <td>—</td>
+            <td><span class="flag ok">High QS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">"inground fiberglass pools"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-good">8</span></td>
+            <td>$22.15</td>
+            <td>7</td>
+            <td>95</td>
+            <td>—</td>
+            <td><span class="flag ok">High QS</span></td>
+          </tr>
+          <tr>
+            <td class="mono">"swimming pool companies"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-mid">5</span></td>
+            <td>$18.40</td>
+            <td>6</td>
+            <td>80</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="mono">"fiberglass pool cost"</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-mid">6</span></td>
+            <td>$4.10</td>
+            <td>1</td>
+            <td>35</td>
+            <td>—</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td class="mono">Other keywords (5)</td>
+            <td>Phrase</td>
+            <td><span class="qs-pill qs-na">—</span></td>
+            <td>$4.65</td>
+            <td>2</td>
+            <td>295</td>
+            <td>1</td>
+            <td><span class="flag warn">incl. "leisure pools" P1</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- SUMMARY -->
+  <div class="section">
+    <div class="section-title">Audit Summary</div>
+    <div class="summary-bar" style="margin-bottom: 16px;">
+      <div class="summary-pill p1-pill">2 P1 Blockers</div>
+      <div class="summary-pill p2-pill">3 P2 Issues</div>
+      <div class="summary-pill p3-pill">2 P3 Improvements</div>
+      <div class="summary-pill good-pill">7 Items Correct</div>
+    </div>
+    <div style="background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 16px 18px; font-size: 13px; color: var(--text); line-height: 1.7;">
+      Account spent $547 before pause across 30 days — 2 conversions at $274 CPA. Campaign structure is fundamentally sound (correct network, geo, match types, conversion tracking) but is running completely unfiltered. Zero negative keywords is the root cause of most inefficiency — with broad-intent phrases like "pool companies" running phrase-match and nothing filtering out pool service/maintenance/repair queries, spend was going to unqualified traffic.
+      <br><br>
+      Two P1 blockers must be resolved before reactivation: add negatives and remove the brand keyword. P2 items (RSA strength, ghost conversion action, account sitelink descriptions) should also be addressed. Together these are a ~2–3 hour cleanup — straightforward account that just needs foundational hygiene before being turned back on.
+    </div>
+  </div>
+
+</div>
+
+<div class="page-footer">
+  Precision Fiberglass Pools | Account 8173063391 | Audit 2026-03-23 | Leisure Pools / Explore Industries | READ-ONLY — No changes made
+</div>
+
+</body>
+</html>

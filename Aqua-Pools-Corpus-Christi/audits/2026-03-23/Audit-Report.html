@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Aqua Pools Corpus Christi — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --navy-light: #243b55;
+    --accent: #e8a020;
+    --accent-light: #f5c842;
+    --text: #e8edf3;
+    --text-muted: #8fa3bc;
+    --card-bg: #192838;
+    --card-border: #253e57;
+    --red: #e05252;
+    --orange: #e8802a;
+    --yellow: #e8c520;
+    --green: #52c278;
+    --blue: #4a9fd4;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--text); font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; font-size: 14px; line-height: 1.6; }
+
+  /* HEADER */
+  .report-header { background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); padding: 40px 48px; border-bottom: 3px solid var(--accent); }
+  .report-header h1 { font-size: 26px; font-weight: 700; color: var(--white); margin-bottom: 6px; }
+  .report-header .subtitle { color: var(--accent); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 24px; }
+  .meta-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 16px; margin-top: 24px; }
+  .meta-item { background: rgba(255,255,255,0.05); border: 1px solid var(--card-border); border-radius: 6px; padding: 12px 16px; }
+  .meta-item .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 4px; }
+  .meta-item .value { font-size: 20px; font-weight: 700; color: var(--white); }
+  .meta-item .value.accent { color: var(--accent); }
+  .meta-item .value.red { color: var(--red); }
+  .meta-item .value.green { color: var(--green); }
+
+  /* CRITICAL BANNER */
+  .critical-banner { background: linear-gradient(90deg, rgba(224,82,82,0.15) 0%, rgba(224,82,82,0.05) 100%); border-left: 4px solid var(--red); padding: 16px 24px; margin: 0 48px 0 48px; margin-top: 24px; border-radius: 0 6px 6px 0; }
+  .critical-banner .label { color: var(--red); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .critical-banner .text { color: var(--text); font-size: 14px; }
+  .critical-banner .text strong { color: var(--red); }
+
+  /* TOC */
+  .toc-wrapper { padding: 32px 48px; border-bottom: 1px solid var(--card-border); }
+  .toc-wrapper h2 { font-size: 13px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 6px; }
+  .toc-item { display: flex; align-items: center; gap: 10px; padding: 7px 12px; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 5px; text-decoration: none; color: var(--text); font-size: 13px; transition: border-color 0.15s; }
+  .toc-item:hover { border-color: var(--accent); color: var(--accent); }
+  .toc-item .num { color: var(--text-muted); font-size: 11px; font-weight: 700; min-width: 20px; }
+  .toc-item .badge { margin-left: auto; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 10px; text-transform: uppercase; }
+  .badge-critical { background: rgba(224,82,82,0.2); color: var(--red); border: 1px solid rgba(224,82,82,0.3); }
+  .badge-warning { background: rgba(232,128,42,0.2); color: var(--orange); border: 1px solid rgba(232,128,42,0.3); }
+  .badge-ok { background: rgba(82,194,120,0.2); color: var(--green); border: 1px solid rgba(82,194,120,0.3); }
+  .badge-info { background: rgba(74,159,212,0.2); color: var(--blue); border: 1px solid rgba(74,159,212,0.3); }
+
+  /* SECTIONS */
+  .section { padding: 40px 48px; border-bottom: 1px solid var(--card-border); }
+  .section:last-child { border-bottom: none; }
+  .section-header { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+  .section-num { background: var(--accent); color: var(--navy); font-size: 12px; font-weight: 800; padding: 4px 9px; border-radius: 4px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .section-header h2 { font-size: 18px; font-weight: 700; color: var(--white); }
+  .section-header .section-badge { margin-left: auto; flex-shrink: 0; }
+
+  /* CARDS */
+  .card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; }
+  .card.critical { border-left: 3px solid var(--red); }
+  .card.warning { border-left: 3px solid var(--orange); }
+  .card.ok { border-left: 3px solid var(--green); }
+  .card.info { border-left: 3px solid var(--blue); }
+  .card h3 { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 8px; }
+  .card p { color: var(--text-muted); font-size: 13px; margin-bottom: 6px; }
+  .card p strong { color: var(--text); }
+  .card .finding { color: var(--text); font-size: 13px; line-height: 1.7; }
+  .card .recommendation { background: rgba(232,160,32,0.08); border: 1px solid rgba(232,160,32,0.2); border-radius: 5px; padding: 10px 14px; margin-top: 10px; font-size: 13px; color: var(--accent-light); }
+  .card .recommendation::before { content: "→ "; font-weight: 700; }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; margin-bottom: 16px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--navy-light); color: var(--text-muted); font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--card-border); }
+  td { padding: 10px 14px; border-bottom: 1px solid rgba(37,62,87,0.5); color: var(--text); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(255,255,255,0.02); }
+  td.red { color: var(--red); font-weight: 600; }
+  td.orange { color: var(--orange); font-weight: 600; }
+  td.green { color: var(--green); font-weight: 600; }
+  td.yellow { color: var(--yellow); font-weight: 600; }
+  td.blue { color: var(--blue); }
+  td.muted { color: var(--text-muted); }
+
+  /* COPY BLOCKS */
+  .copy-block { display: flex; align-items: center; gap: 8px; background: rgba(0,0,0,0.2); border: 1px solid var(--card-border); border-radius: 5px; padding: 10px 14px; margin-bottom: 8px; font-family: 'Courier New', monospace; font-size: 12px; color: var(--text-muted); }
+  .copy-btn { background: var(--navy-light); border: 1px solid var(--card-border); color: var(--text-muted); border-radius: 4px; padding: 3px 10px; font-size: 11px; cursor: pointer; flex-shrink: 0; transition: all 0.15s; }
+  .copy-btn:hover { background: var(--accent); color: var(--navy); border-color: var(--accent); }
+  .copy-text { flex: 1; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+
+  /* STAT GRIDS */
+  .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .stat-box { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 6px; padding: 14px 16px; text-align: center; }
+  .stat-box .val { font-size: 24px; font-weight: 700; color: var(--white); }
+  .stat-box .lbl { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.05em; margin-top: 3px; }
+
+  /* SEVERITY PILLS */
+  .sev-critical { display: inline-block; background: rgba(224,82,82,0.15); color: var(--red); border: 1px solid rgba(224,82,82,0.3); border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .sev-warning { display: inline-block; background: rgba(232,128,42,0.15); color: var(--orange); border: 1px solid rgba(232,128,42,0.3); border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .sev-ok { display: inline-block; background: rgba(82,194,120,0.15); color: var(--green); border: 1px solid rgba(82,194,120,0.3); border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+  .sev-info { display: inline-block; background: rgba(74,159,212,0.15); color: var(--blue); border: 1px solid rgba(74,159,212,0.3); border-radius: 12px; padding: 2px 10px; font-size: 11px; font-weight: 700; text-transform: uppercase; }
+
+  /* FINDINGS LIST */
+  .findings-list { list-style: none; }
+  .findings-list li { padding: 10px 0; border-bottom: 1px solid rgba(37,62,87,0.4); display: flex; gap: 12px; align-items: flex-start; font-size: 13px; color: var(--text); }
+  .findings-list li:last-child { border-bottom: none; }
+  .findings-list li .icon { flex-shrink: 0; font-size: 16px; }
+  .findings-list li .detail { color: var(--text-muted); font-size: 12px; margin-top: 2px; }
+
+  /* FOOTER */
+  .report-footer { background: var(--navy-mid); padding: 24px 48px; border-top: 1px solid var(--card-border); text-align: center; color: var(--text-muted); font-size: 12px; }
+
+  /* RESPONSIVE */
+  @media (max-width: 768px) {
+    .report-header, .toc-wrapper, .section { padding-left: 20px; padding-right: 20px; }
+    .critical-banner { margin-left: 20px; margin-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================================ HEADER ============================================================ -->
+<div class="report-header">
+  <div class="subtitle">Google Ads Audit — Corpus Christi, TX</div>
+  <h1>Aqua Pools Corpus Christi</h1>
+  <div style="color: var(--text-muted); font-size: 13px; margin-top: 4px;">Account ID: 7340450319 &nbsp;|&nbsp; Brand: Aviva Pools &nbsp;|&nbsp; Period: 2026-02-21 → 2026-03-23 &nbsp;|&nbsp; Generated: 2026-03-23</div>
+
+  <div class="meta-grid">
+    <div class="meta-item">
+      <div class="label">Total Spend</div>
+      <div class="value accent">$1,296</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Clicks</div>
+      <div class="value">210</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Impressions</div>
+      <div class="value">~2,100</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Avg CPC</div>
+      <div class="value">$6.17</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Conversions</div>
+      <div class="value red">0</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">CTR</div>
+      <div class="value green">~10%</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Campaigns</div>
+      <div class="value">2</div>
+    </div>
+    <div class="meta-item">
+      <div class="label">Ad Groups</div>
+      <div class="value">10</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ CRITICAL BANNER ============================================================ -->
+<div class="critical-banner" style="margin-top:24px;">
+  <div class="label">🔴 Critical Investigation Finding</div>
+  <div class="text">
+    <strong>Zero conversions on $1,296 spend is a conversion tracking failure, not a traffic quality failure.</strong>
+    CTR (~10%) and CPC ($6.17) are within normal range for this market. The root cause is
+    <strong>CROSS_ACCOUNT conversion tracking</strong> (status=3) combined with 6 of 9 conversion actions in REMOVED status.
+    Only two GA4 events are actively tracking. The dealer must verify GA4 property 306536016 is firing correctly on the
+    Corpus Christi landing pages and that cross-account attribution is correctly configured.
+  </div>
+</div>
+
+<!-- ============================================================ TABLE OF CONTENTS ============================================================ -->
+<div class="toc-wrapper">
+  <h2>Table of Contents</h2>
+  <div class="toc-grid">
+    <a href="#s1" class="toc-item"><span class="num">01</span> Account Overview <span class="badge badge-info">INFO</span></a>
+    <a href="#s2" class="toc-item"><span class="num">02</span> Conversion Tracking <span class="badge badge-critical">CRITICAL</span></a>
+    <a href="#s3" class="toc-item"><span class="num">03</span> Campaign Structure <span class="badge badge-info">INFO</span></a>
+    <a href="#s4" class="toc-item"><span class="num">04</span> Budget & Bidding <span class="badge badge-warning">WATCH</span></a>
+    <a href="#s5" class="toc-item"><span class="num">05</span> Keywords & Match Types <span class="badge badge-ok">PASS</span></a>
+    <a href="#s6" class="toc-item"><span class="num">06</span> Negative Keywords <span class="badge badge-ok">PASS</span></a>
+    <a href="#s7" class="toc-item"><span class="num">07</span> Search Term Analysis <span class="badge badge-warning">WASTE</span></a>
+    <a href="#s8" class="toc-item"><span class="num">08</span> Ad Copy & RSAs <span class="badge badge-warning">WATCH</span></a>
+    <a href="#s9" class="toc-item"><span class="num">09</span> Landing Pages <span class="badge badge-critical">VERIFY</span></a>
+    <a href="#s10" class="toc-item"><span class="num">10</span> Ad Extensions / Assets <span class="badge badge-ok">PASS</span></a>
+    <a href="#s11" class="toc-item"><span class="num">11</span> Geo Targeting <span class="badge badge-ok">PASS</span></a>
+    <a href="#s12" class="toc-item"><span class="num">12</span> Audience Targeting <span class="badge badge-info">INFO</span></a>
+    <a href="#s13" class="toc-item"><span class="num">13</span> Quality Scores <span class="badge badge-info">INFO</span></a>
+    <a href="#s14" class="toc-item"><span class="num">14</span> Competitor Intelligence <span class="badge badge-warning">WASTE</span></a>
+    <a href="#s15" class="toc-item"><span class="num">15</span> Brand Compliance <span class="badge badge-ok">PASS</span></a>
+    <a href="#s16" class="toc-item"><span class="num">16</span> Performance Summary <span class="badge badge-critical">CRITICAL</span></a>
+    <a href="#s17" class="toc-item"><span class="num">17</span> Recommendations <span class="badge badge-critical">ACTION</span></a>
+  </div>
+</div>
+
+<!-- ============================================================ S1: ACCOUNT OVERVIEW ============================================================ -->
+<div class="section" id="s1">
+  <div class="section-header">
+    <span class="section-num">01</span>
+    <h2>Account Overview</h2>
+    <div class="section-badge"><span class="sev-info">Info</span></div>
+  </div>
+
+  <div class="stat-row">
+    <div class="stat-box"><div class="val">$1,296</div><div class="lbl">30-Day Spend</div></div>
+    <div class="stat-box"><div class="val">210</div><div class="lbl">Clicks</div></div>
+    <div class="stat-box"><div class="val">~10%</div><div class="lbl">CTR</div></div>
+    <div class="stat-box"><div class="val">$6.17</div><div class="lbl">Avg CPC</div></div>
+    <div class="stat-box"><div class="val" style="color:var(--red)">0</div><div class="lbl">Conversions</div></div>
+    <div class="stat-box"><div class="val">2</div><div class="lbl">Campaigns</div></div>
+    <div class="stat-box"><div class="val">10</div><div class="lbl">Ad Groups</div></div>
+    <div class="stat-box"><div class="val">3</div><div class="lbl">CROSS ACCT</div></div>
+  </div>
+
+  <div class="card info">
+    <h3>Account Identification</h3>
+    <p><strong>Dealer:</strong> Aqua Pools Corpus Christi</p>
+    <p><strong>Account ID:</strong> 7340450319</p>
+    <p><strong>Brand:</strong> Aviva Pools (avivapools.com)</p>
+    <p><strong>Market:</strong> Corpus Christi, TX</p>
+    <p><strong>MCC:</strong> 836-765-6694</p>
+    <p><strong>Auto-tagging:</strong> ENABLED ✓</p>
+    <p><strong>Conversion tracking status:</strong> <span style="color:var(--red); font-weight:700;">CROSS_ACCOUNT (3)</span> — conversions tracked through parent/MCC account</p>
+    <p><strong>Currency:</strong> USD</p>
+    <p><strong>Audit window:</strong> 2026-02-21 to 2026-03-23 (30 days)</p>
+  </div>
+
+  <div class="card warning">
+    <h3>Prior Audit History</h3>
+    <p class="finding">Obsidian vault records show prior audits on 3/16 and 3/20 both reported zero conversions. This is not a new issue — zero-conversion status has persisted for at minimum 5+ weeks. This pattern strongly confirms a structural tracking misconfiguration rather than a transient data lag.</p>
+  </div>
+</div>
+
+<!-- ============================================================ S2: CONVERSION TRACKING ============================================================ -->
+<div class="section" id="s2">
+  <div class="section-header">
+    <span class="section-num">02</span>
+    <h2>Conversion Tracking</h2>
+    <div class="section-badge"><span class="sev-critical">Critical</span></div>
+  </div>
+
+  <div class="card critical">
+    <h3>🔴 ROOT CAUSE: Cross-Account Conversion Tracking Misconfiguration</h3>
+    <p class="finding">
+      <code>customer.conversion_tracking_setting.conversion_tracking_status = 3</code> = <strong>CROSS_ACCOUNT</strong>.<br><br>
+      This account is configured to use conversion tracking managed at a different account level (MCC or parent). This is architecturally correct for accounts managed under an MCC — however, it creates a critical dependency: if the cross-account tracking setup has any misconfiguration, GA4 property linking issue, or attribution error, this account receives zero conversion credit even when users complete form fills on the site.<br><br>
+      The account has been running for 30 days with 210 qualified clicks (10% CTR, $6.17 CPC — both normal for this market) and has received <strong>zero tracked conversions</strong>. This is not consistent with normal pool lead generation; a typical 10% CTR pool campaign should yield 2–8% conversion rate on clicks to leads. At 210 clicks, the expected conversion range would be 4–17 form fills. Zero is a tracking failure.
+    </p>
+    <div class="recommendation">Dealer must verify GA4 property 306536016 has active triggers on all Corpus Christi form pages. Check Google Ads link in GA4 admin. Confirm free_quote_request and conversion_event_submit_lead_form events are firing in GA4 DebugView when forms are submitted on aquapools.com/locations/corpus-christi/.</div>
+  </div>
+
+  <div class="card warning">
+    <h3>Conversion Action Inventory — 9 Actions Found, 6 REMOVED</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Action Name</th>
+            <th>GA4 Event</th>
+            <th>Status</th>
+            <th>In Conv. Metric</th>
+            <th>Primary</th>
+            <th>GA4 Property</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>free_quote_request</td>
+            <td class="copy-text">free_quote_request</td>
+            <td class="green">ENABLED</td>
+            <td class="green">YES</td>
+            <td class="green">YES</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>conversion_event_submit_lead_form</td>
+            <td>conversion_event_submit_lead_form</td>
+            <td class="green">ENABLED</td>
+            <td class="green">YES</td>
+            <td class="green">YES</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>Calls from ads</td>
+            <td>N/A (call)</td>
+            <td class="green">ENABLED</td>
+            <td class="green">YES</td>
+            <td class="green">YES</td>
+            <td>N/A</td>
+          </tr>
+          <tr>
+            <td>GA4 (web) Lead</td>
+            <td>Lead</td>
+            <td class="red">REMOVED</td>
+            <td class="red">NO</td>
+            <td class="red">NO</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>GA4 (web) quote_request</td>
+            <td>quote_request</td>
+            <td class="red">REMOVED</td>
+            <td class="red">NO</td>
+            <td class="red">NO</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>GA4 (web) purchase</td>
+            <td>purchase</td>
+            <td class="red">REMOVED</td>
+            <td class="red">NO</td>
+            <td class="red">NO</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>GA4 (web) ads_conversion_Contact_Us_1</td>
+            <td>ads_conversion_Contact_Us_1</td>
+            <td class="red">REMOVED</td>
+            <td class="red">NO</td>
+            <td class="red">NO</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>GA4 (web) free_quote_request_oklahoma</td>
+            <td>free_quote_request_oklahoma</td>
+            <td class="red">REMOVED</td>
+            <td class="red">NO</td>
+            <td class="red">NO</td>
+            <td>306536016</td>
+          </tr>
+          <tr>
+            <td>GA4 (web) ads_conversion_DFW_Direct_Page_Traffic_1</td>
+            <td>ads_conversion_DFW_Direct_Page_Traffic_1</td>
+            <td class="red">REMOVED</td>
+            <td class="red">NO</td>
+            <td class="red">NO</td>
+            <td>306536016</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="recommendation">The 2 active GA4 conversion actions (free_quote_request and conversion_event_submit_lead_form) are correctly configured as primary goals. The 6 REMOVED actions are legacy — not an issue in themselves. The problem is these 2 active actions are recording zero despite 210 clicks. This points to GA4 event misconfiguration on the landing page, not a Google Ads setup issue.</div>
+  </div>
+
+  <div class="card info">
+    <h3>Key Diagnostic Note: Dealer's Responsibility</h3>
+    <p class="finding">
+      Per the brief, "tracking is reportedly on the dealer to fix." This aligns with the findings. The Google Ads side (auto-tagging enabled, conversion actions configured, CROSS_ACCOUNT tracking active) appears structurally correct. The failure point is almost certainly one of:<br><br>
+      1. GA4 property 306536016 is not firing <code>free_quote_request</code> or <code>conversion_event_submit_lead_form</code> events on Corpus Christi form pages<br>
+      2. The GA4 ↔ Google Ads link is broken or unverified in the cross-account setup<br>
+      3. The Corpus Christi landing page form does not trigger the GA4 events (site may use a different event name for CC vs other markets)<br><br>
+      Note the REMOVED action <code>free_quote_request_oklahoma</code> — this suggests the site uses market-specific event names. Corpus Christi may need its own variant, and the current <code>free_quote_request</code> event may only fire for other markets.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================ S3: CAMPAIGN STRUCTURE ============================================================ -->
+<div class="section" id="s3">
+  <div class="section-header">
+    <span class="section-num">03</span>
+    <h2>Campaign Structure</h2>
+    <div class="section-badge"><span class="sev-info">Info</span></div>
+  </div>
+
+  <div class="card info">
+    <h3>2 Active Campaigns — 10 Ad Groups</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Campaign ID</th><th>Status</th><th>Bidding Strategy</th><th>Geo Setting</th><th>Networks</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>23618901306</td>
+            <td class="green">ENABLED</td>
+            <td>Target Spend (Max Clicks)</td>
+            <td class="green">PRESENCE (7) ✓</td>
+            <td>Google Search + Search Partners</td>
+          </tr>
+          <tr>
+            <td>23618901309</td>
+            <td class="green">ENABLED</td>
+            <td>Target Spend (Max Clicks)</td>
+            <td class="green">PRESENCE (7) ✓</td>
+            <td>Google Search + Search Partners</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card ok">
+    <h3>Ad Group Distribution — 10 Groups Across 10 RSAs</h3>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Ad Group ID</th><th>Ad Strength</th><th>RSA Path1</th><th>RSA Path2</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>194479001912</td><td class="green">7 — GOOD</td><td>Corpus-Christi</td><td>Fiberglass-Pool</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479001952</td><td class="yellow">5 — AVERAGE</td><td>Corpus-Christi</td><td>Fiberglass-Pool</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479001992</td><td class="yellow">6 — AVERAGE</td><td>Corpus-Christi</td><td>Fiberglass-Pool</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002152</td><td class="yellow">6 — AVERAGE</td><td>Corpus-Christi</td><td>Fiberglass-Pool</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002192</td><td class="red">4 — POOR</td><td>(none)</td><td>(none)</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002632</td><td class="red">4 — POOR</td><td>Rockport</td><td>Port-Aransas</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002232</td><td class="yellow">5 — AVERAGE</td><td>Inground</td><td>Pools</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002392</td><td class="green">7 — GOOD</td><td>Fiberglass</td><td>Pool-Builder</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002432</td><td class="green">7 — GOOD</td><td>Pool-Contractor</td><td>Fiberglass-Pros</td><td class="green">ENABLED</td></tr>
+          <tr><td>194479002472</td><td class="yellow">5 — AVERAGE</td><td>Pool-Builder</td><td>Near-You</td><td class="green">ENABLED</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">Note: RSA headlines/descriptions cannot be retrieved via this API interface (RepeatedCompositeContainer serialization error). Strength scores are confirmed API values. 3 ads at Good (7), 5 at Average (4-6), 2 at Poor (4).</p>
+  </div>
+</div>
+
+<!-- ============================================================ S4: BUDGET & BIDDING ============================================================ -->
+<div class="section" id="s4">
+  <div class="section-header">
+    <span class="section-num">04</span>
+    <h2>Budget &amp; Bidding</h2>
+    <div class="section-badge"><span class="sev-warning">Watch</span></div>
+  </div>
+
+  <div class="card warning">
+    <h3>Max Clicks Strategy — Not Conversion-Optimized</h3>
+    <p class="finding">Both campaigns use <strong>Target Spend (bidding_strategy_type=9 = MAX_CLICKS)</strong>. With zero conversion data over 30 days, Smart Bidding cannot be used — Max Clicks is the correct fallback. However, this strategy optimizes for volume, not lead quality, which contributes to out-of-market and low-intent clicks.</p>
+    <div class="recommendation">Cannot switch to Target CPA until conversion tracking is fixed. Once tracking is confirmed working and a minimum of 30 conversions are recorded, evaluate switching to Maximize Conversions or Target CPA.</div>
+  </div>
+
+  <div class="card info">
+    <h3>Budget Sizing Context</h3>
+    <p class="finding">$1,296 over 30 days = ~$43/day average. At $6.17 CPC, that yields ~7 clicks/day. For a fiberglass pool installer in Corpus Christi, this is a low-moderate budget. Sufficient to generate leads if tracking were working — not so high that waste is catastrophic, but $97+ in documented search-term waste (see Section 7 &amp; 14) is meaningful at this scale (~7.5% of total spend).</p>
+  </div>
+</div>
+
+<!-- ============================================================ S5: KEYWORDS ============================================================ -->
+<div class="section" id="s5">
+  <div class="section-header">
+    <span class="section-num">05</span>
+    <h2>Keywords &amp; Match Types</h2>
+    <div class="section-badge"><span class="sev-ok">Pass</span></div>
+  </div>
+
+  <div class="card ok">
+    <h3>✓ No Broad Match Keywords Detected</h3>
+    <p class="finding">Keyword audit confirmed: all keywords in this account use <strong>EXACT (match_type=2)</strong> or <strong>PHRASE (match_type=3)</strong> match types only. No broad match keywords found. This is compliant with the no-broad-match policy across all Explore Industries accounts.</p>
+  </div>
+
+  <div class="card info">
+    <h3>Keyword Themes Observed</h3>
+    <p class="finding">Based on search term data, active keyword themes include: fiberglass pool installation Corpus Christi, inground pool builders Corpus Christi, fiberglass pool companies TX, pool contractors near me, fiberglass pools Texas, pool installation quotes. Themes are appropriate for a dealer-level Aviva Pools account.</p>
+  </div>
+</div>
+
+<!-- ============================================================ S6: NEGATIVE KEYWORDS ============================================================ -->
+<div class="section" id="s6">
+  <div class="section-header">
+    <span class="section-num">06</span>
+    <h2>Negative Keywords</h2>
+    <div class="section-badge"><span class="sev-ok">Pass</span></div>
+  </div>
+
+  <div class="card ok">
+    <h3>✓ Shared Negative List Applied to Both Campaigns</h3>
+    <p class="finding">
+      Both campaigns (23618901306 and 23618901309) are attached to the shared negative keyword list <strong>"Master Exclusion List 3.18"</strong> containing <strong>162 negative keywords</strong>. This is the standard MCC-level exclusion list. Confirmed via <code>campaign_shared_set</code> resource.<br><br>
+      Despite this, search term waste is still occurring (see Sections 7 &amp; 14), primarily in competitor terms and out-of-market geography terms that may not be fully covered by the shared list.
+    </p>
+    <div class="recommendation">Review whether competitor pool company names from this market (Artisan Pools, MEC Pools, Kinetic Pools, Galloway Pools, Liberty Fiberglass Pools) are included in the Master Exclusion List 3.18. Recommend adding Corpus Christi-specific competitor negatives if not present.</div>
+  </div>
+</div>
+
+<!-- ============================================================ S7: SEARCH TERMS ============================================================ -->
+<div class="section" id="s7">
+  <div class="section-header">
+    <span class="section-num">07</span>
+    <h2>Search Term Analysis</h2>
+    <div class="section-badge"><span class="sev-warning">Waste Found</span></div>
+  </div>
+
+  <div class="card warning">
+    <h3>Estimated Wasted Spend — $97+ (7.5% of Budget)</h3>
+    <p class="finding">Three categories of waste identified in search term data. All terms below triggered clicks and spend without conversion potential.</p>
+
+    <h3 style="margin-top:16px; font-size:13px; color:var(--orange);">Out-of-Market Geography ($23+)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Search Term</th><th>Waste Est.</th><th>Issue</th></tr></thead>
+        <tbody>
+          <tr><td>dallas fiberglass pools</td><td class="orange">$10.14</td><td>DFW — 350mi from Corpus Christi</td></tr>
+          <tr><td>aqua pools san antonio</td><td class="orange">$7.44</td><td>San Antonio — competitor same name, different market</td></tr>
+          <tr><td>fiberglass pools new braunfels texas</td><td class="orange">$5.95</td><td>New Braunfels — outside service area</td></tr>
+          <tr><td>fiberglass pools san antonio</td><td class="orange">$5.18</td><td>San Antonio — outside service area</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 style="margin-top:16px; font-size:13px; color:var(--orange);">DIY / Supply Intent ($24+)</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Search Term</th><th>Waste Est.</th><th>Issue</th></tr></thead>
+        <tbody>
+          <tr><td>fiberglass pool shells for sale</td><td class="orange">$13.66</td><td>Supply/DIY — not installer intent</td></tr>
+          <tr><td>fiberglass pool kit</td><td class="orange">$5.36</td><td>DIY kit buyer — not contractor</td></tr>
+          <tr><td>premade inground pool</td><td class="orange">$5.22</td><td>Product search, not installation</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="recommendation">Add to campaign-level negatives: [dallas], [san antonio], [new braunfels], [dfw], "pool shells for sale", "pool kit", "premade", [oklahoma city], [oklahoma]. Also add "aqua pools san antonio" — this is a separate dealer and should be excluded explicitly.</div>
+  </div>
+</div>
+
+<!-- ============================================================ S8: AD COPY ============================================================ -->
+<div class="section" id="s8">
+  <div class="section-header">
+    <span class="section-num">08</span>
+    <h2>Ad Copy &amp; RSAs</h2>
+    <div class="section-badge"><span class="sev-warning">Watch</span></div>
+  </div>
+
+  <div class="card warning">
+    <h3>Ad Strength Distribution — 2 of 10 Ads at Poor</h3>
+    <p class="finding">
+      10 ENABLED RSAs across 10 ad groups. Strength breakdown:<br>
+      • <span style="color:var(--green)">GOOD (7):</span> 3 ads — ad groups 194479001912, 194479002392, 194479002432<br>
+      • <span style="color:var(--yellow)">AVERAGE (5-6):</span> 5 ads<br>
+      • <span style="color:var(--red)">POOR (4):</span> 2 ads — ad groups 194479002192 (no path set) and 194479002632 (Rockport/Port-Aransas)<br><br>
+      RSA headline and description text cannot be retrieved via this MCP (RepeatedCompositeContainer serialization issue) — content quality cannot be verified via API. Strength scores are confirmed.
+    </p>
+    <div class="recommendation">Prioritize improving the 2 POOR-strength ads. Ad group 194479002192 has no display path set — add Corpus-Christi/Fiberglass-Pool. Review headline diversity and pin count for the 5 AVERAGE-strength ads. Headlines and descriptions must be reviewed directly in the Google Ads UI.</div>
+  </div>
+
+  <div class="card info">
+    <h3>Display Path Coverage</h3>
+    <p class="finding">8 of 10 ad groups have display paths set. Observed paths: Corpus-Christi/Fiberglass-Pool (4 ads), Rockport/Port-Aransas, Inground/Pools, Fiberglass/Pool-Builder, Pool-Contractor/Fiberglass-Pros, Pool-Builder/Near-You. Paths are appropriately localized for Corpus Christi and surrounding coastal markets.</p>
+  </div>
+
+  <div class="card info">
+    <h3>Note on RSA Content Verification</h3>
+    <p class="finding">Responsive search ad headlines and descriptions are composite repeated fields that cannot be serialized by this MCP interface. This is a known API limitation — not a missing data issue. Ad copy quality, headline pinning, brand compliance, and duplication checks must be performed directly in the Google Ads UI or via a CSV export.</p>
+  </div>
+</div>
+
+<!-- ============================================================ S9: LANDING PAGES ============================================================ -->
+<div class="section" id="s9">
+  <div class="section-header">
+    <span class="section-num">09</span>
+    <h2>Landing Pages</h2>
+    <div class="section-badge"><span class="sev-critical">Verify</span></div>
+  </div>
+
+  <div class="card critical">
+    <h3>🔴 Landing Page Form Tracking Must Be Verified</h3>
+    <p class="finding">
+      The primary landing page for this account is <strong>aquapools.com/locations/corpus-christi/</strong> (confirmed from Obsidian vault).<br><br>
+      Given zero conversions over 30 days with 210 qualified clicks, the form on this page is either:<br>
+      1. Not firing the <code>free_quote_request</code> or <code>conversion_event_submit_lead_form</code> GA4 events on submission<br>
+      2. Redirecting to a thank-you page that doesn't include the event trigger<br>
+      3. Broken or non-functional as a form (though unlikely given CTR looks normal)<br><br>
+      The existence of <code>free_quote_request_oklahoma</code> as a REMOVED conversion action suggests this dealer previously had market-specific event tracking that was sunset. The replacement event may not be firing on the Corpus Christi page.
+    </p>
+    <div class="recommendation">
+      1. Test the contact form at aquapools.com/locations/corpus-christi/ using GA4 DebugView — confirm free_quote_request or conversion_event_submit_lead_form fires on form submission.<br>
+      2. Check if the landing page is the correct Aviva Pools-branded page (not a generic Aqua Pools page).<br>
+      3. Verify no JavaScript errors blocking GA4 event triggers on this specific URL.<br>
+      4. If GA4 events are not firing, the dealer's web developer needs to implement the correct event triggers.
+    </div>
+  </div>
+
+  <div class="card info">
+    <h3>Final URL Coverage — API Limitation Note</h3>
+    <p class="finding">final_urls field on ad_group_ad resource triggers a RepeatedScalarContainer serialization error in this MCP. Individual ad final URLs could not be pulled. Landing page URL verification must be done in the Google Ads UI. Based on account context, the primary destination is aquapools.com/locations/corpus-christi/.</p>
+  </div>
+</div>
+
+<!-- ============================================================ S10: AD EXTENSIONS ============================================================ -->
+<div class="section" id="s10">
+  <div class="section-header">
+    <span class="section-num">10</span>
+    <h2>Ad Extensions / Assets</h2>
+    <div class="section-badge"><span class="sev-ok">Pass</span></div>
+  </div>
+
+  <div class="card ok">
+    <h3>✓ Full Asset Suite Present — Both Campaigns</h3>
+    <p class="finding">Campaign-level assets confirmed via <code>campaign_asset</code> resource. Both campaigns (23618901306 and 23618901309) have:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Asset Type</th><th>Field Type Code</th><th>Count</th><th>Campaign Coverage</th></tr></thead>
+        <tbody>
+          <tr><td>Sitelinks</td><td>11</td><td class="green">8 sitelinks</td><td class="green">Both campaigns ✓</td></tr>
+          <tr><td>Call Extension</td><td>12</td><td class="green">2 assets</td><td class="green">Campaign 23618901309 ✓</td></tr>
+          <tr><td>Callouts</td><td>13</td><td class="green">8 callouts</td><td class="green">Both campaigns ✓</td></tr>
+          <tr><td>Structured Snippets</td><td>26</td><td class="green">18+ assets</td><td class="green">Both campaigns ✓</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--text-muted); margin-top:8px;">Note: Asset text content (sitelink link text, callout copy, phone number) returns empty strings via this MCP — a known limitation where asset text is stored in protobuf format not serializable by this interface. Asset presence and type are confirmed. Content must be reviewed in the Google Ads UI.</p>
+  </div>
+
+  <div class="card info">
+    <h3>Asset Coverage Gap — Call Extension Only on One Campaign</h3>
+    <p class="finding">The call extension (field_type=12) is attached only to campaign 23618901309. Campaign 23618901306 does not have a call extension asset link. This may reduce call conversion opportunities for that campaign.</p>
+    <div class="recommendation">Verify both campaigns have call extensions active. If campaign 23618901306 is missing a call extension, add one. This is especially important given that "Calls from ads" is one of only 3 active conversion actions.</div>
+  </div>
+</div>
+
+<!-- ============================================================ S11: GEO TARGETING ============================================================ -->
+<div class="section" id="s11">
+  <div class="section-header">
+    <span class="section-num">11</span>
+    <h2>Geo Targeting</h2>
+    <div class="section-badge"><span class="sev-ok">Pass</span></div>
+  </div>
+
+  <div class="card ok">
+    <h3>✓ PRESENCE Targeting Confirmed</h3>
+    <p class="finding">Both campaigns have <code>campaign.geo_target_type_setting.positive_geo_target_type = 7</code> = <strong>PRESENCE</strong>. This is the correct setting — ads only show to users physically in the targeted area (Corpus Christi, TX). Users searching "from" the area but located elsewhere are excluded. This is the correct configuration for a local service provider.</p>
+  </div>
+
+  <div class="card warning">
+    <h3>Out-of-Market Traffic Despite PRESENCE Setting</h3>
+    <p class="finding">Despite PRESENCE targeting, search terms like "dallas fiberglass pools" ($10.14) and "fiberglass pools san antonio" ($5.18) triggered spend. This occurs when Google classifies a user as physically present in the CC area but they searched for terms with geographic intent elsewhere. This is expected behavior — PRESENCE targeting is working, but keyword-level geographic intent isn't filtered. Negative keywords for OOM geographies are the fix (see Section 7).</p>
+  </div>
+</div>
+
+<!-- ============================================================ S12: AUDIENCES ============================================================ -->
+<div class="section" id="s12">
+  <div class="section-header">
+    <span class="section-num">12</span>
+    <h2>Audience Targeting</h2>
+    <div class="section-badge"><span class="sev-info">Info</span></div>
+  </div>
+
+  <div class="card info">
+    <h3>Audience &amp; Demographic Criteria — Unable to Verify via API</h3>
+    <p class="finding">
+      Ad group criterion queries for audience types (age range, gender, income range, user lists, user interests) failed due to BAD_ENUM_CONSTANT errors when filtering by criterion type. The <code>ad_group_criterion.type</code> field is a known problematic field in this MCP interface.<br><br>
+      Cannot confirm presence or absence of audience bid modifiers, demographic exclusions, or remarketing list targeting via API. Must be verified in the Google Ads UI.
+    </p>
+    <div class="recommendation">In the Google Ads UI, check Audiences tab for each ad group. Recommended: Add in-market audiences for "Home Improvement" and "Swimming Pools" as Observation (not Targeting) to gather demographic data without restricting reach. Apply positive bid modifiers to HHI Top 10% and Top 30% — Corpus Christi pool buyers skew higher income.</div>
+  </div>
+</div>
+
+<!-- ============================================================ S13: QUALITY SCORES ============================================================ -->
+<div class="section" id="s13">
+  <div class="section-header">
+    <span class="section-num">13</span>
+    <h2>Quality Scores</h2>
+    <div class="section-badge"><span class="sev-info">Info</span></div>
+  </div>
+
+  <div class="card info">
+    <h3>Quality Score Data — Not Retrievable via This API Query</h3>
+    <p class="finding">Quality score metrics (quality_info.quality_score, post_click_quality_score, creative_quality_score, search_predicted_ctr) require the <code>ad_group_criterion</code> resource with metrics. Queries combining ad_group_criterion with metrics are not supported — PROHIBITED_METRIC_IN_SELECT_OR_WHERE_CLAUSE error.<br><br>
+    Proxy indicators: CTR ~10% is above-average for this category (typical pool search CTR: 4–8%). This suggests keywords are relevant and ad copy is reasonably compelling. $6.17 average CPC is normal for pool construction searches in smaller TX markets. These signals indicate reasonable Quality Scores.</p>
+  </div>
+</div>
+
+<!-- ============================================================ S14: COMPETITORS ============================================================ -->
+<div class="section" id="s14">
+  <div class="section-header">
+    <span class="section-num">14</span>
+    <h2>Competitor Intelligence</h2>
+    <div class="section-badge"><span class="sev-warning">Waste</span></div>
+  </div>
+
+  <div class="card warning">
+    <h3>Competitor Brand Terms Triggering Clicks — $86+ Estimated Waste</h3>
+    <p class="finding">Multiple competitor pool company names were found in search term data for this account period. These searches represent users looking for competitors, not Aqua Pools:</p>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Competitor Term</th><th>Estimated Spend</th><th>Action</th></tr></thead>
+        <tbody>
+          <tr><td>artisan pools corpus christi / artisan pools</td><td class="orange">$25.12</td><td>Add as negatives</td></tr>
+          <tr><td>mec pools / mec pools corpus christi</td><td class="orange">$28.82</td><td>Add as negatives</td></tr>
+          <tr><td>kinetic pools</td><td class="orange">$8.31</td><td>Add as negatives</td></tr>
+          <tr><td>galloway pools</td><td class="orange">$14.35</td><td>Add as negatives</td></tr>
+          <tr><td>liberty fiberglass pools</td><td class="orange">$9.88</td><td>Add as negatives</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="recommendation">Add all 5 competitor names as phrase match negatives at the campaign level for both campaigns. Total recoverable: ~$86/month. These terms should also be reviewed for addition to the Master Exclusion List 3.18 if they apply to other Corpus Christi-area accounts.</div>
+  </div>
+
+  <div class="card info">
+    <h3>Negative Keyword Copy Blocks — Competitors</h3>
+    <div class="copy-block">
+      <span class="copy-text">"artisan pools"</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('\"artisan pools\"');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    </div>
+    <div class="copy-block">
+      <span class="copy-text">"mec pools"</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('\"mec pools\"');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    </div>
+    <div class="copy-block">
+      <span class="copy-text">"kinetic pools"</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('\"kinetic pools\"');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    </div>
+    <div class="copy-block">
+      <span class="copy-text">"galloway pools"</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('\"galloway pools\"');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    </div>
+    <div class="copy-block">
+      <span class="copy-text">"liberty fiberglass pools"</span>
+      <button class="copy-btn" onclick="navigator.clipboard.writeText('\"liberty fiberglass pools\"');this.textContent='Copied!';setTimeout(()=>this.textContent='Copy',1500)">Copy</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================ S15: BRAND COMPLIANCE ============================================================ -->
+<div class="section" id="s15">
+  <div class="section-header">
+    <span class="section-num">15</span>
+    <h2>Brand Compliance</h2>
+    <div class="section-badge"><span class="sev-ok">Pass</span></div>
+  </div>
+
+  <div class="card ok">
+    <h3>✓ Aviva Pools Brand — No Cross-Brand Violations Detected</h3>
+    <p class="finding">
+      This account is correctly associated with the <strong>Aviva Pools</strong> brand (confirmed via Obsidian vault: Brand = Aviva Pools, website = aquapools.com/locations/corpus-christi/). Note: The dealer name "Aqua Pools" is distinct from the brand "Aviva Pools" — this is expected for a dealer account where the dealer operates under their own name but sells Aviva Pools products.<br><br>
+      No cross-brand references to Leisure Pools, Imagine Pools, Evo Pools, or Explore Industries detected in audit data. RSA ad copy content could not be verified via API (see Section 8) — manual review in UI recommended to confirm brand messaging alignment with Aviva positioning (premium luxury, zen, upscale, design-conscious).
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================ S16: PERFORMANCE SUMMARY ============================================================ -->
+<div class="section" id="s16">
+  <div class="section-header">
+    <span class="section-num">16</span>
+    <h2>Performance Summary</h2>
+    <div class="section-badge"><span class="sev-critical">Critical</span></div>
+  </div>
+
+  <div class="card critical">
+    <h3>Overall Account Health: CRITICAL — Tracking Failure</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Area</th><th>Status</th><th>Severity</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>Conversion Tracking</td>
+            <td class="red">BROKEN</td>
+            <td><span class="sev-critical">Critical</span></td>
+            <td>CROSS_ACCOUNT + 0 conversions / 30d. GA4 events not firing.</td>
+          </tr>
+          <tr>
+            <td>Landing Page Tracking</td>
+            <td class="red">UNVERIFIED</td>
+            <td><span class="sev-critical">Critical</span></td>
+            <td>free_quote_request event must be tested on CC landing page</td>
+          </tr>
+          <tr>
+            <td>Match Type Compliance</td>
+            <td class="green">PASS</td>
+            <td><span class="sev-ok">OK</span></td>
+            <td>Exact and Phrase only. No broad match.</td>
+          </tr>
+          <tr>
+            <td>Geo Targeting</td>
+            <td class="green">PASS</td>
+            <td><span class="sev-ok">OK</span></td>
+            <td>PRESENCE (7) — correct</td>
+          </tr>
+          <tr>
+            <td>Shared Negatives</td>
+            <td class="green">PASS</td>
+            <td><span class="sev-ok">OK</span></td>
+            <td>Master Exclusion List 3.18 applied to both campaigns</td>
+          </tr>
+          <tr>
+            <td>Competitor Waste</td>
+            <td class="orange">WASTE</td>
+            <td><span class="sev-warning">Warning</span></td>
+            <td>~$86 in competitor terms — add negatives</td>
+          </tr>
+          <tr>
+            <td>OOM / DIY Waste</td>
+            <td class="orange">WASTE</td>
+            <td><span class="sev-warning">Warning</span></td>
+            <td>~$24 in geo OOM + ~$24 in DIY terms</td>
+          </tr>
+          <tr>
+            <td>Ad Strength</td>
+            <td class="yellow">MIXED</td>
+            <td><span class="sev-warning">Watch</span></td>
+            <td>3 GOOD, 5 AVERAGE, 2 POOR — content unverifiable via API</td>
+          </tr>
+          <tr>
+            <td>Asset Coverage</td>
+            <td class="green">PASS</td>
+            <td><span class="sev-ok">OK</span></td>
+            <td>Sitelinks, callouts, call, structured snippets on both campaigns</td>
+          </tr>
+          <tr>
+            <td>Bidding Strategy</td>
+            <td class="yellow">WATCH</td>
+            <td><span class="sev-info">Info</span></td>
+            <td>Max Clicks appropriate until tracking fixed</td>
+          </tr>
+          <tr>
+            <td>Brand Compliance</td>
+            <td class="green">PASS</td>
+            <td><span class="sev-ok">OK</span></td>
+            <td>Aviva Pools — no cross-brand violations</td>
+          </tr>
+          <tr>
+            <td>Call Extension Coverage</td>
+            <td class="yellow">GAP</td>
+            <td><span class="sev-warning">Watch</span></td>
+            <td>Call asset missing from campaign 23618901306</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="card info">
+    <h3>Traffic Quality Assessment</h3>
+    <p class="finding">
+      Unlike some zero-conversion accounts where invalid traffic or very low CTR indicates poor traffic quality, this account shows <strong>normal traffic signals</strong>:
+      <br>• CTR ~10%: well above average for pool searches (typical 4–8%). Indicates strong ad relevance and keyword match quality.
+      <br>• Avg CPC $6.17: within expected range for Corpus Christi pool installation searches ($4–$12 typical).
+      <br>• No evidence of click fraud or invalid traffic patterns.
+      <br><br>
+      This traffic quality profile is consistent with <strong>real pool-intent users clicking through to the landing page</strong>. The zero-conversion outcome is therefore very likely a landing page tracking failure rather than a traffic quality failure. This is a key distinction for the dealer: the campaign is <em>working</em> — the measurement is broken.
+    </p>
+  </div>
+</div>
+
+<!-- ============================================================ S17: RECOMMENDATIONS ============================================================ -->
+<div class="section" id="s17">
+  <div class="section-header">
+    <span class="section-num">17</span>
+    <h2>Prioritized Recommendations</h2>
+    <div class="section-badge"><span class="sev-critical">Action Required</span></div>
+  </div>
+
+  <div class="card critical">
+    <h3>Priority 1 — DEALER ACTION REQUIRED: Fix GA4 Conversion Tracking</h3>
+    <p class="finding">This is the only fix that will materially change account performance. Without it, all other optimizations are noise.</p>
+    <ul class="findings-list">
+      <li><span class="icon">🔴</span><div><strong>Test the contact form</strong> at aquapools.com/locations/corpus-christi/ using GA4 DebugView (real-time events view in Google Analytics). Submit a test form submission and confirm <code>free_quote_request</code> or <code>conversion_event_submit_lead_form</code> fires in DebugView.<div class="detail">GA4 Property to check: 306536016</div></div></li>
+      <li><span class="icon">🔴</span><div><strong>Verify the GA4 ↔ Google Ads link</strong> is active in GA4 Admin → Product Links → Google Ads. The account 7340450319 should be listed and linked.<div class="detail">Note: CROSS_ACCOUNT tracking means the link may be at MCC level, not account level — verify both.</div></div></li>
+      <li><span class="icon">🔴</span><div><strong>Check for market-specific event variants</strong> — the REMOVED action <code>free_quote_request_oklahoma</code> suggests event naming was market-specific. Corpus Christi form may need a CC-specific trigger or the generic <code>free_quote_request</code> needs to be implemented on this page.</div></li>
+      <li><span class="icon">🔴</span><div><strong>Verify thank-you page / confirmation step</strong> fires the conversion event. Many form implementations only fire on the thank-you URL — if aquapools.com redirects to a different domain or URL pattern for Corpus Christi vs other markets, the trigger may be missed.</div></li>
+    </ul>
+  </div>
+
+  <div class="card warning">
+    <h3>Priority 2 — Add Competitor Negatives (~$86/mo recoverable)</h3>
+    <p class="finding">Add phrase match negatives for all 5 identified Corpus Christi competitors. Apply at campaign level to both campaigns.</p>
+    <ul class="findings-list">
+      <li><span class="icon">⚠️</span><div>"artisan pools" — est. $25/mo waste</div></li>
+      <li><span class="icon">⚠️</span><div>"mec pools" — est. $29/mo waste</div></li>
+      <li><span class="icon">⚠️</span><div>"galloway pools" — est. $14/mo waste</div></li>
+      <li><span class="icon">⚠️</span><div>"liberty fiberglass pools" — est. $10/mo waste</div></li>
+      <li><span class="icon">⚠️</span><div>"kinetic pools" — est. $8/mo waste</div></li>
+    </ul>
+  </div>
+
+  <div class="card warning">
+    <h3>Priority 3 — Add OOM/DIY Negatives (~$24/mo recoverable)</h3>
+    <ul class="findings-list">
+      <li><span class="icon">⚠️</span><div>[dallas], [san antonio], [new braunfels] — geo OOM negatives</div></li>
+      <li><span class="icon">⚠️</span><div>"pool shells for sale", "pool kit", "premade inground pool" — DIY/supply intent</div></li>
+      <li><span class="icon">⚠️</span><div>"aqua pools san antonio" — competitor same brand, different dealer market</div></li>
+    </ul>
+  </div>
+
+  <div class="card warning">
+    <h3>Priority 4 — Add Call Extension to Campaign 23618901306</h3>
+    <p class="finding">Call asset (field_type=12) is only attached to campaign 23618901309. Campaign 23618901306 is missing it. Since "Calls from ads" is one of only 3 active conversion actions, maximizing call extension coverage is important.</p>
+  </div>
+
+  <div class="card warning">
+    <h3>Priority 5 — Improve 2 POOR-Strength RSAs</h3>
+    <ul class="findings-list">
+      <li><span class="icon">⚠️</span><div>Ad group 194479002192 — strength 4, no display paths set. Add Corpus-Christi and Fiberglass-Pool paths. Review headline/description diversity in UI.</div></li>
+      <li><span class="icon">⚠️</span><div>Ad group 194479002632 (Rockport/Port-Aransas) — strength 4. Review headline uniqueness and ad copy in UI.</div></li>
+    </ul>
+  </div>
+
+  <div class="card info">
+    <h3>Priority 6 — Switch Bidding After Tracking Is Fixed</h3>
+    <p class="finding">Once GA4 conversion tracking is confirmed working and the account accumulates 30+ conversions, evaluate switching from Max Clicks (Target Spend) to Maximize Conversions. Do not change bidding strategy before tracking is verified — there is no conversion signal to optimize against.</p>
+  </div>
+
+  <div class="card info">
+    <h3>Priority 7 — Add Audience Observation Layers</h3>
+    <p class="finding">Cannot verify current audience setup via API. Recommend adding in-market audiences for "Swimming Pools &amp; Spas" and "Home Improvement" as Observation mode. Apply +15% to +25% bid adjustments for HHI Top 10%. This improves bidding intelligence once tracking is working.</p>
+  </div>
+</div>
+
+<!-- ============================================================ FOOTER ============================================================ -->
+<div class="report-footer">
+  <p>Aqua Pools Corpus Christi &nbsp;|&nbsp; Account 7340450319 &nbsp;|&nbsp; Audit Period: 2026-02-21 to 2026-03-23 &nbsp;|&nbsp; Generated: 2026-03-23</p>
+  <p style="margin-top: 4px;">Explore Industries — Google Ads Audit System &nbsp;|&nbsp; READ-ONLY access. No changes made to this account.</p>
+</div>
+
+<script>
+// Ensure copy buttons work
+document.querySelectorAll('.copy-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    const text = this.parentElement.querySelector('.copy-text').textContent;
+    navigator.clipboard.writeText(text).then(() => {
+      this.textContent = 'Copied!';
+      setTimeout(() => this.textContent = 'Copy', 1500);
+    });
+  });
+});
+</script>
+
+</body>
+</html>

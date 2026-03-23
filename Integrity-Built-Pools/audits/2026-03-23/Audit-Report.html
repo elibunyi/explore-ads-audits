@@ -1,0 +1,641 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Integrity Built Pools — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #162236;
+    --navy-light: #1e3050;
+    --accent: #2e9cca;
+    --accent-light: #4db8e8;
+    --gold: #e8a020;
+    --red: #e05252;
+    --green: #4caf7d;
+    --yellow: #f0c040;
+    --text: #e8edf2;
+    --text-muted: #8fa8c0;
+    --border: #2a3f5a;
+    --card: #162236;
+    --card-inner: #1a2a40;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); border-bottom: 2px solid var(--accent); padding: 32px 40px; }
+  .header h1 { font-size: 26px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .header .meta { color: var(--text-muted); font-size: 13px; }
+  .header .meta span { color: var(--accent-light); font-weight: 600; }
+  .header .priority-badge { display: inline-block; background: var(--gold); color: var(--navy); font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 20px; margin-left: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .nav { background: var(--navy-mid); border-bottom: 1px solid var(--border); padding: 12px 40px; display: flex; gap: 20px; flex-wrap: wrap; }
+  .nav a { color: var(--text-muted); text-decoration: none; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; padding: 4px 0; border-bottom: 2px solid transparent; transition: all 0.2s; }
+  .nav a:hover { color: var(--accent); border-bottom-color: var(--accent); }
+  .container { max-width: 1100px; margin: 0 auto; padding: 32px 40px; }
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 0.8px; border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 16px; display: flex; align-items: center; gap: 8px; }
+  .section-title .badge { font-size: 10px; padding: 2px 8px; border-radius: 10px; font-weight: 700; letter-spacing: 0.3px; }
+  .badge-critical { background: rgba(224,82,82,0.2); color: var(--red); border: 1px solid rgba(224,82,82,0.4); }
+  .badge-warn { background: rgba(240,192,64,0.15); color: var(--yellow); border: 1px solid rgba(240,192,64,0.35); }
+  .badge-ok { background: rgba(76,175,125,0.15); color: var(--green); border: 1px solid rgba(76,175,125,0.35); }
+  .badge-info { background: rgba(46,156,202,0.15); color: var(--accent); border: 1px solid rgba(46,156,202,0.35); }
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .kpi { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 16px; text-align: center; }
+  .kpi .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .kpi .value { font-size: 22px; font-weight: 700; color: #fff; }
+  .kpi .sub { font-size: 11px; color: var(--text-muted); margin-top: 3px; }
+  .kpi.warn .value { color: var(--yellow); }
+  .kpi.bad .value { color: var(--red); }
+  .kpi.good .value { color: var(--green); }
+  .kpi.accent .value { color: var(--accent); }
+  .card { background: var(--card); border: 1px solid var(--border); border-radius: 8px; padding: 20px; margin-bottom: 12px; }
+  .card h3 { font-size: 13px; font-weight: 700; margin-bottom: 8px; color: var(--accent-light); }
+  .finding { border-left: 3px solid var(--border); padding: 10px 16px; margin-bottom: 8px; border-radius: 0 6px 6px 0; background: var(--card-inner); }
+  .finding.critical { border-left-color: var(--red); }
+  .finding.warning { border-left-color: var(--yellow); }
+  .finding.ok { border-left-color: var(--green); }
+  .finding.info { border-left-color: var(--accent); }
+  .finding-label { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+  .finding.critical .finding-label { color: var(--red); }
+  .finding.warning .finding-label { color: var(--yellow); }
+  .finding.ok .finding-label { color: var(--green); }
+  .finding.info .finding-label { color: var(--accent); }
+  .finding p { font-size: 13px; color: var(--text); }
+  .finding .action { font-size: 12px; color: var(--text-muted); margin-top: 6px; font-style: italic; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--navy-light); color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; padding: 8px 12px; text-align: left; border-bottom: 1px solid var(--border); }
+  td { padding: 8px 12px; border-bottom: 1px solid rgba(42,63,90,0.5); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(30,48,80,0.5); }
+  .qs-badge { display: inline-block; padding: 2px 8px; border-radius: 10px; font-size: 11px; font-weight: 700; }
+  .qs-high { background: rgba(76,175,125,0.2); color: var(--green); }
+  .qs-mid { background: rgba(240,192,64,0.15); color: var(--yellow); }
+  .qs-low { background: rgba(224,82,82,0.2); color: var(--red); }
+  .qs-na { background: rgba(100,120,140,0.2); color: var(--text-muted); }
+  .match-broad { color: #7ec8e3; }
+  .match-phrase { color: #c8a7e3; }
+  .match-exact { color: #a3e07e; }
+  .copy-box { background: var(--navy); border: 1px solid var(--border); border-radius: 6px; padding: 12px 16px; font-family: 'Consolas', monospace; font-size: 12px; color: var(--text-muted); position: relative; margin-top: 8px; cursor: pointer; transition: border-color 0.2s; }
+  .copy-box:hover { border-color: var(--accent); }
+  .copy-box::after { content: '📋 Click to copy'; position: absolute; right: 10px; top: 8px; font-size: 10px; color: var(--text-muted); font-family: system-ui; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } .container { padding: 16px 20px; } }
+  .tag-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .tag { background: var(--navy-light); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-size: 11px; color: var(--text-muted); }
+  .score-row { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(42,63,90,0.4); }
+  .score-row:last-child { border-bottom: none; }
+  .score-label { min-width: 200px; font-size: 12px; color: var(--text-muted); }
+  .score-bar { flex: 1; height: 6px; background: var(--navy); border-radius: 3px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 3px; }
+  .score-value { min-width: 40px; text-align: right; font-size: 12px; font-weight: 700; }
+  .alert-box { background: rgba(224,82,82,0.08); border: 1px solid rgba(224,82,82,0.3); border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; }
+  .alert-box h4 { color: var(--red); font-size: 13px; margin-bottom: 6px; }
+  .alert-box p { font-size: 12px; color: var(--text-muted); }
+  .warn-box { background: rgba(240,192,64,0.07); border: 1px solid rgba(240,192,64,0.25); border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; }
+  .warn-box h4 { color: var(--yellow); font-size: 13px; margin-bottom: 6px; }
+  .warn-box p { font-size: 12px; color: var(--text-muted); }
+  .info-box { background: rgba(46,156,202,0.07); border: 1px solid rgba(46,156,202,0.25); border-radius: 8px; padding: 16px 20px; margin-bottom: 16px; }
+  .info-box h4 { color: var(--accent); font-size: 13px; margin-bottom: 6px; }
+  .info-box p { font-size: 12px; color: var(--text-muted); }
+  hr.divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+  .toc-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px 24px; }
+  .toc-item { font-size: 12px; padding: 3px 0; color: var(--text-muted); }
+  .toc-item a { color: var(--text-muted); text-decoration: none; }
+  .toc-item a:hover { color: var(--accent); }
+  .status-paused { color: var(--yellow); font-weight: 700; }
+  .status-active { color: var(--green); font-weight: 700; }
+</style>
+<script>
+document.addEventListener('click', function(e) {
+  const box = e.target.closest('.copy-box');
+  if (box) {
+    const text = box.dataset.copy || box.innerText.replace('📋 Click to copy','').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const orig = box.style.borderColor;
+      box.style.borderColor = '#4caf7d';
+      setTimeout(() => { box.style.borderColor = orig; }, 800);
+    });
+  }
+});
+</script>
+</head>
+<body>
+
+<div class="header">
+  <h1>Integrity Built Pools — Google Ads Audit <span class="priority-badge">Low-Medium Priority</span></h1>
+  <div class="meta">
+    Account: <span>5537276145</span> &nbsp;|&nbsp;
+    Brand: <span>Leisure Pools</span> &nbsp;|&nbsp;
+    Market: <span>Joplin / SW Missouri / NW Arkansas</span> &nbsp;|&nbsp;
+    Period: <span>Feb 21 – Mar 23, 2026 (30 days)</span> &nbsp;|&nbsp;
+    Audit Date: <span>March 23, 2026</span>
+  </div>
+</div>
+
+<div class="nav">
+  <a href="#overview">Overview</a>
+  <a href="#performance">Performance</a>
+  <a href="#campaigns">Campaigns</a>
+  <a href="#structure">Structure</a>
+  <a href="#keywords">Keywords</a>
+  <a href="#negatives">Negatives</a>
+  <a href="#assets">Assets</a>
+  <a href="#geo">Geo Targeting</a>
+  <a href="#conversions">Conversions</a>
+  <a href="#changelog">Change Log</a>
+  <a href="#recommendations">Recommendations</a>
+</div>
+
+<div class="container">
+
+  <!-- PRIORITY ALERTS -->
+  <div class="alert-box">
+    <h4>⚠ CRITICAL: PMax Campaign — PAUSED But $60/Day Budget Still Active (Reactivation Risk)</h4>
+    <p>The Performance Max campaign (ID: 21312341671) is currently paused. Its budget of $60/day remains live and intact. One click to enable — intentional or accidental — would immediately resume $1,800+/month in spend with no warning. No annotation was left explaining why it was paused. The overly broad geo targeting on PMax (130+ granular zip/city locations vs. 22 for Search) means if reactivated, it would immediately spend across a far wider area than the Search campaign currently serves.</p>
+  </div>
+  <div class="warn-box">
+    <h4>⚠ WARNING: Bidding Strategy Mismatch — Records Indicate Max Conversions, API Confirms Max Clicks</h4>
+    <p>Internal notes (Obsidian) recorded the Search campaign as using Maximize Conversions. The API returns bidding_strategy_type = 9 (TARGET_SPEND), which is <strong>Maximize Clicks</strong>. This is a significant finding: Maximize Clicks optimizes for volume, not lead quality. With $2,057 spent and only 8 conversions in 30 days ($257 CPA), switching to Maximize Conversions would better align bid strategy with the goal of driving actual leads.</p>
+  </div>
+  <div class="warn-box">
+    <h4>⚠ WARNING: Majority of Positive Keywords Have Below-Average Predicted CTR</h4>
+    <p>18 of 26 non-branded positive keywords show BELOW_AVERAGE predicted CTR. This is the single largest drag on ad rank and quality score. RSA headline copy needs to better mirror keyword intent — especially "near me" and location-specific queries which are a significant portion of the active keyword set.</p>
+  </div>
+
+  <!-- 1. OVERVIEW -->
+  <div class="section" id="overview">
+    <div class="section-title">1. Account Overview <span class="badge badge-info">Summary</span></div>
+    <div class="kpi-grid">
+      <div class="kpi bad"><div class="label">30-Day Spend</div><div class="value">$2,057</div><div class="sub">$33/day Search budget</div></div>
+      <div class="kpi bad"><div class="label">Conversions</div><div class="value">8</div><div class="sub">30-day window</div></div>
+      <div class="kpi bad"><div class="label">CPA</div><div class="value">$257</div><div class="sub">Target: &lt;$150</div></div>
+      <div class="kpi warn"><div class="label">Active Campaigns</div><div class="value">1 of 2</div><div class="sub">PMax paused</div></div>
+      <div class="kpi accent"><div class="label">Bidding Strategy</div><div class="value">Max Clicks</div><div class="sub">TARGET_SPEND (enum 9)</div></div>
+      <div class="kpi warn"><div class="label">Ad Groups</div><div class="value">1</div><div class="sub">Flat structure</div></div>
+      <div class="kpi accent"><div class="label">Positive Keywords</div><div class="value">26</div><div class="sub">+ 1 branded exact</div></div>
+      <div class="kpi ok"><div class="label">Shared Neg Set</div><div class="value">122</div><div class="sub">Negatives linked</div></div>
+    </div>
+    <div class="card">
+      <h3>Account Context</h3>
+      <p>Integrity Built Pools operates out of the Joplin/SW Missouri/NW Arkansas market, which is a smaller volume market than metro-adjacent accounts. With $2,057 in 30-day spend generating only 8 conversions at $257 CPA, performance is poor by pool dealer standards. The primary Search campaign runs on Max Clicks bidding — a click-volume strategy — which does not filter for conversion intent. The paused PMax campaign poses a future risk as its geo targeting is significantly broader than the Search campaign.</p>
+    </div>
+  </div>
+
+  <!-- 2. PERFORMANCE -->
+  <div class="section" id="performance">
+    <div class="section-title">2. Performance Summary <span class="badge badge-warn">Underperforming</span></div>
+    <div class="two-col">
+      <div class="card">
+        <h3>Search Campaign Performance (Feb 21 – Mar 23, 2026)</h3>
+        <table>
+          <tr><th>Metric</th><th>Value</th></tr>
+          <tr><td>Total Spend</td><td>$2,057</td></tr>
+          <tr><td>Conversions</td><td>8</td></tr>
+          <tr><td>CPA</td><td>$257</td></tr>
+          <tr><td>Daily Budget</td><td>$33/day</td></tr>
+          <tr><td>Bidding Strategy</td><td><span style="color:var(--yellow)">Maximize Clicks (Max Spend)</span></td></tr>
+          <tr><td>Bid Cap</td><td>None set</td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>PMax Campaign Status</h3>
+        <table>
+          <tr><th>Field</th><th>Value</th></tr>
+          <tr><td>Status</td><td><span class="status-paused">PAUSED</span></td></tr>
+          <tr><td>Budget</td><td><span style="color:var(--red)">$60/day (ACTIVE)</span></td></tr>
+          <tr><td>Monthly Exposure</td><td>$1,800 if enabled</td></tr>
+          <tr><td>Geo Targets</td><td>130+ locations (very broad)</td></tr>
+          <tr><td>Reason for Pause</td><td><span style="color:var(--text-muted)">Unknown — no annotation</span></td></tr>
+          <tr><td>Recommendation</td><td>Keep paused or archive budget</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="finding critical">
+      <div class="finding-label">Critical — Bidding Strategy Mismatch</div>
+      <p>The Search campaign is confirmed running on <strong>Maximize Clicks (TARGET_SPEND, enum 9)</strong> — not Maximize Conversions as previously noted. Max Clicks optimizes purely for click volume with no regard for lead quality or conversion probability. With 3 conversion actions tracking actual leads (Calls, Brochure Downloads, Contact Dealer form), this account should be running Maximize Conversions to let the algorithm prioritize traffic most likely to convert.</p>
+      <div class="action">Action: Switch Search campaign to Maximize Conversions. Monitor for 2–3 weeks before evaluating CPA improvement.</div>
+    </div>
+    <div class="finding critical">
+      <div class="finding-label">Critical — $257 CPA Is Unsustainable</div>
+      <p>8 conversions over 30 days at $257/conversion is well above acceptable CPA for a regional pool dealer. Industry benchmark for pool dealers is typically $80–$150 per qualified lead. Root causes: Max Clicks bidding strategy, below-average CTR on most keywords, single flat ad group (no segmentation by intent), and RSA missing display paths.</p>
+      <div class="action">Action: Bidding strategy change (Max Conversions), RSA optimization, and keyword intent segmentation are the primary levers.</div>
+    </div>
+  </div>
+
+  <!-- 3. CAMPAIGNS -->
+  <div class="section" id="campaigns">
+    <div class="section-title">3. Campaign Structure <span class="badge badge-warn">Issues Found</span></div>
+    <table>
+      <tr><th>Campaign</th><th>ID</th><th>Status</th><th>Budget</th><th>Bidding</th><th>Geo Targets</th></tr>
+      <tr>
+        <td>Integrity Built Pools campaign</td>
+        <td>21114441320</td>
+        <td><span class="status-active">ACTIVE</span></td>
+        <td>$33/day</td>
+        <td><span style="color:var(--yellow)">Maximize Clicks</span></td>
+        <td>22 positive, 1 negative</td>
+      </tr>
+      <tr>
+        <td>Integrity Built Pools PMax</td>
+        <td>21312341671</td>
+        <td><span class="status-paused">PAUSED</span></td>
+        <td><span style="color:var(--red)">$60/day (active)</span></td>
+        <td>—</td>
+        <td>130+ locations</td>
+      </tr>
+    </table>
+    <br>
+    <div class="finding warning">
+      <div class="finding-label">Warning — PMax Budget Remains Active While Paused</div>
+      <p>The $60/day PMax budget is still live. If the campaign is reactivated (intentionally or accidentally), it immediately resumes spend at $1,800+/month across 130+ granular geo targets — a much wider area than the Search campaign's 22 locations. There is no record of why this campaign was paused.</p>
+      <div class="action">Action: If PMax is to remain paused long-term, reduce the budget to $1 or archive. If there's an intent to reactivate, align geo targets with the Search campaign first and ensure asset groups are populated correctly.</div>
+    </div>
+    <div class="finding info">
+      <div class="finding-label">Info — Geo Target Type Verified</div>
+      <p>Search campaign positive geo target type is confirmed as PRESENCE (enum 7) — correct. Ads only show to people physically located in the target area, not people who have shown interest. This is the right setting for a local dealer account.</p>
+    </div>
+    <div class="finding info">
+      <div class="finding-label">Info — Minimal Account Activity</div>
+      <p>Change log for Feb 25 – Mar 23 shows only 1 change event: a campaign UPDATE on the Search campaign on March 13, 2026 by eli.bunyi@exploreindustries.com via Google Ads web UI. This account has been largely unattended for the past 30 days.</p>
+    </div>
+  </div>
+
+  <!-- 4. STRUCTURE -->
+  <div class="section" id="structure">
+    <div class="section-title">4. Account Structure <span class="badge badge-warn">Flat — Needs Segmentation</span></div>
+    <div class="card">
+      <h3>Ad Group Layout</h3>
+      <p>The entire account runs from a single ad group: <strong>"Ad group 1"</strong> (ID: 161504656313) within the Search campaign. All 27 positive keywords — spanning generic pool intent, fiberglass-specific intent, near-me queries, cost queries, plunge pool queries, and a branded exact match — are in one ad group. This flat structure prevents meaningful message matching between keyword intent and ad copy.</p>
+    </div>
+    <div class="finding warning">
+      <div class="finding-label">Warning — Single Ad Group for All Intent Types</div>
+      <p>A single flat ad group means the RSA must serve all intent types simultaneously: "fiberglass pools" (awareness), "fiberglass pool cost" (research), "pool builders near me" (high intent), and "integrity built pools" (branded). The algorithm cannot differentiate messaging for these distinct stages. This directly contributes to below-average CTR and predicted CTR quality scores across the board.</p>
+      <div class="action">Action: Segment into at minimum 3 ad groups: (1) Fiberglass Intent, (2) Near Me / Contractor, (3) Brand. Ideally 4–5 groups with RSA copy tailored per segment.</div>
+    </div>
+    <div class="finding info">
+      <div class="finding-label">Info — Ad Rotation</div>
+      <p>One ENABLED RSA in the active ad group, ad strength = GOOD (enum 6). No display paths set (path1/path2 blank). RSA headline/description text not retrievable via API (RepeatedScalarContainer — standard limitation).</p>
+    </div>
+  </div>
+
+  <!-- 5. KEYWORDS -->
+  <div class="section" id="keywords">
+    <div class="section-title">5. Keyword Analysis <span class="badge badge-warn">Quality Score Issues</span></div>
+    <div class="info-box">
+      <h4>Note on Quality Score Readings</h4>
+      <p>QS = 0 indicates insufficient impression data to calculate a quality score (keyword is rarely triggered or was recently added). This is not the same as a low quality score — it means no data, not poor performance. Only keywords with QS ≥ 1 reflect actual scoring.</p>
+    </div>
+    <table>
+      <tr><th>Keyword</th><th>Match Type</th><th>QS</th><th>Predicted CTR</th><th>Ad Relevance</th><th>LP Quality</th></tr>
+      <tr><td>fiberglass pools</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-high">8</span></td><td>AVERAGE</td><td>ABOVE_AVG</td><td>ABOVE_AVG</td></tr>
+      <tr><td>pool builder</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-high">7</span></td><td>BELOW_AVG</td><td>ABOVE_AVG</td><td>ABOVE_AVG</td></tr>
+      <tr><td>fiberglass pools near me</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-high">7</span></td><td>AVERAGE</td><td>AVERAGE</td><td>ABOVE_AVG</td></tr>
+      <tr><td>small inground pool cost</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">6</span></td><td>AVERAGE</td><td>BELOW_AVG</td><td>ABOVE_AVG</td></tr>
+      <tr><td>swimming pool installation</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">5</span></td><td>BELOW_AVG</td><td>ABOVE_AVG</td><td>AVERAGE</td></tr>
+      <tr><td>pool installation</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">5</span></td><td>BELOW_AVG</td><td>ABOVE_AVG</td><td>AVERAGE</td></tr>
+      <tr><td>pool installer</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">5</span></td><td>BELOW_AVG</td><td>ABOVE_AVG</td><td>AVERAGE</td></tr>
+      <tr><td>swimming pool installers near me</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">5</span></td><td>AVERAGE</td><td>BELOW_AVG</td><td>AVERAGE</td></tr>
+      <tr><td>swimming pool builders near me</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">5</span></td><td>AVERAGE</td><td>BELOW_AVG</td><td>AVERAGE</td></tr>
+      <tr><td>plunge pools</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-mid">5</span></td><td>AVERAGE</td><td>ABOVE_AVG</td><td>BELOW_AVG</td></tr>
+      <tr><td>fiberglass pool cost</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-low">4</span></td><td>BELOW_AVG</td><td>AVERAGE</td><td>AVERAGE</td></tr>
+      <tr><td>pool companies</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-low">4</span></td><td>BELOW_AVG</td><td>AVERAGE</td><td>AVERAGE</td></tr>
+      <tr><td>pool companies near me</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-low">4</span></td><td>BELOW_AVG</td><td>AVERAGE</td><td>AVERAGE</td></tr>
+      <tr><td>pool builders near me</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-low">4</span></td><td>BELOW_AVG</td><td>AVERAGE</td><td>AVERAGE</td></tr>
+      <tr><td>pool contractors near me</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-low">4</span></td><td>BELOW_AVG</td><td>AVERAGE</td><td>AVERAGE</td></tr>
+      <tr><td>swimming pool company</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-low">3</span></td><td>BELOW_AVG</td><td>BELOW_AVG</td><td>AVERAGE</td></tr>
+      <tr><td>pool contractor</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>swimming pool contractors</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>pool construction</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>fiberglass inground pool</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>swimming pool designer</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>fiberglass swimming pool cost</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>pool construction contractors</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>fiber glass pool cost</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>pools builder</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td>cost to build a fiberglass pool</td><td><span class="match-broad">BROAD</span></td><td><span class="qs-badge qs-na">N/A</span></td><td>—</td><td>—</td><td>—</td></tr>
+      <tr><td style="color:var(--accent-light);font-weight:700">integrity built pools</td><td><span class="match-exact">EXACT</span></td><td><span class="qs-badge qs-high">10</span></td><td>ABOVE_AVG</td><td>ABOVE_AVG</td><td>ABOVE_AVG</td></tr>
+    </table>
+    <br>
+    <div class="finding warning">
+      <div class="finding-label">Warning — Systemic Below-Average Predicted CTR</div>
+      <p>15 of 16 keywords with quality score data show BELOW_AVERAGE predicted CTR. This is the single largest structural quality score weakness. Predicted CTR is primarily driven by how closely the ad headline matches the search query. The flat ad group means one RSA is trying to match "fiberglass pools," "pool contractors near me," "swimming pool company," and "plunge pools" simultaneously — an impossible task.</p>
+      <div class="action">Action: Segment ad groups by intent cluster and write RSA headlines that directly include the targeted keyword phrases. "pool builders near me" should have a headline like "Joplin's Trusted Pool Builder" or "Local Pool Builders | Joplin."</div>
+    </div>
+    <div class="finding warning">
+      <div class="finding-label">Warning — 10 Keywords With No Quality Score (Insufficient Data)</div>
+      <p>10 keywords show QS = 0 (no impression data). These keywords either have very low search volume in this market or are being outbid. "swimming pool designer," "pool construction contractors," "fiber glass pool cost," and "pools builder" in particular appear to be low-volume or redundant variants unlikely to contribute meaningful traffic in a market like Joplin.</p>
+      <div class="action">Action: Review search term reports. Consider pausing zero-data keywords after 60 days with no impressions. Replace with higher-intent Joplin/NW Arkansas specific terms.</div>
+    </div>
+    <div class="finding ok">
+      <div class="finding-label">Positive — Branded Exact Match Performing Well</div>
+      <p>[EXACT] "integrity built pools" has QS 10 with above-average scores across all three components. This is healthy. Branded exact match protects against competitors bidding on the brand name and ensures the dealership captures high-intent navigational searches.</p>
+    </div>
+    <div class="finding info">
+      <div class="finding-label">Info — All 27 Positive Keywords Are Broad Match</div>
+      <p>The entire non-branded keyword set is broad match only. While broad match works well in conjunction with Smart Bidding (Maximize Conversions), it can generate off-target traffic when paired with Maximize Clicks. The combination of broad match + Max Clicks + no bid cap is likely responsible for some of the wasted spend in this account.</p>
+      <div class="action">Action: After switching to Maximize Conversions, broad match is more appropriate. If remaining on Max Clicks, add phrase or exact variants for the highest-intent "near me" queries.</div>
+    </div>
+  </div>
+
+  <!-- 6. NEGATIVES -->
+  <div class="section" id="negatives">
+    <div class="section-title">6. Negative Keywords <span class="badge badge-ok">Shared Set Active</span></div>
+    <div class="card">
+      <h3>Shared Negative Keyword Set</h3>
+      <p>Account is linked to a shared negative keyword set containing <strong>122 negatives</strong>. The set provides strong coverage for above-ground pool variants, competitor brands (Doughboy, Intex, Bestway), DIY terms, and geographic negatives for markets outside the service area.</p>
+    </div>
+    <div class="card">
+      <h3>Ad Group-Level Negatives (105 additional)</h3>
+      <p>105 ad group-level negative keywords are present, primarily phrase-match variants of above-ground pool terms, Doughboy variants, and geographic exclusions (Springfield MO, Kansas City, Columbia MO, Nixa MO). This is a well-developed negative keyword list.</p>
+      <div class="tag-list">
+        <span class="tag">[PHRASE] above ground pool installation</span>
+        <span class="tag">[PHRASE] doughboy pool</span>
+        <span class="tag">[PHRASE] intex pools</span>
+        <span class="tag">[PHRASE] bestway pools</span>
+        <span class="tag">[PHRASE] above ground fiberglass pool</span>
+        <span class="tag">[PHRASE] diy pool</span>
+        <span class="tag">[PHRASE] concrete pool contractors near me</span>
+        <span class="tag">[PHRASE] plungie usa</span>
+        <span class="tag">[PHRASE] above ground pools springfield mo</span>
+        <span class="tag">[PHRASE] above ground pools kansas city</span>
+        <span class="tag">[PHRASE] above ground pools columbia mo</span>
+        <span class="tag">[PHRASE] above ground pools nixa mo</span>
+        <span class="tag">+ 93 more above-ground / DIY / competitor variants</span>
+      </div>
+    </div>
+    <div class="finding ok">
+      <div class="finding-label">Positive — Strong Above-Ground Pool Exclusion Coverage</div>
+      <p>The combination of shared set + ad group negatives provides comprehensive above-ground pool exclusion. The previous concern about semi-inground and Doughboy spend is addressed at the ad group level.</p>
+    </div>
+    <div class="finding info">
+      <div class="finding-label">Info — Structured Snippet Values Unverifiable</div>
+      <p>A prior audit (2026-03-20) flagged the structured snippet as potentially containing fabricated model names (Palazzo, Olympus, Monaco — none are Leisure Pools models). The structured snippet header is confirmed as "Models" — the individual values cannot be retrieved via the Google Ads API (RepeatedScalarContainer). <strong>Cannot confirm or deny whether this was corrected.</strong> Manual verification in the Google Ads UI is required.</p>
+      <div class="action">Action: Manually verify structured snippet values in the UI. Valid Leisure Pools models for this dealer: The Supreme™, The Pinnacle™, The Eclipse™, The Limitless™, The Elegance™.</div>
+    </div>
+  </div>
+
+  <!-- 7. ASSETS -->
+  <div class="section" id="assets">
+    <div class="section-title">7. Asset Audit <span class="badge badge-warn">Stale Copy Detected</span></div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>Sitelinks (Campaign-Level) — 4 Active</h3>
+        <table>
+          <tr><th>Link Text</th><th>Status</th></tr>
+          <tr><td>About Us</td><td><span class="status-active">Active</span></td></tr>
+          <tr><td>Modern Pool Designs</td><td><span class="status-active">Active</span></td></tr>
+          <tr><td>Contact Us</td><td><span class="status-active">Active</span></td></tr>
+          <tr><td>Get Our Latest Brochure</td><td><span style="color:var(--yellow)">⚠ Stale (2024 ref)</span></td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <h3>Callouts (Campaign-Level) — 3 Active</h3>
+        <table>
+          <tr><th>Text</th><th>Status</th></tr>
+          <tr><td>Lifetime Pool Warranty</td><td><span class="status-active">Good</span></td></tr>
+          <tr><td>Pools Built To Perfection</td><td><span class="status-active">Good</span></td></tr>
+          <tr><td>Leisure Fiberglass Pools</td><td><span class="status-active">Good</span></td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="two-col">
+      <div class="card">
+        <h3>Call Asset</h3>
+        <p><strong>(417) 318-9253</strong> — US number. Present at campaign level. Call tracking active.</p>
+      </div>
+      <div class="card">
+        <h3>Structured Snippet</h3>
+        <p>Header: <strong>"Models"</strong> — Values: <em>Unable to verify via API (RepeatedScalarContainer). Manual UI check required.</em> Prior audit flagged potential fabricated model names (Palazzo, Olympus, Monaco) that are not Leisure Pools products.</p>
+      </div>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-label">Warning — Stale Brochure Sitelink ("Dive Into 2024's Best Pools")</div>
+      <p>The sitelink "Get Our Latest Brochure" has description text referencing the 2024 brochure. It is now March 2026 — this is two model years stale. Stale copy erodes trust and can reduce click-through on the sitelink. If a 2025 or 2026 brochure exists, update the description. If not, update to a generic call-to-action.</p>
+      <div class="action">Action: Update sitelink description to "Explore Our Fiberglass Pool Lineup" or the current year's brochure. Remove year-specific copy that will age out.</div>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-label">Warning — Only 3 Callouts Active</div>
+      <p>Google recommends 4–8 callout extensions for maximum eligibility and rotation. With only 3 callouts, the account is missing rotation depth. Additional callout opportunities: "Installed in Weeks, Not Months," "Free In-Home Consultation," "Serving Joplin &amp; NW Arkansas," "25+ Years of Excellence."</p>
+      <div class="action">Action: Add 3–5 more callouts. Prioritize speed (weeks not months) and local market callouts.</div>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-label">Warning — RSA Has No Display Paths Set</div>
+      <p>The RSA (ad strength: GOOD) has no display path1 or path2 set. Display paths appear in the ad URL line and are a low-effort quality signal that improve CTR and ad relevance scores. For a fiberglass pool dealer, appropriate paths would be: <code>leisurepoolsusa.com/fiberglass-pools/joplin</code> or similar.</p>
+      <div class="action">Action: Set path1 = "FiberglassPools" and path2 = "Joplin" (or the primary service market). This is a 2-minute improvement with measurable CTR upside.</div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-label">Positive — Callout Copy Is On-Brand</div>
+      <p>"Lifetime Pool Warranty" and "Leisure Fiberglass Pools" are strong brand-aligned callouts that directly support Leisure Pools' key messages (warranty, brand identity). These are effective.</p>
+    </div>
+
+    <div class="card">
+      <h3>Suggested RSA Display Paths (Click to Copy)</h3>
+      <div class="copy-box" data-copy="FiberglassPools">path1: FiberglassPools</div>
+      <div class="copy-box" data-copy="Joplin">path2: Joplin</div>
+    </div>
+
+    <div class="card">
+      <h3>Suggested Additional Callouts (Click to Copy)</h3>
+      <div class="copy-box" data-copy="Installed in Weeks, Not Months">Installed in Weeks, Not Months</div>
+      <div class="copy-box" data-copy="Free In-Home Consultation">Free In-Home Consultation</div>
+      <div class="copy-box" data-copy="Serving Joplin & NW Arkansas">Serving Joplin &amp; NW Arkansas</div>
+      <div class="copy-box" data-copy="Low-Maintenance Fiberglass Design">Low-Maintenance Fiberglass Design</div>
+    </div>
+  </div>
+
+  <!-- 8. GEO TARGETING -->
+  <div class="section" id="geo">
+    <div class="section-title">8. Geographic Targeting <span class="badge badge-warn">PMax Mismatch Risk</span></div>
+    <div class="two-col">
+      <div class="card">
+        <h3>Search Campaign (Active)</h3>
+        <p><strong>22 positive locations</strong> — Regional targeting covering Joplin metro, surrounding SW Missouri communities, and NW Arkansas markets.</p>
+        <p style="margin-top:8px"><strong>1 negative location</strong> — geo ID 9042255 excluded.</p>
+        <p style="margin-top:8px;color:var(--green)">Geo target type: PRESENCE (enum 7) — correct.</p>
+      </div>
+      <div class="card">
+        <h3>PMax Campaign (Paused)</h3>
+        <p><strong>130+ positive locations</strong> — Granular zip/city-level targeting far broader than the Search campaign's 22 locations. Covers a much wider geographic footprint.</p>
+        <p style="margin-top:8px;color:var(--text-muted)"><strong>0 negative locations</strong> — No geo exclusions set.</p>
+        <p style="margin-top:8px;color:var(--yellow)">If reactivated: would immediately serve ads in markets Search does not.</p>
+      </div>
+    </div>
+    <div class="finding warning">
+      <div class="finding-label">Warning — Geo Targeting Mismatch Between Search and PMax</div>
+      <p>If the PMax campaign is reactivated, it would serve across 130+ granular locations — potentially including markets that are outside the dealer's practical service radius. The Search campaign's 22-location targeting appears intentionally narrowed to the core service area. The PMax targeting was likely built on auto-suggestions and never manually pruned.</p>
+      <div class="action">Action: Before reactivating PMax, audit and narrow its geo targets to match the Search campaign's 22 locations. Add geo exclusions for markets outside the service area.</div>
+    </div>
+  </div>
+
+  <!-- 9. CONVERSIONS -->
+  <div class="section" id="conversions">
+    <div class="section-title">9. Conversion Setup <span class="badge badge-ok">Tracking Active</span></div>
+    <div class="card">
+      <h3>Conversion Actions</h3>
+      <table>
+        <tr><th>Action</th><th>Counting</th><th>Notes</th></tr>
+        <tr><td>Calls (from ads)</td><td>ONE_PER_CLICK</td><td>Primary conversion — phone call tracking</td></tr>
+        <tr><td>DownloadBrochure</td><td>ONE_PER_CLICK</td><td>Brochure download requires contact form — real lead indicator</td></tr>
+        <tr><td>ContactDealer</td><td>ONE_PER_CLICK</td><td>Contact form submission</td></tr>
+      </table>
+    </div>
+    <div class="finding ok">
+      <div class="finding-label">Positive — All Three Conversion Actions Are Meaningful</div>
+      <p>All three tracked conversions represent genuine lead signals. DownloadBrochure requires a contact form fill (not a simple file click), making it a qualified lead action. ONE_PER_CLICK counting is appropriate for lead gen (avoids inflating counts from repeat clicks).</p>
+    </div>
+    <div class="finding info">
+      <div class="finding-label">Info — Conversion Attribution Opportunity</div>
+      <p>With Maximize Clicks bidding, the conversion tracking data is being collected but not actively used by the bidding algorithm. Switching to Maximize Conversions would allow Google's algorithm to optimize toward these tracked actions, improving lead quality over time.</p>
+    </div>
+  </div>
+
+  <!-- 10. CHANGE LOG -->
+  <div class="section" id="changelog">
+    <div class="section-title">10. Change Log (Feb 25 – Mar 23, 2026) <span class="badge badge-warn">Minimal Activity</span></div>
+    <table>
+      <tr><th>Date</th><th>Resource Type</th><th>Operation</th><th>Changed By</th><th>Client</th></tr>
+      <tr>
+        <td>Mar 13, 2026</td>
+        <td>Campaign (ID: 21114441320)</td>
+        <td>UPDATE</td>
+        <td>eli.bunyi@exploreindustries.com</td>
+        <td>Google Ads Web UI</td>
+      </tr>
+    </table>
+    <br>
+    <div class="finding warning">
+      <div class="finding-label">Warning — Account Largely Unattended for 30 Days</div>
+      <p>Only one change was recorded in the past 30 days — a single campaign update on March 13. The account is spending ~$68/day across both campaign budgets ($33 Search + $60 PMax budget, even though PMax is paused) with minimal management oversight. An account generating $257 CPAs requires active optimization, not passive monitoring.</p>
+      <div class="action">Action: Establish a weekly management cadence: bidding strategy review, search term review, negative keyword additions, and RSA performance checks.</div>
+    </div>
+  </div>
+
+  <!-- 11. STRUCTURED SNIPPET VERIFICATION -->
+  <div class="section" id="structured-snippet">
+    <div class="section-title">11. Structured Snippet — Manual Verification Required <span class="badge badge-warn">Unverifiable via API</span></div>
+    <div class="warn-box">
+      <h4>Structured Snippet Values Cannot Be Verified via API</h4>
+      <p>The structured snippet asset has header "Models" confirmed. The individual values (the pool model names) are stored as a RepeatedScalarContainer in the API and cannot be retrieved programmatically. A prior audit (2026-03-20) flagged potential fabricated model names: <strong>Palazzo, Olympus, Monaco</strong> — none of which are Leisure Pools products. It is unknown whether these were corrected.</p>
+    </div>
+    <div class="card">
+      <h3>Valid Leisure Pools Models for Integrity Built Pools</h3>
+      <p>Based on dealer context, confirmed product lineup. Use <em>only</em> these in structured snippets:</p>
+      <div class="tag-list">
+        <span class="tag" style="color:var(--green)">The Supreme™</span>
+        <span class="tag" style="color:var(--green)">The Pinnacle™</span>
+        <span class="tag" style="color:var(--green)">The Eclipse™</span>
+        <span class="tag" style="color:var(--green)">The Limitless™</span>
+        <span class="tag" style="color:var(--green)">The Elegance™</span>
+      </div>
+      <div class="copy-box" data-copy="The Supreme, The Pinnacle, The Eclipse, The Limitless, The Elegance">The Supreme, The Pinnacle, The Eclipse, The Limitless, The Elegance</div>
+    </div>
+  </div>
+
+  <!-- 12. RECOMMENDATIONS -->
+  <div class="section" id="recommendations">
+    <div class="section-title">12. Prioritized Recommendations</div>
+
+    <div class="card">
+      <h3 style="color:var(--red)">CRITICAL (Do This Week)</h3>
+      <table>
+        <tr><th>#</th><th>Action</th><th>Impact</th></tr>
+        <tr>
+          <td>1</td>
+          <td><strong>Switch Search campaign to Maximize Conversions</strong><br><span style="color:var(--text-muted);font-size:12px">Change bidding_strategy_type from TARGET_SPEND (Max Clicks) to Maximize Conversions. This is the highest-leverage change in the account.</span></td>
+          <td>High — direct CPA improvement</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><strong>Reduce PMax budget to $1/day or archive</strong><br><span style="color:var(--text-muted);font-size:12px">Eliminate the accidental reactivation risk on the $60/day PMax budget. Leave paused until there's an intentional plan to reactivate.</span></td>
+          <td>High — budget protection</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><strong>Manually verify structured snippet values in Google Ads UI</strong><br><span style="color:var(--text-muted);font-size:12px">Confirm Palazzo/Olympus/Monaco were removed. Replace with The Supreme™, The Pinnacle™, The Eclipse™, The Limitless™, The Elegance™.</span></td>
+          <td>Medium — brand accuracy / compliance</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="color:var(--yellow)">HIGH PRIORITY (This Month)</h3>
+      <table>
+        <tr><th>#</th><th>Action</th><th>Impact</th></tr>
+        <tr>
+          <td>4</td>
+          <td><strong>Add RSA display paths</strong><br><span style="color:var(--text-muted);font-size:12px">Set path1 = "FiberglassPools" and path2 = "Joplin". 2-minute fix with measurable CTR upside on current keywords.</span></td>
+          <td>Medium — CTR / QS improvement</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><strong>Segment ad groups by intent</strong><br><span style="color:var(--text-muted);font-size:12px">Split the single flat ad group into minimum 3: Fiberglass Intent, Near Me / Contractor, Brand. Write tailored RSA headlines per group.</span></td>
+          <td>High — predicted CTR, QS, CPA</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><strong>Update brochure sitelink description</strong><br><span style="color:var(--text-muted);font-size:12px">Remove "2024" year reference from "Get Our Latest Brochure" sitelink. Update to current year or generic CTA.</span></td>
+          <td>Low — credibility</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><strong>Add 3–5 additional callout extensions</strong><br><span style="color:var(--text-muted);font-size:12px">Currently only 3 callouts. Add speed angle ("Installed in Weeks, Not Months"), local angle ("Serving Joplin & NW Arkansas"), and consultation CTA.</span></td>
+          <td>Medium — ad strength, CTR</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="card">
+      <h3 style="color:var(--accent)">LONGER-TERM (Next 60 Days)</h3>
+      <table>
+        <tr><th>#</th><th>Action</th><th>Impact</th></tr>
+        <tr>
+          <td>8</td>
+          <td><strong>Audit zero-QS keywords for pruning</strong><br><span style="color:var(--text-muted);font-size:12px">10 keywords have no impression data. After 60 days, pause those generating zero impressions to clean the account.</span></td>
+          <td>Low-Medium — account health</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><strong>PMax reactivation planning (if desired)</strong><br><span style="color:var(--text-muted);font-size:12px">If PMax is to be relaunched: narrow geo targets to match Search campaign's 22 locations, add geo exclusions, populate asset groups with approved Leisure Pools models and current imagery.</span></td>
+          <td>High if done correctly</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><strong>Add phrase/exact match variants for high-intent "near me" queries</strong><br><span style="color:var(--text-muted);font-size:12px">After switching to Max Conversions, consider adding [fiberglass pool installer Joplin], [pool builder Joplin MO], [fiberglass pool builder NW Arkansas] as exact match to capture high-intent geo-qualified searches.</span></td>
+          <td>Medium — lead quality</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- COPY BOXES -->
+  <div class="section">
+    <div class="section-title">13. Copy Assets — Ready to Use</div>
+    <div class="card">
+      <h3>RSA Headline Suggestions (30 char max each) — Segmented by Intent</h3>
+      <p style="color:var(--text-muted);font-size:12px;margin-bottom:8px">For Fiberglass Intent ad group:</p>
+      <div class="copy-box" data-copy="Fiberglass Pools | Leisure">Fiberglass Pools | Leisure</div>
+      <div class="copy-box" data-copy="Lifetime Structural Warranty">Lifetime Structural Warranty</div>
+      <div class="copy-box" data-copy="Installed in Weeks, Not Months">Installed in Weeks, Not Months</div>
+      <p style="color:var(--text-muted);font-size:12px;margin: 12px 0 8px">For Near Me / Contractor ad group:</p>
+      <div class="copy-box" data-copy="Pool Builders in Joplin MO">Pool Builders in Joplin MO</div>
+      <div class="copy-box" data-copy="Local Pool Contractor | Free Quote">Local Pool Contractor | Free Quote</div>
+      <div class="copy-box" data-copy="Joplin's Fiberglass Pool Expert">Joplin's Fiberglass Pool Expert</div>
+      <p style="color:var(--text-muted);font-size:12px;margin: 12px 0 8px">For NW Arkansas:</p>
+      <div class="copy-box" data-copy="Pool Builder | NW Arkansas">Pool Builder | NW Arkansas</div>
+    </div>
+  </div>
+
+  <hr class="divider">
+  <div style="text-align:center;color:var(--text-muted);font-size:12px;padding:16px 0;">
+    Integrity Built Pools | Account 5537276145 | Audit: March 23, 2026 | Generated by Claude Code (Explore Industries)
+  </div>
+
+</div>
+</body>
+</html>

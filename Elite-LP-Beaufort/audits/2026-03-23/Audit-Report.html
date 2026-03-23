@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Audit — Elite Leisure Pools Beaufort | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --navy-light: #1a3060;
+    --accent: #2e8ce8;
+    --accent-light: #5aaaf0;
+    --accent-pale: #d0e8fb;
+    --green: #22c55e;
+    --yellow: #f59e0b;
+    --red: #ef4444;
+    --red-dark: #b91c1c;
+    --orange: #f97316;
+    --gray-bg: #f4f7fb;
+    --white: #ffffff;
+    --text: #1e293b;
+    --text-muted: #64748b;
+    --border: #dde4ef;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--gray-bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+  /* HEADER */
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: var(--white); padding: 36px 40px 28px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.3px; }
+  .header h1 span { color: var(--accent-light); }
+  .header .meta { font-size: 12px; color: rgba(255,255,255,0.65); margin-top: 6px; }
+  .header .meta strong { color: rgba(255,255,255,0.85); }
+  .badge-priority { display: inline-block; background: var(--yellow); color: #7c2d12; padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; margin-top: 8px; }
+  .header-stats { display: flex; gap: 28px; margin-top: 24px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.12); }
+  .stat-item { text-align: center; }
+  .stat-item .val { font-size: 22px; font-weight: 700; color: var(--white); }
+  .stat-item .val.red { color: #fca5a5; }
+  .stat-item .val.yellow { color: #fde68a; }
+  .stat-item .val.green { color: #86efac; }
+  .stat-item .lbl { font-size: 11px; color: rgba(255,255,255,0.55); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* MAIN LAYOUT */
+  .main { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* SUMMARY BOX */
+  .summary-box { background: #fff3cd; border: 1px solid #ffc107; border-left: 4px solid #f59e0b; border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; }
+  .summary-box h2 { font-size: 14px; font-weight: 700; color: #7c5000; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .summary-box p { font-size: 13.5px; color: #5c3d00; line-height: 1.7; }
+
+  /* ROOT CAUSE BOX */
+  .rootcause-box { background: #fef2f2; border: 1px solid #fca5a5; border-left: 4px solid var(--red); border-radius: 8px; padding: 20px 24px; margin-bottom: 28px; }
+  .rootcause-box h2 { font-size: 14px; font-weight: 700; color: var(--red-dark); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 12px; }
+  .cause-list { list-style: none; }
+  .cause-list li { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; font-size: 13.5px; color: #7f1d1d; line-height: 1.6; }
+  .cause-list li::before { content: '▸'; color: var(--red); font-size: 12px; margin-top: 2px; flex-shrink: 0; }
+  .cause-list li strong { color: #991b1b; }
+
+  /* REBOOT RECOMMENDATION */
+  .reboot-box { background: var(--navy); border-radius: 8px; padding: 22px 26px; margin-bottom: 28px; color: var(--white); }
+  .reboot-box h2 { font-size: 14px; font-weight: 700; color: var(--accent-light); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 14px; }
+  .reboot-verdict { font-size: 18px; font-weight: 700; color: var(--accent-light); margin-bottom: 10px; }
+  .reboot-box p { font-size: 13.5px; color: rgba(255,255,255,0.8); line-height: 1.7; margin-bottom: 8px; }
+  .reboot-box ul { margin: 10px 0 0 18px; }
+  .reboot-box ul li { font-size: 13px; color: rgba(255,255,255,0.75); margin-bottom: 6px; }
+
+  /* SECTION */
+  .section { background: var(--white); border: 1px solid var(--border); border-radius: 8px; margin-bottom: 20px; overflow: hidden; }
+  .section-header { background: var(--navy); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; }
+  .section-header h2 { color: var(--white); font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; }
+  .section-header .score { font-size: 11px; padding: 2px 9px; border-radius: 12px; font-weight: 700; }
+  .score-pass { background: #dcfce7; color: #14532d; }
+  .score-warn { background: #fef9c3; color: #713f12; }
+  .score-fail { background: #fee2e2; color: #7f1d1d; }
+  .section-body { padding: 20px; }
+
+  /* FINDINGS */
+  .finding { display: flex; align-items: flex-start; gap: 12px; padding: 12px 0; border-bottom: 1px solid var(--border); }
+  .finding:last-child { border-bottom: none; }
+  .finding-badge { flex-shrink: 0; padding: 3px 9px; border-radius: 4px; font-size: 11px; font-weight: 700; min-width: 40px; text-align: center; margin-top: 1px; }
+  .p1 { background: var(--red); color: var(--white); }
+  .p2 { background: var(--orange); color: var(--white); }
+  .p3 { background: var(--yellow); color: #451a03; }
+  .pass { background: #dcfce7; color: #14532d; }
+  .info { background: var(--accent-pale); color: var(--navy); }
+  .finding-content h3 { font-size: 13.5px; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+  .finding-content p { font-size: 12.5px; color: var(--text-muted); line-height: 1.6; }
+  .finding-content .action { margin-top: 6px; font-size: 12px; color: var(--accent); font-weight: 600; }
+  .finding-content .action::before { content: '→ '; }
+
+  /* TABLES */
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; }
+  th { background: var(--navy-mid); color: var(--white); padding: 8px 12px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+  td { padding: 8px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: #f8faff; }
+  .waste { background: #fff1f2 !important; }
+  .partial { background: #fffbeb !important; }
+  .good { background: #f0fdf4 !important; }
+  .td-mono { font-family: monospace; font-size: 11.5px; }
+  .td-right { text-align: right; }
+  .cost-hi { color: var(--red-dark); font-weight: 600; }
+  .cost-mid { color: var(--orange); font-weight: 600; }
+  .tag-added { display: inline-block; background: #dcfce7; color: #14532d; border-radius: 3px; padding: 1px 6px; font-size: 11px; margin-left: 6px; }
+  .tag-missing { display: inline-block; background: #fee2e2; color: #7f1d1d; border-radius: 3px; padding: 1px 6px; font-size: 11px; margin-left: 6px; }
+
+  /* DEVICE TABLE */
+  .device-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .device-card { background: var(--gray-bg); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .device-card h3 { font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+  .device-card .d-stat { display: flex; justify-content: space-between; font-size: 12.5px; margin-bottom: 5px; }
+  .device-card .d-stat .lbl { color: var(--text-muted); }
+  .device-card .d-stat .val { font-weight: 600; color: var(--text); }
+  .device-card .d-stat .val.warn { color: var(--red); }
+
+  /* EXTENSIONS GRID */
+  .ext-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .ext-card { background: var(--gray-bg); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; }
+  .ext-card h4 { font-size: 11px; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px; }
+  .ext-card p { font-size: 12.5px; color: var(--text); }
+  .ext-card .desc { font-size: 11.5px; color: var(--text-muted); margin-top: 2px; }
+
+  /* LP TABLE */
+  .lp-bar { display: inline-block; height: 8px; background: var(--accent); border-radius: 4px; }
+
+  /* FOOTER */
+  .footer { text-align: center; padding: 24px; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); margin-top: 20px; }
+
+  /* COPY BUTTON */
+  .copy-btn { display: inline-block; background: var(--accent); color: var(--white); border: none; padding: 4px 12px; border-radius: 4px; font-size: 11px; font-weight: 600; cursor: pointer; margin-left: 10px; vertical-align: middle; }
+  .copy-btn:hover { background: var(--accent-light); }
+
+  /* KEYWORD CHIPS */
+  .chip-list { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+  .chip { display: inline-block; padding: 2px 8px; border-radius: 12px; font-size: 11.5px; font-family: monospace; }
+  .chip-phrase { background: #e0e7ff; color: #312e81; }
+  .chip-exact { background: #dcfce7; color: #14532d; }
+  .chip-neg { background: #fee2e2; color: #7f1d1d; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } .header-stats { flex-wrap: wrap; } .device-grid { grid-template-columns: 1fr; } .ext-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="meta"><strong>Leisure Pools</strong> &nbsp;|&nbsp; Account: 999-920-3572 &nbsp;|&nbsp; Market: Beaufort, SC &nbsp;|&nbsp; Date Range: 2026-02-21 – 2026-03-23</div>
+      <h1>Elite <span>Leisure Pools Beaufort</span></h1>
+      <div class="badge-priority">Priority: LOW-MEDIUM &nbsp;|&nbsp; Campaign Reboot Warranted</div>
+    </div>
+  </div>
+  <div class="header-stats">
+    <div class="stat-item"><div class="val red">$1,223</div><div class="lbl">30-Day Spend</div></div>
+    <div class="stat-item"><div class="val red">2</div><div class="lbl">Conversions</div></div>
+    <div class="stat-item"><div class="val red">$611</div><div class="lbl">CPA (4th Worst Fleet)</div></div>
+    <div class="stat-item"><div class="val yellow">31.5%</div><div class="lbl">Search Imp. Share</div></div>
+    <div class="stat-item"><div class="val red">49.9%</div><div class="lbl">Rank Lost IS</div></div>
+    <div class="stat-item"><div class="val yellow">18.6%</div><div class="lbl">Budget Lost IS</div></div>
+    <div class="stat-item"><div class="val">267</div><div class="lbl">Clicks</div></div>
+    <div class="stat-item"><div class="val">4.57%</div><div class="lbl">CTR</div></div>
+    <div class="stat-item"><div class="val yellow">$4.58</div><div class="lbl">Avg. CPC</div></div>
+    <div class="stat-item"><div class="val red">$32.25</div><div class="lbl">Daily Budget</div></div>
+  </div>
+</div>
+
+<div class="main">
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="summary-box">
+    <h2>Executive Summary</h2>
+    <p>The <strong>$611 CPA</strong> is the product of four compounding failures, not a single cause. This account spends money well but converts almost none of it — the root is structural, not budgetary. <strong>Max Clicks with no CPC cap</strong> gives Google a blank check; <strong>a single monolithic ad group</strong> with 45 mixed-intent keywords prevents any relevance signal from reaching the right users; <strong>search term waste</strong> bleeds roughly 30–40% of budget into competitor brands, wrong materials, DIY intent, and informational queries; and <strong>a catastrophic landing page conversion rate</strong> (~0.4% on the homepage — 246 clicks, 1 conversion) means even the relevant traffic isn't closing. Beaufort is also a genuinely small market — Beaufort County has ~200K residents, limiting addressable volume. A full reboot is warranted. Incremental fixes will not solve this.</p>
+  </div>
+
+  <!-- ROOT CAUSE DEEP DIVE -->
+  <div class="rootcause-box">
+    <h2>Root Cause Analysis — Why $611 CPA?</h2>
+    <ul class="cause-list">
+      <li><strong>Bidding strategy (PRIMARY):</strong> Max Clicks (TARGET_SPEND) with <strong>zero CPC cap</strong> — Google is spending up to $8–12/click on irrelevant competitor and informational queries with no guardrail. The budget is exhausted chasing clicks, not leads. No smart bidding signal exists (only 2 conversions in 30 days, far below the 30+ needed for tCPA to function).</li>
+      <li><strong>Single ad group with 45 mixed-intent keywords:</strong> All 45 keywords — from "fiberglass pool installer" to "pool contractors" to "local pool" — live in one ad group called "Ad group 1." Google cannot differentiate which terms are high vs. low intent. QS suffers across the board. Multiple keywords show QS=0, meaning they are actively suppressed or achieving below-minimum quality thresholds.</li>
+      <li><strong>Search term waste (~30–40% of spend):</strong> Competitor brands (Latham Pools $35, Blue Haven $10, Blue Haven fiberglass $4.49) — despite Latham being a negative now, the damage is evidenced in historical data. Wrong-material queries (vinyl inground pool $6.06). Wrong-product queries (container pool $8.39, cowboy pool $6.43). Informational/no-intent (inground pool cost $12.70, national pool companies $9.94, how to replaster $4.94). Active negatives only recently added are still visible in historical spend totals.</li>
+      <li><strong>Landing page failure:</strong> Homepage (leisurepoolsbeaufort.com) received 246 clicks and generated <strong>only 1 conversion</strong> — a 0.4% CVR. Fleet average for LP dealers in relevant markets runs 1.5–3%. Even with perfect targeting, this CVR destroys the CPA math. Sitelink sub-pages (pool designs, colors, brochure, contact) received minimal traffic and zero conversions.</li>
+      <li><strong>Market size constraint:</strong> Beaufort SC is a small coastal market. Beaufort County population ~200K. Pool ownership intent queries in this DMA are limited by volume — even best-case IS expansion won't generate the conversion volume to drive CPA down without fixing CVR and bid strategy first.</li>
+      <li><strong>Rank lost IS (49.9%):</strong> Nearly half of eligible impressions are lost to rank — not budget. This means Quality Score and/or bid is suppressing the account mid-auction. With Max Clicks and poor QS on many keywords, Google deprioritizes this account even when budget is available. Budget lost IS (18.6%) is secondary.</li>
+    </ul>
+  </div>
+
+  <!-- REBOOT RECOMMENDATION -->
+  <div class="reboot-box">
+    <h2>Campaign Reboot Assessment</h2>
+    <div class="reboot-verdict">Recommendation: FULL REBOOT WARRANTED</div>
+    <p>The current structure cannot be patched into performance. The single ad group architecture, Max Clicks with no cap, and accumulated quality signals from 45 mixed-intent keywords make incremental improvement difficult and slow. A reboot gives a clean slate with:</p>
+    <ul>
+      <li>3–4 tightly themed ad groups: [Fiberglass Pool Installation], [Inground Pool Builders], [Pool Company + Local], [Pool Price + Quote]</li>
+      <li>Switch to Manual CPC at ~$3.50–4.50 max with strong negatives, then graduate to tCPA after 30+ conversions</li>
+      <li>New RSAs per ad group with tightly matched headlines — current RSA has "Pool Installation Prices" and "Family-Friendly Fun" competing in the same ad, which tanks Ad Strength relevance signals (currently rated 6/10)</li>
+      <li>Landing page: Request dealer add a dedicated "Get a Quote" landing page with form above the fold — homepage CVR of 0.4% is the single biggest lever available</li>
+      <li>Add 15–20 high-specificity negatives for competitor brands not yet blocked: Blue Haven, national pool companies, replaster, vinyl inground</li>
+      <li>Budget reallocation: $32.25/day is appropriate for the market — do not increase until CVR is fixed</li>
+    </ul>
+    <p style="margin-top:12px; color: rgba(255,255,255,0.6); font-size:12px;">Note: Reboot prep time ~2–3 hours. Expected improvement timeline: 30–45 days to see CPA improvement as new structure accumulates QS signals and conversion data.</p>
+  </div>
+
+  <!-- SECTION 1: CAMPAIGN SETTINGS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>1 — Campaign Structure &amp; Settings</h2>
+      <span class="score score-fail">CRITICAL ISSUES</span>
+    </div>
+    <div class="section-body">
+      <div class="finding">
+        <div class="finding-badge p1">P1</div>
+        <div class="finding-content">
+          <h3>Bidding: Max Clicks (TARGET_SPEND) — No CPC Cap</h3>
+          <p>Campaign "Fiberglass Pools" (ID: 21805919979) is set to bidding_strategy_type=9 (TARGET_SPEND / Maximize Clicks). The <code>cpc_bid_ceiling_micros</code> field is 0 — no maximum CPC limit is configured. Google is free to bid any amount per click. With only 2 conversions in 30 days, Smart Bidding (tCPA/tROAS) is not viable. Max Clicks is actively spending budget on clicks with no conversion signal. Avg CPC is $4.58 — reasonable, but clicks are going to competitors and informational terms at $7–12 each.</p>
+          <div class="action">Set Manual CPC at $3.50–4.25 max, or add CPC cap of $5.00 to Max Clicks as interim measure.</div>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge p1">P1</div>
+        <div class="finding-content">
+          <h3>Single Ad Group: "Ad group 1" — 45 Keywords, Zero Segmentation</h3>
+          <p>The entire campaign runs through a single ad group named "Ad group 1." All 45 keywords — ranging from brand-intent ("fiberglass pool installer"), to generic research ("pool contractors"), to navigational ("pool makers") — compete together. This kills Quality Score differentiation, prevents message matching, and tells Google nothing about which queries are most valuable. QS=0 reported on 10+ keywords in this structure.</p>
+          <div class="action">Restructure into 3–4 themed ad groups as part of reboot plan above.</div>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Geo Targeting: positive_geo_target_type = 7 (PRESENCE)</h3>
+          <p>Confirmed PRESENCE-only. Users physically in the target area. Correct setting for local dealer — no fix needed.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Network: Search Only</h3>
+          <p>Campaign is search-only — Display network is not enabled. Correct configuration.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge p2">P2</div>
+        <div class="finding-content">
+          <h3>Budget: $32.25/Day — Rank Lost IS Is the Binding Constraint</h3>
+          <p>Budget lost IS is 18.6% — moderate, not the primary problem. However <strong>rank lost IS is 49.9%</strong> — meaning nearly half the eligible impressions are lost due to Ad Rank, not budget. Increasing budget would not fix this. Quality Score and bid competitiveness must improve first. Budget appears appropriate for this market size.</p>
+          <div class="action">Hold budget. Fix ad structure and QS to reduce rank lost IS before considering budget increase.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 2: SEARCH TERMS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>2 — Search Term Waste Analysis</h2>
+      <span class="score score-fail">HIGH WASTE</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:14px;">Top cost-generating search terms from 2026-02-21 to 2026-03-23. Terms are categorized by waste type. All device=2 = MOBILE; device=4 = DESKTOP. Status: 2=INCLUDED, 3=EXCLUDED (negative added), 5=ADDED to negative post-click.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Search Term</th>
+            <th>Category</th>
+            <th class="td-right">Cost</th>
+            <th class="td-right">Clicks</th>
+            <th class="td-right">Conv.</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="waste"><td class="td-mono">latham pools</td><td>Competitor Brand</td><td class="td-right cost-hi">$35.02</td><td class="td-right">4</td><td class="td-right">0</td><td><span style="color:var(--green)">Negated</span></td></tr>
+          <tr class="partial"><td class="td-mono">the pool company</td><td>Generic Local (converted 1x)</td><td class="td-right cost-mid">$15.61</td><td class="td-right">3</td><td class="td-right">1</td><td>Active</td></tr>
+          <tr class="waste"><td class="td-mono">plunge pool</td><td>Wrong Product</td><td class="td-right cost-hi">$17.00</td><td class="td-right">4</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">plunge pools</td><td>Wrong Product</td><td class="td-right cost-hi">$15.13</td><td class="td-right">3</td><td class="td-right">0</td><td>Active</td></tr>
+          <tr class="partial"><td class="td-mono">fiberglass pools</td><td>Generic (low intent)</td><td class="td-right cost-mid">$13.00</td><td class="td-right">3</td><td class="td-right">0</td><td>Active</td></tr>
+          <tr class="waste"><td class="td-mono">inground pool cost</td><td>Informational / Price Research</td><td class="td-right cost-hi">$12.70</td><td class="td-right">3</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">6x6 pool tile ideas</td><td>Irrelevant (tile ideas)</td><td class="td-right cost-hi">$12.92</td><td class="td-right">1</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">national pool companies</td><td>Navigational / Research</td><td class="td-right cost-hi">$9.94</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">how expensive are container pools</td><td>Wrong Product + Informational</td><td class="td-right cost-hi">$8.39</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">cowboy pool</td><td>Wrong Product (stock tank)</td><td class="td-right cost-mid">$6.43</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--green)">Negated</span></td></tr>
+          <tr class="waste"><td class="td-mono">vinyl in ground pool</td><td>Wrong Material</td><td class="td-right cost-mid">$6.06</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">blue haven pools charleston</td><td>Competitor Brand</td><td class="td-right cost-mid">$5.40</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">diy pool ideas</td><td>DIY Intent (not a buyer)</td><td class="td-right cost-mid">$4.55</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--green)">Negated</span></td></tr>
+          <tr class="waste"><td class="td-mono">blue haven pools fiberglass</td><td>Competitor Brand</td><td class="td-right cost-mid">$4.49</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+          <tr class="waste"><td class="td-mono">how to replaster a 20x40 pool</td><td>Maintenance Query</td><td class="td-right cost-mid">$4.94</td><td class="td-right">—</td><td class="td-right">0</td><td><span style="color:var(--orange)">Needs Neg.</span></td></tr>
+        </tbody>
+      </table>
+      <div class="finding" style="margin-top:14px; border-top: 1px solid var(--border);">
+        <div class="finding-badge p2">P2</div>
+        <div class="finding-content">
+          <h3>Missing Negatives — High Priority Gaps</h3>
+          <p>Campaign-level negatives cover the basics (above ground, pool table, pool repair, latham pool, etc.) but critical gaps remain: <strong>plunge pool / plunge pools</strong> ($32 wasted), <strong>vinyl</strong> (wrong material), <strong>blue haven</strong> (competitor brand — two variants), <strong>tile ideas</strong> (decor research), <strong>container pool / how expensive</strong>, <strong>national pool companies</strong>, <strong>pool cost / inground pool cost</strong> (informational price research). These alone account for $100+ in recoverable waste from a $1,223 spend period.</p>
+          <div class="action">Add: [plunge pool], [vinyl pool], [blue haven], [tile ideas], [container], [national pool], [pool cost], [how expensive], [replaster] as phrase/exact negatives at campaign level.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 3: LANDING PAGE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>3 — Landing Page Performance</h2>
+      <span class="score score-fail">CVR CRISIS</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr>
+            <th>Landing Page URL</th>
+            <th class="td-right">Clicks</th>
+            <th class="td-right">Impr.</th>
+            <th class="td-right">Conv.</th>
+            <th class="td-right">CVR</th>
+            <th class="td-right">Cost</th>
+            <th>CTR</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="waste">
+            <td class="td-mono">leisurepoolsbeaufort.com <span style="color:var(--red); font-size:11px;">(homepage)</span></td>
+            <td class="td-right">246</td>
+            <td class="td-right">4,795</td>
+            <td class="td-right cost-hi">1</td>
+            <td class="td-right cost-hi">0.41%</td>
+            <td class="td-right cost-hi">$1,127</td>
+            <td>5.13%</td>
+          </tr>
+          <tr class="partial">
+            <td class="td-mono">leisurepoolsbeaufort.com/fiberglass-pool-designs/</td>
+            <td class="td-right">10</td>
+            <td class="td-right">1,870</td>
+            <td class="td-right">0</td>
+            <td class="td-right">0%</td>
+            <td class="td-right">$42.41</td>
+            <td>0.53%</td>
+          </tr>
+          <tr class="partial">
+            <td class="td-mono">leisurepoolsbeaufort.com/fiberglass-pool-colors/</td>
+            <td class="td-right">4</td>
+            <td class="td-right">1,242</td>
+            <td class="td-right">0</td>
+            <td class="td-right">0%</td>
+            <td class="td-right">$14.40</td>
+            <td>0.32%</td>
+          </tr>
+          <tr class="partial">
+            <td class="td-mono">leisurepoolsbeaufort.com/contact/</td>
+            <td class="td-right">2</td>
+            <td class="td-right">1,117</td>
+            <td class="td-right">0</td>
+            <td class="td-right">0%</td>
+            <td class="td-right">$11.38</td>
+            <td>0.18%</td>
+          </tr>
+          <tr>
+            <td class="td-mono">leisurepoolsbeaufort.com/download-brochure/</td>
+            <td class="td-right">1</td>
+            <td class="td-right">1,751</td>
+            <td class="td-right">0</td>
+            <td class="td-right">0%</td>
+            <td class="td-right">$3.58</td>
+            <td>0.06%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="finding" style="margin-top:14px; border-top: 1px solid var(--border);">
+        <div class="finding-badge p1">P1</div>
+        <div class="finding-content">
+          <h3>Homepage CVR: 0.41% — The Single Biggest Lever in This Account</h3>
+          <p>246 paid clicks to the homepage produced <strong>1 conversion</strong>. Fleet average for Leisure Pools dealers in similar-size markets runs approximately 1.5–3% CVR. At 1.5%, those 246 clicks would have yielded <strong>3–4 conversions</strong> — halving the CPA to ~$300 without touching any other setting. The homepage is likely not optimized for paid traffic: pool buyers from paid search need a quote form or call CTA immediately visible, not a branding/brand-story scroll. <strong>Note:</strong> Brochure download conversions are a real conversion type for this dealer — a brochure download represents a real contact form fill. The download page received 0 clicks from paid ads in this period.</p>
+          <div class="action">Request dealer build or designate a dedicated quote landing page with above-fold CTA form. Direct all paid traffic there. This is higher ROI than any ad setting change.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 4: DEVICE PERFORMANCE -->
+  <div class="section">
+    <div class="section-header">
+      <h2>4 — Device Segmentation</h2>
+      <span class="score score-warn">MOBILE DOMINANT</span>
+    </div>
+    <div class="section-body">
+      <div class="device-grid">
+        <div class="device-card">
+          <h3>Mobile (device=2)</h3>
+          <div class="d-stat"><span class="lbl">Clicks</span><span class="val">205</span></div>
+          <div class="d-stat"><span class="lbl">Cost</span><span class="val">$926.73</span></div>
+          <div class="d-stat"><span class="lbl">Conversions</span><span class="val">2</span></div>
+          <div class="d-stat"><span class="lbl">CVR</span><span class="val">0.98%</span></div>
+          <div class="d-stat"><span class="lbl">Avg CPC</span><span class="val">$4.52</span></div>
+          <div class="d-stat"><span class="lbl">% of Budget</span><span class="val warn">75.7%</span></div>
+        </div>
+        <div class="device-card">
+          <h3>Desktop (device=4)</h3>
+          <div class="d-stat"><span class="lbl">Clicks</span><span class="val">59</span></div>
+          <div class="d-stat"><span class="lbl">Cost</span><span class="val">$282.05</span></div>
+          <div class="d-stat"><span class="lbl">Conversions</span><span class="val">0</span></div>
+          <div class="d-stat"><span class="lbl">CVR</span><span class="val warn">0%</span></div>
+          <div class="d-stat"><span class="lbl">Avg CPC</span><span class="val">$4.78</span></div>
+          <div class="d-stat"><span class="lbl">% of Budget</span><span class="val">23.1%</span></div>
+        </div>
+        <div class="device-card">
+          <h3>Tablet (device=3)</h3>
+          <div class="d-stat"><span class="lbl">Clicks</span><span class="val">3</span></div>
+          <div class="d-stat"><span class="lbl">Cost</span><span class="val">$13.76</span></div>
+          <div class="d-stat"><span class="lbl">Conversions</span><span class="val">0</span></div>
+          <div class="d-stat"><span class="lbl">Avg CPC</span><span class="val">$4.59</span></div>
+          <div class="d-stat"><span class="lbl">% of Budget</span><span class="val">1.1%</span></div>
+        </div>
+      </div>
+      <div class="finding" style="margin-top:14px; border-top: 1px solid var(--border);">
+        <div class="finding-badge p3">P3</div>
+        <div class="finding-content">
+          <h3>Mobile Dominates Spend (75.7%) — Desktop Has Zero Conversions</h3>
+          <p>Mobile accounts for 75.7% of spend and produced both conversions. Desktop got 23.1% of spend and zero conversions — likely because the homepage is not desktop-optimized for conversions, or desktop visitors are bouncing at a higher rate. There is no current device bid modifier. A desktop bid reduction of -20% could redirect budget to mobile, where conversions are occurring. However, given the overall low volume, this is a secondary adjustment — fix CVR first.</p>
+          <div class="action">Post-reboot: Apply -20% desktop bid modifier. Monitor for 30 days before making permanent.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 5: AD COPY / RSA -->
+  <div class="section">
+    <div class="section-header">
+      <h2>5 — RSA Ad Copy Review</h2>
+      <span class="score score-warn">AD STRENGTH: 6/10</span>
+    </div>
+    <div class="section-body">
+      <div class="finding">
+        <div class="finding-badge p2">P2</div>
+        <div class="finding-content">
+          <h3>Ad Strength = 6 (GOOD, not EXCELLENT) — Mixed-Theme Headlines Suppressing Score</h3>
+          <p>The single RSA (ID: 717334054928) has ad_strength=6. Path fields: "Fiberglass-Pool / Beaufort-SC" — correct and geo-relevant. The asset pool contains 15 headlines and 4 descriptions. Headlines span multiple themes inappropriately for a single ad group: installer intent ("Fiberglass Pool Installation," "Swimming Pool Builders"), price intent ("Pool Installation Prices," "Pool Estimates Near Me"), local trust ("Your Local Pool Builder," "Beaufort Pool Contractor"), and brand confusion ("The Pool Company" — this is a search term that triggered a conversion, not a differentiating headline). Description 1 is pinned to a factual statement: "Leisure Pools Beaufort is a fiberglass swimming pool builder in Greater Beaufort, SC" — appropriate. Description 4 (unpinned): "Your Dream Backyard Awaits" — too generic, adds no differentiation.</p>
+          <div class="action">In reboot: Create separate RSAs per ad group with tightly matched headline themes. Remove "Family-Friendly Fun" and "Your Dream Backyard Awaits" as they reduce relevance signals. Ensure each ad group's RSA uses headlines drawn only from that theme cluster.</div>
+        </div>
+      </div>
+      <div style="margin-top: 14px;">
+        <strong style="font-size:12px; text-transform:uppercase; color:var(--text-muted);">Current Headlines</strong>
+        <div class="chip-list">
+          <span class="chip chip-phrase">The Pool Company</span>
+          <span class="chip chip-phrase">Pool Installation Near You</span>
+          <span class="chip chip-phrase">Fiberglass Pool Installation</span>
+          <span class="chip chip-phrase">Your Local Pool Builder</span>
+          <span class="chip chip-phrase">Pool Installation Prices</span>
+          <span class="chip chip-phrase">Pool Estimates Near Me</span>
+          <span class="chip chip-phrase">Beaufort, South Carolina</span>
+          <span class="chip chip-phrase">Family-Friendly Fun</span>
+          <span class="chip chip-phrase">Custom Fiberglass Pools</span>
+          <span class="chip chip-phrase">Get A Quote</span>
+          <span class="chip chip-phrase">Swimming Pool Builders</span>
+          <span class="chip chip-phrase">Local Pool Experts</span>
+          <span class="chip chip-phrase">Inground Swimming Pools</span>
+          <span class="chip chip-phrase">Beaufort Pool Contractor</span>
+          <span class="chip chip-phrase">Fiberglass Pool Builder</span>
+          <span class="chip chip-phrase">Your Dream Backyard Awaits</span>
+        </div>
+        <strong style="font-size:12px; text-transform:uppercase; color:var(--text-muted); display:block; margin-top:10px;">Descriptions</strong>
+        <div class="chip-list">
+          <span class="chip chip-phrase" style="max-width:100%; white-space:normal;">The Pool Company is a fiberglass swimming pool builder in greater Beaufort, SC.</span>
+          <span class="chip chip-phrase" style="max-width:100%; white-space:normal;">From simple to sophisticated, our pools will transform your backyard into a stunning oasis</span>
+          <span class="chip chip-phrase" style="max-width:100%; white-space:normal;">Explore our pool designs and contact us for a free quote.</span>
+          <span class="chip chip-phrase" style="max-width:100%; white-space:normal;">Superior pools installed by experienced pool builders who deliver exceptional results.</span>
+          <span class="chip chip-phrase" style="max-width:100%; white-space:normal;">Leisure Pools Beaufort is a fiberglass swimming pool builder in Greater Beaufort, SC.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 6: EXTENSIONS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>6 — Extensions (Assets)</h2>
+      <span class="score score-pass">MOSTLY COMPLETE</span>
+    </div>
+    <div class="section-body">
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Sitelinks: 4 Campaign-Level Sitelinks — All with Description Lines</h3>
+          <p>4 sitelinks confirmed at campaign level (field_type=13): Fiberglass Pool Colors, Pool Designs, Free Pool Brochure, Contact Us. All have desc1 and desc2 populated — pass. Correct level (campaign). No ad-group level sitelinks — acceptable given single ad group structure. Sitelink content is relevant and brand-appropriate.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Callouts: 7 Campaign-Level Callouts</h3>
+          <p>7 callout assets confirmed: "Installed in Weeks," "Free Consultations," "Low Maintenance Pools," "30+ Pool Models Available," "Family-Owned &amp; Operated," "AquaGuard X Color System," "Serving Greater Beaufort." Good variety — trust signals, product differentiators, and geographic targeting. No issues.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Call Extension: (843) 948-2589</h3>
+          <p>Call extension confirmed active at campaign level (field_type=16). Phone number present. This is the correct format for a local dealer. Confirmed enabled (status=2).</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Structured Snippets: 2 Active (field_type=18)</h3>
+          <p>Structured snippet asset confirmed at campaign level (asset 314247001474, field_type=18). Additional structured snippet assets present (field_type=27 — lead form or image assets). Core structured snippets present.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge info">INFO</div>
+        <div class="finding-content">
+          <h3>Image Extensions: Present (field_type=26)</h3>
+          <p>11 image assets confirmed at campaign level (field_type=26). Image extensions are active — this is a positive for visual differentiation in search results, especially for pool buyers who respond to imagery. No action needed.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 7: NEGATIVES -->
+  <div class="section">
+    <div class="section-header">
+      <h2>7 — Negative Keywords</h2>
+      <span class="score score-warn">GAPS PRESENT</span>
+    </div>
+    <div class="section-body">
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Shared Negative List Connected (ID: 12012201802)</h3>
+          <p>Shared negative keyword set confirmed connected to campaign 21805919979 (status=2/ENABLED). The shared set contains 49 broad match negatives including "how to," "free," "sale," "vinyl liner," "gunite," "DIY," "pool repair," "pool service," "chlorine," and "Coleman." These are appropriate evergreen negatives for a fiberglass pool installer. The shared set is functioning correctly.</p>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge p2">P2</div>
+        <div class="finding-content">
+          <h3>Campaign-Level Negatives: 50+ Keywords — But Critical Gaps Remain</h3>
+          <p>Campaign-level negatives include above ground (exact/phrase), pool table, pool filter, pool maintenance, pool cleaning, diy pool, container pool, replaster, river pools, premier pools, latham pool/pools, bestway pools, intex pools, and more. However, <strong>plunge pool/plunge pools</strong> ($32 in waste this period), <strong>blue haven</strong> (two variants totaling ~$10), <strong>vinyl inground pool</strong> ($6), <strong>tile ideas / 6x6 pool tile</strong> ($13), and <strong>inground pool cost</strong> ($13 in informational queries) are absent from current negatives and still generating significant waste.</p>
+          <div class="action">Add immediately: [plunge pool], [plunge pools], "blue haven", "vinyl inground", "tile ideas", "pool tile ideas", "inground pool cost", "pool pricing", "how much does a pool cost", "container pool" (note: this appears in campaign neg but "container pools" variant may still match).</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 8: CONVERSION ACTIONS -->
+  <div class="section">
+    <div class="section-header">
+      <h2>8 — Conversion Tracking</h2>
+      <span class="score score-warn">DUPLICATE CALL TRACKING</span>
+    </div>
+    <div class="section-body">
+      <div class="finding">
+        <div class="finding-badge p2">P2</div>
+        <div class="finding-content">
+          <h3>Duplicate Call Conversion Actions: "Call from ads" + "Calls from ads"</h3>
+          <p>The account has two nearly identical call conversion actions: "Call from ads" and "Calls from ads." Both are MANY_PER_CLICK counting type. This likely causes double-counting of call conversions — a single call may be counted as 2 conversions. With only 2 reported conversions in 30 days, even modest double-counting materially distorts the CPA figure. Real CPA may be $611 or higher if one of those conversions is a duplicate call count.</p>
+          <div class="action">Audit conversion action sources. Confirm which is the primary action and which is legacy/duplicate. Remove or disable the older duplicate. Ensure only one call tracking action is set as primary for goal bidding.</div>
+        </div>
+      </div>
+      <div class="finding">
+        <div class="finding-badge pass">PASS</div>
+        <div class="finding-content">
+          <h3>Conversion Counting: MANY_PER_CLICK — Correct for Lead Gen</h3>
+          <p>All 4 conversion actions use counting_type=3 (MANY_PER_CLICK). For lead gen (form fills, calls), this is standard and appropriate. No issue with the counting type itself.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SECTION 9: KEYWORD QUALITY -->
+  <div class="section">
+    <div class="section-header">
+      <h2>9 — Keyword Health</h2>
+      <span class="score score-fail">LOW QS ACROSS BOARD</span>
+    </div>
+    <div class="section-body">
+      <p style="font-size:12.5px; color:var(--text-muted); margin-bottom:14px;">45 total keywords in a single ad group. Mix of phrase (match_type=3) and exact (match_type=2). Multiple keywords with QS=0, indicating they rarely or never qualify to serve. This is partly a product of the monolithic ad group structure — keyword themes are too disparate for any single RSA to achieve strong QS across all.</p>
+      <div class="two-col">
+        <div>
+          <strong style="font-size:11px; text-transform:uppercase; color:var(--text-muted);">Low QS / Structural Problem Keywords</strong>
+          <div class="chip-list" style="margin-top:8px;">
+            <span class="chip chip-neg">pool contractors</span>
+            <span class="chip chip-neg">pool construction</span>
+            <span class="chip chip-neg">pool installer</span>
+            <span class="chip chip-neg">pool sales</span>
+            <span class="chip chip-neg">install pool</span>
+            <span class="chip chip-neg">build pools</span>
+            <span class="chip chip-neg">pool makers</span>
+            <span class="chip chip-neg">local pool</span>
+            <span class="chip chip-neg">pool quotes</span>
+            <span class="chip chip-neg">custom swimming pool</span>
+          </div>
+        </div>
+        <div>
+          <strong style="font-size:11px; text-transform:uppercase; color:var(--text-muted);">Better-Aligned Keywords (Should Anchor New Ad Groups)</strong>
+          <div class="chip-list" style="margin-top:8px;">
+            <span class="chip chip-exact">[fiberglass pool installer]</span>
+            <span class="chip chip-exact">[fiberglass pool builders]</span>
+            <span class="chip chip-exact">[fiberglass pool installation]</span>
+            <span class="chip chip-phrase">"pool company beaufort sc"</span>
+            <span class="chip chip-phrase">"pool builder beaufort"</span>
+            <span class="chip chip-phrase">"inground pool company"</span>
+          </div>
+        </div>
+      </div>
+      <div class="finding" style="margin-top:14px; border-top:1px solid var(--border);">
+        <div class="finding-badge p1">P1</div>
+        <div class="finding-content">
+          <h3>Monolithic Keyword Structure = Systemic QS Depression</h3>
+          <p>When "custom swimming pool" and "pool contractors" and "pool makers" all share an ad group with "fiberglass pool builder," Google's QS algorithm cannot find a single RSA that achieves high relevance for all simultaneously. This results in below-average QS across the board, which directly causes the 49.9% rank-lost impression share. The fix is structural — split into themed ad groups, not individual keyword optimizations.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRIORITY ACTION PLAN -->
+  <div class="section">
+    <div class="section-header">
+      <h2>10 — Priority Action Plan</h2>
+      <span class="score score-fail">REBOOT REQUIRED</span>
+    </div>
+    <div class="section-body">
+      <table>
+        <thead>
+          <tr><th>Priority</th><th>Action</th><th>Owner</th><th>Timeline</th><th>Expected Impact</th></tr>
+        </thead>
+        <tbody>
+          <tr class="waste">
+            <td><span class="finding-badge p1">P1</span></td>
+            <td><strong>Request dedicated quote landing page from dealer</strong> — above-fold form, mobile-optimized, no scroll required to see CTA. This is the highest-ROI change available. CVR 0.41% → 1.5% halves CPA.</td>
+            <td>Eli → Dealer</td>
+            <td>Immediate</td>
+            <td>CPA cut 50–60%</td>
+          </tr>
+          <tr class="waste">
+            <td><span class="finding-badge p1">P1</span></td>
+            <td><strong>Reboot campaign structure:</strong> Replace single ad group with 3–4 themed groups. New RSAs per group. Tighter keyword-to-headline alignment.</td>
+            <td>Eli</td>
+            <td>This week</td>
+            <td>QS +2–3pts, rank IS recovery</td>
+          </tr>
+          <tr class="waste">
+            <td><span class="finding-badge p1">P1</span></td>
+            <td><strong>Switch bid strategy:</strong> Max Clicks → Manual CPC ($3.50–4.25 max) OR add CPC cap to existing Max Clicks ($5.00 ceiling). Prevents budget waste on high-cost irrelevant clicks.</td>
+            <td>Eli</td>
+            <td>This week</td>
+            <td>CPC efficiency +15–25%</td>
+          </tr>
+          <tr class="partial">
+            <td><span class="finding-badge p2">P2</span></td>
+            <td><strong>Add missing negatives:</strong> plunge pool/pools, blue haven, vinyl inground, tile ideas, inground pool cost, national pool companies, replaster/replastering, container pools.</td>
+            <td>Eli</td>
+            <td>Today</td>
+            <td>~$30–50/mo waste reduction</td>
+          </tr>
+          <tr class="partial">
+            <td><span class="finding-badge p2">P2</span></td>
+            <td><strong>Resolve duplicate call conversion actions:</strong> "Call from ads" vs "Calls from ads." Confirm primary, disable duplicate. Prevents double-counting that distorts CPA reporting.</td>
+            <td>Eli</td>
+            <td>This week</td>
+            <td>Accurate CPA reporting</td>
+          </tr>
+          <tr>
+            <td><span class="finding-badge p3">P3</span></td>
+            <td><strong>Apply -20% desktop bid modifier</strong> post-reboot once structure is stable. Mobile produced 100% of conversions. Redirect budget to mobile.</td>
+            <td>Eli</td>
+            <td>30 days post-reboot</td>
+            <td>Minor CPA improvement</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="footer">
+    Audit generated 2026-03-23 &nbsp;|&nbsp; Account 999-920-3572 &nbsp;|&nbsp; Leisure Pools — Elite Beaufort SC &nbsp;|&nbsp; Data range: 2026-02-21 to 2026-03-23 &nbsp;|&nbsp; Claude Code / dealer-audit-v2
+  </div>
+</div>
+
+</body>
+</html>

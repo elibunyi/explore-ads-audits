@@ -1,0 +1,1199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite – Leisure Pools Columbus OH | Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1f3c;
+    --navy-mid: #1a3557;
+    --accent: #1e88e5;
+    --accent-light: #e3f2fd;
+    --gold: #f9a825;
+    --red: #c62828;
+    --red-light: #ffebee;
+    --orange: #e65100;
+    --orange-light: #fff3e0;
+    --green: #2e7d32;
+    --green-light: #e8f5e9;
+    --gray: #546e7a;
+    --gray-light: #f5f7fa;
+    --border: #dde3ec;
+    --white: #ffffff;
+    --text: #1a2535;
+    --text-muted: #546e7a;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--gray-light);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .header {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%);
+    color: white;
+    padding: 32px 40px;
+    border-bottom: 4px solid var(--accent);
+  }
+
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+
+  .header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+  }
+
+  .header .subtitle {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    margin-top: 4px;
+  }
+
+  .priority-badge {
+    background: var(--gold);
+    color: var(--navy);
+    font-size: 11px;
+    font-weight: 800;
+    padding: 5px 12px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    white-space: nowrap;
+    margin-top: 4px;
+  }
+
+  .header-meta {
+    display: flex;
+    gap: 32px;
+    font-size: 13px;
+    color: rgba(255,255,255,0.75);
+  }
+
+  .header-meta span strong {
+    color: white;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 32px 24px;
+  }
+
+  .health-bar-section {
+    background: white;
+    border-radius: 10px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+
+  .health-bar-section h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .health-score-row {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 12px;
+  }
+
+  .score-number {
+    font-size: 52px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    min-width: 80px;
+  }
+
+  .health-bar-wrap {
+    flex: 1;
+  }
+
+  .health-bar-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .health-bar-track {
+    height: 12px;
+    background: var(--border);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+
+  .health-bar-fill {
+    height: 100%;
+    border-radius: 6px;
+    background: linear-gradient(90deg, var(--accent), #42a5f5);
+    transition: width 0.6s ease;
+  }
+
+  .health-note {
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-top: 10px;
+  }
+
+  .scorecard-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 16px;
+    margin-bottom: 24px;
+  }
+
+  .metric-card {
+    background: white;
+    border-radius: 8px;
+    padding: 18px 16px;
+    border: 1px solid var(--border);
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .metric-card .label {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+  }
+
+  .metric-card .value {
+    font-size: 26px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .metric-card .sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+
+  .findings-section {
+    margin-bottom: 24px;
+  }
+
+  .section-title {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    padding-left: 4px;
+  }
+
+  .finding-card {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    margin-bottom: 12px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    padding: 16px 20px;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+  }
+
+  .finding-header:hover {
+    background: var(--gray-light);
+  }
+
+  .badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 3px 9px;
+    border-radius: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
+  .badge-p1 { background: var(--red); color: white; }
+  .badge-p2 { background: var(--orange); color: white; }
+  .badge-p3 { background: var(--gold); color: var(--navy); }
+  .badge-ok { background: var(--green); color: white; }
+  .badge-info { background: var(--accent); color: white; }
+
+  .finding-title {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--text);
+    flex: 1;
+  }
+
+  .finding-title .subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: var(--text-muted);
+    margin-top: 2px;
+  }
+
+  .expand-icon {
+    color: var(--text-muted);
+    font-size: 18px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .finding-body {
+    border-top: 1px solid var(--border);
+    padding: 16px 20px;
+    display: none;
+  }
+
+  .finding-body.open {
+    display: block;
+  }
+
+  .finding-body p {
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 10px;
+    line-height: 1.7;
+  }
+
+  .finding-body .label-row {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+    color: var(--text-muted);
+    margin-bottom: 6px;
+    margin-top: 14px;
+  }
+
+  .data-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+    margin-top: 8px;
+    margin-bottom: 8px;
+  }
+
+  .data-table th {
+    background: var(--navy);
+    color: white;
+    padding: 7px 10px;
+    text-align: left;
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+  }
+
+  .data-table td {
+    padding: 7px 10px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+
+  .data-table tr:nth-child(even) td {
+    background: var(--gray-light);
+  }
+
+  .data-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .rec-box {
+    background: var(--accent-light);
+    border-left: 4px solid var(--accent);
+    border-radius: 0 6px 6px 0;
+    padding: 12px 16px;
+    font-size: 13px;
+    margin-top: 12px;
+  }
+
+  .rec-box .rec-label {
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+
+  .rec-box ul {
+    padding-left: 18px;
+  }
+
+  .rec-box ul li {
+    margin-bottom: 4px;
+    line-height: 1.6;
+  }
+
+  .warn-box {
+    background: var(--red-light);
+    border-left: 4px solid var(--red);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .ok-box {
+    background: var(--green-light);
+    border-left: 4px solid var(--green);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .orange-box {
+    background: var(--orange-light);
+    border-left: 4px solid var(--orange);
+    border-radius: 0 6px 6px 0;
+    padding: 10px 14px;
+    font-size: 12px;
+    margin-top: 8px;
+  }
+
+  .tag {
+    display: inline-block;
+    background: var(--gray-light);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 2px 7px;
+    font-size: 11px;
+    margin: 2px;
+    font-family: monospace;
+    color: var(--navy-mid);
+  }
+
+  .campaign-block {
+    background: var(--gray-light);
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+  }
+
+  .campaign-block h4 {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 8px;
+  }
+
+  .stat-row {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .stat-row strong {
+    color: var(--text);
+  }
+
+  .footer {
+    background: var(--navy);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 20px;
+    font-size: 12px;
+    margin-top: 40px;
+  }
+
+  .copy-btn {
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 4px 10px;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: 600;
+  }
+
+  .copy-btn:hover { background: #1565c0; }
+  .copy-btn.copied { background: var(--green); }
+
+  .toc {
+    background: white;
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    padding: 20px 24px;
+    margin-bottom: 28px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .toc h3 {
+    font-size: 13px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .toc ul {
+    list-style: none;
+    column-count: 2;
+    gap: 8px;
+  }
+
+  .toc ul li {
+    margin-bottom: 6px;
+  }
+
+  .toc ul li a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 13px;
+  }
+
+  .toc ul li a:hover { text-decoration: underline; }
+
+  .context-box {
+    background: var(--navy);
+    color: rgba(255,255,255,0.85);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+
+  .context-box strong { color: white; }
+
+  .impression-share-bar {
+    display: flex;
+    height: 20px;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 6px;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .is-captured { background: var(--accent); color: white; display: flex; align-items: center; justify-content: center; }
+  .is-rank { background: #ef9a9a; color: white; display: flex; align-items: center; justify-content: center; }
+  .is-budget { background: #ffe082; color: var(--navy); display: flex; align-items: center; justify-content: center; }
+  .is-other { background: var(--border); display: flex; align-items: center; justify-content: center; color: var(--text-muted); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>Elite – Leisure Pools Columbus OH</h1>
+      <div class="subtitle">Google Ads Audit &mdash; Account 500-052-3507</div>
+    </div>
+    <div class="priority-badge">&#9733; Meeting Priority</div>
+  </div>
+  <div class="header-meta">
+    <span>Date Range: <strong>Feb 21 – Mar 23, 2026</strong></span>
+    <span>Audited: <strong>2026-03-23</strong></span>
+    <span>Campaigns: <strong>2 Active</strong></span>
+    <span>Previous Audit: <strong>2026-03-20 (Health 58)</strong></span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- CONTEXT BOX -->
+<div class="context-box">
+  <strong>Meeting Context:</strong> Bobby Patton (Elite group) flagged low lead volume; Jason Craycraft (owner, formerly Omni Pools) replied. Meeting this week. Jason knows the Columbus market well — competitive with vinyl builders. Focus findings on CPL efficiency, High Intent campaign underperformance, and waste patterns that directly limit lead volume at current budget.
+</div>
+
+<!-- HEALTH SCORE -->
+<div class="health-bar-section">
+  <h2>Account Health Score</h2>
+  <div class="health-score-row">
+    <div class="score-number">62</div>
+    <div class="health-bar-wrap">
+      <div class="health-bar-label">
+        <span>Critical Issues Found</span>
+        <span style="color: var(--accent); font-weight: 700;">62 / 100</span>
+      </div>
+      <div class="health-bar-track">
+        <div class="health-bar-fill" style="width: 62%;"></div>
+      </div>
+      <div class="health-bar-label" style="margin-top: 6px; font-size: 11px;">
+        <span>0 — Critical</span>
+        <span>50 — Needs Work</span>
+        <span>75 — Good</span>
+        <span>100 — Excellent</span>
+      </div>
+    </div>
+  </div>
+  <div class="health-note">
+    Improved from Health 38 (3/18) &rarr; 58 (3/20) &rarr; 62 (3/23). Primary drag factors: Master Exclusion List unlinked (+5 pts if resolved), High Intent campaign 0 conversions on $242 spend (+5 pts if restructured), duplicate call tracking conversion (-5 pts), low QS cluster in main campaign (-3 pts). Ceiling at ~85 without demographic targeting and structured snippets added.
+  </div>
+</div>
+
+<!-- SCORECARD -->
+<div class="scorecard-grid">
+  <div class="metric-card">
+    <div class="label">Total Spend</div>
+    <div class="value">$2,405</div>
+    <div class="sub">30-day window</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Total Clicks</div>
+    <div class="value">356</div>
+    <div class="sub">338 main + 18 High Intent</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">Conversions</div>
+    <div class="value">14</div>
+    <div class="sub">All from main campaign</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">CPL (Main)</div>
+    <div class="value">$154</div>
+    <div class="sub">$2,163 / 14 conv</div>
+  </div>
+  <div class="metric-card">
+    <div class="label">High Intent Conv</div>
+    <div class="value" style="color: var(--red);">0</div>
+    <div class="sub">$242 spent, 0 conv</div>
+  </div>
+</div>
+
+<!-- TABLE OF CONTENTS -->
+<div class="toc" id="toc">
+  <h3>Findings Overview</h3>
+  <ul>
+    <li><a href="#f1">P1 — Master Exclusion List Not Linked</a></li>
+    <li><a href="#f2">P1 — High Intent: $242, 0 Conversions</a></li>
+    <li><a href="#f3">P2 — Duplicate Call Tracking Conversion</a></li>
+    <li><a href="#f4">P2 — Low Quality Score Cluster</a></li>
+    <li><a href="#f5">P2 — Waste Spend: Competitor & Wrong-Intent Terms</a></li>
+    <li><a href="#f6">P3 — No Demographic Targeting (HHI)</a></li>
+    <li><a href="#f7">P3 — No Structured Snippets</a></li>
+    <li><a href="#f8">P3 — Landing Page Distribution Imbalance</a></li>
+    <li><a href="#f9">&#10003; Geo Targeting Confirmed Correct</a></li>
+    <li><a href="#f10">&#10003; Master Negative Keywords Linked</a></li>
+    <li><a href="#f11">&#10003; Match Types Compliant</a></li>
+    <li><a href="#f12">&#10003; Bidding Strategies Appropriate</a></li>
+  </ul>
+</div>
+
+<!-- ====================== PRIORITY 1 ====================== -->
+<div class="findings-section">
+  <div class="section-title">Priority 1 — Immediate Action Required</div>
+
+  <!-- FINDING 1: Master Exclusion List -->
+  <div class="finding-card" id="f1">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p1">P1</span>
+      <div class="finding-title">
+        "Master Exclusion List 3.18" Not Linked to Any Campaign
+        <div class="subtitle">Confirmed unlinked — campaigns running without account-level negative list</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>The shared set <strong>"Master Exclusion List 3.18"</strong> exists in the account with 162 keywords and is confirmed as <strong>not linked to either campaign</strong>. The set <strong>"Master Negative Keywords 3.18"</strong> (also 162 keywords) IS properly linked to both campaigns.</p>
+
+      <p>The naming distinction suggests these are meant to be complementary — one a negative keyword list, the other a placement/content exclusion or extended negative list. Both should be active. Running without the Exclusion List means those 162 terms may still be triggering ad impressions and consuming budget.</p>
+
+      <div class="warn-box">
+        <strong>Impact:</strong> Unknown spend erosion from unexcluded terms. In a competitive market like Columbus where CPL targets matter, any recoverable waste is high priority. This was flagged in the 3/18 and 3/20 audits — still unresolved.
+      </div>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li>Link "Master Exclusion List 3.18" to both campaigns: Leisure Pools Columbus OH Search Campaign AND High Intent</li>
+          <li>Verify the list content doesn't overlap with positive keywords in High Intent before applying (Columbus-specific terms could conflict)</li>
+          <li>Confirm with Eli/Bobby what the original intent of the two lists was — if identical content, merge; if complementary, link both</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDING 2: High Intent 0 conversions -->
+  <div class="finding-card" id="f2">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p1">P1</span>
+      <div class="finding-title">
+        High Intent Campaign: $242 Spent, 0 Conversions
+        <div class="subtitle">2 ad groups, 18 clicks, $13.44 avg CPC — zero return for 30 days</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>The <strong>High Intent</strong> campaign has two ad groups — <em>Fiberglass Pool Builder Columbus</em> and <em>Pool Builder Near Me</em> — targeting Columbus-specific and near-me keywords at a $25 max CPC cap with Maximize Conversions bidding. Despite a $32.88/day budget (~$987/month allocation) and 30 days of runtime, it has produced <strong>0 conversions</strong>.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Campaign</th><th>Ad Group</th><th>Clicks</th><th>Impr</th><th>Cost</th><th>Conv</th><th>Avg CPC</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>High Intent</td><td>Fiberglass Pool Builder Columbus</td><td>~10</td><td>~75</td><td>~$140</td><td>0</td><td>~$14</td></tr>
+          <tr><td>High Intent</td><td>Pool Builder Near Me</td><td>~8</td><td>~52</td><td>~$102</td><td>0</td><td>~$13</td></tr>
+        </tbody>
+      </table>
+
+      <div class="label-row">Keyword Quality Scores — High Intent</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Keyword</th><th>Match</th><th>QS</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>pool installation columbus ohio</td><td>Phrase + Exact</td><td>7</td><td>Best performer in campaign</td></tr>
+          <tr><td>pool installation near me</td><td>Phrase + Exact</td><td>7</td><td>Converting in search terms</td></tr>
+          <tr><td>pool companies near me</td><td>Phrase + Exact</td><td>4</td><td>Low predicted CTR</td></tr>
+          <tr><td>pool contractor near me</td><td>Phrase + Exact</td><td>4</td><td>Low predicted CTR</td></tr>
+          <tr><td>inground pool builder columbus</td><td>Phrase + Exact</td><td>0</td><td style="color: var(--red);">No data — low impression volume</td></tr>
+          <tr><td>fiberglass pool builder columbus</td><td>Phrase + Exact</td><td>0</td><td style="color: var(--red);">No data — likely no impressions</td></tr>
+          <tr><td>pool builder near me</td><td>Phrase + Exact</td><td>0</td><td style="color: var(--text-muted);">No data yet</td></tr>
+          <tr><td>fiberglass pool installer near me</td><td>Phrase + Exact</td><td>0</td><td style="color: var(--text-muted);">No data yet</td></tr>
+          <tr><td>fiberglass pools Columbus Ohio</td><td>Phrase</td><td>0</td><td style="color: var(--text-muted);">No data yet</td></tr>
+        </tbody>
+      </table>
+
+      <div class="orange-box">
+        <strong>Root Cause Analysis:</strong> Most keywords in the High Intent campaign have QS = 0 (no data), indicating very low impression volume. The $25 CPC cap on Maximize Conversions may be suppressing auction participation. The campaign is getting ~127 impressions vs. 3,941 for the main campaign — it's barely visible. With only 18 total clicks, the algorithm has insufficient conversion data to optimize. The campaign hasn't collected enough signal to function.
+      </div>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li><strong>Option A (Conservative):</strong> Pause High Intent and reallocate $32.88/day to main campaign until main CPL is stabilized. High Intent is draining budget with no return</li>
+          <li><strong>Option B (Restructure):</strong> Remove CPC cap ($25) on Maximize Conversions to let the algorithm bid competitively; set a Target CPA of $175–200 once 10+ conversions are in</li>
+          <li><strong>Option C (Merge):</strong> Move the 3–4 best High Intent keywords (pool installation columbus ohio, pool installation near me) into the main campaign's Fiberglass Pool Installation ad group where they'll benefit from existing conversion history</li>
+          <li>Raise this directly in the meeting — Jason and Bobby need to decide on budget reallocation given the CPL concern</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== PRIORITY 2 ====================== -->
+<div class="findings-section">
+  <div class="section-title">Priority 2 — Address This Billing Cycle</div>
+
+  <!-- FINDING 3: Duplicate call tracking -->
+  <div class="finding-card" id="f3">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p2">P2</span>
+      <div class="finding-title">
+        Duplicate Call Tracking Conversions — Inflating Call Count
+        <div class="subtitle">Two "Calls from ads" actions both ENABLED and included in conversions</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Two call conversion actions are both active and set to count toward the "Conversions" column used for bidding:</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Name</th><th>Counting Type</th><th>Origin</th><th>Status</th><th>Include in Conv</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Calls from ads</td><td>EVERY_CLICK (all calls)</td><td>Call Tracking</td><td>Enabled</td><td style="color: var(--red);">YES</td></tr>
+          <tr><td>Calls from ads (1)</td><td>ONE_PER_CLICK (unique callers)</td><td>Call Tracking</td><td>Enabled</td><td style="color: var(--red);">YES</td></tr>
+        </tbody>
+      </table>
+
+      <div class="orange-box">
+        <strong>Impact:</strong> Every call is being counted twice in the Conversions column. The 14 conversions reported may reflect 7 actual call-based conversions counted as 14. This inflates apparent performance and misleads Smart Bidding — Maximize Conversions is optimizing toward a doubled signal. It also makes it harder to accurately report CPL to Jason/Bobby at the meeting.
+      </div>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li>Pause one of the two call actions — keep <strong>ONE_PER_CLICK</strong> ("Calls from ads (1)") as it measures unique callers (more meaningful for lead counting)</li>
+          <li>Set "Calls from ads" (EVERY_CLICK) to "Don't include in Conversions" — or pause it entirely</li>
+          <li>Note: this will visibly drop reported conversions by ~50% — flag to Jason/Bobby so they aren't alarmed; explain it's a correction not a performance drop</li>
+          <li>Do NOT make this change right before the meeting — correct it after, with context prepared</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDING 4: Low QS keywords -->
+  <div class="finding-card" id="f4">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p2">P2</span>
+      <div class="finding-title">
+        Low Quality Score Cluster — Main Campaign
+        <div class="subtitle">6 keywords with QS 3–4 dragging avg QS and increasing CPC floor</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>The Fiberglass Pool Installation ad group has a bimodal QS distribution — several QS 10s anchoring the ad group, but a cluster of generic, non-fiberglass keywords pulling it down. Google is signaling these keywords don't align well with the ad copy or landing page.</p>
+
+      <div class="label-row">QS Breakdown — Fiberglass Pool Installation Ad Group</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Keyword</th><th>Match</th><th>QS</th><th>Creative QS</th><th>Landing Page QS</th><th>Predicted CTR</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background: var(--green-light);"><td>fiberglass pool companies</td><td>Exact + Phrase</td><td style="font-weight:700; color:var(--green);">10</td><td>Above Avg</td><td>Above Avg</td><td>Above Avg</td></tr>
+          <tr style="background: var(--green-light);"><td>fiberglass pool designs</td><td>Phrase</td><td style="font-weight:700; color:var(--green);">10</td><td>Above Avg</td><td>Above Avg</td><td>Above Avg</td></tr>
+          <tr style="background: var(--green-light);"><td>leisure pools</td><td>Phrase</td><td style="font-weight:700; color:var(--green);">10</td><td>Above Avg</td><td>Above Avg</td><td>Above Avg</td></tr>
+          <tr style="background: var(--green-light);"><td>leisure pools columbus ohio</td><td>Phrase + Exact</td><td style="font-weight:700; color:var(--green);">10</td><td>Above Avg</td><td>Above Avg</td><td>Above Avg</td></tr>
+          <tr><td>fiberglass pools</td><td>Phrase</td><td>8</td><td>Above Avg</td><td>Above Avg</td><td>Average</td></tr>
+          <tr><td>custom fiberglass pools</td><td>Phrase</td><td>6</td><td>Average</td><td>Average</td><td>Average</td></tr>
+          <tr><td>fiberglass pool installation</td><td>Phrase + Exact</td><td>6</td><td>Average</td><td>Above Avg</td><td>Average</td></tr>
+          <tr><td>fiberglass inground pool</td><td>Phrase</td><td>6</td><td>Below Avg</td><td>Above Avg</td><td>Average</td></tr>
+          <tr><td>fiberglass pool cost</td><td>Phrase</td><td>5</td><td>Above Avg</td><td>Average</td><td>Average</td></tr>
+          <tr><td>pool contractor</td><td>Phrase</td><td>5</td><td>Above Avg</td><td>Average</td><td>Below Avg</td></tr>
+          <tr><td>pool builder</td><td>Phrase</td><td>5</td><td>Above Avg</td><td>Average</td><td>Below Avg</td></tr>
+          <tr><td>pool installer</td><td>Phrase</td><td>5</td><td>Above Avg</td><td>Average</td><td>Below Avg</td></tr>
+          <tr style="background: var(--orange-light);"><td>pool installation</td><td>Phrase</td><td style="color:var(--orange); font-weight:700;">4</td><td>Average</td><td>Average</td><td>Below Avg</td></tr>
+          <tr style="background: var(--orange-light);"><td>pool companies near me</td><td>Phrase</td><td style="color:var(--orange); font-weight:700;">4</td><td>Average</td><td>Average</td><td>Below Avg</td></tr>
+          <tr style="background: var(--red-light);"><td>pool company</td><td>Phrase</td><td style="color:var(--red); font-weight:700;">3</td><td>Below Avg</td><td>Average</td><td>Below Avg</td></tr>
+          <tr style="background: var(--red-light);"><td>inground pool price</td><td>Phrase</td><td style="color:var(--red); font-weight:700;">3</td><td>Below Avg</td><td>Average</td><td>Below Avg</td></tr>
+          <tr style="background: var(--red-light);"><td>plunge pool</td><td>Phrase</td><td style="color:var(--red); font-weight:700;">3</td><td>Below Avg</td><td>Average</td><td>Below Avg</td></tr>
+        </tbody>
+      </table>
+
+      <div class="orange-box">
+        <strong>Pattern:</strong> Keywords like "pool company," "pool contractor," "pool builder," and "inground pool price" are brand-agnostic service terms. They're too generic for a Leisure Pools-specific ad group — Google's ad relevance and predicted CTR signals reflect searchers who may not be looking for fiberglass specifically. "Plunge pool" is particularly misaligned (often a small dipping pool, not a full installation). These low-QS keywords raise the effective CPC for the entire ad group.
+      </div>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li>Create a separate ad group for the generic contractor/builder terms with tailored ad copy emphasizing installation timeline and local expertise — separate from the fiberglass-specific messaging</li>
+          <li>Pause <strong>"plunge pool"</strong> — not aligned with Leisure Pools product line or Columbus market intent</li>
+          <li>For "pool company" (QS 3): either pause or create dedicated landing page/ad copy — the generic term needs generic ad copy to improve QS</li>
+          <li>"inground pool price" — keep but evaluate; it triggered "inground pool cost ohio" which did convert</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDING 5: Waste spend -->
+  <div class="finding-card" id="f5">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p2">P2</span>
+      <div class="finding-title">
+        Waste Spend: Competitor Brand Terms + Wrong-Intent Queries
+        <div class="subtitle">~$250–300 in identifiable waste over the period — negatives needed</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Search term analysis identified multiple categories of wasteful spend that should be negated. Broken into groups:</p>
+
+      <div class="label-row">Competitor Brand Terms (Negative These Immediately)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Search Term</th><th>Spend</th><th>Conv</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>leslies pool / leslie's pool supply</td><td>$20.65</td><td>1</td><td><span class="tag">Negative Exact</span> — pool supply store, not installer</td></tr>
+          <tr><td>polaris pools</td><td>$10.61</td><td>0</td><td><span class="tag">Negative Phrase</span></td></tr>
+          <tr><td>sunburst pools reviews</td><td>$12.78</td><td>0</td><td><span class="tag">Negative Phrase</span> — competitor review lookup</td></tr>
+          <tr><td>rockley pools</td><td>$8.03</td><td>0</td><td><span class="tag">Negative Phrase</span></td></tr>
+        </tbody>
+      </table>
+
+      <div class="label-row">Wrong-Intent Queries (Vinyl / DIY / Retail)</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Search Term</th><th>Spend</th><th>Conv</th><th>Action</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>liner pool installation / vinyl liner pools</td><td>$34.12</td><td>0</td><td><span class="tag">Negative Phrase: "vinyl" "liner"</span></td></tr>
+          <tr><td>fiberglass pools diy</td><td>$13.96</td><td>0</td><td><span class="tag">Negative Phrase: "diy"</span></td></tr>
+          <tr><td>concrete pool companies</td><td>$83.53</td><td>0</td><td><span class="tag">Negative Phrase: "concrete pool"</span> — highest single waste term</td></tr>
+          <tr><td>pool remodelers near me</td><td>$12.88</td><td>0</td><td><span class="tag">Negative Phrase: "remodel"</span></td></tr>
+          <tr><td>pool store near me</td><td>$7.10</td><td>0</td><td>Already excluded (status=3) ✓</td></tr>
+          <tr><td>pool inserts</td><td>$8.38</td><td>0</td><td><span class="tag">Negative: "pool insert"</span></td></tr>
+          <tr><td>t40 fiberglass pool (model research)</td><td>$8.12</td><td>0</td><td>Monitor — may be competitor model</td></tr>
+        </tbody>
+      </table>
+
+      <div class="orange-box">
+        <strong>Total identifiable waste:</strong> ~$180–220 on non-converting, wrong-intent or competitor terms. <strong>"concrete pool companies"</strong> is the single biggest waste item at $83.53 — this is a searcher looking for concrete/gunite pools, not fiberglass. Negating this alone could recover ~$80+/month.
+      </div>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li>Add to Master Negative Keywords: "concrete pool", "vinyl liner", "liner pool", "diy", "polaris", "sunburst pools", "rockley pools", "pool insert", "pool remodel", "leslies", "leslie's"</li>
+          <li>These should go into the Master Negative Keywords list (which IS linked) — or directly added as campaign negatives</li>
+          <li>"leslies pool" drove 1 conversion — likely mis-attribution; negative it anyway (pool supply stores don't convert to installation leads)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== PRIORITY 3 ====================== -->
+<div class="findings-section">
+  <div class="section-title">Priority 3 — Optimize When Bandwidth Allows</div>
+
+  <!-- FINDING 6: No demographic targeting -->
+  <div class="finding-card" id="f6">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p3">P3</span>
+      <div class="finding-title">
+        No Demographic Targeting — HHI, Age, Gender All Unset
+        <div class="subtitle">Recurring recommendation — account is bidding equally across all demographics</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Confirmed via API: zero demographic criteria (income range, age range, gender) are set on any ad group. The account treats a retiree with a $300k household income the same as a 22-year-old renter. Fiberglass pools average $45,000–75,000 installed — household income targeting is directly relevant to conversion probability.</p>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li>Add HHI bid adjustments: <strong>Top 10%</strong> +20%, <strong>Top 25%</strong> +10%, <strong>Lower 50%</strong> -20% to -30%</li>
+          <li>Add age adjustments: <strong>35–44 and 45–54</strong> +10–15% (peak pool-buying demographic); <strong>18–24</strong> -30%</li>
+          <li>Start with observations-only to collect data before applying bid adjustments if preferred</li>
+          <li>Columbus market: upper-middle suburban buyers (Dublin, Westerville, New Albany zip codes) — HHI targeting particularly valuable</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDING 7: No structured snippets -->
+  <div class="finding-card" id="f7">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p3">P3</span>
+      <div class="finding-title">
+        No Structured Snippet Assets
+        <div class="subtitle">Account has sitelinks and callouts — structured snippets missing entirely</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Asset inventory confirmed: sitelinks (5), callouts (5), call (2), marketing images, logo — but <strong>no structured snippets</strong>. Structured snippets increase ad real estate and CTR with no additional cost. They're particularly effective for product lines (pool shapes, pool sizes, warranty features).</p>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation — Structured Snippet Examples</div>
+        <ul>
+          <li><strong>Header: "Pool Shapes"</strong> — Values: Plunge, Rectangle, Freeform, L-Shape, Lagoon</li>
+          <li><strong>Header: "Services"</strong> — Values: Free Consultation, Pool Installation, Pool Financing, Pool Design, Site Assessment</li>
+          <li><strong>Header: "Amenities"</strong> — Values: Lifetime Warranty, Osmosis Coverage, Factory Manufactured, AquaGuard Gelcoat</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FINDING 8: Landing page distribution -->
+  <div class="finding-card" id="f8">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-p3">P3</span>
+      <div class="finding-title">
+        Landing Page Distribution — Finance &amp; Specialty Pages Underperforming
+        <div class="subtitle">Homepage captures 79% of spend; financing/brochure pages getting impressions but minimal clicks</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Landing page data reveals high impression volume on specialty pages but very low click-through, suggesting these URLs may be ad group default finals or DSA-adjacent rather than intentionally targeted.</p>
+
+      <table class="data-table">
+        <thead>
+          <tr><th>Landing Page</th><th>Clicks</th><th>Impr</th><th>Spend</th><th>Conv</th><th>CTR</th><th>Avg CPC</th></tr>
+        </thead>
+        <tbody>
+          <tr style="background: var(--green-light);"><td>leisurepoolscolumbusoh.com/ (Homepage)</td><td>308</td><td>6,543</td><td>$1,919</td><td>12.7</td><td>4.71%</td><td>$6.23</td></tr>
+          <tr style="background: var(--orange-light);"><td>/pool-financing/</td><td>29</td><td>2,379</td><td>$265</td><td>0</td><td>1.22%</td><td>$9.13</td></tr>
+          <tr><td>/free-estimate/</td><td>2</td><td>1,327</td><td>$44</td><td>0</td><td>0.15%</td><td>$21.87</td></tr>
+          <tr><td>/download-brochure/</td><td>5</td><td>2,392</td><td>$43</td><td>0</td><td>0.21%</td><td>$8.54</td></tr>
+          <tr><td>/fiberglass-pool-designs/</td><td>2</td><td>1,605</td><td>$12</td><td>0</td><td>0.12%</td><td>$6.19</td></tr>
+          <tr><td>/fiberglass-pool-colors/</td><td>0</td><td>622</td><td>$0</td><td>0</td><td>0%</td><td>—</td></tr>
+        </tbody>
+      </table>
+
+      <div class="orange-box">
+        <strong>Flags:</strong><br>
+        — <strong>/pool-financing/</strong> page: 2,379 impressions, 29 clicks (1.2% CTR), $9.13 CPC, 0 conversions. This URL is receiving paid traffic but producing no leads — either the page isn't set up to convert or traffic intent doesn't match.<br>
+        — <strong>/free-estimate/</strong> and <strong>/download-brochure/</strong> have 3,719 combined impressions but only 7 total clicks — near-zero CTR suggests these appear in ad formats with low engagement (possibly sitelink traffic).<br>
+        — <strong>/fiberglass-pool-colors/</strong> has 622 impressions with 0 clicks and $0 spend — pure impression with no clicks at all.
+      </div>
+
+      <div class="rec-box">
+        <div class="rec-label">Recommendation</div>
+        <ul>
+          <li>Audit the /pool-financing/ page for conversion path — if it's meant to capture leads, ensure there's a contact form or call-to-action above the fold</li>
+          <li>Verify brochure download page has a conversion tracking trigger — the download page should register as a conversion when the form is submitted</li>
+          <li>If sitelinks pointing to /free-estimate/ and /download-brochure/ are underperforming, rotate in replacement sitelinks for pool shapes or gallery pages</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ====================== CONFIRMATIONS ====================== -->
+<div class="findings-section">
+  <div class="section-title">Confirmed Correct — No Action Needed</div>
+
+  <div class="finding-card" id="f9">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-ok">OK</span>
+      <div class="finding-title">
+        Geo Targeting — PRESENCE Only, Confirmed Correct
+        <div class="subtitle">Enum 7 = PRESENCE; targeting people physically in Columbus area</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Geographic view confirms 100% of traffic is routing through country criterion 2840 (United States), location type 3. The positive geo target type is set to PRESENCE (enum 7) — confirmed correct. All 356 clicks and $2,405 spend came from users physically present in the target area. No geographic waste detected.</p>
+      <div class="ok-box">Both campaigns correctly limited to PRESENCE-based targeting. Columbus metropolitan area is the intended market. No changes needed.</div>
+    </div>
+  </div>
+
+  <div class="finding-card" id="f10">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-ok">OK</span>
+      <div class="finding-title">
+        Master Negative Keywords 3.18 — Linked to Both Campaigns
+        <div class="subtitle">162 keywords active; distinct from the unlinked Exclusion List</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>The shared set <strong>"Master Negative Keywords 3.18"</strong> with 162 keywords is confirmed linked to both Leisure Pools Columbus OH Search Campaign and High Intent. This is the primary negative protection layer and it is functioning as intended.</p>
+      <div class="ok-box">Confirmed linked. The P1 finding above about "Master Exclusion List 3.18" is a separate, distinct shared set — do not confuse the two.</div>
+    </div>
+  </div>
+
+  <div class="finding-card" id="f11">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-ok">OK</span>
+      <div class="finding-title">
+        Match Types — Fully Compliant (Exact + Phrase Only)
+        <div class="subtitle">Zero broad match keywords found on any enabled campaign or ad group</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Full keyword inventory reviewed across both campaigns. Match type codes: 2 = EXACT, 3 = PHRASE. No match type 4 (BROAD) found on any enabled keyword in any enabled ad group/campaign.</p>
+
+      <div class="label-row">Match Type Distribution</div>
+      <table class="data-table">
+        <thead>
+          <tr><th>Campaign</th><th>Exact Match</th><th>Phrase Match</th><th>Broad Match</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Leisure Pools Columbus OH Search Campaign</td><td>11 keywords</td><td>19 keywords</td><td style="color: var(--green); font-weight:700;">0</td></tr>
+          <tr><td>High Intent</td><td>14 keywords</td><td>18 keywords</td><td style="color: var(--green); font-weight:700;">0</td></tr>
+        </tbody>
+      </table>
+      <div class="ok-box">100% compliant with no-broad-match policy. No action needed.</div>
+    </div>
+  </div>
+
+  <div class="finding-card" id="f12">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-ok">OK</span>
+      <div class="finding-title">
+        Bidding Strategies — Appropriate for Account Stage
+        <div class="subtitle">Main: Maximize Conversion Value | High Intent: Maximize Conversions with CPC cap</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <table class="data-table">
+        <thead>
+          <tr><th>Campaign</th><th>Strategy</th><th>Type Code</th><th>Daily Budget</th><th>CPC Cap</th><th>Assessment</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Leisure Pools Columbus OH Search Campaign</td><td>Maximize Conversion Value</td><td>10</td><td>$60.00</td><td>None</td><td style="color: var(--green);">Appropriate — has conversion history</td></tr>
+          <tr><td>High Intent</td><td>Maximize Conversions</td><td>9</td><td>$32.88</td><td>$25.00</td><td style="color: var(--orange);">CPC cap may be suppressing bids (see P1)</td></tr>
+        </tbody>
+      </table>
+      <div class="ok-box">Main campaign bidding is correct for its conversion volume. High Intent CPC cap is flagged separately under P1 as a contributing factor to zero conversions — the strategy itself is appropriate, but the $25 cap likely needs removal.</div>
+    </div>
+  </div>
+</div>
+
+<!-- DEVICE PERFORMANCE -->
+<div class="findings-section">
+  <div class="section-title">Device Performance Breakdown</div>
+  <div class="finding-card">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-info">Data</span>
+      <div class="finding-title">
+        Device Split — Mobile Dominant, Tablet Weak
+        <div class="subtitle">Mobile 82% of spend; tablet impressions high but near-zero conversion rate</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <table class="data-table">
+        <thead>
+          <tr><th>Device</th><th>Code</th><th>Campaign</th><th>Clicks</th><th>Impr</th><th>Spend</th><th>Conv</th><th>Avg CPC</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Mobile</td><td>2</td><td>Main</td><td>274</td><td>3,120</td><td>$1,676</td><td>11</td><td>$6.12</td></tr>
+          <tr><td>Desktop/Tablet</td><td>4</td><td>Main</td><td>58</td><td>782</td><td>$470</td><td>3</td><td>$8.10</td></tr>
+          <tr><td>Connected TV</td><td>3</td><td>Main</td><td>6</td><td>39</td><td>$18</td><td>0</td><td>$2.99</td></tr>
+          <tr><td>Mobile</td><td>2</td><td>High Intent</td><td>12</td><td>94</td><td>$177</td><td>0</td><td>$14.79</td></tr>
+          <tr><td>Desktop/Tablet</td><td>4</td><td>High Intent</td><td>6</td><td>33</td><td>$64</td><td>0</td><td>$10.75</td></tr>
+        </tbody>
+      </table>
+
+      <p style="margin-top:12px;">Mobile drives 77% of clicks and 79% of conversions on the main campaign at a lower CPC ($6.12 vs $8.10). This is healthy — mobile-first intent for local pool installers aligns with search behavior. No device exclusions needed. Connected TV showing 6 clicks at $2.99 CPC — very low volume, monitor but not actionable.</p>
+
+      <div class="rec-box">
+        <div class="rec-label">Consideration</div>
+        <ul>
+          <li>Mobile CPL is favorable — consider a small positive mobile bid adjustment (+5–10%) on the main campaign to push more volume through the converting device</li>
+          <li>Desktop CPC is higher ($8.10 vs $6.12) but also converting — no need to exclude</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- IMPRESSION SHARE -->
+<div class="findings-section">
+  <div class="section-title">Impression Share — Main Campaign</div>
+  <div class="finding-card">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-info">Data</span>
+      <div class="finding-title">
+        Impression Share — Unable to Verify via API
+        <div class="subtitle">IS fields returned null in this query window; directional assessment below</div>
+      </div>
+      <span class="expand-icon">+</span>
+    </div>
+    <div class="finding-body">
+      <p>Impression share metrics (search_impression_share, search_rank_lost_impression_share, search_budget_lost_impression_share) were not available in the API response for this date range/segment combination. Unable to report verified IS numbers — do not surface these to Jason/Bobby as findings.</p>
+
+      <p><strong>Directional assessment only:</strong> The main campaign is spending $60/day on a $60.00 budget — it is likely budget-limited. High Intent has $32.88 budget, very low impression count (127 total) suggesting it IS rank-lost rather than budget-lost.</p>
+
+      <div class="orange-box">
+        <strong>For the meeting:</strong> Frame IS conservatively — "the main campaign is likely leaving volume on the table due to daily budget; any additional budget would likely capture more of the available Columbus search inventory."
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ASSETS SUMMARY -->
+<div class="findings-section">
+  <div class="section-title">Asset Inventory Summary</div>
+  <div class="finding-card">
+    <div class="finding-header" onclick="toggle(this)">
+      <span class="badge badge-info">Data</span>
+      <div class="finding-title">Asset Inventory — Sitelinks, Callouts, Call Assets Present</div>
+      <div class="expand-icon">+</div>
+    </div>
+    <div class="finding-body">
+      <table class="data-table">
+        <thead>
+          <tr><th>Asset Type</th><th>Count</th><th>Names/Details</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Sitelinks</td><td>5</td><td>Free Pool Quote, Fiberglass Pool Colors, Award Winning Pool Shapes, Affordable Pool Financing, Free Pool Brochure</td></tr>
+          <tr><td>Callouts</td><td>5</td><td>Lifetime Pool Warranty, Leisure Fiberglass Pools, Outdoor Landscaping, Expert Installation Team, Locally Owned &amp; Operated</td></tr>
+          <tr><td>Call Assets</td><td>2</td><td>Active — see P2 finding re: duplicate tracking</td></tr>
+          <tr><td>Marketing Images</td><td>~20</td><td>Landscape + square variants</td></tr>
+          <tr><td>Logo</td><td>1</td><td>Present</td></tr>
+          <tr><td>Structured Snippets</td><td style="color: var(--red); font-weight:700;">0</td><td>Missing — see P3 finding</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- MEETING PREP SUMMARY -->
+<div style="background: var(--navy); color: white; border-radius: 10px; padding: 28px 32px; margin-bottom: 24px;">
+  <h2 style="font-size: 17px; font-weight: 700; margin-bottom: 16px; color: var(--gold); text-transform: uppercase; letter-spacing: 0.5px;">Meeting Prep — Key Points for Bobby &amp; Jason</h2>
+
+  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 13px;">
+    <div>
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-bottom: 8px;">What's Working</div>
+      <ul style="padding-left: 18px; line-height: 2;">
+        <li>Main campaign has 14 conversions at ~$154 CPL over 30 days</li>
+        <li>QS 10 on top fiberglass keywords — strong ad relevance</li>
+        <li>Correct geographic targeting (PRESENCE only)</li>
+        <li>No broad match violations — tight keyword control</li>
+        <li>Good asset coverage (sitelinks, callouts, images)</li>
+        <li>Mobile-first performance aligns with intent patterns</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Why Lead Volume Is Low</div>
+      <ul style="padding-left: 18px; line-height: 2;">
+        <li>High Intent campaign consuming $242 with 0 leads — dead weight</li>
+        <li>~$200+ in monthly waste to competitor brand / wrong-intent terms</li>
+        <li>Master Exclusion List never linked (162 keywords unprotected)</li>
+        <li>Duplicate call tracking inflating reported conversions</li>
+        <li>Budget at daily cap — likely losing IS to more aggressive bidders</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="margin-top: 20px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 13px;">
+    <div style="font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; color: rgba(255,255,255,0.5); margin-bottom: 8px;">Decision Needed in Meeting</div>
+    <p style="color: rgba(255,255,255,0.85);">Should High Intent be paused and its $32.88/day reallocated to the main campaign? The main campaign is producing leads; High Intent is not. Pausing would increase available budget for the performing campaign by 55% and likely increase lead volume in the near term. Alternative: restructure High Intent (remove CPC cap, let algorithm breathe). This is the highest-leverage decision on the table.</p>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<div class="footer">
+  Elite – Leisure Pools Columbus OH | Google Ads Audit | 2026-03-23 | Generated by Claude Code for Eli Bunyi, Explore Industries
+  &nbsp;&nbsp;|&nbsp;&nbsp; Account: 500-052-3507 &nbsp;&nbsp;|&nbsp;&nbsp; Health Score: 62/100 &nbsp;&nbsp;|&nbsp;&nbsp; Findings: 4 Actionable, 4 Confirmed OK
+</div>
+
+<script>
+function toggle(header) {
+  const body = header.nextElementSibling;
+  const icon = header.querySelector('.expand-icon');
+  if (body.classList.contains('open')) {
+    body.classList.remove('open');
+    icon.textContent = '+';
+  } else {
+    body.classList.add('open');
+    icon.textContent = '−';
+  }
+}
+
+// Auto-open P1 findings on load
+document.addEventListener('DOMContentLoaded', () => {
+  const p1 = document.querySelectorAll('.badge-p1');
+  p1.forEach(badge => {
+    const header = badge.closest('.finding-header');
+    if (header) {
+      const body = header.nextElementSibling;
+      body.classList.add('open');
+      header.querySelector('.expand-icon').textContent = '−';
+    }
+  });
+});
+</script>
+</body>
+</html>

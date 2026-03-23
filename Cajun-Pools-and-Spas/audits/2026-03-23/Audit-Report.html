@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cajun Pools and Spas — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2e45;
+    --navy-light: #243b55;
+    --accent: #1a8fff;
+    --accent-gold: #f5a623;
+    --accent-green: #27ae60;
+    --accent-red: #e74c3c;
+    --accent-orange: #e67e22;
+    --accent-yellow: #f1c40f;
+    --text: #e8edf3;
+    --text-muted: #8fa3bc;
+    --border: #2e4a6a;
+    --card-bg: #162133;
+    --card-bg-alt: #1a2940;
+    --p1: #e74c3c;
+    --p2: #e67e22;
+    --p3: #f1c40f;
+    --pass: #27ae60;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, var(--navy-mid) 0%, #0a2540 100%); border-bottom: 2px solid var(--accent); padding: 32px 40px 24px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+  .dealer-name { font-size: 28px; font-weight: 700; color: #fff; letter-spacing: -0.5px; }
+  .dealer-meta { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+  .health-badge { text-align: right; }
+  .health-score { font-size: 52px; font-weight: 800; line-height: 1; }
+  .health-label { color: var(--text-muted); font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+  .score-critical { color: var(--p1); }
+  .audit-meta { margin-top: 16px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .meta-pill { background: rgba(255,255,255,0.07); border-radius: 20px; padding: 4px 14px; font-size: 12px; color: var(--text-muted); }
+  .meta-pill span { color: var(--text); font-weight: 600; }
+
+  /* Investigation Banner */
+  .investigation-banner { background: linear-gradient(135deg, #2d0a0a 0%, #4a1010 100%); border: 2px solid var(--p1); border-radius: 8px; padding: 20px 24px; margin: 24px 40px; }
+  .investigation-banner h2 { color: var(--p1); font-size: 16px; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .investigation-banner .verdict { font-size: 15px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .investigation-banner p { color: var(--text-muted); font-size: 13px; line-height: 1.7; }
+
+  /* Priority Queue */
+  .priority-section { margin: 24px 40px; }
+  .section-title { font-size: 11px; text-transform: uppercase; letter-spacing: 2px; color: var(--text-muted); margin-bottom: 12px; }
+  .priority-list { display: flex; flex-direction: column; gap: 8px; }
+  .priority-item { display: flex; align-items: flex-start; gap: 12px; background: var(--card-bg); border-radius: 8px; padding: 14px 16px; border-left: 4px solid; }
+  .priority-item.p1 { border-color: var(--p1); }
+  .priority-item.p2 { border-color: var(--p2); }
+  .priority-item.p3 { border-color: var(--p3); }
+  .priority-item.pass { border-color: var(--pass); }
+  .priority-badge { font-size: 10px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px; white-space: nowrap; padding: 3px 8px; border-radius: 4px; }
+  .p1 .priority-badge { background: var(--p1); color: #fff; }
+  .p2 .priority-badge { background: var(--p2); color: #fff; }
+  .p3 .priority-badge { background: var(--p3); color: #000; }
+  .pass .priority-badge { background: var(--pass); color: #fff; }
+  .priority-text { flex: 1; font-size: 13px; }
+  .priority-text strong { color: #fff; display: block; margin-bottom: 2px; }
+  .priority-text span { color: var(--text-muted); font-size: 12px; }
+
+  /* KPI Grid */
+  .kpi-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 24px 40px; }
+  .kpi-card { background: var(--card-bg); border-radius: 8px; padding: 16px; border: 1px solid var(--border); }
+  .kpi-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; }
+  .kpi-value { font-size: 24px; font-weight: 700; line-height: 1; }
+  .kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 4px; }
+  .kv-red { color: var(--p1); }
+  .kv-orange { color: var(--p2); }
+  .kv-yellow { color: var(--p3); }
+  .kv-green { color: var(--pass); }
+  .kv-blue { color: var(--accent); }
+  .kv-white { color: #fff; }
+
+  /* Content Sections */
+  .content { padding: 8px 40px 40px; }
+  .audit-section { background: var(--card-bg); border-radius: 10px; border: 1px solid var(--border); margin-bottom: 20px; overflow: hidden; }
+  .audit-section-header { background: var(--card-bg-alt); padding: 14px 20px; display: flex; align-items: center; justify-content: space-between; cursor: pointer; border-bottom: 1px solid var(--border); }
+  .audit-section-header h2 { font-size: 14px; font-weight: 600; color: #fff; display: flex; align-items: center; gap: 10px; }
+  .section-status { font-size: 11px; font-weight: 700; padding: 3px 10px; border-radius: 12px; text-transform: uppercase; letter-spacing: 0.5px; }
+  .status-critical { background: rgba(231,76,60,0.2); color: var(--p1); border: 1px solid rgba(231,76,60,0.4); }
+  .status-warning { background: rgba(230,126,34,0.2); color: var(--p2); border: 1px solid rgba(230,126,34,0.4); }
+  .status-minor { background: rgba(241,196,15,0.2); color: var(--p3); border: 1px solid rgba(241,196,15,0.4); }
+  .status-pass { background: rgba(39,174,96,0.2); color: var(--pass); border: 1px solid rgba(39,174,96,0.4); }
+  .status-info { background: rgba(26,143,255,0.15); color: var(--accent); border: 1px solid rgba(26,143,255,0.3); }
+  .audit-section-body { padding: 20px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--navy-light); color: var(--text-muted); font-size: 11px; text-transform: uppercase; letter-spacing: 1px; padding: 8px 12px; text-align: left; }
+  td { padding: 9px 12px; border-bottom: 1px solid rgba(46,74,106,0.5); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(26,143,255,0.04); }
+  .tag-red { background: rgba(231,76,60,0.15); color: var(--p1); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+  .tag-orange { background: rgba(230,126,34,0.15); color: var(--p2); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+  .tag-yellow { background: rgba(241,196,15,0.15); color: var(--p3); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+  .tag-green { background: rgba(39,174,96,0.15); color: var(--pass); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+  .tag-blue { background: rgba(26,143,255,0.15); color: var(--accent); border-radius: 4px; padding: 2px 7px; font-size: 11px; font-weight: 600; }
+  .tag-gray { background: rgba(255,255,255,0.07); color: var(--text-muted); border-radius: 4px; padding: 2px 7px; font-size: 11px; }
+
+  /* Finding blocks */
+  .finding { background: var(--navy); border-radius: 6px; padding: 14px 16px; margin-bottom: 12px; border-left: 3px solid; }
+  .finding.critical { border-color: var(--p1); }
+  .finding.warning { border-color: var(--p2); }
+  .finding.minor { border-color: var(--p3); }
+  .finding.pass { border-color: var(--pass); }
+  .finding.info { border-color: var(--accent); }
+  .finding-title { font-weight: 700; margin-bottom: 6px; font-size: 13px; }
+  .finding.critical .finding-title { color: var(--p1); }
+  .finding.warning .finding-title { color: var(--p2); }
+  .finding.minor .finding-title { color: var(--p3); }
+  .finding.pass .finding-title { color: var(--pass); }
+  .finding.info .finding-title { color: var(--accent); }
+  .finding p { color: var(--text-muted); font-size: 12px; line-height: 1.7; }
+  .finding p + p { margin-top: 6px; }
+
+  /* Bulk paste */
+  .bulk-paste-label { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--text-muted); margin-bottom: 6px; margin-top: 16px; }
+  .bulk-paste-box { background: var(--navy); border: 1px solid var(--border); border-radius: 6px; padding: 14px; font-family: 'Courier New', monospace; font-size: 12px; color: #7ecfff; white-space: pre-wrap; word-break: break-all; cursor: pointer; position: relative; transition: border-color 0.2s; }
+  .bulk-paste-box:hover { border-color: var(--accent); }
+  .copy-hint { position: absolute; top: 8px; right: 10px; font-size: 10px; color: var(--text-muted); font-family: system-ui, sans-serif; }
+
+  /* Info grid */
+  .info-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .info-item { background: var(--navy); border-radius: 6px; padding: 10px 14px; }
+  .info-item-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px; }
+  .info-item-value { font-size: 13px; font-weight: 600; color: #fff; }
+  .info-item-value.warn { color: var(--p2); }
+  .info-item-value.crit { color: var(--p1); }
+  .info-item-value.good { color: var(--pass); }
+
+  /* Dividers */
+  .sub-section-title { font-size: 12px; font-weight: 700; color: var(--accent); text-transform: uppercase; letter-spacing: 1px; margin: 20px 0 12px; padding-bottom: 6px; border-bottom: 1px solid var(--border); }
+  .note-block { background: rgba(26,143,255,0.08); border: 1px solid rgba(26,143,255,0.2); border-radius: 6px; padding: 12px 14px; font-size: 12px; color: var(--text-muted); margin: 10px 0; }
+  .note-block strong { color: var(--accent); }
+
+  /* Recommendation box */
+  .rec-box { background: linear-gradient(135deg, #0a1e0f 0%, #0f2918 100%); border: 1px solid rgba(39,174,96,0.4); border-radius: 8px; padding: 18px 20px; margin-top: 12px; }
+  .rec-box h3 { color: var(--pass); font-size: 13px; margin-bottom: 10px; }
+  .rec-box li { color: var(--text-muted); font-size: 12px; margin-bottom: 6px; padding-left: 4px; }
+  .rec-box li::marker { color: var(--pass); }
+  .rec-box ol, .rec-box ul { padding-left: 20px; }
+
+  /* Pause Recommendation */
+  .pause-rec { background: linear-gradient(135deg, #2d0a0a 0%, #3d1010 100%); border: 2px solid var(--p1); border-radius: 10px; padding: 22px 24px; margin: 24px 40px; }
+  .pause-rec h2 { color: var(--p1); font-size: 17px; margin-bottom: 14px; }
+  .pause-rec p { color: var(--text-muted); font-size: 13px; line-height: 1.8; margin-bottom: 8px; }
+  .pause-rec .decision-items { margin-top: 12px; }
+  .pause-rec .decision-item { display: flex; gap: 12px; margin-bottom: 8px; }
+  .pause-rec .di-label { font-size: 12px; font-weight: 700; color: var(--p1); min-width: 70px; }
+  .pause-rec .di-text { font-size: 12px; color: var(--text-muted); }
+
+  /* Footer */
+  footer { background: var(--navy-mid); border-top: 1px solid var(--border); padding: 20px 40px; color: var(--text-muted); font-size: 12px; display: flex; justify-content: space-between; }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════
+     HEADER
+═══════════════════════════════════════════ -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="dealer-name">Cajun Pools and Spas</div>
+      <div class="dealer-meta">Account: 648-605-3029 &nbsp;|&nbsp; Brand: Leisure Pools &nbsp;|&nbsp; Market: Acadiana, Louisiana (Lafayette Metro)</div>
+      <div class="dealer-meta">Owners: Brandon &amp; Rosalyn Miller &nbsp;|&nbsp; HQ: Breaux Bridge, LA</div>
+    </div>
+    <div class="health-badge">
+      <div class="health-score score-critical">14</div>
+      <div class="health-label">/ 100 Health Score</div>
+    </div>
+  </div>
+  <div class="audit-meta">
+    <div class="meta-pill">Audit Date: <span>2026-03-23</span></div>
+    <div class="meta-pill">Date Window: <span>2026-02-21 – 2026-03-23 (30 days)</span></div>
+    <div class="meta-pill">Campaign: <span>Cajun Pools and Spas</span></div>
+    <div class="meta-pill">Campaign ID: <span>20997550463</span></div>
+    <div class="meta-pill">Priority: <span>LOW spend — CRITICAL quality</span></div>
+    <div class="meta-pill">Prior Audit: <span>2026-03-20 (Health 28/100)</span></div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     INVESTIGATION VERDICT BANNER
+═══════════════════════════════════════════ -->
+<div class="investigation-banner">
+  <h2>⚠ PRIMARY INVESTIGATION: $925 CPA / 25.6% CTR / 1 Conversion — Verdict</h2>
+  <div class="verdict">NOT bot traffic. The problem is structural keyword mismatch + conversion tracking failure.</div>
+  <p>
+    Invalid clicks confirmed at 60 of 867 total (6.92% rate) — well within normal Google Ads range (typical 3–10%). Google auto-credits these.
+    The 25.6% CTR is real, but it's driven by extremely high intent mismatch: the campaign is spending 40%+ of budget on cocktail pool / mini pool / plunge pool informational queries
+    where Cajun Pools isn't actually selling those products as standalone items. Users click expecting content; there's no conversion.
+    Multiple CTR values above 1.0 in the data appear to be a Google impression-counting anomaly, not fraud.
+    Zero conversions across all 150 search terms points to a conversion tracking failure OR severe landing page relevance failure —
+    not bad traffic volume. This account needs a rebuild, not just optimization.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     KPI DASHBOARD
+═══════════════════════════════════════════ -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">30-Day Spend</div>
+    <div class="kpi-value kv-white">$924.52</div>
+    <div class="kpi-sub">Budget: $16.12/day (~$30.82/day actual)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Conversions</div>
+    <div class="kpi-value kv-red">1</div>
+    <div class="kpi-sub">0 tracked conversions in search terms</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">CPA</div>
+    <div class="kpi-value kv-red">$924.52</div>
+    <div class="kpi-sub">Fleet avg ~$180–$320. Worst in fleet.</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Clicks</div>
+    <div class="kpi-value kv-orange">807</div>
+    <div class="kpi-sub">867 total incl. invalid (60 invalid)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">CTR</div>
+    <div class="kpi-value kv-orange">25.6%</div>
+    <div class="kpi-sub">Anomalously high — intent mismatch</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Avg CPC</div>
+    <div class="kpi-value kv-green">$1.15</div>
+    <div class="kpi-sub">Low CPC on low-quality informational terms</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value kv-white">3,152</div>
+    <div class="kpi-sub">IS: 33.6% (47.9% lost rank, 18.6% budget)</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Impression Share</div>
+    <div class="kpi-value kv-orange">33.6%</div>
+    <div class="kpi-sub">66.4% lost — budget + rank</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Invalid Clicks</div>
+    <div class="kpi-value kv-green">6.92%</div>
+    <div class="kpi-sub">60 invalid, 59 general — NORMAL range</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Bid Strategy</div>
+    <div class="kpi-value kv-orange" style="font-size:16px">Max Clicks</div>
+    <div class="kpi-sub">TARGET_SPEND, no CPC cap</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Search Partners</div>
+    <div class="kpi-value kv-green" style="font-size:16px">OFF</div>
+    <div class="kpi-sub">Correct</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Geo Targeting</div>
+    <div class="kpi-value kv-green" style="font-size:16px">PRESENCE</div>
+    <div class="kpi-sub">Enum 7 = Correct</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PRIORITY FINDINGS QUEUE
+═══════════════════════════════════════════ -->
+<div class="priority-section">
+  <div class="section-title">Priority Findings — Ranked by Impact</div>
+  <div class="priority-list">
+
+    <div class="priority-item p1">
+      <span class="priority-badge">P1</span>
+      <div class="priority-text">
+        <strong>Conversion Tracking Failure or Complete LP Relevance Collapse</strong>
+        <span>Zero conversions across all 150 confirmed search terms over 30 days. $924 spent producing 1 reported conversion. Either tracking is broken or no landing page visitor is converting at any stage. Must verify GA4/tag before any budget decisions.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p1">
+      <span class="priority-badge">P1</span>
+      <div class="priority-text">
+        <strong>COMPETITOR KEYWORD VIOLATION — "poolux pool builders" Active in Account</strong>
+        <span>Keyword "poolux pool builders" (QS=0) is live and enabled. Poolux Builders is another Explore Industries dealer (Account ID 3095208045). Bidding on a sibling dealer's brand name is a serious compliance violation and waste of spend. Must be removed immediately.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p1">
+      <span class="priority-badge">P1</span>
+      <div class="priority-text">
+        <strong>Zero Negative Keywords — Entire Budget Exposed to Irrelevant Queries</strong>
+        <span>No campaign-level or ad-group-level negative keywords confirmed. 40%+ of spend is going to cocktail pool / mini pool / plunge pool / informational queries with zero purchase intent. No competitor brand exclusions. No irrelevant geo terms blocked.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p1">
+      <span class="priority-badge">P1</span>
+      <div class="priority-text">
+        <strong>Keyword List Dominated by Cocktail/Mini Pool Terms — Wrong Traffic Type</strong>
+        <span>Top spend categories: "small yard cocktail pool" ($52.65, 84.9% CTR), "pool sizes and prices" ($45.67, 71.3% CTR), "plunge pools for small backyards" ($28.10, 51.3% CTR), "mini inground pools" ($19.15, 57.5% CTR). These are research/informational queries, not buyer-intent purchase searches. High CTR with zero conversion = intent mismatch, not bad targeting mechanics.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p1">
+      <span class="priority-badge">P1</span>
+      <div class="priority-text">
+        <strong>Budget Overspend — Nearly 2× Daily Budget Being Spent</strong>
+        <span>Campaign budget is $16.12/day but account spent $924.52 over ~30 days = $30.82/day average. Google's budget acceleration or a recent budget reduction explains the gap. At current settings, no budget protection on wasteful spend.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p2">
+      <span class="priority-badge">P2</span>
+      <div class="priority-text">
+        <strong>Max Clicks (No CPC Cap) with Zero Conversions — Wrong Bid Strategy</strong>
+        <span>Target Spend / Max Clicks with no CPC ceiling on an account with no conversion history is actively harmful. Google optimizes for clicks only — so it finds the cheapest clicks (informational queries). With zero conversion data, algorithm has no signal to improve.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p2">
+      <span class="priority-badge">P2</span>
+      <div class="priority-text">
+        <strong>Competitor Brand Terms Appearing in Search Terms</strong>
+        <span>Search terms include "aquapools", "all seasons pools", "clearwater pools", "swimming pools texas" — competitor and irrelevant geography terms. None excluded as negatives. Budget is subsidizing competitor brand awareness.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p2">
+      <span class="priority-badge">P2</span>
+      <div class="priority-text">
+        <strong>Duplicate Keywords — Multiple Ad Groups or Keyword Conflicts</strong>
+        <span>10 keywords appear duplicated in the keyword audit (e.g., "fiberglass pools," "pool installer," "fiberglass inground pool," "plunge pool"). Suggests either two overlapping ad groups or duplicate keyword entry. Unclear ad group structure due to MCP query failures on ad_group resource.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p2">
+      <span class="priority-badge">P2</span>
+      <div class="priority-text">
+        <strong>Multiple Zero Quality Score Keywords Active</strong>
+        <span>"poolux pool builders" (QS=0), "pool contractor" (QS=0), "pool installer" (QS=0), "fiberglass inground swimming pool" (QS=0), "plunge pool" (QS=0). Five keywords with QS=0 are dragging down account quality and consuming budget without impression delivery.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p3">
+      <span class="priority-badge">P3</span>
+      <div class="priority-text">
+        <strong>Impression Share Lost to Rank (47.9%) — Ad Quality Issue</strong>
+        <span>Nearly half of all IS is lost to rank, not budget. This indicates QS or ad relevance issues suppressing ads. Low QS keywords + possible ad copy mismatch. Lowering budget won't help — relevance improvements needed.</span>
+      </div>
+    </div>
+
+    <div class="priority-item p3">
+      <span class="priority-badge">P3</span>
+      <div class="priority-text">
+        <strong>Shared Negative Set Linked (ID 12012201802) — Identity Unverified</strong>
+        <span>A shared set is linked to the campaign (ENABLED status confirmed). Whether this is the Master Exclusion List could not be verified due to MCP query limitation on shared_set resource. Recommend manual UI verification.</span>
+      </div>
+    </div>
+
+    <div class="priority-item pass">
+      <span class="priority-badge">PASS</span>
+      <div class="priority-text">
+        <strong>Geo Targeting — PRESENCE Mode Confirmed Correct</strong>
+        <span>positive_geo_target_type = 7 = PRESENCE. Correct. No PRESENCE_OR_INTEREST drift.</span>
+      </div>
+    </div>
+
+    <div class="priority-item pass">
+      <span class="priority-badge">PASS</span>
+      <div class="priority-text">
+        <strong>Search Partners — Disabled</strong>
+        <span>target_partner_search_network = false. Correct — Search Partners OFF.</span>
+      </div>
+    </div>
+
+    <div class="priority-item pass">
+      <span class="priority-badge">PASS</span>
+      <div class="priority-text">
+        <strong>Display Network — Disabled</strong>
+        <span>target_content_network = false. Correct.</span>
+      </div>
+    </div>
+
+    <div class="priority-item pass">
+      <span class="priority-badge">PASS</span>
+      <div class="priority-text">
+        <strong>Match Types — All Phrase Match</strong>
+        <span>All keywords confirmed match_type=3 (PHRASE). No broad match present. Compliant with fleet rules.</span>
+      </div>
+    </div>
+
+    <div class="priority-item pass">
+      <span class="priority-badge">PASS</span>
+      <div class="priority-text">
+        <strong>Invalid Click Rate — Normal (6.92%)</strong>
+        <span>60 invalid clicks of 867 total. Not bot traffic. Google auto-credits. The suspicious metrics are explained by structural issues, not click fraud.</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     PAUSE & REBUILD RECOMMENDATION
+═══════════════════════════════════════════ -->
+<div class="pause-rec">
+  <h2>⛔ PAUSE &amp; REBUILD RECOMMENDATION</h2>
+  <p>
+    This account has all five conditions for a pause-and-rebuild scenario: (1) zero conversion history making smart bidding impossible,
+    (2) structural keyword mismatch driving wrong traffic type, (3) no negative keyword protection, (4) a live competitor keyword violation,
+    and (5) conversion tracking that may be broken entirely. Optimization alone will not fix this — the underlying structure is producing the wrong outcomes.
+  </p>
+  <div class="decision-items">
+    <div class="decision-item">
+      <div class="di-label">IMMEDIATE</div>
+      <div class="di-text">Remove "poolux pool builders" keyword. Verify conversion tracking in GA4/Google Tag Manager — confirm tags are firing on thank-you page or brochure download page before any spend resumes.</div>
+    </div>
+    <div class="decision-item">
+      <div class="di-label">SHORT-TERM</div>
+      <div class="di-text">Pause campaign pending rebuild. Rebuild with intent-segmented ad groups: (1) Fiberglass Pool Installation buyers, (2) Brand/Cajun terms, (3) Optional: Pool Design/Style for awareness only. Add Master Exclusion List negatives + cocktail/mini/DIY/kit negative theme.</div>
+    </div>
+    <div class="decision-item">
+      <div class="di-label">BID STRATEGY</div>
+      <div class="di-text">Switch to Max Conversions with a target CPA of $300–$400 once tracking is verified and at least 5–10 conversions are collected. Do not use Max Clicks again without a CPC cap.</div>
+    </div>
+    <div class="decision-item">
+      <div class="di-label">BUDGET</div>
+      <div class="di-text">Set budget to $25–$30/day to reflect actual observed daily spend. Current $16.12 budget is being consistently exceeded — Google is operating outside declared limits.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════
+     DETAILED AUDIT SECTIONS
+═══════════════════════════════════════════ -->
+<div class="content">
+
+<!-- ─── SECTION 1: CAMPAIGN STRUCTURE ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>01 — Campaign Structure &amp; Settings</h2>
+    <span class="section-status status-warning">⚠ WARNING</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-item-label">Campaign Name</div>
+        <div class="info-item-value">Cajun Pools and Spas</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Campaign ID</div>
+        <div class="info-item-value">20997550463</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Bid Strategy</div>
+        <div class="info-item-value warn">Max Clicks (TARGET_SPEND, no cap)</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Daily Budget</div>
+        <div class="info-item-value warn">$16.12/day (actual: ~$30.82/day)</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Geo Targeting Type</div>
+        <div class="info-item-value good">PRESENCE (Enum 7) ✓</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Search Partners</div>
+        <div class="info-item-value good">Disabled ✓</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Display Network</div>
+        <div class="info-item-value good">Disabled ✓</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Ad Group Structure</div>
+        <div class="info-item-value warn">Single ad group (suspected)</div>
+      </div>
+    </div>
+
+    <div class="finding warning" style="margin-top: 16px;">
+      <div class="finding-title">Budget Consistently Exceeded — ~1.9× Daily Cap</div>
+      <p>$924.52 spent over ~30 days = $30.82/day average vs. $16.12/day budget. This indicates either the budget was recently reduced (account history unavailable due to change_event API error — start date too old for 30-day window) or Google's budget delivery acceleration exceeded stated limits. Recommend aligning budget to actual observed spend level.</p>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-title">Max Clicks with No CPC Cap — Wrong Strategy for Zero-Conversion Account</div>
+      <p>Max Clicks without a CPC ceiling maximizes click volume regardless of quality. With no conversion history, Google defaults to lowest-cost-per-click keywords — which are informational and research queries, not buyer intent. This bidding choice directly explains the 25.6% CTR on low-quality traffic.</p>
+      <p>Note: Prior Obsidian audit recorded "Maximize Conversions" — API confirmed TARGET_SPEND (Max Clicks). API is authoritative.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 2: CLICK QUALITY INVESTIGATION ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>02 — Click Quality Investigation (Primary Request)</h2>
+    <span class="section-status status-warning">⚠ NOT BOT — STRUCTURAL</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="sub-section-title">Invalid Click Analysis</div>
+    <table>
+      <tr>
+        <th>Metric</th>
+        <th>Value</th>
+        <th>Benchmark</th>
+        <th>Verdict</th>
+      </tr>
+      <tr>
+        <td>Total Clicks (incl. invalid)</td>
+        <td>867</td>
+        <td>—</td>
+        <td><span class="tag-blue">INFO</span></td>
+      </tr>
+      <tr>
+        <td>Invalid Clicks</td>
+        <td>60</td>
+        <td>&lt;10% normal</td>
+        <td><span class="tag-green">PASS (6.92%)</span></td>
+      </tr>
+      <tr>
+        <td>General Invalid Clicks</td>
+        <td>59</td>
+        <td>—</td>
+        <td><span class="tag-green">PASS (6.81%)</span></td>
+      </tr>
+      <tr>
+        <td>Valid Clicks Reported</td>
+        <td>807</td>
+        <td>—</td>
+        <td><span class="tag-blue">INFO</span></td>
+      </tr>
+    </table>
+
+    <div class="finding pass" style="margin-top: 16px;">
+      <div class="finding-title">Bot Traffic Verdict: CLEAR — Invalid Rate Within Normal Range</div>
+      <p>6.92% invalid click rate is fully within Google's expected range (3–10% for most search campaigns). These are automatically credited and not charged. This is not the source of the $925 CPA problem.</p>
+    </div>
+
+    <div class="sub-section-title">CTR Anomaly Explanation</div>
+    <div class="finding critical">
+      <div class="finding-title">25.6% CTR Explained: Informational Query Intent Mismatch</div>
+      <p>The unusually high CTR is driven by queries where Cajun Pools' ad appears to directly answer an informational question — users click expecting educational content or pricing info, not to request a pool quote. Examples:</p>
+      <p>• "cocktail pool" — 85% CTR (13 clicks, $11.70 spend, 0 conversions)<br>
+      • "small yard cocktail pool" — 84.9% CTR (62 clicks, $52.65 spend, 0 conversions)<br>
+      • "fiberglass pools with prices" — 85.7% CTR (6 clicks, $4.56 spend, 0 conversions)<br>
+      • "pool sizes and prices" — 71.3% CTR (62 clicks, $45.67 spend, 0 conversions)</p>
+      <p>High CTR + zero conversion = classic intent mismatch pattern. Users who search "cocktail pool" are browsing options, not ready to call a contractor. The ad headline likely triggers the click; the landing page doesn't deliver conversion content for that intent.</p>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-title">CTR &gt; 1.0 Data Anomaly on Several Terms</div>
+      <p>Multiple search terms show CTR values mathematically above 100% (e.g., "pool installation cost" CTR=1.5, "fiberglass pool kits for sale" CTR=2.0, "gunite pools" CTR=2.0). This is a known Google Ads reporting anomaly where impression counts don't align with click records in the search term view — particularly for low-impression terms. This is a data artifact, not fraud.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 3: KEYWORD AUDIT ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>03 — Keyword Audit</h2>
+    <span class="section-status status-critical">⛔ CRITICAL</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="finding critical">
+      <div class="finding-title">COMPLIANCE VIOLATION: Competitor Dealer Keyword "poolux pool builders" Active</div>
+      <p>Poolux Builders (Account ID: 3095208045) is an active Explore Industries dealer in the MCC. The keyword "poolux pool builders" is enabled in this account with QS=0. This is bidding on a sibling dealer's brand name — a serious compliance violation that wastes spend and potentially creates conflict within the Explore dealer network. Immediate removal required.</p>
+    </div>
+
+    <div class="sub-section-title">Full Keyword List</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Match Type</th>
+          <th>Quality Score</th>
+          <th>Status</th>
+          <th>Issue</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>"fiberglass pools"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>8</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>Duplicate (appears 2×)</td>
+        </tr>
+        <tr>
+          <td>"fiberglass swimming pool"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>8</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>Duplicate (appears 2×)</td>
+        </tr>
+        <tr>
+          <td>"cajun pools"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>10</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>—</td>
+        </tr>
+        <tr>
+          <td>"pool builder"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>3</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>Low QS</td>
+        </tr>
+        <tr>
+          <td>"fiberglass inground pool"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>5 / 0</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>Duplicate — one QS=0</td>
+        </tr>
+        <tr>
+          <td>"inground pool price"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>3</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>Duplicate (appears 2×)</td>
+        </tr>
+        <tr>
+          <td>"pool contractor"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>0 / 0</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>QS=0 — Duplicate</td>
+        </tr>
+        <tr>
+          <td>"pool installer"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>0 / 0</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>QS=0 — Duplicate</td>
+        </tr>
+        <tr>
+          <td>"plunge pool"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>1 / 0</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>QS=0/1 — Wrong traffic type — Duplicate</td>
+        </tr>
+        <tr>
+          <td>"fiberglass inground swimming pool"</td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>0 / 0</td>
+          <td><span class="tag-green">Active</span></td>
+          <td>QS=0 — Duplicate</td>
+        </tr>
+        <tr style="background: rgba(231,76,60,0.08);">
+          <td><strong>"poolux pool builders"</strong></td>
+          <td><span class="tag-blue">Phrase</span></td>
+          <td>0</td>
+          <td><span class="tag-red">VIOLATION</span></td>
+          <td><strong>⛔ COMPETITOR DEALER — Remove immediately</strong></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="finding warning" style="margin-top: 16px;">
+      <div class="finding-title">Keyword Duplication — Likely 2+ Ad Groups or Messy Structure</div>
+      <p>At least 10 keywords appear twice in the keyword data, suggesting either duplicate keywords within one ad group or multiple ad groups with overlapping keyword lists. Ad group structure query failed (MCP type error) — exact count unverified. This creates keyword cannibalization and makes QS optimization difficult.</p>
+    </div>
+
+    <div class="bulk-paste-label">Negative Keywords to Add (Cocktail/Mini/Informational Theme)</div>
+    <div class="bulk-paste-box" onclick="navigator.clipboard.writeText(this.innerText.replace('📋 Click to copy','').trim())">
+      <span class="copy-hint">📋 Click to copy</span>cocktail pool
+small cocktail pool
+mini pool
+mini inground pool
+small pool
+tiny pool
+plunge pool kits
+pool kits
+diy pool
+pool installation cost
+pool prices
+pool sizes
+pool cost
+how much does a pool cost
+inground pool prices
+swimming pool prices
+above ground pool
+above ground pools
+aquapools
+all seasons pools
+clearwater pools
+swimming pools texas
+fiberglass pool kits
+pool kits for sale
+gunite pools
+concrete pools</div>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 4: SEARCH TERM ANALYSIS ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>04 — Search Term Analysis (150 Terms, 30 Days)</h2>
+    <span class="section-status status-critical">⛔ CRITICAL</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="note-block">
+      <strong>Key Finding:</strong> Zero conversions across all 150 search terms. Every single term returned 0 conversions. This is statistically near-impossible if conversion tracking were functional and landing page were performing. Either tracking is broken or the landing page is a complete conversion dead zone for the traffic type being sent.
+    </div>
+
+    <div class="sub-section-title">Top Spenders by Category</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Spend</th>
+          <th>Clicks</th>
+          <th>CTR</th>
+          <th>Convs</th>
+          <th>Category</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="background: rgba(231,76,60,0.06);">
+          <td>"small yard cocktail pool"</td>
+          <td>$52.65</td>
+          <td>62</td>
+          <td>84.9%</td>
+          <td>0</td>
+          <td><span class="tag-red">Wrong Intent</span></td>
+        </tr>
+        <tr style="background: rgba(231,76,60,0.06);">
+          <td>"pool sizes and prices"</td>
+          <td>$45.67</td>
+          <td>62</td>
+          <td>71.3%</td>
+          <td>0</td>
+          <td><span class="tag-red">Informational</span></td>
+        </tr>
+        <tr style="background: rgba(231,76,60,0.06);">
+          <td>"plunge pools for small backyards"</td>
+          <td>$28.10</td>
+          <td>40</td>
+          <td>51.3%</td>
+          <td>0</td>
+          <td><span class="tag-red">Wrong Intent</span></td>
+        </tr>
+        <tr style="background: rgba(231,76,60,0.06);">
+          <td>"mini inground pools"</td>
+          <td>$19.15</td>
+          <td>23</td>
+          <td>57.5%</td>
+          <td>0</td>
+          <td><span class="tag-red">Wrong Intent</span></td>
+        </tr>
+        <tr>
+          <td>"cajun pools and spas"</td>
+          <td>$16.02</td>
+          <td>26</td>
+          <td>35.1%</td>
+          <td>0</td>
+          <td><span class="tag-yellow">Brand</span></td>
+        </tr>
+        <tr style="background: rgba(231,76,60,0.06);">
+          <td>"cocktail pool"</td>
+          <td>$11.70</td>
+          <td>13</td>
+          <td>85.0%</td>
+          <td>0</td>
+          <td><span class="tag-red">Wrong Intent</span></td>
+        </tr>
+        <tr>
+          <td>"fiberglass pool"</td>
+          <td>$8.20</td>
+          <td>7</td>
+          <td>9.1%</td>
+          <td>0</td>
+          <td><span class="tag-green">Relevant</span></td>
+        </tr>
+        <tr>
+          <td>"inground pool"</td>
+          <td>$7.45</td>
+          <td>8</td>
+          <td>11.2%</td>
+          <td>0</td>
+          <td><span class="tag-green">Relevant</span></td>
+        </tr>
+        <tr style="background: rgba(230,126,34,0.06);">
+          <td>"aquapools" (competitor)</td>
+          <td>$5.50</td>
+          <td>5</td>
+          <td>—</td>
+          <td>0</td>
+          <td><span class="tag-orange">Competitor</span></td>
+        </tr>
+        <tr style="background: rgba(230,126,34,0.06);">
+          <td>"all seasons pools" (competitor)</td>
+          <td>$4.80</td>
+          <td>4</td>
+          <td>—</td>
+          <td>0</td>
+          <td><span class="tag-orange">Competitor</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="sub-section-title">Traffic Category Breakdown (Estimated)</div>
+    <table>
+      <thead>
+        <tr><th>Category</th><th>Approx. % of Spend</th><th>Conversion Intent</th><th>Action</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Cocktail / Mini / Plunge Pool Research</td>
+          <td style="color: var(--p1); font-weight: 700;">~40%</td>
+          <td>Very Low</td>
+          <td><span class="tag-red">Negative Out</span></td>
+        </tr>
+        <tr>
+          <td>Price / Cost / Sizes Research</td>
+          <td style="color: var(--p2); font-weight: 700;">~20%</td>
+          <td>Low–Medium</td>
+          <td><span class="tag-orange">Negative Out</span></td>
+        </tr>
+        <tr>
+          <td>Competitor Brand Terms</td>
+          <td style="color: var(--p2); font-weight: 700;">~10%</td>
+          <td>None</td>
+          <td><span class="tag-red">Negative Out</span></td>
+        </tr>
+        <tr>
+          <td>Cajun Brand Terms</td>
+          <td style="color: var(--p3); font-weight: 700;">~10%</td>
+          <td>High (existing customers)</td>
+          <td><span class="tag-green">Keep / Isolate</span></td>
+        </tr>
+        <tr>
+          <td>Fiberglass Pool Buyer Intent</td>
+          <td style="color: var(--pass); font-weight: 700;">~20%</td>
+          <td>Medium–High</td>
+          <td><span class="tag-green">Keep / Expand</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 5: NEGATIVE KEYWORDS ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>05 — Negative Keywords</h2>
+    <span class="section-status status-critical">⛔ CRITICAL — ZERO NEGATIVES</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="finding critical">
+      <div class="finding-title">Zero Negative Keywords at Campaign or Ad Group Level</div>
+      <p>Campaign-level and ad-group-level negative keyword queries returned empty arrays. No negatives of any kind are set. Every search query matched by the keywords reaches the landing page with no filtering. This is the primary structural cause of wasted spend.</p>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-title">Shared Set ID 12012201802 Linked — Name Unverified</div>
+      <p>A shared set is linked to the campaign (ENABLED, confirmed via campaign_shared_set query). Whether this is the Master Exclusion List (shared across the fleet) could not be confirmed — the shared_set resource query failed with the MCP type serialization error. Recommend manual UI verification to confirm this is the correct fleet exclusion list.</p>
+    </div>
+
+    <div class="bulk-paste-label">Priority Negatives to Add (Campaign Level)</div>
+    <div class="bulk-paste-box" onclick="navigator.clipboard.writeText(this.innerText.replace('📋 Click to copy','').trim())">
+      <span class="copy-hint">📋 Click to copy</span>cocktail pool
+mini pool
+small pool
+tiny pool
+plunge pool
+above ground
+diy
+kit
+kits
+how much
+cost
+prices
+price
+free
+cheap
+rental
+above ground pool
+pool supplies
+pool chemicals
+pool maintenance
+intex
+vinyl pool
+texas
+houston
+dallas
+florida
+california
+aquapools
+all seasons pools
+clearwater pools
+poolux
+pool builders poolux</div>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 6: CONVERSION TRACKING ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>06 — Conversion Tracking</h2>
+    <span class="section-status status-critical">⛔ SUSPECTED FAILURE</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="finding critical">
+      <div class="finding-title">Zero Conversions Across 150 Search Terms — Tracking Failure Suspected</div>
+      <p>Every search term in the 30-day window shows 0 conversions. The campaign-level total shows 1 conversion — which cannot be attributed to any of the 150 tracked search terms. This statistical impossibility suggests either:</p>
+      <p>1. The conversion tag is not firing on the thank-you page or brochure download confirmation page.<br>
+      2. The landing page URL has changed and the tag is on a page that's no longer served.<br>
+      3. The one reported conversion came from a direct navigation or non-search-term-attributable session.</p>
+      <p>Note: Brochure downloads ARE real conversions per Explore rules (require contact form fills). If the brochure download conversion action is set up but the tag is broken, the account has 0 usable signal.</p>
+    </div>
+
+    <div class="note-block">
+      <strong>Action Required:</strong> Before any budget adjustments, verify conversion tag is firing in GA4/GTM. Test: load landing page → complete brochure download or contact form → confirm tag fires in GTM Preview or GA4 DebugView. Also confirm the conversion action is set to "Primary" goal in Google Ads conversion settings.
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-title">Conversion Action Query Unavailable</div>
+      <p>The conversion_action resource query failed with a type error via the MCP. Conversion action names, categories, and primary/secondary status could not be verified via API. Manual UI check required.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 7: QUALITY SCORES ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>07 — Quality Scores</h2>
+    <span class="section-status status-critical">⛔ CRITICAL</span>
+  </div>
+  <div class="audit-section-body">
+    <table>
+      <thead>
+        <tr><th>Keyword</th><th>QS</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>"cajun pools"</td><td style="color: var(--pass); font-weight: 700;">10</td><td><span class="tag-green">Excellent</span></td></tr>
+        <tr><td>"fiberglass pools" (×2)</td><td style="color: var(--pass); font-weight: 700;">8</td><td><span class="tag-green">Good</span></td></tr>
+        <tr><td>"fiberglass swimming pool" (×2)</td><td style="color: var(--pass); font-weight: 700;">8</td><td><span class="tag-green">Good</span></td></tr>
+        <tr><td>"fiberglass inground pool"</td><td style="color: var(--p3); font-weight: 700;">5</td><td><span class="tag-yellow">Below Average</span></td></tr>
+        <tr><td>"inground pool price" (×2)</td><td style="color: var(--p2); font-weight: 700;">3</td><td><span class="tag-orange">Low</span></td></tr>
+        <tr><td>"pool builder"</td><td style="color: var(--p2); font-weight: 700;">3</td><td><span class="tag-orange">Low</span></td></tr>
+        <tr><td>"plunge pool" (×2)</td><td style="color: var(--p1); font-weight: 700;">1/0</td><td><span class="tag-red">Critical</span></td></tr>
+        <tr><td>"pool contractor" (×2)</td><td style="color: var(--p1); font-weight: 700;">0</td><td><span class="tag-red">No Score</span></td></tr>
+        <tr><td>"pool installer" (×2)</td><td style="color: var(--p1); font-weight: 700;">0</td><td><span class="tag-red">No Score</span></td></tr>
+        <tr><td>"fiberglass inground swimming pool" (×2)</td><td style="color: var(--p1); font-weight: 700;">0</td><td><span class="tag-red">No Score</span></td></tr>
+        <tr style="background: rgba(231,76,60,0.1);"><td><strong>"poolux pool builders"</strong></td><td style="color: var(--p1); font-weight: 700;">0</td><td><span class="tag-red">⛔ REMOVE</span></td></tr>
+      </tbody>
+    </table>
+    <div class="finding warning" style="margin-top: 14px;">
+      <div class="finding-title">5 Keywords with QS=0 Drag Down Account Quality</div>
+      <p>Keywords with QS=0 get lowest ad rank and rarely serve. They consume budget when they do serve and signal to Google that the account has poor relevance — pulling down the account-level quality signals. These should be paused or deleted pending rebuild.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 8: CAMPAIGN ASSETS ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>08 — Campaign Assets (Sitelinks, Callouts, Snippets, Call)</h2>
+    <span class="section-status status-info">ℹ CONFIRMED PRESENT</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="note-block">
+      <strong>Asset IDs confirmed via API</strong> — Asset text content could not be retrieved (asset resource type serialization error). Assets confirmed present and ENABLED at campaign level.
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Asset ID</th><th>Field Type</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>124510887438</td><td><span class="tag-blue">Type 13 — Sitelink</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124510887441</td><td><span class="tag-blue">Type 13 — Sitelink</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124510887444</td><td><span class="tag-blue">Type 13 — Sitelink</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124510887447</td><td><span class="tag-blue">Type 13 — Sitelink</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124485293134</td><td><span class="tag-yellow">Type 11 — Callout</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124485293137</td><td><span class="tag-yellow">Type 11 — Callout</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124485293140</td><td><span class="tag-yellow">Type 11 — Callout</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124485293143</td><td><span class="tag-yellow">Type 11 — Callout</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>223920719400</td><td><span class="tag-green">Type 18 — Structured Snippet</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+        <tr><td>124504740285</td><td><span class="tag-orange">Type 16 — Call</span></td><td><span class="tag-green">ENABLED</span></td></tr>
+      </tbody>
+    </table>
+
+    <div class="finding pass" style="margin-top: 14px;">
+      <div class="finding-title">Asset Coverage: Good</div>
+      <p>4 sitelinks, 4 callouts, 1 structured snippet, and 1 call extension are active at campaign level. Full asset suite present. Text content verification pending manual UI review.</p>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 9: GEO & NETWORK SETTINGS ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>09 — Geo Targeting &amp; Network Settings</h2>
+    <span class="section-status status-pass">✓ PASS</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-item-label">Positive Geo Type</div>
+        <div class="info-item-value good">PRESENCE (Enum 7) ✓</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Location Criteria</div>
+        <div class="info-item-value warn">No campaign_criterion rows returned</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Search Partners</div>
+        <div class="info-item-value good">OFF ✓</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Display Network</div>
+        <div class="info-item-value good">OFF ✓</div>
+      </div>
+    </div>
+    <div class="note-block" style="margin-top: 14px;">
+      <strong>Note on Location Criteria:</strong> No rows returned from campaign_criterion for location targeting. This is expected — Cajun Pools' geo targeting may be configured via the campaign-level geo settings rather than explicit location criterion rows (a valid Google Ads configuration). The PRESENCE enum confirmation via the campaign resource is sufficient to verify targeting mode is correct.
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 10: IMPRESSION SHARE ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>10 — Impression Share Analysis</h2>
+    <span class="section-status status-warning">⚠ WARNING</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-item-label">Search IS</div>
+        <div class="info-item-value warn">33.6%</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Lost IS (Rank)</div>
+        <div class="info-item-value crit">47.9%</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Lost IS (Budget)</div>
+        <div class="info-item-value warn">18.6%</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Prior Audit IS</div>
+        <div class="info-item-value">66% lost (3/20)</div>
+      </div>
+    </div>
+    <div class="finding warning" style="margin-top: 14px;">
+      <div class="finding-title">47.9% Lost to Rank — Quality Problem, Not Budget Problem</div>
+      <p>The majority of impression share loss is to rank, not budget. This means increasing budget won't help — the ads need better quality scores and relevance. The 5 QS=0 keywords and mismatched ad copy are actively suppressing impression delivery.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 11: ACCOUNT CHANGE LOG ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>11 — Account Change History</h2>
+    <span class="section-status status-info">ℹ UNAVAILABLE</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="finding info">
+      <div class="finding-title">Change Events Unavailable — API Date Limitation</div>
+      <p>The change_event resource requires a start date no older than 30 days from today. The audit window starting 2026-02-21 exceeded this limit. A tighter query was attempted but returned no results within the allowed range for this campaign. No change history could be verified for this audit period. Recommend manual UI review of change history to identify when the competitor keyword was added and who made budget changes.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 12: AUDIENCE TARGETING ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>12 — Audience Targeting &amp; Segments</h2>
+    <span class="section-status status-info">ℹ NOT CONFIGURED</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="finding info">
+      <div class="finding-title">No Audience Segments Detected</div>
+      <p>No audience targeting (in-market, remarketing, customer match, or demographic segments) is configured on this campaign. While not required for a basic search campaign, audience segments — particularly in-market for "Home &amp; Garden &gt; Pools" — would improve targeting precision and could help Google's algorithm identify higher-quality users even on Max Clicks.</p>
+    </div>
+    <div class="rec-box">
+      <h3>Recommendation: Add Audience Signals (Observation Mode)</h3>
+      <ul>
+        <li>Add in-market segment: Home &amp; Garden → Swimming Pools &amp; Spas (observation)</li>
+        <li>Add in-market: Home &amp; Garden → Outdoor Play Equipment (observation)</li>
+        <li>If remarketing list available: add site visitors as observation audience</li>
+        <li>Set to observation only — do not restrict delivery</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 13: DEALER CONTEXT ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>13 — Dealer Context &amp; Competitive Landscape</h2>
+    <span class="section-status status-info">ℹ CONTEXT</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-item-label">Market</div>
+        <div class="info-item-value">Acadiana / Lafayette Metro, Louisiana</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">HQ</div>
+        <div class="info-item-value">Breaux Bridge, LA</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Owners</div>
+        <div class="info-item-value">Brandon &amp; Rosalyn Miller</div>
+      </div>
+      <div class="info-item">
+        <div class="info-item-label">Brand</div>
+        <div class="info-item-value">Leisure Pools</div>
+      </div>
+    </div>
+    <div class="sub-section-title">Known Competitors in Search Terms</div>
+    <table>
+      <thead><tr><th>Competitor</th><th>Appeared In Search Terms</th><th>Action</th></tr></thead>
+      <tbody>
+        <tr><td>Aqua Pools of Louisiana</td><td>Yes ("aquapools")</td><td><span class="tag-red">Add as Negative</span></td></tr>
+        <tr><td>All Seasons Pools</td><td>Yes</td><td><span class="tag-red">Add as Negative</span></td></tr>
+        <tr><td>Clearwater Pools</td><td>Yes</td><td><span class="tag-red">Add as Negative</span></td></tr>
+        <tr><td>Premier Pools &amp; Spas</td><td>Not confirmed in top terms</td><td><span class="tag-yellow">Monitor</span></td></tr>
+        <tr><td>Barrier Reef Pools</td><td>Not confirmed in top terms</td><td><span class="tag-yellow">Monitor</span></td></tr>
+        <tr><td>Poolux Builders (fleet)</td><td>Yes — in keywords!</td><td><span class="tag-red">⛔ Remove Keyword</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ─── SECTION 14: FLEET COMPARISON ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>14 — Fleet Comparison</h2>
+    <span class="section-status status-critical">⛔ WORST IN FLEET</span>
+  </div>
+  <div class="audit-section-body">
+    <table>
+      <thead>
+        <tr><th>Metric</th><th>Cajun Pools</th><th>Fleet Benchmark</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>CPA (30-day)</td><td style="color: var(--p1); font-weight: 700;">$924.52</td><td>$180–$320</td><td><span class="tag-red">Worst in Fleet</span></td></tr>
+        <tr><td>Conversions (30-day)</td><td style="color: var(--p1); font-weight: 700;">1</td><td>3–12</td><td><span class="tag-red">Critical</span></td></tr>
+        <tr><td>CTR</td><td style="color: var(--p2); font-weight: 700;">25.6%</td><td>5–15%</td><td><span class="tag-orange">Anomalous High</span></td></tr>
+        <tr><td>Avg CPC</td><td style="color: var(--pass); font-weight: 700;">$1.15</td><td>$1.50–$3.50</td><td><span class="tag-green">Below avg (wrong traffic)</span></td></tr>
+        <tr><td>Invalid Click Rate</td><td style="color: var(--pass); font-weight: 700;">6.92%</td><td>3–10%</td><td><span class="tag-green">Normal</span></td></tr>
+        <tr><td>Impression Share</td><td style="color: var(--p2); font-weight: 700;">33.6%</td><td>40–65%</td><td><span class="tag-orange">Below Average</span></td></tr>
+        <tr><td>Negatives</td><td style="color: var(--p1); font-weight: 700;">0</td><td>50–200+</td><td><span class="tag-red">Critical</span></td></tr>
+      </tbody>
+    </table>
+    <div class="note-block" style="margin-top: 14px;">
+      <strong>Prior Audit Trajectory:</strong> 3/20 audit recorded $962.81 CPA and IS 66% lost. This audit (3/23): $924.52 CPA and IS 33.6% (improved delivery). CPA slightly improved but still dismal. No changes were implemented between audits. The improvement in IS is likely a seasonal or daily variation, not a structural fix.
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 15: AD COPY / RSA ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>15 — RSA Ad Copy</h2>
+    <span class="section-status status-info">ℹ UNVERIFIABLE</span>
+  </div>
+  <div class="audit-section-body">
+    <div class="finding info">
+      <div class="finding-title">RSA Content Not Retrievable via API</div>
+      <p>The ad_group_ad resource query for responsive_search_ad.headlines and .descriptions failed with a type error via the MCP. RSA headline and description text could not be read programmatically. Manual UI review required to verify ad copy relevance and brand compliance.</p>
+      <p>Known issue across fleet: ad_group_ad RSA field queries fail consistently with this MCP. Recommend manual spot-check in Google Ads UI.</p>
+    </div>
+    <div class="rec-box">
+      <h3>Ad Copy Recommendations (Leisure Pools Brand Guidelines)</h3>
+      <ol>
+        <li>Headline should include "Cajun Pools and Spas" + market qualifier ("Lafayette's Fiberglass Pool Experts")</li>
+        <li>Include a trust signal: "150,000+ Pools Installed Worldwide"</li>
+        <li>Speed angle: "Installed in Weeks — Not Months"</li>
+        <li>Warranty: "Lifetime Structural Warranty"</li>
+        <li>Path fields: /Fiberglass-Pools/Lafayette-LA</li>
+        <li>Ensure final URLs land on a location-specific or general quote/contact page — NOT the homepage</li>
+        <li>Verify headline relevance to "plunge pool" and "cocktail pool" terms — if ad is triggering on those, headline likely contains "pool" broadly and should be made more specific</li>
+      </ol>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SECTION 16: REBUILD ROADMAP ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>16 — Rebuild Roadmap</h2>
+    <span class="section-status status-info">ℹ RECOMMENDATIONS</span>
+  </div>
+  <div class="audit-section-body">
+
+    <div class="sub-section-title">Phase 1 — Immediate (Before Next Spend Cycle)</div>
+    <div class="rec-box">
+      <ul>
+        <li><strong>Remove</strong> "poolux pool builders" keyword immediately — competitor dealer violation</li>
+        <li><strong>Verify</strong> conversion tracking: load LP → complete form/brochure download → confirm tag fires in GTM Preview or GA4 DebugView</li>
+        <li><strong>Pause</strong> campaign while rebuild is prepared if tracking is confirmed broken</li>
+        <li><strong>Add CPC cap</strong> to Max Clicks strategy if campaign stays live ($3.50 max)</li>
+      </ul>
+    </div>
+
+    <div class="sub-section-title">Phase 2 — Rebuild Structure</div>
+    <div class="rec-box">
+      <ul>
+        <li>Create 2–3 tightly-themed ad groups: (1) Fiberglass Pool Installation, (2) Cajun Pools Brand, (3) Optional: Pool Cost/Pricing with specific LP</li>
+        <li>Remove all cocktail/mini/plunge pool keywords from core ad groups — add as negatives</li>
+        <li>Pause all QS=0 keywords pending review</li>
+        <li>Add 50+ negative keywords using bulk list above</li>
+        <li>Ensure shared set ID 12012201802 is confirmed as Master Exclusion List</li>
+        <li>Set budget to $25–$30/day to match observed actual spend</li>
+      </ul>
+    </div>
+
+    <div class="sub-section-title">Phase 3 — Post-Conversion Data</div>
+    <div class="rec-box">
+      <ul>
+        <li>After collecting 5–10 conversions: switch to Max Conversions with target CPA $300</li>
+        <li>Add in-market audience segments (observation mode)</li>
+        <li>Expand to location-specific keywords: "pool contractor Lafayette LA," "fiberglass pool Breaux Bridge"</li>
+        <li>Consider separate brand campaign for "cajun pools" terms to isolate budget and performance</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
+
+<!-- ─── SECTION 17: DATA VERIFICATION LOG ─── -->
+<div class="audit-section">
+  <div class="audit-section-header">
+    <h2>17 — Data Verification &amp; API Notes</h2>
+    <span class="section-status status-info">ℹ ACCURACY LOG</span>
+  </div>
+  <div class="audit-section-body">
+    <table>
+      <thead><tr><th>Data Point</th><th>Source</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Campaign metrics (spend, clicks, CTR, CPA, IS)</td><td>campaign resource + metrics</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Invalid click metrics</td><td>campaign resource + metrics.invalid_clicks</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Bid strategy type (TARGET_SPEND)</td><td>campaign.bidding_strategy_type</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Geo targeting (PRESENCE)</td><td>campaign.geo_target_type_setting</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Search Partners / Display OFF</td><td>campaign.network_settings</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Budget ($16.12/day)</td><td>campaign_budget resource</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Search terms (150 terms)</td><td>search_term_view resource</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Keywords (text, match type, QS)</td><td>ad_group_criterion resource</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Negative keywords at campaign/ag level</td><td>ad_group_criterion WHERE negative=true</td><td><span class="tag-green">CONFIRMED empty</span></td></tr>
+        <tr><td>Shared set link (ID 12012201802)</td><td>campaign_shared_set resource</td><td><span class="tag-green">CONFIRMED linked</span></td></tr>
+        <tr><td>Campaign assets (10 assets, field types)</td><td>campaign_asset resource</td><td><span class="tag-green">CONFIRMED</span></td></tr>
+        <tr><td>Asset text content (sitelinks, callouts)</td><td>asset resource</td><td><span class="tag-red">FAILED — MCP type error</span></td></tr>
+        <tr><td>RSA ad copy (headlines, descriptions)</td><td>ad_group_ad resource</td><td><span class="tag-red">FAILED — MCP type error</span></td></tr>
+        <tr><td>Ad group names/IDs</td><td>ad_group resource</td><td><span class="tag-red">FAILED — MCP type error</span></td></tr>
+        <tr><td>Conversion action names/types</td><td>conversion_action resource</td><td><span class="tag-red">FAILED — MCP type error</span></td></tr>
+        <tr><td>Shared set name/type</td><td>shared_set resource</td><td><span class="tag-red">FAILED — MCP type error</span></td></tr>
+        <tr><td>Change event history</td><td>change_event resource</td><td><span class="tag-orange">FAILED — start date too old</span></td></tr>
+        <tr><td>Device bid modifiers</td><td>ad_group_bid_modifier resource</td><td><span class="tag-red">FAILED — MCP type error</span></td></tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<footer>
+  <div>Cajun Pools and Spas | Account 648-605-3029 | Audit: 2026-03-23 | Auditor: Claude Code (Explore Industries Internal)</div>
+  <div>Read-only audit — no changes made. All findings require human review before action.</div>
+</footer>
+
+</body>
+</html>

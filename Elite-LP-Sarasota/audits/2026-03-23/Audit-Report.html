@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Elite – Leisure Pools Sarasota | Google Ads Audit | 2026-03-23</title>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-mid: #112240;
+      --navy-light: #1a3a6b;
+      --accent: #2196f3;
+      --accent-light: #64b5f6;
+      --accent-glow: rgba(33, 150, 243, 0.15);
+      --green: #00c853;
+      --green-bg: rgba(0, 200, 83, 0.1);
+      --yellow: #ffca28;
+      --yellow-bg: rgba(255, 202, 40, 0.1);
+      --red: #ef5350;
+      --red-bg: rgba(239, 83, 80, 0.1);
+      --orange: #ff9800;
+      --orange-bg: rgba(255, 152, 0, 0.1);
+      --text: #e0e7f3;
+      --text-muted: #8fa3c4;
+      --border: rgba(33, 150, 243, 0.2);
+      --card-bg: rgba(17, 34, 64, 0.8);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--navy);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      font-size: 14px;
+      line-height: 1.6;
+      padding: 24px;
+    }
+
+    /* ── Header ───────────────────────────────────────────── */
+    .report-header {
+      background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      position: relative;
+      overflow: hidden;
+    }
+    .report-header::before {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(33,150,243,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .header-brand {
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--accent-light);
+      margin-bottom: 8px;
+    }
+    .header-dealer {
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .header-meta {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 20px;
+    }
+    .header-tags {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .tag {
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+    }
+    .tag-blue { background: rgba(33,150,243,0.2); color: var(--accent-light); border: 1px solid rgba(33,150,243,0.3); }
+    .tag-green { background: var(--green-bg); color: var(--green); border: 1px solid rgba(0,200,83,0.3); }
+    .tag-yellow { background: var(--yellow-bg); color: var(--yellow); border: 1px solid rgba(255,202,40,0.3); }
+
+    /* ── KPI Strip ────────────────────────────────────────── */
+    .kpi-strip {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+      gap: 12px;
+      margin-bottom: 28px;
+    }
+    .kpi-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+      text-align: center;
+    }
+    .kpi-label {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 6px;
+    }
+    .kpi-value {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .kpi-sub {
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+    .kpi-value.good { color: var(--green); }
+    .kpi-value.warn { color: var(--yellow); }
+    .kpi-value.alert { color: var(--red); }
+
+    /* ── Sections ─────────────────────────────────────────── */
+    .section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .section-header {
+      background: rgba(33,150,243,0.08);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .section-icon { font-size: 16px; }
+    .section-title {
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-light);
+    }
+    .section-body { padding: 20px; }
+
+    /* ── Tables ───────────────────────────────────────────── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+    }
+    th {
+      text-align: left;
+      padding: 8px 12px;
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 9px 12px;
+      border-bottom: 1px solid rgba(33,150,243,0.08);
+      vertical-align: top;
+    }
+    tr:last-child td { border-bottom: none; }
+    tr:hover td { background: rgba(33,150,243,0.04); }
+    .num { text-align: right; font-variant-numeric: tabular-nums; }
+
+    /* ── Issue Rows ───────────────────────────────────────── */
+    .issue-row { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(33,150,243,0.08); }
+    .issue-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .issue-badge {
+      flex-shrink: 0;
+      width: 38px; height: 22px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 800;
+      letter-spacing: 1px;
+      display: flex; align-items: center; justify-content: center;
+      margin-top: 2px;
+    }
+    .p1 { background: rgba(239,83,80,0.25); color: var(--red); border: 1px solid rgba(239,83,80,0.4); }
+    .p2 { background: rgba(255,152,0,0.2); color: var(--orange); border: 1px solid rgba(255,152,0,0.35); }
+    .p3 { background: rgba(255,202,40,0.15); color: var(--yellow); border: 1px solid rgba(255,202,40,0.3); }
+    .issue-content {}
+    .issue-title { font-weight: 600; color: #fff; margin-bottom: 3px; font-size: 13px; }
+    .issue-detail { color: var(--text-muted); font-size: 12px; line-height: 1.5; }
+    .issue-action {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--accent-light);
+      background: rgba(33,150,243,0.08);
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+
+    /* ── Pills / Badges ───────────────────────────────────── */
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+    .pill-green { background: var(--green-bg); color: var(--green); }
+    .pill-red { background: var(--red-bg); color: var(--red); }
+    .pill-yellow { background: var(--yellow-bg); color: var(--yellow); }
+    .pill-blue { background: var(--accent-glow); color: var(--accent-light); }
+    .pill-orange { background: var(--orange-bg); color: var(--orange); }
+
+    /* ── QS Bar ───────────────────────────────────────────── */
+    .qs-bar-wrap { display: flex; align-items: center; gap: 8px; }
+    .qs-bar {
+      flex: 1; height: 6px; border-radius: 3px;
+      background: rgba(255,255,255,0.08);
+      overflow: hidden;
+    }
+    .qs-fill { height: 100%; border-radius: 3px; }
+    .qs-9 { background: var(--green); width: 90%; }
+    .qs-8 { background: #69f0ae; width: 80%; }
+    .qs-7 { background: #b2ff59; width: 70%; }
+    .qs-5 { background: var(--yellow); width: 50%; }
+    .qs-0 { background: var(--red); width: 5%; }
+    .qs-label { font-size: 12px; font-weight: 700; min-width: 14px; }
+
+    /* ── IS Breakdown ─────────────────────────────────────── */
+    .is-bar-wrap { margin-top: 12px; }
+    .is-bar-track {
+      display: flex;
+      height: 24px;
+      border-radius: 6px;
+      overflow: hidden;
+      margin-bottom: 8px;
+    }
+    .is-seg {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 10px;
+      font-weight: 700;
+      color: #fff;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+    .is-won { background: var(--green); }
+    .is-budget { background: var(--yellow); }
+    .is-rank { background: var(--red); }
+    .is-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+    .is-legend-item { display: flex; align-items: center; gap: 5px; }
+    .is-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+    /* ── Insight Boxes ────────────────────────────────────── */
+    .insight-box {
+      border-radius: 8px;
+      padding: 14px 16px;
+      margin-bottom: 12px;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+    .insight-box:last-child { margin-bottom: 0; }
+    .insight-positive { background: var(--green-bg); border-left: 3px solid var(--green); }
+    .insight-warn { background: var(--yellow-bg); border-left: 3px solid var(--yellow); }
+    .insight-alert { background: var(--red-bg); border-left: 3px solid var(--red); }
+    .insight-info { background: var(--accent-glow); border-left: 3px solid var(--accent); }
+    .insight-title { font-weight: 700; color: #fff; margin-bottom: 4px; }
+
+    /* ── Asset Grid ───────────────────────────────────────── */
+    .asset-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 10px;
+    }
+    .asset-card {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(33,150,243,0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+    }
+    .asset-type {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+    .asset-text { font-size: 13px; color: #fff; font-weight: 500; }
+    .asset-desc { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .asset-status { margin-top: 6px; }
+
+    /* ── Click to Copy ────────────────────────────────────── */
+    .copyable {
+      cursor: pointer;
+      transition: opacity 0.15s;
+      position: relative;
+    }
+    .copyable:hover { opacity: 0.8; }
+    .copyable:hover::after {
+      content: '⎘ copy';
+      position: absolute;
+      right: 0; top: 50%; transform: translateY(-50%);
+      font-size: 10px;
+      color: var(--accent-light);
+      background: var(--navy-mid);
+      padding: 2px 6px;
+      border-radius: 4px;
+      pointer-events: none;
+    }
+    .copy-hint { font-size: 10px; color: var(--text-muted); text-align: right; margin-bottom: 4px; }
+
+    /* ── Summary Banner ───────────────────────────────────── */
+    .summary-banner {
+      background: linear-gradient(135deg, rgba(0,200,83,0.08) 0%, rgba(33,150,243,0.08) 100%);
+      border: 1px solid rgba(0,200,83,0.25);
+      border-radius: 10px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+    }
+    .summary-banner h2 {
+      font-size: 16px;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .summary-banner p {
+      color: var(--text-muted);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+    .summary-banner strong { color: var(--text); }
+
+    /* ── Footer ───────────────────────────────────────────── */
+    .footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 11px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+      margin-top: 32px;
+    }
+
+    /* ── Divider ──────────────────────────────────────────── */
+    .divider { border: none; border-top: 1px solid var(--border); margin: 16px 0; }
+
+    /* ── Two-col layout ───────────────────────────────────── */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+    .stat-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 7px 0;
+      border-bottom: 1px solid rgba(33,150,243,0.06);
+      font-size: 13px;
+    }
+    .stat-row:last-child { border-bottom: none; }
+    .stat-label { color: var(--text-muted); }
+    .stat-value { font-weight: 600; color: #fff; }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════
+     HEADER
+════════════════════════════════════════════════════════════ -->
+<div class="report-header">
+  <div class="header-brand">Explore Industries — Google Ads Audit</div>
+  <div class="header-dealer">Elite – Leisure Pools Sarasota</div>
+  <div class="header-meta">Account #477-640-7725 &nbsp;·&nbsp; Sarasota, FL &nbsp;·&nbsp; Leisure Pools &nbsp;·&nbsp; Period: Feb 21 – Mar 23, 2026</div>
+  <div class="header-tags">
+    <span class="tag tag-green">✓ Top Performer</span>
+    <span class="tag tag-blue">$49 CPA</span>
+    <span class="tag tag-blue">11 Conversions</span>
+    <span class="tag tag-yellow">⚠ 11.6% Impression Share</span>
+    <span class="tag tag-blue">Growth Opportunity</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     EXECUTIVE SUMMARY
+════════════════════════════════════════════════════════════ -->
+<div class="summary-banner">
+  <h2>★ Strong Performer — Efficient on a Tight Budget</h2>
+  <p>
+    Elite Sarasota is delivering <strong>$49 CPA on $540 of spend</strong> — one of the best cost-per-lead efficiencies in the portfolio. The branded keyword "leisure pools" anchors performance with a <strong>QS 9 and $9.58 CPA</strong>. The campaign is correctly configured: Maximize Conversions bidding, PRESENCE geo targeting, Google Search only.
+    <br><br>
+    The story here is <strong>untapped scale</strong>. At <strong>11.6% impression share</strong>, this campaign is winning on the fraction of auctions it enters. But 73.1% of lost IS is attributed to Ad Rank — meaning the limiter isn't budget alone. Improving QS on underperforming keywords and adding a dedicated "leisure pools sarasota" keyword would unlock meaningful lead volume without proportional cost increases.
+    <br><br>
+    Three issues require urgent action: the <strong>Business Name asset remains PAUSED</strong> (third consecutive audit), the <strong>call asset shows a 631 NY area code</strong> (not a local FL number), and <strong>RSA display paths are blank</strong>.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KPI STRIP
+════════════════════════════════════════════════════════════ -->
+<div class="kpi-strip">
+  <div class="kpi-card">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">$540</div>
+    <div class="kpi-sub">$16.12/day budget</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Conversions</div>
+    <div class="kpi-value good">11</div>
+    <div class="kpi-sub">30-day window</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Cost / Conv</div>
+    <div class="kpi-value good">$49</div>
+    <div class="kpi-sub">Target: &lt;$150</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Clicks</div>
+    <div class="kpi-value">182</div>
+    <div class="kpi-sub">CTR: 9.3%</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value">1,951</div>
+    <div class="kpi-sub">Avg CPC $2.97</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Search IS</div>
+    <div class="kpi-value warn">11.6%</div>
+    <div class="kpi-sub">Significant headroom</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Rank Lost IS</div>
+    <div class="kpi-value alert">73.1%</div>
+    <div class="kpi-sub">Primary limiter</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Budget Lost IS</div>
+    <div class="kpi-value warn">15.2%</div>
+    <div class="kpi-sub">Secondary limiter</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     IMPRESSION SHARE BREAKDOWN
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">📊</span>
+    <span class="section-title">Impression Share Analysis — Growth Opportunity</span>
+  </div>
+  <div class="section-body">
+    <div class="insight-box insight-info">
+      <div class="insight-title">At 11.6% IS, this campaign is barely scratching the available market.</div>
+      The good news: there's no ceiling problem. The audience exists. The question is whether to scale via budget, Quality Score, or both — and what the right sequence is.
+    </div>
+
+    <div class="is-bar-wrap">
+      <div class="is-bar-track">
+        <div class="is-seg is-won" style="width: 11.6%;" title="Won: 11.6%">11.6%</div>
+        <div class="is-seg is-budget" style="width: 15.2%;" title="Budget Lost: 15.2%">15.2%</div>
+        <div class="is-seg is-rank" style="width: 73.1%;" title="Rank Lost: 73.1%">Rank Lost: 73.1%</div>
+      </div>
+      <div class="is-legend">
+        <div class="is-legend-item"><div class="is-dot" style="background:var(--green)"></div>Won: 11.6%</div>
+        <div class="is-legend-item"><div class="is-dot" style="background:var(--yellow)"></div>Budget Lost: 15.2%</div>
+        <div class="is-legend-item"><div class="is-dot" style="background:var(--red)"></div>Rank Lost: 73.1%</div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="insight-box insight-warn">
+      <div class="insight-title">Rank Lost IS (73.1%) dominates — budget increase alone won't fix this.</div>
+      If budget were the only constraint, you'd increase spend and impressions would scale. But with 73% of lost auctions attributed to Ad Rank, a budget increase would burn spend on auctions the campaign still loses. The priority order is: <strong>(1) improve QS on underperformers, (2) add high-intent exact/phrase keywords, then (3) evaluate budget increase once rank improves.</strong>
+    </div>
+
+    <div class="insight-box insight-positive">
+      <div class="insight-title">The keywords that win are efficient — the math works at scale.</div>
+      "leisure pools" delivers $9.58 CPA at QS 9. "fiberglass pools" delivers $37.96 CPA at QS 8. Both are well under threshold. If those keywords could capture 3–4× their current impressions, conversion volume would follow without degrading CPA. The IS limiter is winnable.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     KEYWORD PERFORMANCE
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">🔑</span>
+    <span class="section-title">Keyword Performance</span>
+  </div>
+  <div class="section-body">
+    <div class="copy-hint">Click any keyword to copy</div>
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Match</th>
+          <th>QS</th>
+          <th class="num">Impr.</th>
+          <th class="num">Clicks</th>
+          <th class="num">Cost</th>
+          <th class="num">Conv.</th>
+          <th class="num">CPA</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="copyable" onclick="copyText('leisure pools', this)">leisure pools</td>
+          <td><span class="pill pill-blue">BROAD</span></td>
+          <td>
+            <div class="qs-bar-wrap">
+              <div class="qs-bar"><div class="qs-fill qs-9"></div></div>
+              <span class="qs-label" style="color:var(--green)">9</span>
+            </div>
+          </td>
+          <td class="num">358</td>
+          <td class="num">74</td>
+          <td class="num">$47.91</td>
+          <td class="num">5.0</td>
+          <td class="num" style="color:var(--green)">$9.58</td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('fiberglass pools', this)">fiberglass pools</td>
+          <td><span class="pill pill-blue">BROAD</span></td>
+          <td>
+            <div class="qs-bar-wrap">
+              <div class="qs-bar"><div class="qs-fill qs-8"></div></div>
+              <span class="qs-label" style="color:#69f0ae">8</span>
+            </div>
+          </td>
+          <td class="num">573</td>
+          <td class="num">51</td>
+          <td class="num">$151.83</td>
+          <td class="num">4.0</td>
+          <td class="num" style="color:var(--green)">$37.96</td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('pool designs', this)">pool designs</td>
+          <td><span class="pill pill-blue">BROAD</span></td>
+          <td>
+            <div class="qs-bar-wrap">
+              <div class="qs-bar"><div class="qs-fill qs-5"></div></div>
+              <span class="qs-label" style="color:var(--yellow)">5</span>
+            </div>
+          </td>
+          <td class="num">404</td>
+          <td class="num">35</td>
+          <td class="num">$152.03</td>
+          <td class="num">1.0</td>
+          <td class="num" style="color:var(--yellow)">$152.03</td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('pool companies', this)">pool companies</td>
+          <td><span class="pill pill-blue">BROAD</span></td>
+          <td>
+            <div class="qs-bar-wrap">
+              <div class="qs-bar"><div class="qs-fill qs-0"></div></div>
+              <span class="qs-label" style="color:var(--red)">—</span>
+            </div>
+          </td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">~$80</td>
+          <td class="num">0</td>
+          <td class="num" style="color:var(--red)">$∞</td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('pool contractor', this)">pool contractor</td>
+          <td><span class="pill pill-blue">BROAD</span></td>
+          <td>
+            <div class="qs-bar-wrap">
+              <div class="qs-bar"><div class="qs-fill qs-0"></div></div>
+              <span class="qs-label" style="color:var(--red)">—</span>
+            </div>
+          </td>
+          <td class="num">—</td>
+          <td class="num">—</td>
+          <td class="num">~$52</td>
+          <td class="num">0</td>
+          <td class="num" style="color:var(--red)">$∞</td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <div class="two-col">
+      <div class="insight-box insight-positive">
+        <div class="insight-title">What's making this work: branded dominance</div>
+        "leisure pools" at QS 9 is the performance anchor — low cost, high intent, converts at $9.58. The brand keyword is doing heavy lifting. This is the hallmark of a healthy dealer account: the brand term converts efficiently, subsidizing broader competitive spend.
+      </div>
+      <div class="insight-box insight-alert">
+        <div class="insight-title">Gaps: "pool companies" + "pool contractor" at QS 0</div>
+        These two keywords account for ~$132 combined spend with zero conversions. QS 0 indicates Google is seeing a mismatch between keyword, ad copy, and landing page. Either improve relevance or pause these terms and reallocate spend to the converting keywords.
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     TOP SEARCH TERMS
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">🔍</span>
+    <span class="section-title">Search Terms — Top Converters &amp; Wasted Spend</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">Top converting search terms driving actual leads.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th class="num">Cost</th>
+          <th class="num">Conv.</th>
+          <th class="num">CPA</th>
+          <th>Signal</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="copyable" onclick="copyText('leisure pools sarasota', this)">leisure pools sarasota</td>
+          <td class="num">$35.33</td>
+          <td class="num" style="color:var(--green)">5.0</td>
+          <td class="num" style="color:var(--green)">$7.07</td>
+          <td><span class="pill pill-green">★ High Intent</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('fiberglass pools', this)">fiberglass pools</td>
+          <td class="num">$39.29</td>
+          <td class="num" style="color:var(--green)">0.5</td>
+          <td class="num" style="color:var(--green)">$78.58</td>
+          <td><span class="pill pill-blue">Competitive</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('backyard pool ideas', this)">backyard pool ideas</td>
+          <td class="num">$13.82</td>
+          <td class="num" style="color:var(--green)">1.0</td>
+          <td class="num" style="color:var(--green)">$13.82</td>
+          <td><span class="pill pill-green">Research → Convert</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <p style="font-size:12px; color:var(--text-muted); margin-bottom:14px;">Wasted spend — zero conversions, likely off-target searches slipping through broad match.</p>
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th class="num">Wasted Spend</th>
+          <th>Issue</th>
+          <th>Recommended Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="copyable" onclick="copyText('pool tile ideas', this)">pool tile ideas</td>
+          <td class="num" style="color:var(--red)">$11.91</td>
+          <td>Décor/renovation intent</td>
+          <td><span class="pill pill-orange">Add negative</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('pavers around pool ideas', this)">pavers around pool ideas</td>
+          <td class="num" style="color:var(--red)">$10.30</td>
+          <td>Landscaping intent</td>
+          <td><span class="pill pill-orange">Add negative</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('above ground pool', this)">above ground pool (variants)</td>
+          <td class="num" style="color:var(--red)">$11.82</td>
+          <td>Wrong pool type</td>
+          <td><span class="pill pill-orange">Add negative</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText("leslie's pool near me", this)">leslie's / leslie pool</td>
+          <td class="num" style="color:var(--red)">$11.50</td>
+          <td>Competitor pool supply store</td>
+          <td><span class="pill pill-orange">Add negative</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('pebble tec pool finish', this)">pebble tec pool finish</td>
+          <td class="num" style="color:var(--red)">$5.16</td>
+          <td>Renovation/resurfacing intent</td>
+          <td><span class="pill pill-orange">Add negative</span></td>
+        </tr>
+        <tr>
+          <td class="copyable" onclick="copyText('plunge pool', this)">plunge pool</td>
+          <td class="num" style="color:var(--red)">$8.37</td>
+          <td>Different product category</td>
+          <td><span class="pill pill-orange">Add negative</span></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="divider">
+
+    <div class="insight-box insight-info">
+      <div class="insight-title">Key gap: "leisure pools sarasota" is the #1 converting search term — but there is no dedicated keyword for it.</div>
+      This geo-modified branded term is responsible for 5 of 11 conversions and a $7.07 CPA. It's currently triggering off the broad "leisure pools" keyword. Adding it as an exact match [leisure pools sarasota] — or at minimum phrase "leisure pools sarasota" — would protect this traffic, improve QS on the geo-modified variant, and reduce the risk of losing it to budget constraints or rank issues on the parent keyword.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ASSETS
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">📎</span>
+    <span class="section-title">Assets</span>
+  </div>
+  <div class="section-body">
+
+    <p style="font-size:11px; color:var(--text-muted); margin-bottom:14px;">All assets are campaign-level unless noted. RSA headline/description content is not retrievable via the Google Ads API (serialization limitation) — ad strength confirmed GOOD via API.</p>
+
+    <p style="font-weight:600; margin-bottom:10px; color:var(--accent-light); font-size:12px; letter-spacing:0.5px; text-transform:uppercase;">Sitelinks (ENABLED)</p>
+    <div class="asset-grid" style="margin-bottom:18px;">
+      <div class="asset-card">
+        <div class="asset-type">Sitelink</div>
+        <div class="asset-text">Stylish Pool Designs</div>
+        <div class="asset-desc">Desc 1: Explore Our Award-Winning...<br>Desc 2: Request a Free Design...</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink</div>
+        <div class="asset-text">2025 Pool Brochure</div>
+        <div class="asset-desc">Desc 1: Download Our Free Brochure<br>Desc 2: See All Available Pool Models</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink</div>
+        <div class="asset-text">Free Estimate</div>
+        <div class="asset-desc">Desc 1: Get a No-Obligation Quote<br>Desc 2: Fast Local Response</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink</div>
+        <div class="asset-text">Stunning Pool Colors</div>
+        <div class="asset-desc">Desc 1: Available<br>Desc 2: Available</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink</div>
+        <div class="asset-text">Flexible Pool Financing</div>
+        <div class="asset-desc">Desc 1: Available<br>Desc 2: Available</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card" style="border-color:rgba(255,202,40,0.2);">
+        <div class="asset-type">Sitelinks (older — no descriptions)</div>
+        <div class="asset-text" style="color:var(--text-muted)">Fiberglass Pool Colors, Pool Shapes & Sizes, + 3 others</div>
+        <div class="asset-desc" style="color:var(--yellow)">Missing descriptions — P3</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+    </div>
+
+    <p style="font-weight:600; margin-bottom:10px; color:var(--accent-light); font-size:12px; letter-spacing:0.5px; text-transform:uppercase;">Callouts (ENABLED)</p>
+    <div class="asset-grid" style="margin-bottom:18px;">
+      <div class="asset-card">
+        <div class="asset-type">Callout</div>
+        <div class="asset-text">Expert Pool Installers</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Callout</div>
+        <div class="asset-text">Lifetime Warranty</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Callout</div>
+        <div class="asset-text">Custom Pool Designs</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Callout</div>
+        <div class="asset-text">Fast Local Installation</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+    </div>
+
+    <p style="font-weight:600; margin-bottom:10px; color:var(--accent-light); font-size:12px; letter-spacing:0.5px; text-transform:uppercase;">Other Assets</p>
+    <div class="asset-grid">
+      <div class="asset-card" style="border-color:rgba(239,83,80,0.3);">
+        <div class="asset-type">Call Asset</div>
+        <div class="asset-text">(631) 334-4676</div>
+        <div class="asset-desc" style="color:var(--red);">⚠ 631 = Long Island, NY area code — not Sarasota, FL. Verify this number is intentional.</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card" style="border-color:rgba(239,83,80,0.3);">
+        <div class="asset-type">Business Name Asset</div>
+        <div class="asset-text" style="color:var(--red);">PAUSED — Recurring Issue</div>
+        <div class="asset-desc" style="color:var(--red);">Asset ID 263955255876. Has been paused in prior audits (Nov 2025, Jan 2026, Feb 2026). Still not fixed.</div>
+        <div class="asset-status"><span class="pill pill-red">PAUSED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Logo Asset</div>
+        <div class="asset-text">Logo-LeisurePools-Sarasota-FullColor</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">RSA Ad</div>
+        <div class="asset-text">1 ad — Ad Strength: GOOD</div>
+        <div class="asset-desc" style="color:var(--yellow);">Display paths (path1/path2) blank — P2. Headline/description content unverifiable via API.</div>
+        <div class="asset-status"><span class="pill pill-green">ENABLED</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     CAMPAIGN SETTINGS
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">⚙️</span>
+    <span class="section-title">Campaign Settings</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="stat-row"><span class="stat-label">Campaign Status</span><span class="stat-value"><span class="pill pill-green">ENABLED</span></span></div>
+        <div class="stat-row"><span class="stat-label">Bidding Strategy</span><span class="stat-value">Maximize Conversions</span></div>
+        <div class="stat-row"><span class="stat-label">Daily Budget</span><span class="stat-value">$16.12</span></div>
+        <div class="stat-row"><span class="stat-label">Network</span><span class="stat-value">Google Search Only ✓</span></div>
+        <div class="stat-row"><span class="stat-label">Geo Targeting</span><span class="stat-value">PRESENCE ✓ (Enum 7)</span></div>
+      </div>
+      <div>
+        <div class="stat-row"><span class="stat-label">Shared Negative Set</span><span class="stat-value">12012201802 (attached)</span></div>
+        <div class="stat-row"><span class="stat-label">Shared Set Contents</span><span class="stat-value" style="color:var(--text-muted);">Unable to verify (API error)</span></div>
+        <div class="stat-row"><span class="stat-label">Ad Groups</span><span class="stat-value">1 active (Sarasota – General)</span></div>
+        <div class="stat-row"><span class="stat-label">RSA Ad Strength</span><span class="stat-value" style="color:var(--green);">GOOD (6)</span></div>
+        <div class="stat-row"><span class="stat-label">RSA Display Paths</span><span class="stat-value" style="color:var(--yellow);">Blank ⚠</span></div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="insight-box insight-positive">
+      <div class="insight-title">Settings are fundamentally correct — no structural problems.</div>
+      Maximize Conversions is appropriate at this spend level. PRESENCE targeting is correct (confirmed via Enum 7 mapping). Search-only network avoids Display waste. Shared negative set is attached. This is a clean campaign structure.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ISSUES
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">⚠️</span>
+    <span class="section-title">Issues — Prioritized Action List</span>
+  </div>
+  <div class="section-body">
+
+    <div class="issue-row">
+      <div class="issue-badge p1">P1</div>
+      <div class="issue-content">
+        <div class="issue-title">Business Name Asset is PAUSED — fourth consecutive audit finding</div>
+        <div class="issue-detail">Asset ID 263955255876. This asset has appeared as PAUSED in the Nov 2025, Jan 2026, Feb 2026, and now Mar 2026 audits. A PAUSED Business Name asset suppresses the brand name from appearing in ads — reducing trust signals and ad relevance. This needs to be enabled or, if intentionally paused, the reason documented.</div>
+        <div class="issue-action">Action: Enable Asset ID 263955255876 in campaign assets, or confirm intentional pause with dealer context.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-badge p1">P1</div>
+      <div class="issue-content">
+        <div class="issue-title">Call Asset shows (631) 334-4676 — Long Island, NY area code</div>
+        <div class="issue-detail">Area code 631 is Long Island, New York — not Sarasota, FL. While Elite is operated by Kevin Diamond (who has NY origins), presenting a NY area code to Sarasota searchers may reduce call-through rates and damage local trust. This could be intentional (the dealer's primary number), but it warrants verification.</div>
+        <div class="issue-action">Action: Verify with dealer whether (631) 334-4676 is the correct number for Sarasota ads. If a local FL number exists, swap it in.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-badge p1">P1</div>
+      <div class="issue-content">
+        <div class="issue-title">Rank Lost IS = 73.1% — Ad Rank is the primary growth blocker</div>
+        <div class="issue-detail">"pool designs" (QS 5), "pool companies" (~QS 0), and "pool contractor" (~QS 0) are dragging down account-level Quality Score and limiting impression share across the board. These keywords have poor relevance alignment between keyword, ad copy, and landing page — confirmed by low/zero QS scores.</div>
+        <div class="issue-action">Action: (1) Pause "pool companies" and "pool contractor" — zero conversions, ~$132 wasted. (2) Improve landing page relevance for "pool designs" or add ad group targeting that matches user intent. (3) Add [leisure pools sarasota] as an exact match keyword with high-relevance ad copy.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-badge p2">P2</div>
+      <div class="issue-content">
+        <div class="issue-title">RSA display paths (path1/path2) are blank</div>
+        <div class="issue-detail">Display URL paths add keyword relevance signals and improve CTR. Common approach: path1 = "Fiberglass-Pools", path2 = "Sarasota-FL" to reinforce local intent.</div>
+        <div class="issue-action">Action: Set RSA path1 = "Fiberglass-Pools", path2 = "Sarasota".</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-badge p2">P2</div>
+      <div class="issue-content">
+        <div class="issue-title">No dedicated "leisure pools sarasota" keyword despite it being the #1 converting search term</div>
+        <div class="issue-detail">"leisure pools sarasota" drove 5 of 11 conversions at $7.07 CPA. It's currently triggering off broad "leisure pools." Without an exact or phrase match for this geo-modified branded term, this traffic is vulnerable to budget constraints and rank issues on the parent keyword.</div>
+        <div class="issue-action">Action: Add [leisure pools sarasota] (exact) + "leisure pools sarasota" (phrase) as dedicated keywords.</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-badge p2">P2</div>
+      <div class="issue-content">
+        <div class="issue-title">Wasted search terms — pool supplies, décor, above-ground pool variants</div>
+        <div class="issue-detail">~$60+ in identified wasted spend: "pool tile ideas", "pavers around pool ideas", "above ground pool" variants, "leslie's pool", "pebble tec pool finish", "plunge pool". These are slipping through broad match and converting at zero. Shared negative set is attached (ID 12012201802) but contents are unverifiable — these may not be in it.</div>
+        <div class="issue-action">Action: Add as negative keywords: "tile ideas", "pavers", "above ground", "leslie", "pebble tec", "plunge pool".</div>
+      </div>
+    </div>
+
+    <div class="issue-row">
+      <div class="issue-badge p3">P3</div>
+      <div class="issue-content">
+        <div class="issue-title">5 older sitelinks missing descriptions</div>
+        <div class="issue-detail">The older sitelinks (Fiberglass Pool Colors, Pool Shapes & Sizes, and others) lack description lines. Sitelinks with descriptions are preferred by Google and show more real estate in search results.</div>
+        <div class="issue-action">Action: Add 2 description lines to each legacy sitelink.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     GROWTH ROADMAP
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">📈</span>
+    <span class="section-title">Growth Roadmap — Scaling from 11.6% IS</span>
+  </div>
+  <div class="section-body">
+    <div class="insight-box insight-positive">
+      <div class="insight-title">Phase 1 — Quality Score Cleanup (Highest ROI, Zero Budget Increase)</div>
+      Pause "pool companies" + "pool contractor" (~$132 wasted/month). Redirect that spend to "leisure pools" and "fiberglass pools" which have proven CPA efficiency. Add exact match [leisure pools sarasota] to capture the geo-modified branded traffic with tighter control. Add negative keywords for pool supply / décor / above-ground searches. Expected outcome: improved account-level QS → reduced Rank Lost IS → more impressions at same spend.
+    </div>
+    <div class="insight-box insight-info">
+      <div class="insight-title">Phase 2 — Budget Scale (After QS Improves)</div>
+      Once Rank Lost IS drops below 50%, a budget increase will be efficient. At current $49 CPA, doubling the budget to ~$32/day should yield approximately 20–22 conversions/month if QS improves. The math works. The current 11.6% IS means there are 8–9× more auctions available to enter. Even capturing 25% of available IS would roughly 2× the lead volume.
+    </div>
+    <div class="insight-box insight-warn">
+      <div class="insight-title">Phase 3 — Consider Expanding to New Ad Groups</div>
+      "pool designs" at QS 5 suggests user intent mismatch in the current single-ad-group structure. A separate ad group for research-intent queries ("pool designs", "pool ideas", "backyard pool inspiration") with ad copy and landing pages matched to that intent would improve QS and allow Google to distinguish between bottom-funnel buyers and top-funnel researchers.
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DEALER CONTEXT
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">🏢</span>
+    <span class="section-title">Dealer Context</span>
+  </div>
+  <div class="section-body">
+    <div class="two-col">
+      <div>
+        <div class="stat-row"><span class="stat-label">Account</span><span class="stat-value">Elite – Leisure Pools Sarasota</span></div>
+        <div class="stat-row"><span class="stat-label">Account ID</span><span class="stat-value">477-640-7725</span></div>
+        <div class="stat-row"><span class="stat-label">Brand</span><span class="stat-value">Leisure Pools</span></div>
+        <div class="stat-row"><span class="stat-label">Market</span><span class="stat-value">Sarasota, FL + surrounding areas</span></div>
+      </div>
+      <div>
+        <div class="stat-row"><span class="stat-label">Dealer Background</span><span class="stat-value">K. Dymond Pool &amp; Spa (Kevin Diamond)</span></div>
+        <div class="stat-row"><span class="stat-label">Origin</span><span class="stat-value">Influential NY dealer — explains 631 area code</span></div>
+        <div class="stat-row"><span class="stat-label">Priority Tier</span><span class="stat-value">Medium ($540/30d budget)</span></div>
+        <div class="stat-row"><span class="stat-label">Prior Audit Flags</span><span class="stat-value">Business Name PAUSED (recurring)</span></div>
+      </div>
+    </div>
+    <hr class="divider">
+    <p style="font-size:12px; color:var(--text-muted); line-height:1.7;">
+      <strong style="color:var(--text);">Note on the (631) area code:</strong> Kevin Diamond originally operated in New York before expanding to Sarasota, FL. The 631 area code is Long Island, NY. This may be his primary business number that he brought with him — worth a confirmation call rather than a unilateral swap.
+    </p>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════════
+     DATA NOTES
+════════════════════════════════════════════════════════════ -->
+<div class="section">
+  <div class="section-header">
+    <span class="section-icon">📋</span>
+    <span class="section-title">Data Notes &amp; API Limitations</span>
+  </div>
+  <div class="section-body">
+    <p style="font-size:12px; color:var(--text-muted); line-height:1.8;">
+      <strong style="color:var(--text);">RSA content:</strong> Headline and description text in Responsive Search Ads returns as <code>RepeatedCompositeContainer</code> via the Google Ads API MCP — not serializable. Ad strength (GOOD) was verified via the <code>ad_group_ad.ad.ad_strength</code> field.<br>
+      <strong style="color:var(--text);">Structured snippets:</strong> Values field returns <code>RepeatedScalarContainer</code> — content unverifiable via API.<br>
+      <strong style="color:var(--text);">Shared negative set contents:</strong> Set ID 12012201802 is confirmed attached to the campaign via <code>campaign_shared_set</code>. Content verification returned a type error — unable to confirm which negative keywords are in the list.<br>
+      <strong style="color:var(--text);">Keyword QS:</strong> "pool companies" and "pool contractor" returned no impression data and no QS scores, indicating very limited auction participation (reported as QS 0/unscored).<br>
+      <strong style="color:var(--text);">All data period:</strong> 2026-02-21 to 2026-03-23.
+    </p>
+  </div>
+</div>
+
+<div class="footer">
+  Elite – Leisure Pools Sarasota &nbsp;|&nbsp; Google Ads Audit &nbsp;|&nbsp; 2026-03-23 &nbsp;|&nbsp; Generated by Claude Code / Explore Industries
+</div>
+
+<script>
+function copyText(text, el) {
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = el.style.color;
+    el.style.color = '#00c853';
+    setTimeout(() => { el.style.color = orig; }, 800);
+  });
+}
+</script>
+
+</body>
+</html>

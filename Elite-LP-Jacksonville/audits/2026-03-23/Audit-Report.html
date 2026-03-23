@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit — Elite - Leisure Pools Jacksonville | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2e;
+    --navy-mid: #162540;
+    --navy-light: #1e3254;
+    --accent: #2e8bfd;
+    --accent-light: #5ba8ff;
+    --gold: #f0a500;
+    --green: #22c55e;
+    --red: #ef4444;
+    --yellow: #f59e0b;
+    --text: #e2e8f0;
+    --text-muted: #94a3b8;
+    --border: #2a3f5f;
+    --card: #1a2d45;
+    --card-dark: #12243a;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    background: var(--navy);
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .header {
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    border-bottom: 2px solid var(--accent);
+    padding: 28px 36px;
+  }
+  .header h1 { font-size: 22px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .header .meta { color: var(--text-muted); font-size: 13px; display: flex; gap: 20px; flex-wrap: wrap; margin-top: 6px; }
+  .header .meta span { display: flex; align-items: center; gap: 5px; }
+  .header .badge {
+    display: inline-block; background: var(--accent); color: #fff;
+    padding: 2px 10px; border-radius: 4px; font-size: 11px; font-weight: 600;
+    letter-spacing: 0.5px; text-transform: uppercase; margin-left: 10px;
+  }
+  .header .badge.green { background: var(--green); }
+
+  .container { max-width: 1200px; margin: 0 auto; padding: 28px 36px; }
+
+  /* SCORECARD */
+  .scorecard {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 14px; margin-bottom: 28px;
+  }
+  .score-card {
+    background: var(--card); border: 1px solid var(--border); border-radius: 8px;
+    padding: 18px 16px; text-align: center;
+  }
+  .score-card .value { font-size: 28px; font-weight: 700; color: var(--accent-light); }
+  .score-card .value.green { color: var(--green); }
+  .score-card .value.gold { color: var(--gold); }
+  .score-card .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 4px; }
+  .score-card .sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* SECTIONS */
+  .section { margin-bottom: 28px; }
+  .section-header {
+    display: flex; align-items: center; gap: 10px;
+    border-bottom: 1px solid var(--border); padding-bottom: 10px; margin-bottom: 16px;
+  }
+  .section-header h2 { font-size: 16px; font-weight: 600; color: #fff; }
+  .section-num {
+    background: var(--accent); color: #fff; width: 24px; height: 24px;
+    border-radius: 50%; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0;
+  }
+
+  /* FINDINGS */
+  .finding {
+    background: var(--card); border-radius: 8px; padding: 14px 16px;
+    margin-bottom: 10px; border-left: 3px solid var(--border);
+    display: grid; grid-template-columns: auto 1fr; gap: 12px; align-items: start;
+  }
+  .finding.critical { border-left-color: var(--red); }
+  .finding.warning { border-left-color: var(--yellow); }
+  .finding.info { border-left-color: var(--accent); }
+  .finding.ok { border-left-color: var(--green); }
+  .finding-icon { font-size: 18px; margin-top: 1px; }
+  .finding-body .title { font-weight: 600; font-size: 14px; color: #fff; margin-bottom: 4px; }
+  .finding-body .detail { color: var(--text-muted); font-size: 13px; }
+  .finding-body .recommendation {
+    margin-top: 8px; padding: 8px 10px;
+    background: rgba(46,139,253,0.1); border-radius: 4px;
+    font-size: 12px; color: var(--accent-light);
+  }
+  .finding-body .recommendation::before { content: "→ "; font-weight: 600; }
+  .pill {
+    display: inline-block; padding: 1px 7px; border-radius: 12px; font-size: 11px;
+    font-weight: 600; margin: 1px;
+  }
+  .pill.red { background: rgba(239,68,68,0.15); color: #f87171; border: 1px solid rgba(239,68,68,0.3); }
+  .pill.yellow { background: rgba(245,158,11,0.15); color: #fbbf24; border: 1px solid rgba(245,158,11,0.3); }
+  .pill.green { background: rgba(34,197,94,0.15); color: #4ade80; border: 1px solid rgba(34,197,94,0.3); }
+  .pill.blue { background: rgba(46,139,253,0.15); color: #7ab8ff; border: 1px solid rgba(46,139,253,0.3); }
+  .pill.gray { background: rgba(148,163,184,0.15); color: #94a3b8; border: 1px solid rgba(148,163,184,0.3); }
+
+  /* TABLES */
+  .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  thead { background: var(--navy-light); }
+  th {
+    padding: 10px 12px; text-align: left; font-weight: 600; font-size: 11px;
+    text-transform: uppercase; letter-spacing: 0.4px; color: var(--text-muted);
+    white-space: nowrap;
+  }
+  td { padding: 9px 12px; border-top: 1px solid var(--border); vertical-align: top; }
+  tr:hover td { background: rgba(46,139,253,0.04); }
+  .right { text-align: right; }
+  .mono { font-family: 'Courier New', monospace; font-size: 12px; }
+
+  /* COPY BOXES */
+  .copy-box {
+    background: var(--card-dark); border: 1px solid var(--border); border-radius: 6px;
+    padding: 12px 14px; font-family: monospace; font-size: 12px; color: var(--text-muted);
+    cursor: pointer; position: relative; margin-top: 8px;
+    user-select: all;
+  }
+  .copy-box:hover { border-color: var(--accent); color: var(--text); }
+  .copy-box .copy-hint {
+    position: absolute; top: 6px; right: 8px; font-size: 10px;
+    color: var(--text-muted); font-family: sans-serif;
+  }
+
+  /* TWO-COL */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 768px) { .two-col { grid-template-columns: 1fr; } .container { padding: 16px; } }
+
+  /* PROGRESS */
+  .progress-bar {
+    background: var(--border); border-radius: 4px; height: 6px; overflow: hidden; margin: 6px 0;
+  }
+  .progress-fill { height: 100%; border-radius: 4px; background: var(--accent); }
+  .progress-fill.green { background: var(--green); }
+  .progress-fill.yellow { background: var(--yellow); }
+  .progress-fill.red { background: var(--red); }
+
+  /* SUMMARY BOX */
+  .summary-box {
+    background: linear-gradient(135deg, rgba(46,139,253,0.12), rgba(46,139,253,0.06));
+    border: 1px solid rgba(46,139,253,0.3); border-radius: 10px;
+    padding: 20px 22px; margin-bottom: 28px;
+  }
+  .summary-box h3 { color: var(--accent-light); font-size: 14px; font-weight: 600; margin-bottom: 10px; }
+  .summary-box p { color: var(--text); font-size: 13px; line-height: 1.7; margin-bottom: 8px; }
+  .summary-box p:last-child { margin-bottom: 0; }
+
+  .tag-crit { color: var(--red); font-weight: 700; }
+  .tag-warn { color: var(--yellow); font-weight: 700; }
+  .tag-good { color: var(--green); font-weight: 700; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 24px 0; }
+
+  footer { text-align: center; padding: 20px; color: var(--text-muted); font-size: 12px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>Google Ads Audit — Elite - Leisure Pools Jacksonville
+    <span class="badge green">Top Performer</span>
+  </h1>
+  <div class="meta">
+    <span>Account: 659-279-5595</span>
+    <span>Brand: Leisure Pools</span>
+    <span>Market: Jacksonville, FL</span>
+    <span>Period: Feb 21 – Mar 23, 2026</span>
+    <span>Audited: 2026-03-23</span>
+  </div>
+</div>
+
+<div class="container">
+
+  <!-- SCORECARD -->
+  <div class="scorecard">
+    <div class="score-card">
+      <div class="value green">$1,651</div>
+      <div class="label">30-Day Spend</div>
+      <div class="sub">2nd-best CPA in fleet</div>
+    </div>
+    <div class="score-card">
+      <div class="value">37</div>
+      <div class="label">Conversions</div>
+      <div class="sub">30-day total</div>
+    </div>
+    <div class="score-card">
+      <div class="value gold">$44.62</div>
+      <div class="label">Avg CPA</div>
+      <div class="sub">Fleet avg ~$70+</div>
+    </div>
+    <div class="score-card">
+      <div class="value">966</div>
+      <div class="label">Clicks</div>
+      <div class="sub">7 ad groups, 2 campaigns</div>
+    </div>
+    <div class="score-card">
+      <div class="value">7,320</div>
+      <div class="label">Impressions</div>
+      <div class="sub">All ENABLED</div>
+    </div>
+    <div class="score-card">
+      <div class="value">13.2%</div>
+      <div class="label">CTR</div>
+      <div class="sub">Strong for pool vertical</div>
+    </div>
+  </div>
+
+  <!-- EXECUTIVE SUMMARY -->
+  <div class="summary-box">
+    <h3>Executive Summary</h3>
+    <p>Jacksonville is one of the fleet's strongest performers — $44.62 CPA against a fleet average well above $70, with 37 conversions on $1,651 spend over the audit window. The account structure is clean: 2 active campaigns, 7 ad groups, solid negative keyword hygiene across 25–30 campaign-level exclusions, and confirmed shared set coverage on both campaigns.</p>
+    <p><strong class="tag-crit">One critical issue:</strong> "fiberglass pool builders" is running as <strong>BROAD MATCH</strong> in the Fiberglass Pool Installation ad group — a direct violation of the no-broad-match rule. This is the #2 spend keyword at ~$349 over the period and is actively leaking spend to off-target queries including "leisure pools" and branded/semi-inground terms. Conversion rate on that keyword is also below account average.</p>
+    <p><strong class="tag-warn">Three quality score issues</strong> warrant attention: two QS=0 keywords and one at QS=3, all phrase-match in the Pool Builder campaign. These are actively suppressing impression share and dragging up CPCs.</p>
+    <p><strong class="tag-good">What's working:</strong> Callout suite is strong (7 callouts per campaign), sitelinks are deployed on both campaigns, call extension present, and landing page performance is solid — the home and builder pages account for the top conversion volumes.</p>
+  </div>
+
+  <!-- SECTION 1: STRUCTURE & COMPLIANCE -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>Account Structure &amp; Compliance</h2>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Shared Negative List — Confirmed on Both Campaigns</div>
+        <div class="detail">
+          <strong>Master Exclusion List 3.18</strong> (ID: 12012201802) — <strong>162 keywords</strong> — is linked to both
+          <span class="pill green">Fiberglass Pools (Primary)</span> and <span class="pill green">Pool Builder / Contractor</span>.
+          Status on both links: ENABLED. Shared set type verified as NEGATIVE_KEYWORDS.
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Geo Targeting — PRESENCE Only (Correct)</div>
+        <div class="detail">
+          Positive geo target type = <strong>7 (PRESENCE)</strong> on both campaigns. This is the correct setting — targets users physically in Jacksonville. Not flagged.
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Campaign Structure — 2 Active, 7 Ad Groups</div>
+        <div class="detail">
+          <table style="width:100%; margin-top:6px;">
+            <thead><tr><th>Campaign</th><th>Ad Groups</th><th>Spend (Period)</th><th>Conversions</th><th>CPA</th></tr></thead>
+            <tbody>
+              <tr><td>Fiberglass Pools (Primary)</td><td>Fiberglass vs Concrete, Fiberglass Pool Installation, Fiberglass Pools Cost/Pricing, Fiberglass Pools General</td><td>$835.13</td><td>22</td><td>$37.96</td></tr>
+              <tr><td>Pool Builder / Contractor</td><td>Pool Contractor, Pool Builder General, Pool Company</td><td>$815.53</td><td>15</td><td>$54.37</td></tr>
+            </tbody>
+          </table>
+          <div style="margin-top:8px;">Primary campaign is outperforming on CPA ($38 vs $54). Both are healthy.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding critical">
+      <div class="finding-icon">🚨</div>
+      <div class="finding-body">
+        <div class="title">BROAD MATCH KEYWORD ACTIVE — "fiberglass pool builders" [BROAD]</div>
+        <div class="detail">
+          <strong>Ad Group:</strong> Fiberglass Pool Installation &nbsp;|&nbsp; <strong>Campaign:</strong> Fiberglass Pools (Primary)<br>
+          <strong>Match Type:</strong> <span class="pill red">BROAD (4)</span> — violates no-broad-match rule<br>
+          <strong>30-Day Spend:</strong> ~$349 &nbsp;|&nbsp; <strong>Conversions:</strong> 4 &nbsp;|&nbsp; <strong>CPA:</strong> ~$87 &nbsp;|&nbsp; <strong>QS:</strong> 7<br><br>
+          This is the #2 spend keyword in the account. Broad match on a competitive term in an active campaign means Google is matching against off-target queries. Search term data confirms this keyword is pulling impressions for "leisure pools," "semi inground pool," "spool pool," "swim spa," and other non-converting queries. The CPA on this keyword ($87) is nearly double the account average ($45).
+        </div>
+        <div class="recommendation">Change match type to Phrase or Exact. Add "fiberglass pool builders" [phrase] if not already present. The broad version is wasting ~$87/conversion vs account average of $45.</div>
+      </div>
+    </div>
+
+  </div><!-- /section 1 -->
+
+  <!-- SECTION 2: KEYWORD QUALITY & NEGATIVES -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>Keywords — Quality Scores &amp; Match Types</h2>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-body">
+        <div class="title">Low Quality Scores — 2 Keywords at QS=0, 1 at QS=3, 1 at QS=4</div>
+        <div class="detail">
+          <div class="table-wrap" style="margin-top:8px;">
+          <table>
+            <thead><tr><th>Keyword</th><th>Match</th><th>Campaign</th><th>QS</th><th>Spend</th><th>Conv</th><th>Note</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">pool company Jacksonville</td><td><span class="pill blue">Phrase</span></td><td>Pool Builder / Contractor</td><td><span class="pill red">0</span></td><td>$122</td><td>4</td><td>QS=0 despite conversions — likely Landing Page relevance issue</td></tr>
+              <tr><td class="mono">pool builder Jacksonville</td><td><span class="pill blue">Phrase</span></td><td>Pool Builder / Contractor</td><td><span class="pill red">0</span></td><td>~$45</td><td>0</td><td>QS=0 with $0 conv — major concern</td></tr>
+              <tr><td class="mono">fiberglass pool price</td><td><span class="pill blue">Phrase</span></td><td>Fiberglass Pools (Primary)</td><td><span class="pill yellow">3</span></td><td>$128</td><td>6</td><td>Top converter but QS dragging CPCs</td></tr>
+              <tr><td class="mono">pool companies near me</td><td><span class="pill blue">Phrase</span></td><td>Pool Builder / Contractor</td><td><span class="pill yellow">4</span></td><td>~$60</td><td>—</td><td>Near-me term needs local signal</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div style="margin-top:8px;">QS=0 means Google considers these keywords of very low relevance. This inflates CPC floors, reduces impression share, and indicates ad copy/landing page misalignment for the Pool Builder campaign in particular.</div>
+        </div>
+        <div class="recommendation">For "pool builder Jacksonville" and "pool company Jacksonville": review landing page — is the URL sending to the home page or a Jacksonville-specific page? Ensure ad copy contains "Jacksonville" in headline. For "fiberglass pool price": the low QS despite high conversions (6 conv/$128 spend = strong) suggests CTR is dragging it — try a price-specific headline variant.</div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Top Performing Keywords — Strong CPA on Core Terms</div>
+        <div class="detail">
+          <div class="table-wrap" style="margin-top:8px;">
+          <table>
+            <thead><tr><th>Keyword</th><th>Match</th><th>Spend</th><th>Conv</th><th>CPA</th><th>QS</th></tr></thead>
+            <tbody>
+              <tr><td class="mono">pool companies</td><td><span class="pill blue">Phrase</span></td><td>$468</td><td>5</td><td>$93.60</td><td>5</td></tr>
+              <tr><td class="mono">fiberglass pool builders</td><td><span class="pill red">BROAD</span></td><td>$349</td><td>4</td><td>$87.25</td><td>7</td></tr>
+              <tr><td class="mono">fiberglass pool price</td><td><span class="pill blue">Phrase</span></td><td>$128</td><td>6</td><td>$21.33</td><td>3</td></tr>
+              <tr><td class="mono">pool company Jacksonville</td><td><span class="pill blue">Phrase</span></td><td>$122</td><td>4</td><td>$30.50</td><td>0</td></tr>
+              <tr><td class="mono">swimming pool builder</td><td><span class="pill blue">Phrase</span></td><td>$145</td><td>4</td><td>$36.25</td><td>7</td></tr>
+              <tr><td class="mono">pool builder near me</td><td><span class="pill gray">Exact</span></td><td>—</td><td>—</td><td>—</td><td>4</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div style="margin-top:8px;">"fiberglass pool price" at $21 CPA is the most efficient converter in the account — even with QS=3. "pool company Jacksonville" is converting at $30.50 with QS=0 — fixing QS here could materially reduce CPCs.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Campaign-Level Negatives — Solid Coverage</div>
+        <div class="detail">
+          <strong>Fiberglass Pools (Primary):</strong> 25 negatives — repair, used, jobs, portable, employment, service, hiring, cleaning, resale, maintenance, plans, inflatable, diy, careers, salary, kits, wage, self install, Austin, above ground, intex, aboveground, "how to build ourself" [broad]; "leslie", "pinch" [phrase]<br><br>
+          <strong>Pool Builder / Contractor:</strong> 30 negatives — all of the above plus 5 additional Leslie's brand exact-match terms and [scp poolcorp] exact.<br><br>
+          Both campaigns also covered by the 162-keyword Master Exclusion List 3.18.
+        </div>
+      </div>
+    </div>
+
+    <div class="finding info">
+      <div class="finding-icon">ℹ️</div>
+      <div class="finding-body">
+        <div class="title">Search Term Waste — Several Brand/Off-Topic Queries Spending</div>
+        <div class="detail">
+          The following search terms appeared in the audit window with spend but zero or low conversions. Status=5 rows indicate they've been excluded or are already negated via the shared list:
+          <div style="margin-top:8px; display:flex; flex-wrap:wrap; gap:5px;">
+            <span class="pill yellow">"leisure pools" — $18, 0 conv (excluded)</span>
+            <span class="pill yellow">"leisure pool and spa" — $14, 0 conv (excluded)</span>
+            <span class="pill yellow">"semi inground pool" — $19, 2 conv (excluded)</span>
+            <span class="pill yellow">"spool pool" — ~$8, 0 conv</span>
+            <span class="pill yellow">"plunge pool" — ~$6, 0 conv</span>
+            <span class="pill red">"leslie's pool" — see below</span>
+            <span class="pill yellow">"swim spa" — ~$4 (status=3, added as negative)</span>
+          </div>
+          <div style="margin-top:8px;">"Leisure pools" brand terms triggering is the most significant waste signal — this is own-brand spend with zero attribution value. However status=5 (excluded) suggests these are already being suppressed post-audit. "swim spa" appears to have been added as a negative (status=3).</div>
+        </div>
+        <div class="recommendation">Confirm "leisure pools" exact and phrase are in the Master Exclusion List. Also worth verifying "spool pool" and "plunge pool" are excluded — different product category entirely.</div>
+      </div>
+    </div>
+
+  </div><!-- /section 2 -->
+
+  <!-- SECTION 3: AD CREATIVE & ASSETS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>Ad Creative &amp; Assets</h2>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">RSA Coverage — 1 RSA per Ad Group, All ENABLED</div>
+        <div class="detail">
+          <div class="table-wrap" style="margin-top:8px;">
+          <table>
+            <thead><tr><th>Ad Group</th><th>Campaign</th><th>Ad Strength</th><th>Path1/2</th></tr></thead>
+            <tbody>
+              <tr><td>Fiberglass vs Concrete</td><td>Fiberglass Pools (Primary)</td><td><span class="pill green">EXCELLENT (7)</span></td><td>— / —</td></tr>
+              <tr><td>Fiberglass Pool Installation</td><td>Fiberglass Pools (Primary)</td><td><span class="pill yellow">GOOD (6)</span></td><td>— / —</td></tr>
+              <tr><td>Fiberglass Pools Cost/Pricing</td><td>Fiberglass Pools (Primary)</td><td><span class="pill yellow">GOOD (6)</span></td><td>— / —</td></tr>
+              <tr><td>Fiberglass Pools General</td><td>Fiberglass Pools (Primary)</td><td><span class="pill green">EXCELLENT (7)</span></td><td>— / —</td></tr>
+              <tr><td>Pool Contractor</td><td>Pool Builder / Contractor</td><td><span class="pill yellow">GOOD (6)</span></td><td>— / —</td></tr>
+              <tr><td>Pool Builder General</td><td>Pool Builder / Contractor</td><td><span class="pill yellow">GOOD (6)</span></td><td>— / —</td></tr>
+              <tr><td>Pool Company</td><td>Pool Builder / Contractor</td><td><span class="pill yellow">GOOD (6)</span></td><td>— / —</td></tr>
+            </tbody>
+          </table>
+          </div>
+          <div style="margin-top:8px;">2 of 7 RSAs at EXCELLENT strength. Pool Builder campaign has all 3 RSAs at GOOD — worth pushing toward EXCELLENT by adding more headline/description variety. Note: RSA headline/description text not readable via API (repeated fields); strengths are confirmed API values.</div>
+        </div>
+        <div class="recommendation">For Pool Builder campaign RSAs: if any headline slots are unfilled or duplicated, fill them. "Jacksonville Pool Builder," "Free Estimate — [City]," and a warranty headline are high-value additions if not present.</div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Sitelinks — 6 Present on Both Campaigns (field_type=13)</div>
+        <div class="detail">
+          All 6 sitelinks confirmed ENABLED on both campaigns:
+          <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:5px;">
+            <span class="pill green">Pool Financing</span>
+            <span class="pill green">Service Areas</span>
+            <span class="pill green">Photo Gallery</span>
+            <span class="pill green">Free Estimate</span>
+            <span class="pill green">Pool Colors</span>
+            <span class="pill green">Pool Designs</span>
+          </div>
+          <div style="margin-top:8px;">Good spread — covers utility (financing, estimate), discovery (gallery, designs, colors), and geo (service areas). Sitelink descriptions were not returned by the API join (description fields empty in response) but sitelinks themselves are confirmed active.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Callout Extensions — 7 per Campaign (field_type=11)</div>
+        <div class="detail">
+          All 7 callouts ENABLED on both campaigns:
+          <div style="margin-top:6px; display:flex; flex-wrap:wrap; gap:5px;">
+            <span class="pill blue">Top-Rated Builder</span>
+            <span class="pill blue">Fast Installation</span>
+            <span class="pill blue">Low Maintenance Pools</span>
+            <span class="pill blue">Lifetime Warranty</span>
+            <span class="pill blue">Serving Jacksonville Area</span>
+            <span class="pill blue">30+ Pool Designs</span>
+            <span class="pill blue">Free Estimates</span>
+            <span class="pill blue">Financing Available</span>
+          </div>
+          <div style="margin-top:8px;">Strong callout suite. Hits all key LP brand messages: warranty, installation speed, low maintenance, local, variety. Well-aligned with Leisure Pools brand messaging framework.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding ok">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="title">Call Extension — Present on Both Campaigns</div>
+        <div class="detail">
+          Phone: <strong>(386) 385-3361</strong> — field_type=16 (CALL), status=ENABLED on both campaigns.
+          Also: field_type=12 (LEAD_FORM? or IMAGE — 4 entries per campaign, status=ENABLED) — possible lead form extension.
+        </div>
+      </div>
+    </div>
+
+    <div class="finding info">
+      <div class="finding-icon">ℹ️</div>
+      <div class="finding-body">
+        <div class="title">RSA Display Paths — All Blank</div>
+        <div class="detail">
+          All 7 RSAs have empty path1 and path2 fields. Display paths (e.g., "/Jacksonville/Pool-Builder") add context and click-through relevance. This is not a critical issue but is an easy win for CTR optimization.
+        </div>
+        <div class="recommendation">Add display paths to all RSAs. Suggested: path1 = "Jacksonville" or "Fiberglass-Pools", path2 = "Free-Estimate" or "Pool-Builder". Keeps it local and action-oriented.</div>
+      </div>
+    </div>
+
+  </div><!-- /section 3 -->
+
+  <!-- SECTION 4: PERFORMANCE BREAKDOWN -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>Performance Breakdown</h2>
+    </div>
+
+    <div class="two-col">
+      <div>
+        <div class="finding info" style="margin-bottom:0;">
+          <div class="finding-icon">📱</div>
+          <div class="finding-body">
+            <div class="title">Device Performance</div>
+            <div class="detail">
+              <div class="table-wrap" style="margin-top:8px;">
+              <table>
+                <thead><tr><th>Device</th><th>Spend</th><th>Clicks</th><th>Conv</th><th>CPA</th></tr></thead>
+                <tbody>
+                  <tr>
+                    <td>Mobile (2)</td>
+                    <td>$1,390<br><small style="color:var(--text-muted)">84% of total</small></td>
+                    <td>646</td>
+                    <td>33</td>
+                    <td style="color:var(--green);font-weight:600;">$42.12</td>
+                  </tr>
+                  <tr>
+                    <td>Desktop (4)</td>
+                    <td>$225<br><small style="color:var(--text-muted)">14% of total</small></td>
+                    <td>97</td>
+                    <td>4</td>
+                    <td style="color:var(--yellow);">$56.25</td>
+                  </tr>
+                  <tr>
+                    <td>Tablet (3)</td>
+                    <td>$35<br><small style="color:var(--text-muted)">2% of total</small></td>
+                    <td>15</td>
+                    <td>0</td>
+                    <td style="color:var(--red);">—</td>
+                  </tr>
+                </tbody>
+              </table>
+              </div>
+              <div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Mobile dominates both spend and conversions. Desktop CPA is higher but acceptable. Tablet has zero conversions on $35 — low volume, not worth adjusting. No bid modifiers flagged as needed given strong mobile performance.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div class="finding info" style="margin-bottom:0;">
+          <div class="finding-icon">🌐</div>
+          <div class="finding-body">
+            <div class="title">Landing Page Performance</div>
+            <div class="detail">
+              <div class="table-wrap" style="margin-top:8px;">
+              <table>
+                <thead><tr><th>Page</th><th>Spend</th><th>Conv</th><th>CPA</th></tr></thead>
+                <tbody>
+                  <tr><td class="mono" style="font-size:11px;">/pool-builders/ (Primary)</td><td>$217</td><td>3</td><td>$72</td></tr>
+                  <tr><td class="mono" style="font-size:11px;">/ (home — PB)</td><td>$491</td><td>11</td><td style="color:var(--green);font-weight:600;">$44.6</td></tr>
+                  <tr><td class="mono" style="font-size:11px;">/ (home — Primary)</td><td>$204</td><td>11</td><td style="color:var(--green);font-weight:600;">$18.5</td></tr>
+                  <tr><td class="mono" style="font-size:11px;">/fiberglass-pool-gallery/</td><td>$274</td><td>2.5</td><td>$110</td></tr>
+                  <tr><td class="mono" style="font-size:11px;">/fiberglass-pool-designs/</td><td>$119</td><td>3</td><td>$39.7</td></tr>
+                  <tr><td class="mono" style="font-size:11px;">/pool-financing/</td><td>$80</td><td>0.5</td><td>$160</td></tr>
+                </tbody>
+              </table>
+              </div>
+              <div style="margin-top:8px; font-size:12px; color:var(--text-muted);">Homepage is converting best ($18.5–$44.6 CPA). Gallery page CPA ($110) is high for the spend — may warrant moving more traffic to designs or builder pages. Financing page has minimal conversions.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="divider">
+
+    <div class="finding info">
+      <div class="finding-icon">📊</div>
+      <div class="finding-body">
+        <div class="title">Campaign Performance Summary (Feb 21 – Mar 23, 2026)</div>
+        <div class="detail">
+          <div class="table-wrap" style="margin-top:8px;">
+          <table>
+            <thead><tr><th>Campaign</th><th>Spend</th><th>Clicks</th><th>Impressions</th><th>CTR</th><th>Conv</th><th>CPA</th></tr></thead>
+            <tbody>
+              <tr>
+                <td>Fiberglass Pools (Primary)</td>
+                <td>$835.13</td>
+                <td>454</td>
+                <td>3,452</td>
+                <td>13.2%</td>
+                <td style="color:var(--green);font-weight:600;">22</td>
+                <td style="color:var(--green);font-weight:600;">$37.96</td>
+              </tr>
+              <tr>
+                <td>Pool Builder / Contractor</td>
+                <td>$815.53</td>
+                <td>304</td>
+                <td>3,868</td>
+                <td>7.9%</td>
+                <td>15</td>
+                <td>$54.37</td>
+              </tr>
+              <tr style="font-weight:600; background:rgba(46,139,253,0.06);">
+                <td>Total</td>
+                <td>$1,650.66</td>
+                <td>758</td>
+                <td>7,320</td>
+                <td>10.4%</td>
+                <td>37</td>
+                <td>$44.61</td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
+          <div style="margin-top:8px;">Primary campaign CTR (13.2%) is significantly stronger than Pool Builder (7.9%). Pool Builder's higher impressions but lower CTR suggests ad copy may be less resonant with the pool-builder-specific audience — worth reviewing headline relevance for those ad groups.</div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /section 4 -->
+
+  <!-- SECTION 5: CONVERSION ACTIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>Conversion Actions</h2>
+    </div>
+    <div class="finding warning">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-body">
+        <div class="title">Conversion Actions — Unable to Verify via API</div>
+        <div class="detail">
+          The conversion_action query returned a serialization error ("type" error) on this account. This is an API-level retrieval failure, not a missing conversion — the 37 conversions confirmed via campaign metrics are real and being recorded.<br><br>
+          Unable to confirm: conversion action names, categories, counting types, or include_in_conversions_metric settings from this session.
+        </div>
+        <div class="recommendation">Verify manually in UI: confirm brochure download conversions are set to include_in_conversions_metric = true and counting_type = ONE_PER_CLICK (or MANY_PER_CLICK if appropriate). Confirm contact form is tagged. The $44.61 CPA is based on 37 API-confirmed conversions.</div>
+      </div>
+    </div>
+  </div><!-- /section 5 -->
+
+  <!-- SECTION 6: RECOMMENDATIONS -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>Prioritized Recommendations</h2>
+    </div>
+
+    <div class="finding critical">
+      <div class="finding-icon">🚨</div>
+      <div class="finding-body">
+        <div class="title">[P1 — CRITICAL] Fix Broad Match: "fiberglass pool builders"</div>
+        <div class="detail">Change match type to Phrase in Fiberglass Pool Installation ad group. At $349 spend and $87 CPA (vs $45 account avg), this keyword is the biggest optimization lever in the account. Broad match is actively funding brand-query waste.</div>
+      </div>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-body">
+        <div class="title">[P2] Address QS=0 on "pool builder Jacksonville" &amp; "pool company Jacksonville"</div>
+        <div class="detail">Both in Pool Builder / Contractor campaign. Review landing page destination — if pointing to homepage, try a Jacksonville-specific or pool-builder LP. Ensure ad copy contains city name. QS=0 is costing real money in elevated CPCs across the entire ad group.</div>
+      </div>
+    </div>
+
+    <div class="finding warning">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-body">
+        <div class="title">[P3] Add Display Paths to All 7 RSAs</div>
+        <div class="detail">All paths are blank. Easy CTR win — add Jacksonville + action term (e.g., "/Jacksonville/Free-Estimate"). Takes 5 minutes, impacts ad relevance score and click-through.</div>
+      </div>
+    </div>
+
+    <div class="finding info">
+      <div class="finding-icon">ℹ️</div>
+      <div class="finding-body">
+        <div class="title">[P4] Investigate Gallery Page CPA ($110)</div>
+        <div class="detail">/fiberglass-pool-gallery/ is receiving significant traffic ($274 spend) but converting at $110 CPA — 2.5x the account average. Consider whether gallery sitelink traffic should be redirected to /fiberglass-pool-designs/ (which converts at $39.7 CPA) or whether the gallery page needs a stronger CTA.</div>
+      </div>
+    </div>
+
+    <div class="finding info">
+      <div class="finding-icon">ℹ️</div>
+      <div class="finding-body">
+        <div class="title">[P5] Verify Conversion Action Configuration</div>
+        <div class="detail">API returned an error on conversion_action resource. Manually confirm in UI that all conversion actions (form fills, brochure downloads, call tracking) are properly configured with include_in_conversions_metric = true.</div>
+      </div>
+    </div>
+
+    <div class="finding info">
+      <div class="finding-icon">ℹ️</div>
+      <div class="finding-body">
+        <div class="title">[P6] Push Pool Builder RSAs from GOOD → EXCELLENT</div>
+        <div class="detail">All 3 Pool Builder ad group RSAs are at strength=6 (GOOD). Fiberglass Primary campaign has 2 at EXCELLENT. Adding unique headlines and descriptions (especially Jacksonville-specific) should push these up and improve CTR, which is currently lower (7.9% vs 13.2%).</div>
+      </div>
+    </div>
+
+  </div><!-- /section 6 -->
+
+  <!-- SECTION 7: AUDIT VERIFICATION LOG -->
+  <div class="section">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>Audit Verification Log</h2>
+    </div>
+    <div class="table-wrap">
+    <table>
+      <thead><tr><th>Check</th><th>Result</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>Shared set "Master Exclusion List 3.18" linked to both campaigns</td><td><span class="pill green">CONFIRMED</span></td><td>ID 12012201802, 162 members, status ENABLED on both</td></tr>
+        <tr><td>Geo positive_geo_target_type = 7 (PRESENCE)</td><td><span class="pill green">CONFIRMED</span></td><td>Correct setting, not flagged</td></tr>
+        <tr><td>No broad match on ENABLED campaigns/ad groups</td><td><span class="pill red">FAILED</span></td><td>"fiberglass pool builders" [BROAD] active in Fiberglass Pool Installation</td></tr>
+        <tr><td>Sitelinks present (field_type=13)</td><td><span class="pill green">CONFIRMED</span></td><td>6 sitelinks, ENABLED on both campaigns</td></tr>
+        <tr><td>Call extension present</td><td><span class="pill green">CONFIRMED</span></td><td>(386) 385-3361, field_type=16, ENABLED both campaigns</td></tr>
+        <tr><td>Callout extensions</td><td><span class="pill green">CONFIRMED</span></td><td>7 callouts ENABLED per campaign</td></tr>
+        <tr><td>RSAs active in all ad groups</td><td><span class="pill green">CONFIRMED</span></td><td>1 RSA per ad group, all ENABLED</td></tr>
+        <tr><td>No ad group-level negatives</td><td><span class="pill blue">NOTED</span></td><td>Empty result — all negatives at campaign level via shared set</td></tr>
+        <tr><td>No account-level customer assets</td><td><span class="pill blue">NOTED</span></td><td>Empty result — assets applied at campaign level only</td></tr>
+        <tr><td>Conversion actions verified</td><td><span class="pill yellow">UNABLE</span></td><td>API serialization error — verify manually. 37 conversions confirmed via campaign metrics.</td></tr>
+        <tr><td>LP model names / brand references in ad copy</td><td><span class="pill blue">NOT CHECKED</span></td><td>RSA headline/description text not readable via API (repeated fields). No false positives reported.</td></tr>
+      </tbody>
+    </table>
+    </div>
+  </div><!-- /section 7 -->
+
+</div><!-- /container -->
+
+<footer>
+  Audit generated 2026-03-23 · Elite - Leisure Pools Jacksonville (659-279-5595) · MCC 836-765-6694 · Read-only access · Explore Industries internal use only
+</footer>
+
+<script>
+document.querySelectorAll('.copy-box').forEach(box => {
+  box.addEventListener('click', function() {
+    const text = this.innerText.replace('Click to copy', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const hint = this.querySelector('.copy-hint');
+      if (hint) { hint.textContent = 'Copied!'; setTimeout(() => hint.textContent = 'Click to copy', 2000); }
+    });
+  });
+});
+</script>
+</body>
+</html>

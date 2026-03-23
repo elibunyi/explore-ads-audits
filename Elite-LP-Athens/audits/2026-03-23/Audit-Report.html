@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit — Elite - Leisure Pools Athens | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a3a5c;
+    --accent: #2e9cca;
+    --accent-light: #5bb8e0;
+    --gold: #f4a61c;
+    --green: #27ae60;
+    --red: #c0392b;
+    --orange: #e67e22;
+    --yellow: #f1c40f;
+    --light-bg: #f4f7fa;
+    --border: #d0dce8;
+    --text: #1a1a2e;
+    --muted: #5a7080;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--light-bg); color: var(--text); font-size: 14px; line-height: 1.5; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-mid) 100%); color: white; padding: 36px 48px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .subtitle { font-size: 13px; color: rgba(255,255,255,0.65); margin-top: 4px; }
+  .header .meta { text-align: right; font-size: 12px; color: rgba(255,255,255,0.6); line-height: 1.8; }
+  .health-badge { display: inline-flex; align-items: center; gap: 10px; margin-top: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 12px 20px; }
+  .health-score { font-size: 42px; font-weight: 800; color: var(--gold); }
+  .health-label { font-size: 12px; color: rgba(255,255,255,0.7); line-height: 1.4; }
+  .health-label strong { color: white; display: block; font-size: 14px; }
+
+  /* KPI Row */
+  .kpi-row { display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; padding: 24px 48px; background: var(--white); border-bottom: 1px solid var(--border); }
+  .kpi { text-align: center; }
+  .kpi-val { font-size: 22px; font-weight: 700; color: var(--navy); }
+  .kpi-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.5px; margin-top: 2px; }
+  .kpi-sub { font-size: 11px; color: var(--accent); margin-top: 2px; }
+
+  /* Content layout */
+  .main { max-width: 1200px; margin: 0 auto; padding: 32px 48px; }
+
+  /* Section headers */
+  .section { margin-bottom: 36px; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--navy); border-left: 4px solid var(--accent); padding-left: 12px; margin-bottom: 16px; }
+
+  /* Priority cards */
+  .priority-grid { display: flex; flex-direction: column; gap: 12px; }
+  .priority-card { background: white; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; }
+  .priority-card.p1 { border-left: 5px solid var(--red); }
+  .priority-card.p2 { border-left: 5px solid var(--orange); }
+  .priority-card.p3 { border-left: 5px solid var(--yellow); }
+  .priority-card.green { border-left: 5px solid var(--green); }
+  .card-header { display: flex; align-items: center; gap: 12px; padding: 14px 18px; cursor: pointer; }
+  .card-header:hover { background: var(--light-bg); }
+  .badge { font-size: 11px; font-weight: 700; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .badge.p1 { background: #fde8e6; color: var(--red); }
+  .badge.p2 { background: #fdf2e9; color: var(--orange); }
+  .badge.p3 { background: #fef9e7; color: #b7950b; }
+  .badge.ok { background: #eafaf1; color: var(--green); }
+  .card-title { font-size: 14px; font-weight: 600; flex: 1; }
+  .card-impact { font-size: 12px; color: var(--muted); margin-left: auto; }
+  .card-body { padding: 0 18px 16px 18px; border-top: 1px solid var(--border); }
+  .card-body p { margin-top: 12px; font-size: 13px; color: #333; line-height: 1.6; }
+  .card-body .finding { background: var(--light-bg); border-radius: 6px; padding: 10px 14px; margin-top: 10px; font-size: 12px; }
+  .card-body .finding strong { display: block; margin-bottom: 4px; }
+  .card-body .action { background: #e8f4fd; border-radius: 6px; padding: 10px 14px; margin-top: 10px; font-size: 12px; border-left: 3px solid var(--accent); }
+  .card-body .action strong { display: block; margin-bottom: 4px; color: var(--navy-mid); }
+
+  /* Data tables */
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead th { background: var(--navy); color: white; padding: 8px 12px; text-align: left; font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px; }
+  tbody tr:nth-child(even) { background: var(--light-bg); }
+  tbody td { padding: 8px 12px; border-bottom: 1px solid var(--border); }
+  .table-wrap { background: white; border-radius: 8px; border: 1px solid var(--border); overflow: hidden; margin-top: 12px; }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .conv-good { color: var(--green); font-weight: 600; }
+  .conv-zero { color: var(--red); }
+  .warn { color: var(--orange); font-weight: 600; }
+
+  /* Two column layout */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+  /* Summary boxes */
+  .summary-box { background: white; border-radius: 8px; border: 1px solid var(--border); padding: 16px 18px; }
+  .summary-box h3 { font-size: 13px; font-weight: 700; color: var(--navy); margin-bottom: 10px; }
+  .summary-box ul { padding-left: 16px; }
+  .summary-box li { font-size: 12px; margin-bottom: 6px; line-height: 1.5; }
+  .ok-item::marker { content: "✓ "; color: var(--green); }
+  .warn-item::marker { content: "△ "; color: var(--orange); }
+  .flag-item::marker { content: "✗ "; color: var(--red); }
+
+  /* What makes it work section */
+  .insight-box { background: linear-gradient(135deg, #e8f4fd 0%, #f0f8ff 100%); border: 1px solid var(--accent-light); border-radius: 8px; padding: 20px 24px; }
+  .insight-box h3 { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 14px; }
+  .insight-item { display: flex; gap: 12px; margin-bottom: 12px; align-items: flex-start; }
+  .insight-icon { font-size: 20px; flex-shrink: 0; line-height: 1; margin-top: 2px; }
+  .insight-text strong { display: block; font-size: 13px; color: var(--navy); margin-bottom: 2px; }
+  .insight-text span { font-size: 12px; color: #444; line-height: 1.5; }
+
+  /* Device table */
+  .device-bar { height: 8px; border-radius: 4px; background: var(--accent); display: inline-block; }
+
+  /* Footer */
+  .footer { background: var(--navy); color: rgba(255,255,255,0.5); text-align: center; padding: 20px; font-size: 11px; margin-top: 48px; }
+
+  /* Callout note */
+  .note { font-size: 11px; color: var(--muted); font-style: italic; margin-top: 8px; }
+
+  .tag { display: inline-block; font-size: 10px; padding: 2px 6px; border-radius: 3px; font-weight: 600; margin-left: 4px; }
+  .tag-verified { background: #eafaf1; color: var(--green); }
+  .tag-unverified { background: #fef9e7; color: #b7950b; }
+  .tag-typo { background: #fde8e6; color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>Elite - Leisure Pools Athens</h1>
+      <div class="subtitle">Google Ads Audit · Account 3545414886 · Data: 2026-02-21 → 2026-03-23</div>
+    </div>
+    <div class="meta">
+      Generated: 2026-03-23<br>
+      Auditor: Claude Code<br>
+      Brand: Leisure Pools<br>
+      Market: Athens, GA
+    </div>
+  </div>
+  <div style="display:flex; align-items:center; gap:32px; margin-top:20px;">
+    <div class="health-badge">
+      <div class="health-score">64</div>
+      <div class="health-label"><strong>Health Score / 100</strong>Strong performer with structural gaps</div>
+    </div>
+    <div style="color:rgba(255,255,255,0.7); font-size:13px; line-height:1.9;">
+      <span style="color:#f4a61c; font-weight:700;">◆ Top 5 fleet account</span><br>
+      0 P1 issues &nbsp;·&nbsp; 2 P2 issues &nbsp;·&nbsp; 3 P3 issues<br>
+      Campaign ACTIVE &nbsp;·&nbsp; MaxConv + tCPA $40.46 &nbsp;·&nbsp; $40/day budget
+    </div>
+  </div>
+</div>
+
+<!-- ===== KPI ROW ===== -->
+<div class="kpi-row">
+  <div class="kpi">
+    <div class="kpi-val">$452.63</div>
+    <div class="kpi-label">30-Day Spend</div>
+    <div class="kpi-sub">$40/day budget</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">12</div>
+    <div class="kpi-label">Conversions</div>
+    <div class="kpi-sub">3 contact · 5 brochure · 4 call</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">$37.72</div>
+    <div class="kpi-label">CPA (Actual)</div>
+    <div class="kpi-sub">tCPA target: $40.46</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">139</div>
+    <div class="kpi-label">Clicks</div>
+    <div class="kpi-sub">CTR ~8.6%</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">27.1%</div>
+    <div class="kpi-label">Impr. Share</div>
+    <div class="kpi-sub">+68.5% rank-lost</div>
+  </div>
+  <div class="kpi">
+    <div class="kpi-val">$3.26</div>
+    <div class="kpi-label">Avg. CPC</div>
+    <div class="kpi-sub">Verified API value</div>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="main">
+
+  <!-- ===== PRIORITY FINDINGS ===== -->
+  <div class="section">
+    <div class="section-title">Priority Findings</div>
+    <div class="priority-grid">
+
+      <!-- P2-1: Sitelink Typo -->
+      <div class="priority-card p2">
+        <div class="card-header">
+          <span class="badge p2">P2</span>
+          <span class="card-title">Sitelink link text typo — "2026Pool Brochure" (missing space)</span>
+          <span class="card-impact">Copy quality · visible to searchers</span>
+        </div>
+        <div class="card-body">
+          <p>Campaign-level sitelink asset (ID 272420714607) has link text <strong>"2026Pool Brochure"</strong> — the space between "2026" and "Pool" is missing. This is served in ad extensions and is visible to every searcher who sees a sitelink-expanded ad.</p>
+          <div class="finding"><strong>Verified finding (API asset.sitelink_asset.link_text)</strong>
+            Asset 272420714607 · link_text: "2026Pool Brochure" · desc1: "Dive into 2026's Best Pools" · desc2: "Download Your Free Brochure Now"
+          </div>
+          <div class="action"><strong>Action (Eli — UI)</strong>
+            Edit sitelink link text to "2026 Pool Brochure". No other change needed — descriptions are fine.
+          </div>
+        </div>
+      </div>
+
+      <!-- P2-2: Single Ad Group Architecture -->
+      <div class="priority-card p2">
+        <div class="card-header">
+          <span class="badge p2">P2</span>
+          <span class="card-title">Single ad group — all 13 keywords in one group with no thematic separation</span>
+          <span class="card-impact">Scale ceiling · quality score risk</span>
+        </div>
+        <div class="card-body">
+          <p>The campaign has exactly one ad group ("Ad group 1", ID 183664598357) containing all 13 phrase-match keywords. This works at current scale but creates a ceiling on performance improvement.</p>
+          <div class="finding"><strong>Current keyword mix in one ad group</strong>
+            "fiberglass pools" (best — QS 8, $31.58 CPA) · "pool installation" (QS 8, 0 conv) · "in ground pools" (QS 6) · "pool contractor" · "pool builder" · "prefab pools" · "leisure pools" [brand] · "outdoor pool installation" (QS 0) · "swimming pool construction" (QS 0) · + 4 more
+          </div>
+          <div class="finding"><strong>Risk</strong>
+            Brand keyword ("leisure pools") competes for the same ad/sitelinks as generic purchase-intent keywords. RSA ad strength and pin assignments can't be optimized per theme. QS 0 on 3 keywords ("pool contractor", "outdoor pool installation", "swimming pool construction") is likely driven partly by ad relevance signal in a mixed-theme ad group.
+          </div>
+          <div class="action"><strong>Action (low urgency — account is performing)</strong>
+            Phase 1: Split brand keyword into its own ad group ("Brand" SKAG). Phase 2: Consider separating "fiberglass pools" variants from generic construction/contractor terms. Do not rush this while the account is converting well.
+          </div>
+        </div>
+      </div>
+
+      <!-- P3-1: Mobile CPA Gap -->
+      <div class="priority-card p3">
+        <div class="card-header">
+          <span class="badge p3">P3</span>
+          <span class="card-title">Mobile CPA ($44.51) runs 124% above Desktop CPA ($19.84) — monitor for bid modifier opportunity</span>
+          <span class="card-impact">$356 / 8 conv on mobile · may warrant modifier</span>
+        </div>
+        <div class="card-body">
+          <p>Device breakdown shows a notable CPA gap. Desktop is the most efficient channel and is also the minority of spend. MaxConversions bidding adjusts bids automatically, but a manual device bid modifier could reinforce this signal.</p>
+          <div class="finding"><strong>Device performance (2026-02-21 → 2026-03-23, verified API)</strong>
+            <table style="margin-top:8px;">
+              <thead><tr><th>Device</th><th>Clicks</th><th>Impressions</th><th>Spend</th><th>Conv</th><th>CPA</th><th>Avg CPC</th></tr></thead>
+              <tbody>
+                <tr><td>Desktop</td><td class="num">18</td><td class="num">306</td><td class="num">$59.53</td><td class="num conv-good">3</td><td class="num conv-good">$19.84</td><td class="num">$3.31</td></tr>
+                <tr><td>Mobile</td><td class="num">113</td><td class="num">1,295</td><td class="num">$356.09</td><td class="num">8</td><td class="num warn">$44.51</td><td class="num">$3.15</td></tr>
+                <tr><td>Tablet</td><td class="num">8</td><td class="num">33</td><td class="num">$37.01</td><td class="num">1</td><td class="num">$37.01</td><td class="num">$4.63</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="action"><strong>Action (monitor — do not act yet)</strong>
+            With MaxConversions + tCPA, Google is already bidding down on mobile. Watch for another 30 days. If mobile CPA continues to exceed tCPA by 10%+, consider a -15% mobile bid modifier to reinforce the signal. Desktop volume is too low to draw strong conclusions.
+          </div>
+        </div>
+      </div>
+
+      <!-- P3-2: Above-Ground Search Terms Leaking Through -->
+      <div class="priority-card p3">
+        <div class="card-header">
+          <span class="badge p3">P3</span>
+          <span class="card-title">Above-ground pool search terms appearing — add as negatives to protect budget</span>
+          <span class="card-impact">Low waste now · but preventative hygiene</span>
+        </div>
+        <div class="card-body">
+          <p>Several search terms in the top-75 data are clearly out-of-market for an inground fiberglass dealer. These aren't currently high-spend, but they indicate a gap in the negative keyword coverage for this account-specific risk.</p>
+          <div class="finding"><strong>Above-ground pool terms observed in search term data</strong>
+            "fiberglass above ground pools" · "how much are above ground pools installed" · "companies that sell and install above ground pools" · "pretty above ground pool"
+          </div>
+          <div class="finding"><strong>Note</strong>
+            The Master Exclusion List 3.18 (162 terms) is correctly attached to this campaign. However, the shared list does not appear to include "above ground" as a negative. These terms are leaking through "in ground pools" and "inground pools" phrase match keywords.
+          </div>
+          <div class="action"><strong>Action</strong>
+            Add "above ground" as a phrase-match negative at the campaign level. Consider adding "above ground pools" as a campaign-level negative keyword as a belt-and-suspenders measure. Both can be done without touching the shared negative list.
+          </div>
+        </div>
+      </div>
+
+      <!-- P3-3: 68.5% Rank-Lost IS — Budget Ceiling Approaching -->
+      <div class="priority-card p3">
+        <div class="card-header">
+          <span class="badge p3">P3</span>
+          <span class="card-title">68.5% impression share lost to rank — budget ceiling will eventually limit growth</span>
+          <span class="card-impact">Opportunity: $40/day may be under-funded for market</span>
+        </div>
+        <div class="card-body">
+          <p>The campaign loses 68.5% of eligible impressions to rank (not budget — budget-lost IS is only 4.5%). This means Google is selectively entering auctions, which is actually consistent with MaxConv + tCPA behavior — it bids aggressively on high-quality users and skips lower-probability auctions. The current CPA ($37.72) is beating the tCPA target ($40.46), which validates this approach.</p>
+          <div class="finding"><strong>IS decomposition (verified)</strong>
+            Search IS: 27.1% · Budget-lost IS: 4.5% · Rank-lost IS: 68.5%
+          </div>
+          <div class="finding"><strong>Interpretation</strong>
+            The rank-lost IS is not a dysfunction — it's MaxConv + tCPA working as designed. Google intentionally skips auctions where predicted conversion probability doesn't justify the bid at the $40.46 target. The tCPA is being met, which means the strategy is calibrated correctly.
+          </div>
+          <div class="action"><strong>Action (strategic — flag for Eli's review)</strong>
+            If growth is desired, test a modest budget increase ($40 → $55/day) before adjusting the tCPA. Do not lower the tCPA first — that would reduce conversion volume. Budget headroom is the constraint, not bid aggressiveness.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== WHAT MAKES IT WORK ===== -->
+  <div class="section">
+    <div class="section-title">What Makes This Account Work</div>
+    <div class="insight-box">
+      <h3>Top 5 Fleet Account — $37.72 CPA on a $40/day Budget</h3>
+      <div class="insight-item">
+        <div class="insight-icon">🎯</div>
+        <div class="insight-text">
+          <strong>MaxConversions + tCPA $40.46 — correctly configured</strong>
+          <span>Bidding strategy is MaxConversions (type 10) with a target CPA of $40.46 — not MaxConvValue (type 11) as previously assumed. The audit brief stated "uses Max Conv Value (bid type 11)" but the API confirms type 10 with campaign.maximize_conversions.target_cpa_micros = 40,460,000. This distinction matters: MaxConv + tCPA optimizes for conversion count at a cost cap, not for conversion value. For a lead-gen pool dealer, this is the correct strategy — all three conversion actions (Contact, Brochure, Phone) are equal-weight goals. The tCPA is set just above the current actual CPA ($37.72), giving the algorithm room to acquire leads without throttling.</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🔑</div>
+        <div class="insight-text">
+          <strong>High-quality phrase-match keywords only — zero broad match</strong>
+          <span>All 13 active keywords are phrase match. "Fiberglass pools" (phrase) is the workhorse — $189.46 spend, 6 conversions, $31.58 CPA, QS 8. This single keyword delivers half the conversions. The absence of broad match prevents the budget bleed seen in underperforming fleet accounts. Quality Scores are mostly 6–9 on spending keywords.</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">🛡️</div>
+        <div class="insight-text">
+          <strong>Master Exclusion List 3.18 attached — 162 negative keywords</strong>
+          <span>The shared negative set (ID 12012201802) is correctly attached to this campaign at status=2 (ENABLED). This provides fleet-wide protection against low-intent queries (free, cheap, DIY, jobs, tutorials, etc.). Combined with the phrase-match keyword strategy, this limits waste to a small set of above-ground pool terms (see P3 finding).</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">📋</div>
+        <div class="insight-text">
+          <strong>Three conversion actions — all primary, all counting, all healthy</strong>
+          <span>Contact Dealer, Download Brochure, and Phone Call — all three are ENABLED, included in conversions metric, primary_for_goal = true, and set to ONE_PER_CLICK counting. This is the correct setup: brochure downloads require a contact form fill (real conversion), and phone calls are tracked. The algorithm has clean, unambiguous conversion signal to optimize against.</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">📌</div>
+        <div class="insight-text">
+          <strong>Full asset stack deployed at campaign level</strong>
+          <span>4 sitelinks with descriptions, 4 callouts, 1 call asset, 1 structured snippet, 1 image asset, plus 4 ad-group-level sitelinks with geo-specific copy ("Athens, Jefferson, GA"). This richness improves ad rank and CTR. The geo-specific ad group sitelinks ("Service Areas: Athens, Jefferson, GA and More") signal local relevance directly in the ad.</span>
+        </div>
+      </div>
+      <div class="insight-item">
+        <div class="insight-icon">📍</div>
+        <div class="insight-text">
+          <strong>Granular geo targeting — 50+ Clarke County zip codes/areas</strong>
+          <span>Location targeting is not just "Athens, GA" — it's 50+ individual geo target constants covering the Athens metro and surrounding counties. All are ENABLED with no negatives. Geo setting is PRESENCE (type 7), meaning ads only show to people physically in the area. This is tight, correct, and prevents the location targeting failures seen in weaker fleet accounts.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CAMPAIGN STRUCTURE ===== -->
+  <div class="section">
+    <div class="section-title">Campaign Structure</div>
+    <div class="grid-2">
+      <div class="summary-box">
+        <h3>Campaign Settings</h3>
+        <ul>
+          <li class="ok-item">Campaign: "Leisure Pools Athens Campaign" — ENABLED</li>
+          <li class="ok-item">Bidding: MaxConversions + tCPA $40.46 (type 10) — verified</li>
+          <li class="ok-item">Budget: $40/day — appropriate for market volume</li>
+          <li class="ok-item">Geo type: PRESENCE (7) — correct, verified</li>
+          <li class="ok-item">Search Partners: OFF — verified</li>
+          <li class="ok-item">Display Network: OFF — verified</li>
+          <li class="ok-item">50+ location targets — all ENABLED, no negatives</li>
+          <li class="warn-item">1 ad group only — structural growth ceiling (see P2)</li>
+          <li class="ok-item">IS budget-lost: 4.5% — budget is adequate</li>
+          <li class="warn-item">IS rank-lost: 68.5% — intentional via tCPA, not a dysfunction</li>
+        </ul>
+      </div>
+      <div class="summary-box">
+        <h3>Keywords (13 ENABLED, all phrase match)</h3>
+        <ul>
+          <li class="ok-item">fiberglass pools — QS 8, $189.46, <strong>6 conv, $31.58 CPA</strong></li>
+          <li class="ok-item">inground pools — QS 7, $42.78, 1 conv</li>
+          <li class="ok-item">in ground pools — QS 6, $35.49, 2 conv</li>
+          <li class="ok-item">pool installation — QS 8, $42.00, 0 conv</li>
+          <li class="ok-item">pool contractor — QS 0 (unverified), $55.35, 1 conv</li>
+          <li class="ok-item">pool builder — QS 5, $22.07, 1 conv</li>
+          <li class="ok-item">prefab pools — QS 7, $3.52, 1 conv</li>
+          <li class="ok-item">pool designs — QS 7, $24.27, 0 conv</li>
+          <li class="ok-item">leisure pools [brand] — QS 9, $18.84, 0 conv</li>
+          <li class="warn-item">outdoor pool installation — QS 0, $13.24, 0 conv</li>
+          <li class="warn-item">swimming pool construction — QS 0, $5.61, 0 conv</li>
+          <li class="warn-item">pool construction companies — QS 5, $0, no traffic</li>
+          <li class="warn-item">fiberglass pool builders — QS 0, $0, no traffic</li>
+        </ul>
+        <p class="note">QS 0 = unable to verify (API returns null/0 when insufficient impressions). Not reported as missing.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ASSETS ===== -->
+  <div class="section">
+    <div class="section-title">Assets — Verified at All Levels</div>
+    <div class="grid-2">
+      <div class="summary-box">
+        <h3>Campaign-Level Sitelinks (4) — field_type 13</h3>
+        <table>
+          <thead><tr><th>Link Text</th><th>Desc 1</th><th>Desc 2</th></tr></thead>
+          <tbody>
+            <tr><td>Stylish Pool Designs</td><td>Discover Our Collection</td><td>Rectangular & Freeform Pool Shapes</td></tr>
+            <tr><td>Get Your Free Estimate</td><td>Affordable Pool Estimates</td><td>Get Your Free Quote Now</td></tr>
+            <tr><td><span class="warn">2026Pool Brochure</span> <span class="tag tag-typo">TYPO</span></td><td>Dive into 2026's Best Pools</td><td>Download Your Free Brochure Now</td></tr>
+            <tr><td>Stunning Pool Colors</td><td>Customize Your Pool's Look</td><td>With Vibrant, Lasting Colors</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Missing space in "2026Pool" — fix to "2026 Pool Brochure" (P2 finding above)</p>
+      </div>
+      <div class="summary-box">
+        <h3>Ad Group-Level Sitelinks (4) — field_type 13</h3>
+        <table>
+          <thead><tr><th>Link Text</th><th>Desc 1</th><th>Desc 2</th></tr></thead>
+          <tbody>
+            <tr><td>Pool Designs</td><td>We Offer a Variety Of Shapes And</td><td>Sizes To Suit All Personal Styles.</td></tr>
+            <tr><td>Service Areas</td><td>Our Service Areas Include</td><td>Athens, Jefferson, GA And More.</td></tr>
+            <tr><td>Pool Covers</td><td>We Offer Automatic Safety Covers</td><td>For All In-Ground Leisure Pools.</td></tr>
+            <tr><td>Tanning Ledges</td><td>Pool And Spa Combinations</td><td>Are Popular Backyard Options.</td></tr>
+          </tbody>
+        </table>
+        <p class="note">Ad group sitelinks are geo-specific and well-written. ✓</p>
+      </div>
+    </div>
+    <div class="grid-3" style="margin-top:16px;">
+      <div class="summary-box">
+        <h3>Callouts (4) — field_type 11</h3>
+        <ul>
+          <li class="ok-item">Expert Pool Installers</li>
+          <li class="ok-item">Custom Pool Designs</li>
+          <li class="ok-item">Lifetime Warranty</li>
+          <li class="ok-item">Fast Local Installation</li>
+        </ul>
+      </div>
+      <div class="summary-box">
+        <h3>Call Asset — field_type 16</h3>
+        <ul>
+          <li class="ok-item">(678) 347-5814 — ENABLED</li>
+          <li class="ok-item">Call tracking active</li>
+        </ul>
+        <h3 style="margin-top:12px;">Other Assets</h3>
+        <ul>
+          <li class="ok-item">Structured snippet — ENABLED (field_type 18)</li>
+          <li class="ok-item">Image asset — ENABLED (field_type 27)</li>
+        </ul>
+      </div>
+      <div class="summary-box">
+        <h3>Account-Level Assets</h3>
+        <ul>
+          <li class="flag-item">No account-level assets detected</li>
+        </ul>
+        <p style="font-size:12px; margin-top:8px; color:#555;">Campaign and ad-group level assets are present and correct. Account-level assets are optional when campaign-level coverage is complete — not flagged as a deficiency given current performance.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== NEGATIVE KEYWORDS ===== -->
+  <div class="section">
+    <div class="section-title">Negative Keywords & Exclusions</div>
+    <div class="grid-2">
+      <div class="summary-box">
+        <h3>Shared Negative List Status</h3>
+        <ul>
+          <li class="ok-item"><strong>Master Exclusion List 3.18</strong> — attached, ENABLED (status 2)</li>
+          <li class="ok-item">162 members verified via API</li>
+          <li class="ok-item">Covers: free, cheap, DIY, jobs, tutorial, how-to, forum, training, affordable, inexpensive, and 150+ more</li>
+          <li class="warn-item">"above ground" variants not in list — see P3 finding</li>
+        </ul>
+      </div>
+      <div class="summary-box">
+        <h3>Search Term Waste Areas (from top-75 data)</h3>
+        <ul>
+          <li class="warn-item">Above-ground terms: "fiberglass above ground pools", "how much are above ground pools installed" — add "above ground" as campaign negative</li>
+          <li class="warn-item">Brand spend with 0 conv: "leisure pools" keyword drove $18.84 with 0 direct conversions — acceptable for brand coverage but monitor</li>
+          <li class="warn-item">"free pool estimates near me" — $13.04, 0 conv. "Free" is in the master exclusion list as broad match; this query bypassed it likely because "pool estimates" phrase doesn't contain the exact word in isolation</li>
+          <li class="ok-item">Overall: waste terms are minor — account is clean relative to fleet</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONVERSION TRACKING ===== -->
+  <div class="section">
+    <div class="section-title">Conversion Tracking</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Action Name</th>
+            <th>ID</th>
+            <th>Status</th>
+            <th>Counting</th>
+            <th>Include in Conv</th>
+            <th>Primary Goal</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Leisure Pools Athens - Contact Dealer</td>
+            <td class="num">7256472215</td>
+            <td><span style="color:var(--green)">ENABLED</span></td>
+            <td>ONE_PER_CLICK</td>
+            <td class="conv-good">Yes</td>
+            <td class="conv-good">Yes</td>
+          </tr>
+          <tr>
+            <td>Leisure Pools Athens - Download Brochure</td>
+            <td class="num">7256740230</td>
+            <td><span style="color:var(--green)">ENABLED</span></td>
+            <td>ONE_PER_CLICK</td>
+            <td class="conv-good">Yes</td>
+            <td class="conv-good">Yes</td>
+          </tr>
+          <tr>
+            <td>Leisure Pools Athens - Phone Call</td>
+            <td class="num">7256744112</td>
+            <td><span style="color:var(--green)">ENABLED</span></td>
+            <td>ONE_PER_CLICK</td>
+            <td class="conv-good">Yes</td>
+            <td class="conv-good">Yes</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note" style="margin-top:8px;">All three actions ENABLED, primary_for_goal=true, include_in_conversions=true. Brochure downloads count as real conversions (require contact form fill — correct per account rules). No removed or paused conversion actions detected.</p>
+  </div>
+
+  <!-- ===== LANDING PAGE ===== -->
+  <div class="section">
+    <div class="section-title">Landing Page Performance</div>
+    <div class="summary-box">
+      <h3>Single Destination: leisurepoolsathens.com (homepage)</h3>
+      <p style="font-size:13px; margin-top:8px; color:#444;">All traffic routes to the homepage with UTM/gclid parameters. No dedicated landing pages for specific keyword themes (e.g. a "fiberglass pools" landing page vs. "pool builder" landing page). The top URL variant (36 clicks, 2 conv = 5.6% conv rate) performs adequately but represents a structural opportunity.</p>
+      <div class="table-wrap" style="margin-top:12px;">
+        <table>
+          <thead><tr><th>URL (abbreviated)</th><th>Clicks</th><th>Conv</th><th>Spend</th><th>Conv Rate</th></tr></thead>
+          <tbody>
+            <tr><td>leisurepoolsathens.com (main variant)</td><td class="num">36</td><td class="num conv-good">2</td><td class="num">$115.86</td><td class="num">5.6%</td></tr>
+            <tr><td>leisurepoolsathens.com (gbraid variant 1)</td><td class="num">5</td><td class="num conv-good">1</td><td class="num">$19.52</td><td class="num conv-good">20.0%</td></tr>
+            <tr><td>leisurepoolsathens.com (gbraid variant 2)</td><td class="num">5</td><td class="num">0</td><td class="num">$9.04</td><td class="num">0%</td></tr>
+            <tr><td>leisurepoolsathens.com (gbraid variant 3)</td><td class="num">4</td><td class="num">0</td><td class="num">$10.68</td><td class="num">0%</td></tr>
+            <tr><td>leisurepoolsathens.com (gbraid variant 4)</td><td class="num">4</td><td class="num">0</td><td class="num">$27.26</td><td class="num warn">0% / $27.26 spend</td></tr>
+            <tr><td colspan="5" style="color:var(--muted); font-size:11px; padding:8px 12px;">+ additional low-volume gbraid variants. All route to homepage.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">LP conversion variance is normal — gbraid variants reflect different audience signals. No dead or error URLs detected.</p>
+    </div>
+  </div>
+
+  <!-- ===== TOP SEARCH TERMS ===== -->
+  <div class="section">
+    <div class="section-title">Top Search Terms (by spend, top 20 of 75 pulled)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Search Term</th><th>Status</th><th>Spend</th><th>Clicks</th><th>Conv</th><th>CPA</th><th>Flag</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>fiberglass pools</td><td>ADDED</td><td class="num">$50.96</td><td class="num">14</td><td class="num conv-good">1</td><td class="num">$50.96</td><td></td></tr>
+          <tr><td>fiberglass pools near me</td><td>OTHER</td><td class="num">$17.06</td><td class="num">4</td><td class="num">0</td><td class="num conv-zero">—</td><td><span class="tag tag-unverified">no conv</span></td></tr>
+          <tr><td>pool installation</td><td>ADDED</td><td class="num">$16.41</td><td class="num">4</td><td class="num">0</td><td class="num conv-zero">—</td><td></td></tr>
+          <tr><td>leisure pools</td><td>ADDED</td><td class="num">$15.23</td><td class="num">4</td><td class="num">0</td><td class="num">—</td><td><span class="tag" style="background:#eee;color:#666">brand</span></td></tr>
+          <tr><td>free pool estimates near me</td><td>OTHER</td><td class="num">$13.04</td><td class="num">1</td><td class="num">0</td><td class="num conv-zero">—</td><td><span class="tag tag-unverified">leaked</span></td></tr>
+          <tr><td>pool contractor</td><td>ADDED</td><td class="num">$11.62</td><td class="num">4</td><td class="num conv-good">1</td><td class="num conv-good">$11.62</td><td></td></tr>
+          <tr><td>inground pool</td><td>OTHER</td><td class="num">$11.33</td><td class="num">3</td><td class="num conv-good">2</td><td class="num conv-good">$5.67</td><td></td></tr>
+          <tr><td>in ground pool installation</td><td>OTHER</td><td class="num">$11.16</td><td class="num">3</td><td class="num">0</td><td class="num conv-zero">—</td><td></td></tr>
+          <tr><td>in ground swimming pool</td><td>OTHER</td><td class="num">$11.12</td><td class="num">3</td><td class="num conv-good">1</td><td class="num conv-good">$11.12</td><td></td></tr>
+          <tr><td>pool company near me</td><td>OTHER</td><td class="num">$10.54</td><td class="num">3</td><td class="num">0</td><td class="num conv-zero">—</td><td></td></tr>
+          <tr><td>inground pool installation</td><td>OTHER</td><td class="num">$10.39</td><td class="num">3</td><td class="num conv-good">1</td><td class="num conv-good">$10.39</td><td></td></tr>
+          <tr><td>fiberglass insert pool</td><td>OTHER</td><td class="num">$20.55</td><td class="num">5</td><td class="num conv-good">2</td><td class="num conv-good">$10.28</td><td></td></tr>
+          <tr><td>swimming pool builders</td><td>OTHER</td><td class="num">$9.82</td><td class="num">3</td><td class="num">0</td><td class="num conv-zero">—</td><td></td></tr>
+          <tr><td>fiberglass above ground pools</td><td>OTHER</td><td class="num">$8.76</td><td class="num">2</td><td class="num">0</td><td class="num conv-zero">—</td><td><span class="tag tag-typo">above ground</span></td></tr>
+          <tr><td>fiberglass near me</td><td>OTHER</td><td class="num">$8.44</td><td class="num">2</td><td class="num conv-good">1</td><td class="num conv-good">$8.44</td><td></td></tr>
+          <tr><td>pool builders near me</td><td>OTHER</td><td class="num">$7.83</td><td class="num">2</td><td class="num">0</td><td class="num">—</td><td></td></tr>
+          <tr><td>how much are above ground pools installed</td><td>OTHER</td><td class="num">$7.24</td><td class="num">2</td><td class="num">0</td><td class="num conv-zero">—</td><td><span class="tag tag-typo">above ground</span></td></tr>
+          <tr><td>pool contractors near me</td><td>OTHER</td><td class="num">$6.66</td><td class="num">2</td><td class="num conv-good">1</td><td class="num conv-good">$6.66</td><td></td></tr>
+          <tr><td>swimming pool installation</td><td>OTHER</td><td class="num">$6.44</td><td class="num">2</td><td class="num">0</td><td class="num">—</td><td></td></tr>
+          <tr><td>pool installation companies</td><td>OTHER</td><td class="num">$6.08</td><td class="num">2</td><td class="num">0</td><td class="num">—</td><td></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">ADDED = matched to an existing keyword. OTHER = triggered by phrase match but not directly matched. High-performing OTHER terms ("fiberglass insert pool" $10.28 CPA, "inground pool" $5.67 CPA) are conversion-positive — consider adding as exact match keywords to give Google a tighter bid signal.</p>
+  </div>
+
+  <!-- ===== KEYWORD PERFORMANCE ===== -->
+  <div class="section">
+    <div class="section-title">Keyword Performance (all 13 ENABLED, phrase match)</div>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr><th>Keyword</th><th>Match</th><th>QS</th><th>Spend</th><th>Clicks</th><th>Conv</th><th>CPA</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>fiberglass pools</td><td>PHRASE</td><td class="num">8</td><td class="num">$189.46</td><td class="num">58</td><td class="num conv-good">6</td><td class="num conv-good">$31.58</td><td>Workhorse KW</td></tr>
+          <tr><td>pool contractor</td><td>PHRASE</td><td class="num">—</td><td class="num">$55.35</td><td class="num">18</td><td class="num">1</td><td class="num">$55.35</td><td>QS unverified</td></tr>
+          <tr><td>inground pools</td><td>PHRASE</td><td class="num">7</td><td class="num">$42.78</td><td class="num">15</td><td class="num">1</td><td class="num">$42.78</td><td></td></tr>
+          <tr><td>pool installation</td><td>PHRASE</td><td class="num">8</td><td class="num">$42.00</td><td class="num">13</td><td class="num conv-zero">0</td><td class="num conv-zero">—</td><td>0 conv, watch</td></tr>
+          <tr><td>in ground pools</td><td>PHRASE</td><td class="num">6</td><td class="num">$35.49</td><td class="num">10</td><td class="num">2</td><td class="num">$17.75</td><td>Good</td></tr>
+          <tr><td>pool designs</td><td>PHRASE</td><td class="num">7</td><td class="num">$24.27</td><td class="num">8</td><td class="num conv-zero">0</td><td class="num conv-zero">—</td><td>0 conv, watch</td></tr>
+          <tr><td>pool builder</td><td>PHRASE</td><td class="num">5</td><td class="num">$22.07</td><td class="num">7</td><td class="num">1</td><td class="num">$22.07</td><td></td></tr>
+          <tr><td>leisure pools</td><td>PHRASE</td><td class="num">9</td><td class="num">$18.84</td><td class="num">6</td><td class="num conv-zero">0</td><td class="num conv-zero">—</td><td>Brand term</td></tr>
+          <tr><td>outdoor pool installation</td><td>PHRASE</td><td class="num">—</td><td class="num">$13.24</td><td class="num">4</td><td class="num conv-zero">0</td><td class="num conv-zero">—</td><td>QS unverified, 0 conv</td></tr>
+          <tr><td>prefab pools</td><td>PHRASE</td><td class="num">7</td><td class="num">$3.52</td><td class="num">1</td><td class="num conv-good">1</td><td class="num conv-good">$3.52</td><td>Efficient</td></tr>
+          <tr><td>swimming pool construction</td><td>PHRASE</td><td class="num">—</td><td class="num">$5.61</td><td class="num">2</td><td class="num conv-zero">0</td><td class="num conv-zero">—</td><td>QS unverified</td></tr>
+          <tr><td>pool construction companies</td><td>PHRASE</td><td class="num">5</td><td class="num">$0</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td>No traffic</td></tr>
+          <tr><td>fiberglass pool builders</td><td>PHRASE</td><td class="num">—</td><td class="num">$0</td><td class="num">0</td><td class="num">—</td><td class="num">—</td><td>No traffic</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="note">No broad match keywords detected. All ENABLED keywords are phrase match (type 3). This is compliant with account rules.</p>
+  </div>
+
+  <!-- ===== QUICK ACTION LIST ===== -->
+  <div class="section">
+    <div class="section-title">Prioritized Action List</div>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>#</th><th>Priority</th><th>Action</th><th>Who</th><th>Effort</th></tr></thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td><span class="badge p2">P2</span></td>
+            <td>Fix sitelink typo: "2026Pool Brochure" → "2026 Pool Brochure" (campaign-level sitelink asset 272420714607)</td>
+            <td>Eli — UI</td>
+            <td>2 min</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td><span class="badge p3">P3</span></td>
+            <td>Add campaign-level negative keyword "above ground" (phrase) to block above-ground pool queries leaking through inground keywords</td>
+            <td>Eli — UI</td>
+            <td>5 min</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td><span class="badge p3">P3</span></td>
+            <td>Consider adding high-converting OTHER search terms as exact match keywords: "fiberglass insert pool" ($10.28 CPA), "inground pool" ($5.67 CPA), "pool contractors near me" ($6.66 CPA)</td>
+            <td>Eli — UI</td>
+            <td>10 min</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td><span class="badge p3">P3</span></td>
+            <td>Strategic: test $40 → $55/day budget if growth is desired. Do not lower tCPA first — it's working.</td>
+            <td>Eli — decision</td>
+            <td>Low risk</td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td><span class="badge p2">P2</span></td>
+            <td>Plan ad group split: isolate "leisure pools" brand keyword into separate SKAG. Low urgency — do when time permits.</td>
+            <td>Claude / Eli</td>
+            <td>30 min</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<div class="footer">
+  Elite - Leisure Pools Athens · Account 3545414886 · Audit generated 2026-03-23 · Data window 2026-02-21 → 2026-03-23<br>
+  All findings verified via Google Ads API. Unverifiable fields noted explicitly. Read-only audit — no changes made.
+</div>
+
+</body>
+</html>

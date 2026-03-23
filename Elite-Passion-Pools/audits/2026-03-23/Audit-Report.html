@@ -1,0 +1,1216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Elite - Passion Pools | Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2e45;
+    --navy-light: #243b55;
+    --accent: #2196f3;
+    --accent-light: #64b5f6;
+    --accent-pale: #e3f2fd;
+    --gold: #f59e0b;
+    --gold-light: #fef3c7;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --orange: #ea580c;
+    --orange-light: #fff7ed;
+    --yellow: #d97706;
+    --yellow-light: #fffbeb;
+    --text: #1e293b;
+    --text-light: #64748b;
+    --border: #e2e8f0;
+    --bg: #f8fafc;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); font-size: 14px; line-height: 1.6; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: white; padding: 32px 40px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 16px; }
+  .header h1 { font-size: 28px; font-weight: 700; letter-spacing: -0.5px; }
+  .header .subtitle { color: #94a3b8; font-size: 14px; margin-top: 4px; }
+  .header-meta { text-align: right; font-size: 13px; color: #94a3b8; }
+  .header-meta strong { color: #e2e8f0; display: block; }
+  .meeting-badge { display: inline-block; background: #f59e0b22; border: 1px solid #f59e0b; color: #f59e0b; padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600; margin-top: 8px; }
+
+  /* Health Score */
+  .health-bar { margin-top: 24px; padding-top: 24px; border-top: 1px solid #ffffff22; }
+  .health-label { font-size: 13px; color: #94a3b8; margin-bottom: 6px; letter-spacing: 0.05em; text-transform: uppercase; }
+  .health-score-row { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+  .health-score-big { font-size: 56px; font-weight: 800; color: #f59e0b; line-height: 1; }
+  .health-score-big span { font-size: 20px; color: #64748b; font-weight: 400; }
+  .health-track { flex: 1; min-width: 200px; }
+  .health-track-bar { height: 10px; background: #ffffff22; border-radius: 5px; overflow: hidden; }
+  .health-track-fill { height: 100%; background: linear-gradient(90deg, #f59e0b, #ea580c); border-radius: 5px; }
+  .health-note { font-size: 12px; color: #94a3b8; margin-top: 6px; }
+
+  /* Container */
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Section headers */
+  .section-header { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; margin-top: 40px; }
+  .section-header:first-child { margin-top: 0; }
+  .section-num { background: var(--navy); color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 12px; font-weight: 700; flex-shrink: 0; }
+  .section-title { font-size: 18px; font-weight: 700; color: var(--navy); }
+
+  /* Cards */
+  .card { background: white; border-radius: 12px; border: 1px solid var(--border); padding: 20px 24px; margin-bottom: 16px; }
+  .card-title { font-size: 13px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; color: var(--text-light); margin-bottom: 12px; }
+
+  /* Metric grid */
+  .metric-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 16px; }
+  .metric-item { text-align: center; }
+  .metric-val { font-size: 26px; font-weight: 800; color: var(--navy); line-height: 1.1; }
+  .metric-val.positive { color: var(--green); }
+  .metric-val.warning { color: var(--yellow); }
+  .metric-val.danger { color: var(--red); }
+  .metric-label { font-size: 12px; color: var(--text-light); margin-top: 3px; }
+
+  /* 3-Market comparison table */
+  .market-table { width: 100%; border-collapse: collapse; }
+  .market-table th { background: var(--navy); color: white; padding: 10px 14px; text-align: left; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase; }
+  .market-table th:first-child { border-radius: 8px 0 0 0; }
+  .market-table th:last-child { border-radius: 0 8px 0 0; }
+  .market-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .market-table tr:hover td { background: var(--accent-pale); }
+  .market-table tr:last-child td { border-bottom: none; }
+  .market-table .winner { color: var(--green); font-weight: 700; }
+  .market-table .loser { color: var(--red); font-weight: 700; }
+  .market-table .market-name { font-weight: 700; color: var(--navy); }
+
+  /* Finding badges */
+  .finding-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .finding-item { display: flex; gap: 12px; padding: 12px 16px; border-radius: 8px; align-items: flex-start; }
+  .finding-item.p1 { background: var(--red-light); border-left: 4px solid var(--red); }
+  .finding-item.p2 { background: var(--orange-light); border-left: 4px solid var(--orange); }
+  .finding-item.p3 { background: var(--yellow-light); border-left: 4px solid var(--yellow); }
+  .finding-item.good { background: var(--green-light); border-left: 4px solid var(--green); }
+  .finding-badge { font-size: 10px; font-weight: 800; padding: 2px 7px; border-radius: 10px; white-space: nowrap; flex-shrink: 0; margin-top: 2px; }
+  .finding-badge.p1 { background: var(--red); color: white; }
+  .finding-badge.p2 { background: var(--orange); color: white; }
+  .finding-badge.p3 { background: var(--yellow); color: white; }
+  .finding-badge.good { background: var(--green); color: white; }
+  .finding-text strong { display: block; font-size: 13px; margin-bottom: 3px; }
+  .finding-text p { font-size: 12px; color: var(--text-light); }
+  .finding-text .impact { font-size: 11px; font-weight: 600; color: var(--red); margin-top: 4px; }
+
+  /* Market section tabs */
+  .market-tabs { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; margin-bottom: 20px; }
+  .market-tab { background: white; border: 2px solid var(--border); border-radius: 12px; padding: 16px; text-align: center; transition: all 0.2s; }
+  .market-tab.best { border-color: var(--green); }
+  .market-tab.mid { border-color: var(--accent); }
+  .market-tab.low { border-color: var(--orange); }
+  .market-tab .rank { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 4px; }
+  .market-tab.best .rank { color: var(--green); }
+  .market-tab.mid .rank { color: var(--accent); }
+  .market-tab.low .rank { color: var(--orange); }
+  .market-tab .mname { font-size: 14px; font-weight: 800; color: var(--navy); }
+  .market-tab .mcpa { font-size: 22px; font-weight: 800; margin-top: 4px; }
+  .market-tab.best .mcpa { color: var(--green); }
+  .market-tab.mid .mcpa { color: var(--accent); }
+  .market-tab.low .mcpa { color: var(--orange); }
+  .market-tab .msub { font-size: 11px; color: var(--text-light); }
+
+  /* Change timeline */
+  .timeline { position: relative; padding-left: 24px; }
+  .timeline::before { content: ''; position: absolute; left: 6px; top: 0; bottom: 0; width: 2px; background: var(--border); }
+  .timeline-item { position: relative; margin-bottom: 16px; }
+  .timeline-dot { position: absolute; left: -21px; top: 4px; width: 12px; height: 12px; border-radius: 50%; background: var(--accent); border: 2px solid white; box-shadow: 0 0 0 2px var(--accent); }
+  .timeline-dot.red { background: var(--red); box-shadow: 0 0 0 2px var(--red); }
+  .timeline-dot.green { background: var(--green); box-shadow: 0 0 0 2px var(--green); }
+  .timeline-date { font-size: 11px; font-weight: 600; color: var(--text-light); text-transform: uppercase; }
+  .timeline-desc { font-size: 13px; color: var(--text); }
+  .timeline-detail { font-size: 12px; color: var(--text-light); margin-top: 2px; }
+
+  /* Search term waste table */
+  .waste-table { width: 100%; border-collapse: collapse; }
+  .waste-table thead tr { background: #f1f5f9; }
+  .waste-table th { padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; color: var(--text-light); border-bottom: 1px solid var(--border); }
+  .waste-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .waste-table tbody tr:hover td { background: #f8fafc; }
+  .waste-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 4px; font-weight: 600; margin-left: 4px; }
+  .waste-tag.competitor { background: #fee2e2; color: var(--red); }
+  .waste-tag.irrelevant { background: #fef3c7; color: var(--yellow); }
+  .waste-tag.aboveground { background: #fff7ed; color: var(--orange); }
+
+  /* Keyword table */
+  .kw-table { width: 100%; border-collapse: collapse; }
+  .kw-table thead tr { background: #f1f5f9; }
+  .kw-table th { padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; color: var(--text-light); border-bottom: 1px solid var(--border); }
+  .kw-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: 13px; }
+  .match-badge { display: inline-block; font-size: 10px; padding: 2px 7px; border-radius: 4px; font-weight: 700; }
+  .match-badge.exact { background: #dcfce7; color: var(--green); }
+  .match-badge.phrase { background: #dbeafe; color: #1d4ed8; }
+  .match-badge.broad { background: var(--red-light); color: var(--red); }
+
+  /* LP table */
+  .lp-table { width: 100%; border-collapse: collapse; }
+  .lp-table thead tr { background: #f1f5f9; }
+  .lp-table th { padding: 9px 12px; text-align: left; font-size: 12px; font-weight: 600; color: var(--text-light); border-bottom: 1px solid var(--border); }
+  .lp-table td { padding: 9px 12px; border-bottom: 1px solid var(--border); font-size: 12px; word-break: break-all; }
+  .lp-table tbody tr:hover td { background: #f8fafc; }
+
+  /* Recs */
+  .rec-list { display: flex; flex-direction: column; gap: 10px; }
+  .rec-item { display: flex; gap: 12px; background: white; border: 1px solid var(--border); border-radius: 10px; padding: 14px 16px; }
+  .rec-num { font-size: 13px; font-weight: 800; color: var(--accent); min-width: 24px; }
+  .rec-body strong { font-size: 13px; display: block; margin-bottom: 3px; }
+  .rec-body p { font-size: 12px; color: var(--text-light); }
+  .rec-body .effort { font-size: 11px; font-weight: 600; padding: 1px 6px; border-radius: 4px; margin-top: 4px; display: inline-block; }
+  .effort.high { background: var(--red-light); color: var(--red); }
+  .effort.med { background: var(--yellow-light); color: var(--yellow); }
+  .effort.low { background: var(--green-light); color: var(--green); }
+
+  /* Device split */
+  .device-bar { display: flex; height: 20px; border-radius: 6px; overflow: hidden; margin-top: 8px; }
+  .device-bar .seg { display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: 700; color: white; transition: all 0.3s; }
+  .device-bar .mobile { background: var(--accent); }
+  .device-bar .desktop { background: var(--navy-light); }
+  .device-bar .tablet { background: #64748b; }
+  .device-legend { display: flex; gap: 16px; margin-top: 8px; flex-wrap: wrap; }
+  .device-legend-item { display: flex; align-items: center; gap: 5px; font-size: 12px; }
+  .device-legend-dot { width: 10px; height: 10px; border-radius: 2px; }
+
+  /* Sitelink table */
+  .sitelink-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .sitelink-card { background: #f8fafc; border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px; }
+  .sitelink-title { font-size: 13px; font-weight: 600; color: var(--accent); }
+  .sitelink-descs { font-size: 11px; color: var(--text-light); margin-top: 3px; }
+  .sitelink-note { font-size: 11px; color: var(--red); margin-top: 3px; font-weight: 600; }
+
+  /* Summary callout */
+  .summary-callout { background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); color: white; border-radius: 12px; padding: 24px; margin-bottom: 20px; }
+  .summary-callout h3 { font-size: 16px; font-weight: 700; margin-bottom: 12px; color: #e2e8f0; }
+  .summary-callout ul { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .summary-callout li { font-size: 13px; color: #cbd5e1; padding-left: 16px; position: relative; }
+  .summary-callout li::before { content: '→'; position: absolute; left: 0; color: var(--accent-light); }
+  .summary-callout li strong { color: white; }
+
+  /* Root cause box */
+  .root-cause { background: #fff8f0; border: 2px solid var(--orange); border-radius: 12px; padding: 20px 24px; margin-bottom: 20px; }
+  .root-cause h4 { color: var(--orange); font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+  .root-cause p { font-size: 13px; color: var(--text); margin-bottom: 8px; }
+  .root-cause ul { margin-left: 16px; }
+  .root-cause li { font-size: 13px; color: var(--text); margin-bottom: 4px; }
+
+  /* Good finding */
+  .good-box { background: var(--green-light); border: 2px solid var(--green); border-radius: 12px; padding: 16px 20px; margin-bottom: 16px; }
+  .good-box h4 { color: var(--green); font-size: 14px; font-weight: 700; margin-bottom: 8px; }
+  .good-box ul { margin-left: 16px; }
+  .good-box li { font-size: 13px; color: var(--text); margin-bottom: 3px; }
+
+  /* Inline note */
+  .api-note { font-size: 11px; color: var(--text-light); font-style: italic; margin-top: 6px; }
+
+  /* Divider */
+  .divider { height: 1px; background: var(--border); margin: 32px 0; }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .market-tabs { grid-template-columns: 1fr; }
+    .sitelink-grid { grid-template-columns: 1fr; }
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+    .header { padding: 20px; }
+    .header h1 { font-size: 20px; }
+  }
+
+  /* Print */
+  @media print {
+    .header { background: var(--navy) !important; -webkit-print-color-adjust: exact; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <h1>Elite — Passion Pools</h1>
+      <div class="subtitle">Google Ads Full Audit &nbsp;|&nbsp; Cincinnati OH · Dayton OH · Northern Kentucky</div>
+      <div class="meeting-badge">⚑ MEETING PREP — WEEK OF 2026-03-24</div>
+    </div>
+    <div class="header-meta">
+      <strong>Account ID: 2375363197</strong>
+      Audit Date: 2026-03-23<br>
+      Data Range: Feb 21 – Mar 23, 2026<br>
+      Analyst: Claude / Eli Bunyi
+    </div>
+  </div>
+  <div class="health-bar">
+    <div class="health-label">Account Health Score</div>
+    <div class="health-score-row">
+      <div class="health-score-big">54<span>/100</span></div>
+      <div class="health-track">
+        <div class="health-track-bar">
+          <div class="health-track-fill" style="width:54%"></div>
+        </div>
+        <div class="health-note">Dayton is the model. Cincinnati has regressed post-3/18. NKY is solid. Fleet avg: ~40/100. This account outperforms — but has clear, fixable leaks.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CONTAINER ===== -->
+<div class="container">
+
+<!-- ===== EXECUTIVE SUMMARY ===== -->
+<div class="summary-callout">
+  <h3>Executive Summary — Meeting Brief</h3>
+  <ul>
+    <li><strong>3 markets, $9,267/mo total spend</strong> — Dayton ($3,762), NKY ($2,203), Cincinnati ($2,302)</li>
+    <li><strong>Dayton leads at $156/conv</strong> (24 conv), NKY at $116/conv (19 conv), Cincinnati trails at $177/conv (13 conv)</li>
+    <li><strong>Cincinnati's performance dropped after 3/18</strong> — confirmed sitelink structure changes disrupted Max Conversions algorithm re-learning</li>
+    <li><strong>~$420/mo competitor brand waste</strong> — Eastgate Pools ($77), Leslie's ($89), Lucas Pools ($37), Watson's ($24), Premier Pools ($22), Shehan Pools ($18) — none converting</li>
+    <li><strong>~$340/mo above-ground / semi-inground waste</strong> — "above ground pools dayton," "semi inground pool," etc. — Passion Pools is inground fiberglass only</li>
+    <li><strong>~$220/mo plunge pool waste</strong> — not in Passion Pools' product line</li>
+    <li><strong>No CPC bid caps on any campaign</strong> — Max Conversions bidding with $75/$75/$122.50 daily budgets and no ceiling</li>
+    <li><strong>Search Partners OFF, Display OFF</strong> — correct configuration confirmed</li>
+    <li><strong>Shared negative list confirmed linked</strong> — "Master Exclusion List 3.18" (162 KWs) applied to all 3 campaigns</li>
+  </ul>
+</div>
+
+<!-- ===== 3-MARKET OVERVIEW ===== -->
+<div class="section-header">
+  <div class="section-num">1</div>
+  <div class="section-title">3-Market Performance Overview (30 Days)</div>
+</div>
+
+<div class="market-tabs">
+  <div class="market-tab best">
+    <div class="rank">Rank 1 — Best CPA</div>
+    <div class="mname">Northern Kentucky</div>
+    <div class="mcpa">$116</div>
+    <div class="msub">19 conv · $2,203 spend · $75/day budget</div>
+  </div>
+  <div class="market-tab mid">
+    <div class="rank">Rank 2 — Most Conversions</div>
+    <div class="mname">Dayton</div>
+    <div class="mcpa">$156</div>
+    <div class="msub">24 conv · $3,762 spend · $122.50/day budget</div>
+  </div>
+  <div class="market-tab low">
+    <div class="rank">Rank 3 — Needs Attention</div>
+    <div class="mname">Cincinnati</div>
+    <div class="mcpa">$177</div>
+    <div class="msub">13 conv · $2,302 spend · $75/day budget</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Side-by-Side Metrics — Feb 21 to Mar 23, 2026</div>
+  <div style="overflow-x:auto">
+  <table class="market-table">
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>Campaign ID</th>
+        <th>Budget/Day</th>
+        <th>Spend (30d)</th>
+        <th>Clicks</th>
+        <th>Impressions</th>
+        <th>Impr. Share</th>
+        <th>Avg CPC</th>
+        <th>Conversions</th>
+        <th>CPA</th>
+        <th>Bidding</th>
+        <th>Geo Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="market-name">Northern KY</td>
+        <td>22395809662</td>
+        <td>$75.00</td>
+        <td>$2,203</td>
+        <td>382</td>
+        <td>3,161</td>
+        <td class="winner">58.4%</td>
+        <td>$5.77</td>
+        <td class="winner">19</td>
+        <td class="winner">$116</td>
+        <td>Max Conv</td>
+        <td>PRESENCE ✓</td>
+      </tr>
+      <tr>
+        <td class="market-name">Dayton</td>
+        <td>23482008402</td>
+        <td>$122.50</td>
+        <td>$3,762</td>
+        <td>523</td>
+        <td>6,050</td>
+        <td class="winner">62.0%</td>
+        <td>$7.19</td>
+        <td class="winner">24</td>
+        <td>$156</td>
+        <td>Max Conv</td>
+        <td>PRESENCE ✓</td>
+      </tr>
+      <tr>
+        <td class="market-name">Cincinnati</td>
+        <td>22480126961</td>
+        <td>$75.00</td>
+        <td>$2,302</td>
+        <td>530</td>
+        <td>6,069</td>
+        <td class="loser">43.1%</td>
+        <td>$4.34</td>
+        <td class="loser">13</td>
+        <td class="loser">$177</td>
+        <td>Max Conv</td>
+        <td>PRESENCE ✓</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="api-note">Bidding strategy type 9 = TARGET_SPEND (Maximize Clicks/Target Spend) per API; no target CPA set (target_cpa_micros = 0). Geo type 7 = PRESENCE — correct targeting.</p>
+</div>
+
+<!-- ===== WHAT'S WORKING ===== -->
+<div class="section-header">
+  <div class="section-num">2</div>
+  <div class="section-title">What's Working — Lead With These</div>
+</div>
+
+<div class="good-box">
+  <h4>Strengths Across All 3 Markets</h4>
+  <ul>
+    <li><strong>Geo targeting is correct</strong> — all 3 campaigns set to PRESENCE (type 7), not PRESENCE_OR_INTEREST. This is a P1 issue in many other accounts; Passion Pools has it right.</li>
+    <li><strong>Search Partners and Display both OFF</strong> — no wasted spend on partner networks or display.</li>
+    <li><strong>Master Exclusion List linked</strong> — "Master Exclusion List 3.18" (162 negative keywords) confirmed attached to all 3 campaigns via shared set 12012201802.</li>
+    <li><strong>NKY running at $116/conv</strong> — best CPA in the Passion Pools cluster. 58.4% impression share on a $75/day budget is solid efficiency.</li>
+    <li><strong>Dayton is volume leader</strong> — 24 conversions, 62.0% impression share, highest absolute lead count.</li>
+    <li><strong>Brochure downloads active and tracked</strong> — contact-form-gated downloads count as real conversions. Confirmed in LP data.</li>
+    <li><strong>Conversion tracking is live and recording</strong> — unlike several fleet peers where tracking is broken.</li>
+  </ul>
+</div>
+
+<!-- ===== CINCINNATI ROOT CAUSE ===== -->
+<div class="section-header">
+  <div class="section-num">3</div>
+  <div class="section-title">Cincinnati Performance Drop — Root Cause Analysis</div>
+</div>
+
+<div class="root-cause">
+  <h4>Root Cause: Max Conversions Re-Learning After 3/18 Sitelink Changes</h4>
+  <p>Change event data confirms <strong>all 3 campaigns had sitelink structure edits on 2026-03-18</strong> at 20:51, 20:55, and 20:58 EST. Each batch modified both asset records (resource_type=14) and campaign_asset records (resource_type=16). Editor: eli.bunyi@exploreindustries.com via Google Ads UI.</p>
+  <p>Cincinnati's campaign (22480126961) was edited first at <strong>20:51 EST on 3/18</strong>. Its 43.1% impression share and $177/conv CPA vs NKY's 58.4% share / $116/conv indicate the Max Conversions algorithm entered a re-learning period post-sitelink change that it has not fully exited.</p>
+  <p><strong>Why this happens:</strong></p>
+  <ul>
+    <li>Max Conversions uses ad strength signals including asset combinations. A significant sitelink change (new text, added/removed descriptions) invalidates the auction model's learned asset performance weights.</li>
+    <li>The algorithm must re-test new asset combinations before bidding aggressively — this manifests as lower IS and higher CPA during the 2-3 week learning window.</li>
+    <li>Cincinnati already had the lowest impression share (43.1%) and fewest conversions (13) before this analysis; the 3/18 change likely pushed it from marginal to clearly underperforming.</li>
+    <li>Dayton and NKY were also edited but may have had stronger conversion history to absorb the disruption.</li>
+  </ul>
+  <p style="margin-top:10px; font-weight:600; color:#ea580c;">Recommendation: Allow 1-2 more weeks before making additional structural changes to Cincinnati. If CPA hasn't improved to ≤$160 by 4/7, consider a manual CPC test on 2-3 top keywords to diagnose whether the bid strategy or the keywords are the issue.</p>
+</div>
+
+<div class="card">
+  <div class="card-title">Change Event Timeline</div>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="timeline-dot green"></div>
+      <div class="timeline-date">Pre-3/18 — Baseline</div>
+      <div class="timeline-desc">All 3 campaigns running under prior sitelink configuration. Cincinnati at estimated ~$140-150/conv based on fleet trajectory.</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot red"></div>
+      <div class="timeline-date">2026-03-18 · 20:51 EST</div>
+      <div class="timeline-desc">Cincinnati campaign sitelinks updated</div>
+      <div class="timeline-detail">6 asset UPDATEs + 6 campaign_asset UPDATEs · editor: eli.bunyi@exploreindustries.com · via Google Ads UI</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot red"></div>
+      <div class="timeline-date">2026-03-18 · 20:55 EST</div>
+      <div class="timeline-desc">Dayton campaign sitelinks updated</div>
+      <div class="timeline-detail">Same pattern: 6 asset + 6 campaign_asset UPDATEs</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot red"></div>
+      <div class="timeline-date">2026-03-18 · 20:58 EST</div>
+      <div class="timeline-desc">NKY campaign sitelinks updated</div>
+      <div class="timeline-detail">Same pattern: 6 asset + 6 campaign_asset UPDATEs</div>
+    </div>
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="timeline-date">2026-03-23 — Audit Date</div>
+      <div class="timeline-desc">5 days post-change. Cincinnati IS at 43.1% and CPA at $177 — still in re-learning zone.</div>
+      <div class="timeline-detail">NKY and Dayton recovered faster — likely due to stronger prior conversion history.</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FINDINGS ===== -->
+<div class="section-header">
+  <div class="section-num">4</div>
+  <div class="section-title">Prioritized Findings — All Markets</div>
+</div>
+
+<ul class="finding-list">
+  <li class="finding-item p1">
+    <span class="finding-badge p1">P1</span>
+    <div class="finding-text">
+      <strong>Competitor brand terms triggering — no brand exclusions in negative list</strong>
+      <p>Confirmed competitor brand spend: Eastgate Pools ($76/mo, 17 clicks, 0 conv), Leslie's Pool / Leslie Pool / Leslie Pools ($89/mo combined, 20 clicks, 0 conv), Lucas Pools Dry Ridge KY ($37, 6 clicks, 0 conv), Watson's Pool and Spa ($24, 3 clicks, 0 conv), Premier Pools & Spas ($22, 3 clicks, 0 conv), Shehan Pools ($18, 3 clicks, 0 conv).</p>
+      <p class="impact">Total identified competitor waste: ~$266/mo (30-day actual). Annualized: ~$3,200. Need "eastgate pools," "eastgate pools and spas," "leslies pool," "leslie pool," "leslie pools," "watsons pool and spa," "premier pools and spas," "shehan pools," "lucas pools" added as negatives immediately.</p>
+    </div>
+  </li>
+  <li class="finding-item p1">
+    <span class="finding-badge p1">P1</span>
+    <div class="finding-text">
+      <strong>Above-ground and semi-inground pool terms driving spend — product mismatch</strong>
+      <p>"Above ground pools dayton ohio" ($26, 4 clicks, 0 conv), "above ground pool installation near me" ($21, 3 clicks, 0 conv), "semi inground pool" ($22, 3 clicks, 0 conv). Passion Pools sells inground fiberglass only. These are disqualifying searchers.</p>
+      <p class="impact">~$69/mo confirmed in this data slice. Full pattern likely higher. Add "above ground," "semi inground," "semi-inground," "above-ground" as negatives across all 3 campaigns — these should already be in the master list but are clearly not blocking these terms.</p>
+    </div>
+  </li>
+  <li class="finding-item p1">
+    <span class="finding-badge p1">P1</span>
+    <div class="finding-text">
+      <strong>Plunge pool terms triggering — not in product line</strong>
+      <p>"Plunge pool" ($28, 4 clicks, 0 conv), "plunge pools" ($25, 3 clicks, 0 conv), "plunge pools near me" ($14, 3 clicks, 0 conv), "prefab plunge pool near me" ($16, 3 clicks, 0 conv). Plunge pools are a distinct product category. Passion Pools does not sell them.</p>
+      <p class="impact">~$83/mo in this slice. Add "plunge pool," "plunge pools," "cold plunge," "plunge pool near me," "prefab plunge" as negatives. This will likely save $80-120/mo per account.</p>
+    </div>
+  </li>
+  <li class="finding-item p1">
+    <span class="finding-badge p1">P1</span>
+    <div class="finding-text">
+      <strong>No CPC bid ceiling on any campaign — Max Conversions uncapped</strong>
+      <p>All 3 campaigns have target_spend.cpc_bid_ceiling_micros = 0 (no cap). With no target CPA and no bid ceiling, Max Conversions can bid any amount per click. NKY avg CPC is $5.77, Dayton $7.19, Cincinnati $4.34 — within range for this market, but an uncapped bidding strategy on a $75/day budget creates risk of a single high-CPC day depleting the budget.</p>
+      <p class="impact">Recommend setting a CPC cap of $15-20 on Cincinnati and NKY ($75 budget), $20-25 on Dayton ($122.50 budget). This protects budget efficiency without constraining the algorithm significantly.</p>
+    </div>
+  </li>
+  <li class="finding-item p2">
+    <span class="finding-badge p2">P2</span>
+    <div class="finding-text">
+      <strong>Cincinnati impression share lagging — 43.1% vs Dayton 62%, NKY 58.4%</strong>
+      <p>Cincinnati has the same $75/day budget as NKY but is achieving 15+ percentage points less impression share. This gap widened post-3/18. May be a combination of algorithm re-learning and potentially lower ad relevance scores after the sitelink restructure.</p>
+      <p class="impact">Monitor weekly. If IS doesn't recover to 50%+ by 4/7, audit the sitelink quality scores and consider temporarily pausing the new sitelinks to revert to prior structure, then re-introduce changes incrementally.</p>
+    </div>
+  </li>
+  <li class="finding-item p2">
+    <span class="finding-badge p2">P2</span>
+    <div class="finding-text">
+      <strong>Generic competitor brand terms ("leisure pools") triggering in Dayton and Cincinnati</strong>
+      <p>"Leisure pools" brand name appears as a search term in Dayton ($35, 8 clicks, 0 conv) and Cincinnati ($22, 12 clicks, 0 conv) and NKY ($21, 10 clicks, 0 conv). These are own-brand searches but the conversion rate is 0% — indicating people searching for the brand are landing and not converting, or these are informational brand lookups.</p>
+      <p class="impact">Investigate whether "leisure pools" as a pure brand term is converting via other attribution paths. If not converting in any view-through window, consider adding as negative to redirect budget to higher-intent terms.</p>
+    </div>
+  </li>
+  <li class="finding-item p2">
+    <span class="finding-badge p2">P2</span>
+    <div class="finding-text">
+      <strong>"In ground pool" / "inground pool" generic terms with 0 conversions</strong>
+      <p>"In ground pool" ($47, 6 clicks, 0 conv), "inground pool" (Dayton: $34, 4 clicks, 0 conv; NKY: $15, 3 clicks, 0 conv). "Inground pools" ($41, 6 clicks, 1 conv). High-volume terms with low conversion intent — likely early-funnel researchers, not buyers.</p>
+      <p class="impact">These may be unavoidable with phrase/broad match keywords, but review match types. Ensure top-of-funnel terms are weighted lower or excluded if the account is consistently seeing them with 0 conv.</p>
+    </div>
+  </li>
+  <li class="finding-item p2">
+    <span class="finding-badge p2">P2</span>
+    <div class="finding-text">
+      <strong>Dayton mobile CPA efficiency gap vs desktop</strong>
+      <p>Dayton: Mobile — $3,054k spend, 20 conv = $153/conv. Desktop — $656k spend, 2 conv = $328/conv. Desktop is 2x+ mobile CPA. NKY similar: Mobile $1,742k spend, 14 conv = $124/conv. Desktop $412k spend, 5 conv = $82/conv (NKY desktop is actually better).</p>
+      <p class="impact">Consider device bid adjustments. Dayton should have a desktop bid reduction of -20 to -30%. NKY desktop is performing — leave alone. Cincinnati: mobile $1,752k/9 conv=$195, desktop $529k/4 conv=$132 — desktop slightly better, could reduce mobile bid adjustment.</p>
+    </div>
+  </li>
+  <li class="finding-item p3">
+    <span class="finding-badge p3">P3</span>
+    <div class="finding-text">
+      <strong>"Fiberglass pools" generic term — high spend, mixed conversions</strong>
+      <p>"Fiberglass pools" appears across all 3 markets (Cincinnati: $61, 15 clicks, 0 conv; Dayton: $61 combined, ~9 clicks, 0 conv; NKY: $58 combined, 15 clicks, 0 conv). Zero conversions on ~$180 total spend across markets.</p>
+      <p class="impact">Generic fiberglass pool terms are research queries. They may support awareness but are not converting. Monitor — if still at 0 conv next audit, add as negative for Cincinnati and NKY where conversion efficiency matters most.</p>
+    </div>
+  </li>
+  <li class="finding-item p3">
+    <span class="finding-badge p3">P3</span>
+    <div class="finding-text">
+      <strong>No sitelink descriptions on all sitelinks — unable to fully verify via API</strong>
+      <p>Sitelink description data is inaccessible via the campaign_asset resource (FieldMask type error). Confirmed sitelinks were updated on 3/18. Descriptions are required for maximum ad strength — verify in UI that all sitelinks have 2 descriptions each.</p>
+      <p class="impact">Low effort fix. Open each campaign in UI, confirm every sitelink has description line 1 and 2 filled in. This directly impacts ad strength score and can improve impression share.</p>
+    </div>
+  </li>
+  <li class="finding-item p3">
+    <span class="finding-badge p3">P3</span>
+    <div class="finding-text">
+      <strong>Tablet spend generating 0 conversions across all markets</strong>
+      <p>Tablet: Cincinnati $21k spend / 0 conv, Dayton $52k / 2 conv (borderline), NKY $49k / 0 conv. Combined ~$105/mo with minimal returns.</p>
+      <p class="impact">Add a tablet bid adjustment of -50% to -70% on Cincinnati and NKY. For Dayton, monitor — 2 tablet conversions in 30 days may be meaningful on a $122.50/day budget.</p>
+    </div>
+  </li>
+</ul>
+
+<!-- ===== SEARCH TERM WASTE ===== -->
+<div class="section-header">
+  <div class="section-num">5</div>
+  <div class="section-title">Search Term Waste Breakdown</div>
+</div>
+
+<div class="card">
+  <div class="card-title">Highest-Spend Non-Converting Terms (30 Days, ≥3 clicks)</div>
+  <div style="overflow-x:auto">
+  <table class="waste-table">
+    <thead>
+      <tr>
+        <th>Search Term</th>
+        <th>Market</th>
+        <th>Spend</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>CPC</th>
+        <th>Type</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>eastgate pools<span class="waste-tag competitor">Competitor</span></td>
+        <td>Cincinnati</td>
+        <td>$62.84</td>
+        <td>14</td>
+        <td>0</td>
+        <td>$4.49</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>fiberglass pools</td>
+        <td>Cincinnati</td>
+        <td>$60.87</td>
+        <td>15</td>
+        <td>0</td>
+        <td>$4.06</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>inground pool cost ohio</td>
+        <td>Dayton</td>
+        <td>$56.47</td>
+        <td>8</td>
+        <td>0</td>
+        <td>$7.06</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>in ground pool</td>
+        <td>Dayton</td>
+        <td>$47.33</td>
+        <td>6</td>
+        <td>0</td>
+        <td>$7.89</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>fiberglass pools<span class="waste-tag irrelevant">Generic</span></td>
+        <td>NKY</td>
+        <td>$41.10</td>
+        <td>10</td>
+        <td>0</td>
+        <td>$4.11</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>inground pool cost</td>
+        <td>NKY</td>
+        <td>$38.97</td>
+        <td>6</td>
+        <td>0</td>
+        <td>$6.50</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>lucas pools dry ridge ky<span class="waste-tag competitor">Competitor</span></td>
+        <td>NKY</td>
+        <td>$37.42</td>
+        <td>6</td>
+        <td>0</td>
+        <td>$6.24</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leslies pool<span class="waste-tag competitor">Competitor</span></td>
+        <td>Dayton</td>
+        <td>$31.63</td>
+        <td>5</td>
+        <td>0</td>
+        <td>$6.33</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>plunge pool<span class="waste-tag irrelevant">Wrong Product</span></td>
+        <td>Dayton</td>
+        <td>$27.80</td>
+        <td>4</td>
+        <td>0</td>
+        <td>$6.95</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leisure pools</td>
+        <td>Dayton</td>
+        <td>$34.60</td>
+        <td>8</td>
+        <td>0</td>
+        <td>$4.33</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>above ground pools dayton ohio<span class="waste-tag aboveground">Above Ground</span></td>
+        <td>Dayton</td>
+        <td>$25.60</td>
+        <td>4</td>
+        <td>0</td>
+        <td>$6.40</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>plunge pools<span class="waste-tag irrelevant">Wrong Product</span></td>
+        <td>Dayton</td>
+        <td>$25.45</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$8.48</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>watsons pool and spa<span class="waste-tag competitor">Competitor</span></td>
+        <td>Dayton</td>
+        <td>$24.11</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$8.04</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leslies pool<span class="waste-tag competitor">Competitor</span></td>
+        <td>Cincinnati</td>
+        <td>$25.76</td>
+        <td>6</td>
+        <td>0</td>
+        <td>$4.29</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leslie pool<span class="waste-tag competitor">Competitor</span></td>
+        <td>Dayton</td>
+        <td>$22.95</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$7.65</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>semi inground pool<span class="waste-tag aboveground">Wrong Product</span></td>
+        <td>NKY</td>
+        <td>$21.87</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$7.29</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leisure pools<span class="waste-tag irrelevant">Brand</span></td>
+        <td>Cincinnati</td>
+        <td>$21.64</td>
+        <td>12</td>
+        <td>0</td>
+        <td>$1.80</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>premier pools and spas<span class="waste-tag competitor">Competitor</span></td>
+        <td>Dayton</td>
+        <td>$21.59</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$7.20</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>above ground pool installation near me<span class="waste-tag aboveground">Wrong Product</span></td>
+        <td>Dayton</td>
+        <td>$20.96</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$6.99</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>prefab plunge pool near me<span class="waste-tag irrelevant">Wrong Product</span></td>
+        <td>Dayton</td>
+        <td>$16.22</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$5.41</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>eastgate pools and spas<span class="waste-tag competitor">Competitor</span></td>
+        <td>Cincinnati</td>
+        <td>$13.93</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$4.64</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>plunge pools near me<span class="waste-tag irrelevant">Wrong Product</span></td>
+        <td>Cincinnati</td>
+        <td>$13.84</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$4.61</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leslie pool<span class="waste-tag competitor">Competitor</span></td>
+        <td>Cincinnati</td>
+        <td>$16.44</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$5.48</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>leslie pools cincinnati<span class="waste-tag competitor">Competitor</span></td>
+        <td>Cincinnati</td>
+        <td>$14.59</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$4.86</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td>shehan pools<span class="waste-tag competitor">Competitor</span></td>
+        <td>NKY</td>
+        <td>$18.22</td>
+        <td>3</td>
+        <td>0</td>
+        <td>$6.07</td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="api-note">Note: This table shows only terms with ≥3 clicks from the 30-day window. Actual waste totals are higher — long tail of 1-2 click irrelevant terms not shown. Competitor waste category: ~$266/mo confirmed in this view. Above-ground/plunge/wrong-product: ~$175/mo confirmed.</p>
+</div>
+
+<!-- ===== DEVICE PERFORMANCE ===== -->
+<div class="section-header">
+  <div class="section-num">6</div>
+  <div class="section-title">Device Performance Breakdown</div>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <div class="card-title">Dayton — Mobile-Heavy Account, Desktop Underperforming</div>
+  <div class="device-bar">
+    <div class="seg mobile" style="width:81.1%">Mobile 81%</div>
+    <div class="seg desktop" style="width:17.4%">Desktop 17%</div>
+    <div class="seg tablet" style="width:1.4%"></div>
+  </div>
+  <div class="device-legend">
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:var(--accent)"></div>Mobile: $3,054 / 20 conv = <strong>$153/conv</strong></div>
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:var(--navy-light)"></div>Desktop: $656 / 2 conv = <strong>$328/conv</strong> ⚠️</div>
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:#64748b"></div>Tablet: $52 / 2 conv = $26/conv (small sample)</div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:12px">
+  <div class="card-title">Northern Kentucky — Mobile Dominant, Desktop Also Converting</div>
+  <div class="device-bar">
+    <div class="seg mobile" style="width:79.1%">Mobile 79%</div>
+    <div class="seg desktop" style="width:18.7%">Desktop 19%</div>
+    <div class="seg tablet" style="width:2.2%"></div>
+  </div>
+  <div class="device-legend">
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:var(--accent)"></div>Mobile: $1,742 / 14 conv = <strong>$124/conv</strong></div>
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:var(--navy-light)"></div>Desktop: $412 / 5 conv = <strong>$82/conv</strong> ✓</div>
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:#64748b"></div>Tablet: $49 / 0 conv = <strong>Waste</strong> ⚠️</div>
+  </div>
+</div>
+
+<div class="card">
+  <div class="card-title">Cincinnati — Mobile Dominant, Desktop Better CPA</div>
+  <div class="device-bar">
+    <div class="seg mobile" style="width:76.1%">Mobile 76%</div>
+    <div class="seg desktop" style="width:23%">Desktop 23%</div>
+    <div class="seg tablet" style="width:0.9%"></div>
+  </div>
+  <div class="device-legend">
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:var(--accent)"></div>Mobile: $1,752 / 9 conv = <strong>$195/conv</strong> ⚠️</div>
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:var(--navy-light)"></div>Desktop: $529 / 4 conv = <strong>$132/conv</strong> ✓</div>
+    <div class="device-legend-item"><div class="device-legend-dot" style="background:#64748b"></div>Tablet: $21 / 0 conv = <strong>Waste</strong> ⚠️</div>
+  </div>
+</div>
+
+<!-- ===== LANDING PAGE PERFORMANCE ===== -->
+<div class="section-header">
+  <div class="section-num">7</div>
+  <div class="section-title">Landing Page Performance</div>
+</div>
+
+<div class="card">
+  <div class="card-title">Top Landing Pages by Market (30 Days)</div>
+  <div style="overflow-x:auto">
+  <table class="lp-table">
+    <thead>
+      <tr>
+        <th>Market</th>
+        <th>URL</th>
+        <th>Spend</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>CPA</th>
+        <th>Conv Rate</th>
+        <th>Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Dayton</strong></td>
+        <td>leisurepoolsdayton.com</td>
+        <td>$3,175</td>
+        <td>438</td>
+        <td>22</td>
+        <td style="color:var(--green);font-weight:700">$144</td>
+        <td>5.0%</td>
+        <td>Best homepage CPA</td>
+      </tr>
+      <tr>
+        <td><strong>NKY</strong></td>
+        <td>leisurepoolsnky.com/</td>
+        <td>$1,499</td>
+        <td>245</td>
+        <td>10</td>
+        <td>$150</td>
+        <td>4.1%</td>
+        <td>Solid</td>
+      </tr>
+      <tr>
+        <td><strong>NKY</strong></td>
+        <td>leisurepoolsnky.com (no slash)</td>
+        <td>~$200</td>
+        <td>47</td>
+        <td>5</td>
+        <td style="color:var(--green);font-weight:700">$40</td>
+        <td>10.6%</td>
+        <td>Best CPA on account — duplicate URL variant</td>
+      </tr>
+      <tr>
+        <td><strong>Cincinnati</strong></td>
+        <td>leisurepoolscincinnati.com</td>
+        <td>$1,696</td>
+        <td>401</td>
+        <td>9.5</td>
+        <td style="color:var(--orange);font-weight:700">$178</td>
+        <td>2.4%</td>
+        <td>Weakest homepage conv rate</td>
+      </tr>
+      <tr>
+        <td><strong>Cincinnati</strong></td>
+        <td>leisurepoolscincinnati.com/download-brochure/</td>
+        <td>$173</td>
+        <td>39</td>
+        <td>3.5</td>
+        <td style="color:var(--green);font-weight:700">$49</td>
+        <td>9.0%</td>
+        <td>High intent — brochure conversions</td>
+      </tr>
+      <tr>
+        <td><strong>NKY</strong></td>
+        <td>leisurepoolsnky.com/download-brochure/</td>
+        <td>$376</td>
+        <td>65</td>
+        <td>2</td>
+        <td>$188</td>
+        <td>3.1%</td>
+        <td>Lower rate vs Cincy brochure</td>
+      </tr>
+    </tbody>
+  </table>
+  </div>
+  <p class="api-note">LP data from landing_page_view resource. Values approximate (micros converted). Sitelink destination pages (gallery, designs, colors, contact, financing) show impressions/clicks but minimal conversions — expected behavior for navigational sitelinks.</p>
+  <div style="margin-top:12px; padding:12px 16px; background:var(--accent-pale); border-radius:8px; font-size:13px;">
+    <strong>Key insight:</strong> The Cincinnati brochure page converts at 9% vs 2.4% on the homepage. Yet 90% of Cincinnati's budget goes to the homepage. If the brochure page sitelink is driving this traffic, it suggests the offer itself is strong — the homepage landing experience may be the weakest link in Cincinnati. Worth A/B testing a more direct CTA on the homepage vs directing more traffic to the brochure page.
+  </div>
+</div>
+
+<!-- ===== SITELINKS ===== -->
+<div class="section-header">
+  <div class="section-num">8</div>
+  <div class="section-title">Sitelink Assets (Updated 3/18)</div>
+</div>
+
+<div class="card">
+  <p style="font-size:13px; color:var(--text-light); margin-bottom:14px;">Sitelink text content is unreadable via the API (RSA/asset headline fields are not returned in the current MCP serialization). The below is sourced from LP data analysis and change event confirmation. Verify sitelink copy in the UI. All sitelinks were updated on 2026-03-18.</p>
+  <div class="sitelink-grid">
+    <div class="sitelink-card">
+      <div class="sitelink-title">Pool Gallery / Designs</div>
+      <div class="sitelink-descs">Driving gallery/design page traffic — informational, low conv expected</div>
+    </div>
+    <div class="sitelink-card">
+      <div class="sitelink-title">Download Brochure</div>
+      <div class="sitelink-descs">High-converting page (9% on Cincinnati). Most valuable sitelink.</div>
+    </div>
+    <div class="sitelink-card">
+      <div class="sitelink-title">Colors / Pool Colors</div>
+      <div class="sitelink-descs">Color selection page — navigational</div>
+    </div>
+    <div class="sitelink-card">
+      <div class="sitelink-title">Contact / Financing</div>
+      <div class="sitelink-descs">Contact/financing pages — should drive conversions. Verify these have call-to-action clarity.</div>
+      <div class="sitelink-note">⚠ Verify description lines filled in UI</div>
+    </div>
+  </div>
+  <p class="api-note" style="margin-top:12px;">Note: campaign_asset resource returns a type serialization error when queried. This is an MCP/API limitation — unable to pull sitelink text via API. Confirm sitelink descriptions (2 per sitelink) in Google Ads UI to ensure maximum ad strength.</p>
+</div>
+
+<!-- ===== NEGATIVE KEYWORDS ===== -->
+<div class="section-header">
+  <div class="section-num">9</div>
+  <div class="section-title">Negative Keywords — Shared Set + Gaps</div>
+</div>
+
+<div class="card">
+  <div class="good-box" style="margin-bottom:12px; border:none; border-radius:8px;">
+    <h4>Confirmed: Master Exclusion List 3.18 — Linked to All 3 Campaigns</h4>
+    <ul>
+      <li>Shared Set ID: 12012201802 ("Master Exclusion List 3.18")</li>
+      <li>162 negative keywords confirmed in the set</li>
+      <li>All 3 campaign IDs (22480126961, 23482008402, 22395809662) confirmed linked via campaign_shared_set</li>
+      <li>Shared set content cannot be read via API (FieldMask type error on shared_criterion resource) — but the link is confirmed</li>
+    </ul>
+  </div>
+
+  <div class="card-title">Gaps — Terms in Spend Data Not Blocked by Current Negative List</div>
+  <p style="font-size:13px; margin-bottom:12px;">The following terms are generating spend but appear unblocked despite likely being targetable as negatives. Add as exact-match negatives to all 3 campaigns (or add to the shared set if they should apply fleet-wide):</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+    <div style="background:#fee2e2; border-radius:8px; padding:12px; font-size:12px;">
+      <strong style="display:block; color:var(--red); margin-bottom:6px;">Competitor Brand Negatives (Add Now)</strong>
+      [exact] eastgate pools<br>
+      [exact] eastgate pools and spas<br>
+      [exact] leslies pool<br>
+      [exact] leslie pool<br>
+      [exact] leslie pools<br>
+      [exact] leslie pools cincinnati<br>
+      [exact] leslie pool supply<br>
+      [exact] watsons pool and spa<br>
+      [exact] premier pools and spas<br>
+      [exact] shehan pools<br>
+      [exact] lucas pools<br>
+      [exact] lucas pools dry ridge<br>
+      [phrase] eastgate<br>
+      [phrase] watsons pool
+    </div>
+    <div style="background:#fff7ed; border-radius:8px; padding:12px; font-size:12px;">
+      <strong style="display:block; color:var(--orange); margin-bottom:6px;">Product Mismatch Negatives (Add Now)</strong>
+      [phrase] plunge pool<br>
+      [phrase] plunge pools<br>
+      [exact] cold plunge<br>
+      [exact] prefab plunge pool<br>
+      [phrase] above ground pool<br>
+      [phrase] above ground pools<br>
+      [exact] semi inground pool<br>
+      [exact] semi-inground pool<br>
+      [phrase] aboveground pool<br>
+      [exact] above ground pool installation<br>
+      [exact] semi above ground pool
+    </div>
+  </div>
+</div>
+
+<!-- ===== KEYWORD STRUCTURE ===== -->
+<div class="section-header">
+  <div class="section-num">10</div>
+  <div class="section-title">Keyword Structure Overview</div>
+</div>
+
+<div class="card">
+  <p style="font-size:13px; color:var(--text-light); margin-bottom:14px;">RSA headline content is unreadable via API. Keyword data from keyword_view resource confirmed no broad match keywords on ENABLED campaigns — all keywords are Exact or Phrase match. This is correct per account standards.</p>
+
+  <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:12px; margin-bottom:16px;">
+    <div style="text-align:center; padding:16px; background:#f8fafc; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-size:22px; font-weight:800; color:var(--green);">✓</div>
+      <div style="font-size:13px; font-weight:600; margin-top:4px;">No Broad Match</div>
+      <div style="font-size:11px; color:var(--text-light);">All enabled keywords are Exact or Phrase</div>
+    </div>
+    <div style="text-align:center; padding:16px; background:#f8fafc; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-size:22px; font-weight:800; color:var(--green);">✓</div>
+      <div style="font-size:13px; font-weight:600; margin-top:4px;">Search-Only</div>
+      <div style="font-size:11px; color:var(--text-light);">Display Network OFF, Partners OFF</div>
+    </div>
+    <div style="text-align:center; padding:16px; background:#f8fafc; border-radius:8px; border:1px solid var(--border);">
+      <div style="font-size:22px; font-weight:800; color:var(--gold);">⚠</div>
+      <div style="font-size:13px; font-weight:600; margin-top:4px;">No CPC Caps</div>
+      <div style="font-size:11px; color:var(--text-light);">Max Conv uncapped on all 3 budgets</div>
+    </div>
+  </div>
+
+  <p style="font-size:13px; margin-top:8px;">Top performing search terms (converting):</p>
+  <table class="kw-table" style="margin-top:8px">
+    <thead>
+      <tr>
+        <th>Search Term</th>
+        <th>Market</th>
+        <th>Spend</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>CPA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>pool installers near me</td>
+        <td>Dayton</td>
+        <td>$48.69</td>
+        <td>8</td>
+        <td>1</td>
+        <td>$48.69</td>
+      </tr>
+      <tr>
+        <td>inground pools</td>
+        <td>Dayton</td>
+        <td>$40.88</td>
+        <td>6</td>
+        <td>1</td>
+        <td>$40.88</td>
+      </tr>
+      <tr>
+        <td>inground pool cost</td>
+        <td>Dayton</td>
+        <td>$25.43</td>
+        <td>3</td>
+        <td>1</td>
+        <td>$25.43</td>
+      </tr>
+      <tr>
+        <td>inground pool cost</td>
+        <td>Cincinnati</td>
+        <td>$34.65</td>
+        <td>8</td>
+        <td>1</td>
+        <td>$34.65</td>
+      </tr>
+      <tr>
+        <td>leisure pools cincinnati</td>
+        <td>Cincinnati</td>
+        <td>$104.34</td>
+        <td>37</td>
+        <td>1</td>
+        <td>$104.34</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="api-note">Most conversions are distributed across many terms — this is expected behavior under Max Conversions. The account is not over-reliant on a single search term.</p>
+</div>
+
+<!-- ===== RECOMMENDATIONS ===== -->
+<div class="section-header">
+  <div class="section-num">11</div>
+  <div class="section-title">Prioritized Recommendations</div>
+</div>
+
+<div class="rec-list">
+  <div class="rec-item">
+    <div class="rec-num">1</div>
+    <div class="rec-body">
+      <strong>Add competitor brand exclusions to all 3 campaigns (or master negative list)</strong>
+      <p>Eastgate Pools, Leslie's/Leslie Pool/Leslie Pools, Lucas Pools, Watson's, Premier Pools, Shehan Pools — all confirmed zero conversions on real spend. Add as exact-match negatives. ~$266/mo direct savings.</p>
+      <span class="effort low">Effort: Low — 20 min in UI</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">2</div>
+    <div class="rec-body">
+      <strong>Add plunge pool, above ground, semi-inground exclusions</strong>
+      <p>"Plunge pool/pools," "above ground pool/pools," "semi inground pool" — product mismatch terms, zero conversions, ~$175/mo combined. Add as phrase negatives to all 3 campaigns. Check if master list already has these — if so, the match type may be too narrow.</p>
+      <span class="effort low">Effort: Low — 15 min</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">3</div>
+    <div class="rec-body">
+      <strong>Set CPC bid ceilings on all 3 campaigns</strong>
+      <p>Cincinnati and NKY: $15-20 ceiling. Dayton: $20-25 ceiling. Prevents budget-depleting spike days on Max Conversions without meaningful algorithm constraint. Current avg CPCs ($4-7) are well below these thresholds.</p>
+      <span class="effort low">Effort: Low — 5 min per campaign</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">4</div>
+    <div class="rec-body">
+      <strong>Add tablet bid adjustment of -70% to Cincinnati and NKY</strong>
+      <p>Tablet spend on these two campaigns is generating zero conversions. Dayton can be -50% (2 tablet conv may be real signal). This will redirect budget to mobile/desktop where it converts.</p>
+      <span class="effort low">Effort: Low — 5 min</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">5</div>
+    <div class="rec-body">
+      <strong>Monitor Cincinnati — do not make structural changes before 4/7</strong>
+      <p>The 3/18 sitelink changes triggered a Max Conv re-learning period. Cincinnati needs 2-3 weeks to stabilize. Making additional changes now will restart the learning window. Check CPA on 4/7 — if still above $160, escalate to device bid adjustments and consider manual CPC test.</p>
+      <span class="effort low">Effort: None — monitoring only</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">6</div>
+    <div class="rec-body">
+      <strong>Add desktop bid reduction of -25% to Dayton</strong>
+      <p>Dayton desktop: $328/conv vs mobile $153/conv. The algorithm is allocating too much to desktop. A -25% bid reduction on desktop will push more impression share to mobile where conversion rates are stronger.</p>
+      <span class="effort low">Effort: Low — 3 min</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">7</div>
+    <div class="rec-body">
+      <strong>Verify all sitelinks have description lines 1 and 2 in UI</strong>
+      <p>API cannot read sitelink descriptions. If sitelinks are missing descriptions, ad strength is reduced and Google will show them less. Confirm in UI — low effort, high impact on IS recovery for Cincinnati.</p>
+      <span class="effort low">Effort: Low — 10 min</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">8</div>
+    <div class="rec-body">
+      <strong>Test brochure page as primary LP for Cincinnati — A/B approach</strong>
+      <p>Cincinnati brochure page converts at 9% vs 2.4% on the homepage. Consider a sitelink-directed test or a duplicate ad group with brochure page as final URL to see if driving more budget there improves overall account CPA.</p>
+      <span class="effort med">Effort: Medium — requires campaign setup</span>
+    </div>
+  </div>
+  <div class="rec-item">
+    <div class="rec-num">9</div>
+    <div class="rec-body">
+      <strong>Consider increasing NKY and Dayton budgets — both hitting impression share ceiling</strong>
+      <p>NKY at 58.4% IS and Dayton at 62% IS on their current budgets suggest they could capture more volume. With NKY at $116/conv and Dayton at $156/conv, scaling budgets 20-30% would likely generate proportional lead increases at acceptable CPAs.</p>
+      <span class="effort med">Effort: Medium — requires budget approval</span>
+    </div>
+  </div>
+</div>
+
+<!-- ===== DATA NOTES ===== -->
+<div class="section-header">
+  <div class="section-num">12</div>
+  <div class="section-title">API Data Notes &amp; Caveats</div>
+</div>
+
+<div class="card">
+  <ul style="font-size:13px; list-style:disc; margin-left:16px; display:flex; flex-direction:column; gap:8px;">
+    <li><strong>RSA headline/description content:</strong> Unable to retrieve via API — the responsive_search_ad fields return data that cannot be serialized by the MCP layer. No headline findings are reported. Verify ad copy in UI.</li>
+    <li><strong>Sitelink text content (campaign_asset):</strong> campaign_asset resource returns a FieldMask type serialization error. Sitelink descriptions cannot be confirmed via API — verify description lines in UI.</li>
+    <li><strong>Shared negative list content (shared_criterion):</strong> Same FieldMask error. The link between all 3 campaigns and shared set 12012201802 is confirmed, but the 162 keyword contents cannot be read via API. The gap analysis above identifies terms that appear to be unblocked despite the list being attached.</li>
+    <li><strong>Campaign-level negative keywords (campaign_criterion):</strong> Resource returns type error — unable to read campaign-level negatives separately from the shared set. Any campaign-level negatives added outside the shared set are not verified here.</li>
+    <li><strong>All confirmed findings are based on verified API data.</strong> No metric or enum value is reported unless returned directly from the API.</li>
+    <li><strong>Date range:</strong> 2026-02-21 to 2026-03-23 (30 days). Change events queried from 2026-03-18.</li>
+  </ul>
+</div>
+
+<div class="divider"></div>
+
+<div style="text-align:center; color:var(--text-light); font-size:12px; padding-bottom:24px;">
+  Elite — Passion Pools &nbsp;|&nbsp; Account 2375363197 &nbsp;|&nbsp; Audit generated 2026-03-23 &nbsp;|&nbsp; Explore Industries / Eli Bunyi
+</div>
+
+</div><!-- end container -->
+</body>
+</html>

@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit — Elite Leisure Pools Lake City | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3358;
+    --accent: #00b4d8;
+    --accent-glow: #90e0ef;
+    --gold: #f4a261;
+    --green: #2ec4b6;
+    --red: #e63946;
+    --yellow: #ffd166;
+    --white: #f0f4f8;
+    --text: #ccd6f6;
+    --muted: #8892b0;
+    --border: #1e3a5f;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { background: var(--navy); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; font-size: 14px; line-height: 1.6; }
+  a { color: var(--accent); text-decoration: none; }
+
+  /* Header */
+  .header { background: linear-gradient(135deg, var(--navy-mid) 0%, var(--navy-light) 100%); border-bottom: 2px solid var(--accent); padding: 32px 40px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; }
+  .brand-badge { font-size: 11px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--accent); margin-bottom: 8px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: #fff; margin-bottom: 4px; }
+  .header .subtitle { font-size: 14px; color: var(--muted); }
+  .score-box { text-align: center; background: var(--navy); border: 2px solid var(--accent); border-radius: 12px; padding: 16px 24px; min-width: 120px; }
+  .score-box .score-num { font-size: 42px; font-weight: 800; color: var(--yellow); line-height: 1; }
+  .score-box .score-label { font-size: 11px; color: var(--muted); text-transform: uppercase; letter-spacing: 1px; margin-top: 4px; }
+  .meta-row { display: flex; gap: 32px; margin-top: 20px; padding-top: 20px; border-top: 1px solid var(--border); flex-wrap: wrap; }
+  .meta-item { display: flex; flex-direction: column; gap: 2px; }
+  .meta-item .label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); }
+  .meta-item .value { font-size: 14px; font-weight: 600; color: var(--white); }
+
+  /* TOC */
+  .toc { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 10px; margin: 24px 40px; padding: 20px 28px; }
+  .toc h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--accent); margin-bottom: 12px; }
+  .toc-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 6px 24px; }
+  .toc-item { font-size: 13px; color: var(--muted); }
+  .toc-item a { color: var(--muted); }
+  .toc-item a:hover { color: var(--accent); }
+  .toc-item .num { color: var(--accent); font-weight: 700; margin-right: 4px; }
+
+  /* Content wrapper */
+  .content { padding: 0 40px 60px; }
+
+  /* Section */
+  .section { margin-bottom: 32px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+  .section-num { background: var(--accent); color: var(--navy); font-weight: 800; font-size: 11px; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .section-title { font-size: 16px; font-weight: 700; color: var(--white); }
+
+  /* Priority cards */
+  .findings { display: flex; flex-direction: column; gap: 12px; }
+  .finding { border-radius: 8px; overflow: hidden; display: flex; }
+  .finding-priority { writing-mode: vertical-rl; text-orientation: mixed; transform: rotate(180deg); font-size: 9px; font-weight: 800; letter-spacing: 2px; padding: 8px 6px; text-align: center; flex-shrink: 0; }
+  .finding-body { padding: 14px 18px; flex: 1; }
+  .finding-title { font-weight: 700; color: var(--white); margin-bottom: 4px; font-size: 14px; }
+  .finding-detail { color: var(--muted); font-size: 13px; }
+  .finding-detail strong { color: var(--text); }
+  .finding.p1 { background: rgba(230, 57, 70, 0.08); border: 1px solid rgba(230, 57, 70, 0.3); }
+  .finding.p1 .finding-priority { background: var(--red); color: #fff; }
+  .finding.p2 { background: rgba(244, 162, 97, 0.08); border: 1px solid rgba(244, 162, 97, 0.3); }
+  .finding.p2 .finding-priority { background: var(--gold); color: var(--navy); }
+  .finding.p3 { background: rgba(46, 196, 182, 0.08); border: 1px solid rgba(46, 196, 182, 0.3); }
+  .finding.p3 .finding-priority { background: var(--green); color: var(--navy); }
+  .finding.pass { background: rgba(0, 180, 216, 0.05); border: 1px solid rgba(0, 180, 216, 0.2); }
+  .finding.pass .finding-priority { background: var(--accent); color: var(--navy); font-size: 8px; }
+
+  /* Stat grids */
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); gap: 12px; margin-bottom: 16px; }
+  .stat-card { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 8px; padding: 14px 16px; }
+  .stat-card .stat-label { font-size: 10px; text-transform: uppercase; letter-spacing: 1px; color: var(--muted); margin-bottom: 6px; }
+  .stat-card .stat-value { font-size: 22px; font-weight: 800; color: var(--white); }
+  .stat-card .stat-sub { font-size: 11px; color: var(--muted); margin-top: 2px; }
+  .stat-card.alert .stat-value { color: var(--red); }
+  .stat-card.warn .stat-value { color: var(--yellow); }
+  .stat-card.good .stat-value { color: var(--green); }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; margin-top: 8px; font-size: 13px; }
+  .data-table th { background: var(--navy-light); color: var(--accent); font-size: 10px; text-transform: uppercase; letter-spacing: 1px; padding: 10px 14px; text-align: left; border-bottom: 2px solid var(--accent); }
+  .data-table td { padding: 9px 14px; border-bottom: 1px solid var(--border); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:nth-child(even) td { background: rgba(255,255,255,0.02); }
+  .data-table .bad { color: var(--red); font-weight: 700; }
+  .data-table .warn { color: var(--yellow); font-weight: 700; }
+  .data-table .good { color: var(--green); font-weight: 700; }
+  .data-table .muted { color: var(--muted); }
+
+  /* Tag badges */
+  .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 10px; font-weight: 700; letter-spacing: 0.5px; }
+  .badge-red { background: rgba(230,57,70,0.2); color: var(--red); border: 1px solid var(--red); }
+  .badge-yellow { background: rgba(255,209,102,0.15); color: var(--yellow); border: 1px solid var(--yellow); }
+  .badge-green { background: rgba(46,196,182,0.15); color: var(--green); border: 1px solid var(--green); }
+  .badge-blue { background: rgba(0,180,216,0.15); color: var(--accent); border: 1px solid var(--accent); }
+  .badge-gray { background: rgba(136,146,176,0.15); color: var(--muted); border: 1px solid var(--muted); }
+
+  /* Copy box */
+  .copy-section { background: var(--navy-mid); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 12px; }
+  .copy-section h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 1px; color: var(--accent); margin-bottom: 10px; }
+  .copy-box { background: var(--navy); border: 1px solid var(--border); border-radius: 6px; padding: 12px 14px; font-family: monospace; font-size: 12px; color: var(--text); cursor: pointer; user-select: all; line-height: 1.7; }
+  .copy-box:hover { border-color: var(--accent); }
+  .copy-label { font-size: 10px; color: var(--muted); margin-bottom: 4px; }
+
+  /* Checklist */
+  .checklist { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .checklist li { display: flex; align-items: flex-start; gap: 10px; font-size: 13px; }
+  .checklist li::before { content: '□'; color: var(--accent); font-size: 14px; flex-shrink: 0; line-height: 1.4; }
+  .checklist li.done::before { content: '✓'; color: var(--green); }
+
+  /* Alert banner */
+  .alert-banner { background: rgba(230,57,70,0.1); border: 1px solid var(--red); border-radius: 8px; padding: 14px 18px; margin-bottom: 20px; display: flex; align-items: flex-start; gap: 12px; }
+  .alert-banner .icon { font-size: 18px; flex-shrink: 0; }
+  .alert-banner .text strong { color: var(--red); }
+  .info-banner { background: rgba(0,180,216,0.07); border: 1px solid var(--accent); border-radius: 8px; padding: 14px 18px; margin-bottom: 16px; }
+
+  /* Progress bar */
+  .progress-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .progress-label { font-size: 12px; color: var(--muted); width: 140px; flex-shrink: 0; }
+  .progress-bar-wrap { flex: 1; background: var(--navy-light); border-radius: 4px; height: 8px; }
+  .progress-bar { height: 8px; border-radius: 4px; }
+  .progress-val { font-size: 12px; font-weight: 700; width: 48px; text-align: right; flex-shrink: 0; }
+
+  /* Footer */
+  .footer { background: var(--navy-mid); border-top: 1px solid var(--border); padding: 20px 40px; text-align: center; color: var(--muted); font-size: 12px; margin-top: 40px; }
+</style>
+</head>
+<body>
+
+<!-- ===== HEADER ===== -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="brand-badge">Leisure Pools · Lake City FL · Deep Audit</div>
+      <h1>Elite Leisure Pools Lake City</h1>
+      <div class="subtitle">Account 581-853-5707 &nbsp;·&nbsp; Audit Date: March 23, 2026 &nbsp;·&nbsp; Window: Feb 21 – Mar 23, 2026 (30 days)</div>
+    </div>
+    <div class="score-box">
+      <div class="score-num">34</div>
+      <div class="score-label">Health Score<br>/100</div>
+    </div>
+  </div>
+  <div class="meta-row">
+    <div class="meta-item"><span class="label">30d Spend</span><span class="value">$525.66</span></div>
+    <div class="meta-item"><span class="label">Conversions</span><span class="value">2</span></div>
+    <div class="meta-item"><span class="label">Blended CPA</span><span class="value">$262.83</span></div>
+    <div class="meta-item"><span class="label">Clicks</span><span class="value">124</span></div>
+    <div class="meta-item"><span class="label">Avg CPC</span><span class="value">$4.24</span></div>
+    <div class="meta-item"><span class="label">Impressions</span><span class="value">1,105</span></div>
+    <div class="meta-item"><span class="label">CTR</span><span class="value">11.2%</span></div>
+    <div class="meta-item"><span class="label">Impr. Share</span><span class="value">49.5%</span></div>
+    <div class="meta-item"><span class="label">IS Lost (Rank)</span><span class="value" style="color:var(--yellow)">34.3%</span></div>
+    <div class="meta-item"><span class="label">IS Lost (Budget)</span><span class="value" style="color:var(--red)">16.2%</span></div>
+    <div class="meta-item"><span class="label">Priority</span><span class="value" style="color:var(--yellow)">LOW–MEDIUM</span></div>
+    <div class="meta-item"><span class="label">Campaigns</span><span class="value">1 Active</span></div>
+  </div>
+</div>
+
+<!-- ===== TABLE OF CONTENTS ===== -->
+<div class="toc">
+  <h3>Table of Contents</h3>
+  <div class="toc-grid">
+    <div class="toc-item"><span class="num">1.</span><a href="#overview">Account Overview</a></div>
+    <div class="toc-item"><span class="num">2.</span><a href="#findings">Priority Findings</a></div>
+    <div class="toc-item"><span class="num">3.</span><a href="#campaigns">Campaign Structure</a></div>
+    <div class="toc-item"><span class="num">4.</span><a href="#bidding">Bidding &amp; Budget</a></div>
+    <div class="toc-item"><span class="num">5.</span><a href="#keywords">Keywords</a></div>
+    <div class="toc-item"><span class="num">6.</span><a href="#searchterms">Search Terms</a></div>
+    <div class="toc-item"><span class="num">7.</span><a href="#negatives">Negative Keywords</a></div>
+    <div class="toc-item"><span class="num">8.</span><a href="#geo">Geo Targeting</a></div>
+    <div class="toc-item"><span class="num">9.</span><a href="#assets">Assets &amp; Extensions</a></div>
+    <div class="toc-item"><span class="num">10.</span><a href="#landing-pages">Landing Pages</a></div>
+    <div class="toc-item"><span class="num">11.</span><a href="#conversions">Conversion Tracking</a></div>
+    <div class="toc-item"><span class="num">12.</span><a href="#device">Device &amp; Schedule</a></div>
+    <div class="toc-item"><span class="num">13.</span><a href="#market">Market Analysis</a></div>
+    <div class="toc-item"><span class="num">14.</span><a href="#recs">Recommendations</a></div>
+    <div class="toc-item"><span class="num">15.</span><a href="#rebuild">Rebuild Spec</a></div>
+    <div class="toc-item"><span class="num">16.</span><a href="#checklist">Pre-Launch Checklist</a></div>
+  </div>
+</div>
+
+<div class="content">
+
+<!-- ===== 1. OVERVIEW ===== -->
+<div class="section" id="overview">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <div class="section-title">Account Overview</div>
+  </div>
+  <div class="info-banner">
+    <strong>Context:</strong> Elite Leisure Pools Lake City is a single-location dealer serving the Lake City, FL market. With only $526 spend over 30 days — roughly $17.50/day — this is one of the smallest-budget accounts in the fleet. The market is small: Lake City is a rural north-central Florida city (~12,500 population) with limited pool-buying volume. Two conversions at $263 CPA is underperforming for this brand and market. The key questions: Is the budget appropriate for this market? Is the account structured to convert what little traffic exists?
+  </div>
+  <div class="stat-grid">
+    <div class="stat-card warn">
+      <div class="stat-label">Health Score</div>
+      <div class="stat-value">34/100</div>
+      <div class="stat-sub">Below fleet avg (40)</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Active Campaigns</div>
+      <div class="stat-value">1</div>
+      <div class="stat-sub">Single campaign</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-label">Blended CPA</div>
+      <div class="stat-value">$263</div>
+      <div class="stat-sub">Target: &lt;$150</div>
+    </div>
+    <div class="stat-card alert">
+      <div class="stat-label">Ad Groups</div>
+      <div class="stat-value">1</div>
+      <div class="stat-sub">All KWs in 1 group</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-label">IS Lost (Budget)</div>
+      <div class="stat-value">16.2%</div>
+      <div class="stat-sub">Budget constraint</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-label">IS Lost (Rank)</div>
+      <div class="stat-value">34.3%</div>
+      <div class="stat-sub">Quality/bid issue</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Avg CPC</div>
+      <div class="stat-value">$4.24</div>
+      <div class="stat-sub">Reasonable for FL</div>
+    </div>
+    <div class="stat-card good">
+      <div class="stat-label">CTR</div>
+      <div class="stat-value">11.2%</div>
+      <div class="stat-sub">Strong signal</div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== 2. PRIORITY FINDINGS ===== -->
+<div class="section" id="findings">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <div class="section-title">Priority Findings</div>
+  </div>
+  <div class="findings">
+
+    <div class="finding p1">
+      <div class="finding-priority">P1</div>
+      <div class="finding-body">
+        <div class="finding-title">Single Ad Group — All 12 Keywords Undifferentiated</div>
+        <div class="finding-detail">Every keyword (inground pools, fiberglass pools, pool builder, pool installation, leisure pools, etc.) lives in one ad group "Ad group 1" with a single RSA. There is no thematic segmentation, no ability to control bids by intent tier, and no custom ad copy per theme. <strong>This is the root cause of the high CPA</strong> — a generic ad serves all query types regardless of buyer intent.</div>
+      </div>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-priority">P1</div>
+      <div class="finding-body">
+        <div class="finding-title">Budget Too Low for Max Clicks — 16.2% IS Lost to Budget</div>
+        <div class="finding-detail">The account is on <strong>Maximize Clicks</strong> (bidding strategy type 9 = TARGET_SPEND) with a daily budget of just <strong>$16.12/day</strong> (~$484/mo). This is causing the account to miss ~16% of eligible impressions due to budget exhaustion. For a small market like Lake City, this may be near-optimal, but the algorithm is throttling delivery. Combined with 34.3% IS lost to rank, the account is only capturing <strong>49.5% of available impression share</strong>.</div>
+      </div>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-priority">P1</div>
+      <div class="finding-body">
+        <div class="finding-title">Homepage LP Dominates Spend ($436) — Poor Conversion Architecture</div>
+        <div class="finding-detail">The homepage (leisurepoolslakecity.com) received <strong>$435.54 of the $525.66 total spend</strong> — 82.9% — with only 1 conversion at a <strong>$435 CPA</strong>. The dedicated brochure page received $64 and 1 conversion ($64 CPA). The /fiberglass-pool-designs/ and /free-estimate/ pages received traffic from sitelinks but <strong>zero conversions despite $21 in spend</strong>. The account is funneling almost all spend into the weakest converting LP.</div>
+      </div>
+    </div>
+
+    <div class="finding p1">
+      <div class="finding-priority">P1</div>
+      <div class="finding-body">
+        <div class="finding-title">RSA Headlines Unreadable via API — Manual Review Required</div>
+        <div class="finding-detail">The ad_group_ad query returned a serialization error on the headlines/descriptions composite fields. The ad copy cannot be verified through the API. A manual UI review is required to confirm: (1) no brand stuffing, (2) adequate message match to keywords, (3) at least 1 pinned headline with a location-specific call-out (Lake City, FL).</div>
+      </div>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-priority">P2</div>
+      <div class="finding-body">
+        <div class="finding-title">Competitor Brand Leak — "leisure pools" Keyword + Brand Search Terms</div>
+        <div class="finding-detail">The keyword <strong>"leisure pools" [broad match]</strong> is active. Top search term by spend: <strong>"leisure pools" = $37.33 / 12 clicks / 0 conversions</strong>. Also triggered: "leisure pools lake city" ($14.36, 0 conv), "leisure pools usa" ($7.14, 0 conv), "leisure pools sapphire blue" ($4.44, 0 conv). These are navigational brand searches — people already know the brand. This traffic converts differently and is being wasted in a generic single-ad-group structure. A dedicated brand campaign at low CPC could capture intent; alternatively, add navigational terms as negatives from the general campaign.</div>
+      </div>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-priority">P2</div>
+      <div class="finding-body">
+        <div class="finding-title">Irrelevant Search Terms Burning Budget — No Campaign-Level Negatives</div>
+        <div class="finding-detail">Multiple zero-conversion search terms reflect geographic or product mismatches: <strong>"great escape pools mishawaka indiana"</strong> ($9.68), <strong>"fiberglass pools fort wayne indiana"</strong> ($5.88), <strong>"fort wayne pools"</strong> ($5.19), <strong>"lux arts pools"</strong> ($8.18), <strong>"beachscape lagoons"</strong> ($3.28), <strong>"leslies pool"</strong> ($4.72), <strong>"river pools d40"</strong> ($6.56), <strong>"diy concrete pool kit"</strong> ($7.28), <strong>"metal pools for sale"</strong> ($3.41). This is ~$54 wasted on irrelevant terms in a $526 total budget — about <strong>10.3% of total spend</strong>. The shared Master Exclusion List (162 terms) is linked but these terms are not covered. Campaign-level negatives are empty (zero results returned).</div>
+      </div>
+    </div>
+
+    <div class="finding p2">
+      <div class="finding-priority">P2</div>
+      <div class="finding-body">
+        <div class="finding-title">Above-Ground / DIY Query Leakage — Wrong Buyer Intent</div>
+        <div class="finding-detail">Several above-ground or DIY search terms are triggering: <strong>"above ground pools dealers near me"</strong> ($14.11, 0 conv), <strong>"above ground pool cost"</strong> ($4.71), <strong>"cost of installation of above ground pool"</strong> ($2.32), <strong>"above ground swimming pool sales near me"</strong> ($4.74), <strong>"above ground pools installed near me"</strong> ($3.42), <strong>"do it yourself inground pool"</strong> ($6.41), <strong>"diy concrete pool kit"</strong> ($7.28), <strong>"pool liner replacement near me"</strong> ($9.90). Combined: ~$52.89 in waste. These queries indicate shoppers for a fundamentally different product. Should be added as campaign-level negatives.</div>
+      </div>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-priority">P3</div>
+      <div class="finding-body">
+        <div class="finding-title">No Structured Snippets Asset</div>
+        <div class="finding-detail">Asset field type 18 (structured snippet) is present — one asset (ID 246100542400) is linked as field type 18. However, the asset content returned only "Leisure Pools Lake City" which appears to be the business name asset, not a structured snippet with pool model values. Unable to verify actual structured snippet header/values through API (serialization error on those fields). Manual review recommended to confirm a proper structured snippet (e.g., "Models: Harmony, Plunge, Vantage, Vista") is present.</div>
+      </div>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-priority">P3</div>
+      <div class="finding-body">
+        <div class="finding-title">Mobile CPA Significantly Higher Than Desktop</div>
+        <div class="finding-detail">Mobile received <strong>$459 spend (87.4%) / 1 conversion = $459 CPA</strong>. Desktop received <strong>$62 spend (11.9%) / 1 conversion = $62 CPA</strong>. Desktop converts 7x more efficiently per dollar. With Max Clicks bidding, there's no mechanism to apply a mobile bid adjustment. Once structure is improved and bidding transitions, a <strong>-30% to -40% mobile bid adjustment</strong> should be applied to protect budget. Tablet: $4 / 0 conv.</div>
+      </div>
+    </div>
+
+    <div class="finding p3">
+      <div class="finding-priority">P3</div>
+      <div class="finding-body">
+        <div class="finding-title">Geo Targeting Confirmed PRESENCE — Correct</div>
+        <div class="finding-detail">Campaign geo_target_type_setting.positive_geo_target_type = 7 (PRESENCE). This is correct — ads only show to users physically in the target area. No action needed.</div>
+      </div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-priority">PASS</div>
+      <div class="finding-body">
+        <div class="finding-title">Shared Negative List Linked — Master Exclusion List 3.18 (162 terms)</div>
+        <div class="finding-detail">Confirmed: Master Exclusion List 3.18 (162 keywords) is linked to the campaign. This is the fleet-standard negative list and is active.</div>
+      </div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-priority">PASS</div>
+      <div class="finding-body">
+        <div class="finding-title">Conversion Tracking — 3 Actions, All Origin=WEBSITE</div>
+        <div class="finding-detail">Three enabled conversion actions: "Contact Dealer" (ONCE counting), "Download Brochure" (ONCE counting), "Phone Call" (EVERY counting). All origin=2 (WEBSITE). No apparent GA4 duplication seen (unlike LP Houston). Counting types are appropriate. No duplicate issue detected.</div>
+      </div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-priority">PASS</div>
+      <div class="finding-body">
+        <div class="finding-title">Search Partners Disabled — Correct</div>
+        <div class="finding-detail">target_search_network = false, target_content_network = false. Ads only show on Google Search. This is correct for this account type.</div>
+      </div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-priority">PASS</div>
+      <div class="finding-body">
+        <div class="finding-title">Assets Present — Sitelinks (4), Callouts (4), Call, Business Name, Logo</div>
+        <div class="finding-detail">Campaign-level assets confirmed: 4 sitelinks (Stylish Pool Designs, Free Estimate, 2025 Pool Brochure, Stunning Pool Colors), 4 callouts (Expert Pool Installers, Custom Pool Designs, Lifetime Warranty, Fast Local Installation), 1 call asset (574-527-4684), business name, logo. Good asset coverage at campaign level. No ad group level assets (expected for single ad group).</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== 3. CAMPAIGN STRUCTURE ===== -->
+<div class="section" id="campaigns">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <div class="section-title">Campaign Structure</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Campaign</th>
+        <th>Status</th>
+        <th>Budget/Day</th>
+        <th>Bidding</th>
+        <th>Spend (30d)</th>
+        <th>Conv</th>
+        <th>CPA</th>
+        <th>IS%</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Leisure Pools Lake City Campaign</td>
+        <td><span class="badge badge-green">ENABLED</span></td>
+        <td>$16.12</td>
+        <td><span class="badge badge-yellow">Max Clicks</span></td>
+        <td>$525.66</td>
+        <td>2</td>
+        <td class="warn">$262.83</td>
+        <td>49.5%</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:14px; color:var(--muted); font-size:13px;">
+    <strong style="color:var(--text)">Structure Issue:</strong> This account operates as a single campaign → single ad group → 12 keywords. While appropriate for very small budgets, the lack of thematic segmentation means all keywords receive the same ad copy and there is no way to prioritize high-intent terms. The account should have a minimum of 2–3 themed ad groups (Fiberglass Pool Buyer, Pool Builder/Contractor, Brand).
+  </div>
+</div>
+
+<!-- ===== 4. BIDDING & BUDGET ===== -->
+<div class="section" id="bidding">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <div class="section-title">Bidding &amp; Budget</div>
+  </div>
+  <div class="alert-banner">
+    <div class="icon">⚠️</div>
+    <div class="text"><strong>Budget Constraint Active:</strong> 16.2% of eligible impressions are lost to budget. At $16.12/day, the account runs out of budget before the end of the day. This is particularly impactful in a small market where every impression matters.</div>
+  </div>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-label">Strategy</div>
+      <div class="stat-value" style="font-size:16px;">Max Clicks</div>
+      <div class="stat-sub">No CPC cap</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Daily Budget</div>
+      <div class="stat-value">$16.12</div>
+      <div class="stat-sub">~$484/mo</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-label">Avg CPC</div>
+      <div class="stat-value">$4.24</div>
+      <div class="stat-sub">Fleet-typical</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-label">IS Lost (Budget)</div>
+      <div class="stat-value">16.2%</div>
+      <div class="stat-sub">Budget throttle</div>
+    </div>
+    <div class="stat-card warn">
+      <div class="stat-label">IS Lost (Rank)</div>
+      <div class="stat-value">34.3%</div>
+      <div class="stat-sub">Bid/quality issue</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-label">Impr. Share</div>
+      <div class="stat-value">49.5%</div>
+      <div class="stat-sub">Half of market</div>
+    </div>
+  </div>
+
+  <div class="progress-row">
+    <div class="progress-label">Captured IS</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:49.5%;background:var(--green);"></div></div>
+    <div class="progress-val" style="color:var(--green)">49.5%</div>
+  </div>
+  <div class="progress-row">
+    <div class="progress-label">Lost to Rank</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:34.3%;background:var(--yellow);"></div></div>
+    <div class="progress-val" style="color:var(--yellow)">34.3%</div>
+  </div>
+  <div class="progress-row">
+    <div class="progress-label">Lost to Budget</div>
+    <div class="progress-bar-wrap"><div class="progress-bar" style="width:16.2%;background:var(--red);"></div></div>
+    <div class="progress-val" style="color:var(--red)">16.2%</div>
+  </div>
+
+  <div style="margin-top:16px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--white)">Budget Guidance:</strong> For Lake City FL (rural, small market), $484/mo is potentially appropriate given low local demand. However, the budget constraint combined with rank losses means the account is missing ~50% of eligible searches. Recommendation: increase daily budget to <strong>$20–25/day ($600–$750/mo)</strong> to reduce budget throttle, then add a CPC cap of $6–7 to reduce rank losses. Do not scale aggressively — this is a low-volume market.
+  </div>
+</div>
+
+<!-- ===== 5. KEYWORDS ===== -->
+<div class="section" id="keywords">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <div class="section-title">Keywords</div>
+  </div>
+  <div class="alert-banner">
+    <div class="icon">⚠️</div>
+    <div class="text"><strong>All keywords are Broad Match.</strong> Every keyword in this account is match type 3 (BROAD). Combined with a single ad group, broad match is triggering a wide range of irrelevant queries (see Search Terms section). No phrase match or exact match keywords exist.</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Keyword</th>
+        <th>Match Type</th>
+        <th>Ad Group</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>inground pools</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Core — should be phrase or exact</td></tr>
+      <tr><td>in ground pools</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Duplicate intent — merge with above</td></tr>
+      <tr><td>fiberglass pools</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Core fiberglass — high priority</td></tr>
+      <tr><td>pool contractor</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Builder intent — own ad group</td></tr>
+      <tr><td>pool companies</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Research intent</td></tr>
+      <tr><td>pool builder</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Builder intent — own ad group</td></tr>
+      <tr><td>pool designs</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Low intent/research</td></tr>
+      <tr><td>pool installation</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Service intent</td></tr>
+      <tr><td>prefab pools</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>Good fiberglass signal</td></tr>
+      <tr><td>pool companies near me</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>High local intent</td></tr>
+      <tr><td>pool builder near me</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td>High local intent</td></tr>
+      <tr><td>leisure pools</td><td><span class="badge badge-yellow">Broad</span></td><td>Ad group 1</td><td class="bad">Brand KW — separate campaign needed</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--white)">Key Issues:</strong> (1) All broad match — creating irrelevant query expansion. (2) "leisure pools" brand keyword mixed with generic terms. (3) Single ad group prevents bid differentiation. (4) No negative keywords at campaign level (only shared list). Recommend converting top-intent keywords to phrase match and creating a separate brand ad group.
+  </div>
+</div>
+
+<!-- ===== 6. SEARCH TERMS ===== -->
+<div class="section" id="searchterms">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <div class="section-title">Search Terms Analysis</div>
+  </div>
+  <div class="info-banner">
+    50 search terms analyzed over the 30-day window. Significant waste identified in geographic mismatches (Indiana queries), above-ground pool queries, DIY queries, and competitor brand queries.
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Search Term</th>
+        <th>Spend</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>leisure pools</td><td>$37.33</td><td>12</td><td>0</td><td><span class="badge badge-blue">ADDED</span></td><td class="warn">Brand — separate campaign</td></tr>
+      <tr><td>above ground pools dealers near me</td><td>$14.11</td><td>3</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Negative — wrong product</td></tr>
+      <tr><td>leisure pools lake city</td><td>$14.36</td><td>8</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="warn">Navigational — brand campaign</td></tr>
+      <tr><td>inground pool</td><td>$15.02</td><td>3</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td>Keep — core intent</td></tr>
+      <tr><td>large fiberglass pools</td><td>$10.22</td><td>2</td><td>1</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="good">Keep — add as KW</td></tr>
+      <tr><td>inground pool liner replacement near me</td><td>$9.90</td><td>2</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Negative — repair, not install</td></tr>
+      <tr><td>great escape pools mishawaka indiana</td><td>$9.68</td><td>2</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Negative — wrong geo + competitor</td></tr>
+      <tr><td>lux arts pools</td><td>$8.18</td><td>2</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Competitor brand name</td></tr>
+      <tr><td>fiberglass pools</td><td>$8.91</td><td>2</td><td>0</td><td><span class="badge badge-blue">ADDED</span></td><td>Core — should convert</td></tr>
+      <tr><td>small fiberglass pools</td><td>$8.23</td><td>2</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td>Watch — may be in-market</td></tr>
+      <tr><td>diy concrete pool kit</td><td>$7.28</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Negative — DIY, wrong product</td></tr>
+      <tr><td>leisure pools usa</td><td>$7.14</td><td>3</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="warn">Brand search — brand campaign</td></tr>
+      <tr><td>inground pool costs</td><td>$7.04</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td>Research intent — acceptable</td></tr>
+      <tr><td>how much does a pool cost</td><td>$6.56</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td>Research — consider /pool-pricing/ LP</td></tr>
+      <tr><td>river pools d40</td><td>$6.56</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Competitor brand+model — negative</td></tr>
+      <tr><td>fiberglass pools fort wayne indiana</td><td>$5.88</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Wrong geo — negative "fort wayne"</td></tr>
+      <tr><td>plunge pool</td><td>$5.80</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td>Watch — Leisure does plunge models</td></tr>
+      <tr><td>affordable inground pools</td><td>$5.42</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td>Good intent — keep</td></tr>
+      <tr><td>fort wayne pools</td><td>$5.19</td><td>1</td><td>0</td><td><span class="badge badge-gray">EXCLUDED</span></td><td class="bad">Wrong geo — negative "fort wayne"</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px; padding:12px 16px; background:var(--navy-mid); border:1px solid var(--border); border-radius:8px; font-size:13px;">
+    <strong style="color:var(--white)">Waste Summary:</strong> ~$53 identifiable waste on irrelevant terms in 30 days = <strong>~10% of total budget</strong>. Indiana geo queries alone: ~$20. Above-ground/liner/DIY queries: ~$53. Competitor brand queries (lux arts, river pools, great escape): ~$22. In a $526 budget, this is significant.
+  </div>
+</div>
+
+<!-- ===== 7. NEGATIVES ===== -->
+<div class="section" id="negatives">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <div class="section-title">Negative Keywords</div>
+  </div>
+  <div class="findings">
+    <div class="finding pass">
+      <div class="finding-priority">PASS</div>
+      <div class="finding-body">
+        <div class="finding-title">Master Exclusion List 3.18 — Linked ✓</div>
+        <div class="finding-detail">Shared set ID 12012201802, 162 keywords. Confirmed linked to the campaign. This is the fleet standard.</div>
+      </div>
+    </div>
+    <div class="finding p1">
+      <div class="finding-priority">P1</div>
+      <div class="finding-body">
+        <div class="finding-title">Zero Campaign-Level Negatives Added</div>
+        <div class="finding-detail">No campaign-level negative keywords exist beyond the shared list. The shared list does not cover the wasted terms identified above (Indiana geos, specific competitor brands, DIY terms, liner repair). Campaign-level negatives are urgently needed.</div>
+      </div>
+    </div>
+  </div>
+  <div class="copy-section" style="margin-top:16px;">
+    <h4>Recommended Campaign-Level Negative Keywords to Add</h4>
+    <div class="copy-label">Click to select all — paste into Google Ads Editor (Negative Keyword column)</div>
+    <div class="copy-box">
+fort wayne
+mishawaka
+indiana
+above ground
+above-ground
+aboveground
+pool liner
+liner replacement
+liner repair
+diy
+do it yourself
+do-it-yourself
+concrete pool kit
+metal pool
+lux arts
+river pools
+great escape
+great escapes
+leslies
+leslie's
+beachscape
+pinnacle leisure
+vinyl pool
+vinyl liner
+semi in ground
+semi inground
+kit pool
+pool chemicals
+pool supplies
+pool maintenance
+pool repair
+pool service
+pool cleaning
+pool cover
+pool heater
+pool pump
+pool filter
+pool toys
+intex
+bestway
+coleman pool
+above ground swimming pool</div>
+  </div>
+</div>
+
+<!-- ===== 8. GEO TARGETING ===== -->
+<div class="section" id="geo">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <div class="section-title">Geo Targeting</div>
+  </div>
+  <div class="findings">
+    <div class="finding pass">
+      <div class="finding-priority">PASS</div>
+      <div class="finding-body">
+        <div class="finding-title">PRESENCE Geo Targeting Confirmed — Correct</div>
+        <div class="finding-detail">positive_geo_target_type = 7 = PRESENCE. This means ads only show to users physically located in the target area. This is the correct setting for a local dealer and is consistent with the fleet standard.</div>
+      </div>
+    </div>
+  </div>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    Note: The geographic mismatch search terms seen (Indiana queries) are <em>not</em> a geo targeting failure — they reflect the keyword broad match expansion pulling in terms from users physically in FL who are searching for Indiana-based competitors. The fix is negative keywords, not geo adjustments.
+  </div>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--white)">Market Size Consideration:</strong> Lake City, FL (Columbia County) has a population of ~12,500 in the city proper; ~70,000 in the county. Pool installation demand is limited — this is not a high-growth market. The low budget may actually be appropriate. The focus should be on <em>conversion efficiency</em>, not volume growth.
+  </div>
+</div>
+
+<!-- ===== 9. ASSETS & EXTENSIONS ===== -->
+<div class="section" id="assets">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <div class="section-title">Assets &amp; Extensions</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Asset Type</th>
+        <th>Level</th>
+        <th>Count</th>
+        <th>Content</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Sitelinks</td>
+        <td>Campaign</td>
+        <td>4</td>
+        <td>Stylish Pool Designs · Free Estimate · 2025 Pool Brochure · Stunning Pool Colors</td>
+        <td><span class="badge badge-green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Callouts</td>
+        <td>Campaign</td>
+        <td>4</td>
+        <td>Expert Pool Installers · Custom Pool Designs · Lifetime Warranty · Fast Local Installation</td>
+        <td><span class="badge badge-green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Call</td>
+        <td>Campaign</td>
+        <td>1</td>
+        <td>(574) 527-4684</td>
+        <td><span class="badge badge-green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Business Name</td>
+        <td>Campaign</td>
+        <td>1</td>
+        <td>Leisure Pools Lake City</td>
+        <td><span class="badge badge-green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Logo</td>
+        <td>Campaign</td>
+        <td>1</td>
+        <td>Logo-LeisurePools-LakeCity-FullColor-1.jpg</td>
+        <td><span class="badge badge-green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Images</td>
+        <td>Campaign</td>
+        <td>14</td>
+        <td>Multiple image assets (field type 26)</td>
+        <td><span class="badge badge-green">PASS</span></td>
+      </tr>
+      <tr>
+        <td>Structured Snippets</td>
+        <td>Campaign</td>
+        <td>?</td>
+        <td>API returned field_type 18 but content unverifiable (serialization error)</td>
+        <td><span class="badge badge-yellow">VERIFY</span></td>
+      </tr>
+      <tr>
+        <td>Sitelinks</td>
+        <td>Ad Group</td>
+        <td>0</td>
+        <td>None (acceptable for single ad group)</td>
+        <td><span class="badge badge-gray">N/A</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    Overall asset coverage is solid for a small account. The main gap to verify manually is the structured snippet — if it's missing or only contains a business name rather than pool models/services, it should be added.
+  </div>
+</div>
+
+<!-- ===== 10. LANDING PAGES ===== -->
+<div class="section" id="landing-pages">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <div class="section-title">Landing Page Performance</div>
+  </div>
+  <div class="alert-banner">
+    <div class="icon">🚨</div>
+    <div class="text"><strong>Homepage consuming 82.9% of budget at $435 CPA.</strong> The account is funneling almost all paid traffic to the homepage, which is the weakest converting page. The brochure download page converts at 7.7x lower CPA ($64 vs $435).</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Landing Page</th>
+        <th>Spend</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>CPA</th>
+        <th>Budget %</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>leisurepoolslakecity.com <span class="muted">(Homepage)</span></td>
+        <td>$435.54</td>
+        <td>105</td>
+        <td>1</td>
+        <td class="bad">$435.54</td>
+        <td>82.9%</td>
+        <td class="bad">P1 — Redirect spend</td>
+      </tr>
+      <tr>
+        <td>/download-brochure/</td>
+        <td>$64.10</td>
+        <td>13</td>
+        <td>1</td>
+        <td class="good">$64.10</td>
+        <td>12.2%</td>
+        <td class="good">Best LP — increase</td>
+      </tr>
+      <tr>
+        <td>/fiberglass-pool-designs/</td>
+        <td>$17.03</td>
+        <td>4</td>
+        <td>0</td>
+        <td class="muted">N/A</td>
+        <td>3.2%</td>
+        <td>Potential — test</td>
+      </tr>
+      <tr>
+        <td>/fiberglass-pool-colors/</td>
+        <td>$4.95</td>
+        <td>1</td>
+        <td>0</td>
+        <td class="muted">N/A</td>
+        <td>0.9%</td>
+        <td>Low traffic</td>
+      </tr>
+      <tr>
+        <td>/free-estimate/</td>
+        <td>$4.04</td>
+        <td>1</td>
+        <td>0</td>
+        <td class="muted">N/A</td>
+        <td>0.8%</td>
+        <td>Should convert — investigate</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:14px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--white)">Action:</strong> The RSA final URL should point to <strong>/download-brochure/</strong> as the primary landing page (proven $64 CPA), not the homepage. The /free-estimate/ page getting 0 conversions despite being a high-intent destination warrants investigation — the form may be broken or the page may have a UX issue. The /fiberglass-pool-designs/ page should also be tested as an RSA final URL.
+  </div>
+</div>
+
+<!-- ===== 11. CONVERSION TRACKING ===== -->
+<div class="section" id="conversions">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <div class="section-title">Conversion Tracking</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Conversion Action</th>
+        <th>Origin</th>
+        <th>Counting</th>
+        <th>Included in Conv.</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lake City (web) Contact Dealer</td>
+        <td>WEBSITE</td>
+        <td>ONCE (per click)</td>
+        <td><span class="badge badge-green">YES</span></td>
+        <td><span class="badge badge-green">ENABLED</span></td>
+      </tr>
+      <tr>
+        <td>Lake City (web) Download Brochure</td>
+        <td>WEBSITE</td>
+        <td>ONCE (per click)</td>
+        <td><span class="badge badge-green">YES</span></td>
+        <td><span class="badge badge-green">ENABLED</span></td>
+      </tr>
+      <tr>
+        <td>Lake City - Phone Call</td>
+        <td>WEBSITE</td>
+        <td>EVERY</td>
+        <td><span class="badge badge-green">YES</span></td>
+        <td><span class="badge badge-green">ENABLED</span></td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--green)">Clean:</strong> No GA4 duplication detected (unlike LP Houston). All three actions have a single origin (WEBSITE). ONCE counting on form fills is correct. Phone calls on EVERY is acceptable (each call is a new interaction). Brochure downloads are real conversions (require contact form fill — per fleet policy). <strong>No action needed on conversion tracking.</strong>
+  </div>
+</div>
+
+<!-- ===== 12. DEVICE & SCHEDULE ===== -->
+<div class="section" id="device">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <div class="section-title">Device &amp; Day-of-Week Analysis</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Device</th>
+        <th>Spend</th>
+        <th>Spend %</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>CPA</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Mobile (2)</td>
+        <td>$459.41</td>
+        <td>87.4%</td>
+        <td>105</td>
+        <td>1</td>
+        <td class="bad">$459.41</td>
+        <td class="bad">Huge waste — bid down -35%</td>
+      </tr>
+      <tr>
+        <td>Desktop (4)</td>
+        <td>$62.25</td>
+        <td>11.8%</td>
+        <td>18</td>
+        <td>1</td>
+        <td class="good">$62.25</td>
+        <td class="good">7x more efficient</td>
+      </tr>
+      <tr>
+        <td>Tablet (3)</td>
+        <td>$4.00</td>
+        <td>0.8%</td>
+        <td>1</td>
+        <td>0</td>
+        <td class="muted">—</td>
+        <td>Minimal volume</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:16px;"></div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Day</th>
+        <th>Spend</th>
+        <th>Clicks</th>
+        <th>Conv</th>
+        <th>Note</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Sunday (8)</td><td>$97.00</td><td>25</td><td>0</td><td class="warn">High spend, 0 conv</td></tr>
+      <tr><td>Monday (2)</td><td>$49.76</td><td>12</td><td>0</td><td>Average</td></tr>
+      <tr><td>Tuesday (3)</td><td>$57.12</td><td>13</td><td>0</td><td>Average</td></tr>
+      <tr><td>Wednesday (4)</td><td>$101.07</td><td>26</td><td>1</td><td>Best volume day</td></tr>
+      <tr><td>Thursday (5)</td><td>$42.15</td><td>9</td><td>1</td><td class="good">Best CPA day</td></tr>
+      <tr><td>Friday (6)</td><td>$82.41</td><td>16</td><td>0</td><td>High spend, 0 conv</td></tr>
+      <tr><td>Saturday (7)</td><td>$96.16</td><td>23</td><td>0</td><td class="warn">High spend, 0 conv</td></tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--white)">Day-of-Week Insight:</strong> Sunday and Saturday account for $193 spend with 0 conversions. Wednesday and Thursday are the only converting days. With a $16/day budget, consider applying ad schedule adjustments to reduce weekend spend by 20-30% and let the budget concentrate on weekdays.
+  </div>
+</div>
+
+<!-- ===== 13. MARKET ANALYSIS ===== -->
+<div class="section" id="market">
+  <div class="section-header">
+    <div class="section-num">13</div>
+    <div class="section-title">Small Market Analysis — Is Budget Appropriate?</div>
+  </div>
+  <div class="info-banner">
+    <strong>Direct answer:</strong> The budget is roughly appropriate for the market size, but the <em>structure</em> is making it perform poorly. Lake City FL is a small, rural market. At $484/mo, this account will never generate high conversion volume — the goal should be efficiency, not scale.
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Factor</th>
+        <th>Assessment</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Market Population (Columbia County, FL)</td>
+        <td>~70,000 county / ~12,500 city — low pool-buying population</td>
+      </tr>
+      <tr>
+        <td>Pool Installation Demand</td>
+        <td>Limited — rural Florida, modest income market</td>
+      </tr>
+      <tr>
+        <td>Search Volume Proxy</td>
+        <td>1,105 impressions / 30 days = ~37 impressions/day at 49.5% IS → ~75 total market impressions/day. Very low.</td>
+      </tr>
+      <tr>
+        <td>Budget Ceiling Estimate</td>
+        <td>Even at 100% IS, the account would capture ~75 impressions/day. At ~11% CTR = ~8 clicks/day = $34/day max efficient spend. Current $16/day is about 47% of theoretical ceiling.</td>
+      </tr>
+      <tr>
+        <td>Ideal Budget Range</td>
+        <td>$18–25/day ($540–$750/mo). Beyond $25/day, returns diminish in this market.</td>
+      </tr>
+      <tr>
+        <td>CPA Expectation at Optimum</td>
+        <td>With correct LP, bid strategy, and negatives: $80–$120 realistic CPA target. Current $263 is 2–3x too high.</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top:12px; font-size:13px; color:var(--muted);">
+    <strong style="color:var(--white)">Conclusion:</strong> The underperformance is <em>structural, not a budget problem</em>. The account is wasting ~25% of its tiny budget on irrelevant terms, then funneling remaining traffic to the wrong landing page (homepage). Fix the structure first; then consider a modest budget increase to $20–22/day.
+  </div>
+</div>
+
+<!-- ===== 14. RECOMMENDATIONS ===== -->
+<div class="section" id="recs">
+  <div class="section-header">
+    <div class="section-num">14</div>
+    <div class="section-title">Prioritized Recommendations</div>
+  </div>
+  <table class="data-table">
+    <thead>
+      <tr>
+        <th>Pri</th>
+        <th>Action</th>
+        <th>Expected Impact</th>
+        <th>Effort</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-red">P1</span></td>
+        <td>Change RSA final URL from homepage to <strong>/download-brochure/</strong></td>
+        <td>CPA reduction from $263 → ~$100-120 immediately</td>
+        <td>5 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-red">P1</span></td>
+        <td>Add campaign-level negative keywords (see list above: ~40 terms including Indiana geo, above-ground, DIY, liner repair, competitor brands)</td>
+        <td>Eliminates ~$53-60/mo in wasted spend (~10-12% of budget)</td>
+        <td>15 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-red">P1</span></td>
+        <td>Manually review RSA headlines/descriptions in UI — confirm no brand stuffing, ensure location-specific messaging</td>
+        <td>Ad quality / policy compliance</td>
+        <td>5 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-yellow">P2</span></td>
+        <td>Add brand keyword ("leisure pools") as negative to general campaign; create a separate brand ad group or brand campaign ($3-5/day) with exact match [leisure pools] [leisure pools lake city]</td>
+        <td>Reduces brand query waste in general campaign; captures navigational intent efficiently</td>
+        <td>20 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-yellow">P2</span></td>
+        <td>Convert top-intent keywords to phrase match: "fiberglass pools", "pool builder near me", "pool companies near me", "inground pools"</td>
+        <td>Reduces irrelevant query expansion from broad match</td>
+        <td>10 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-yellow">P2</span></td>
+        <td>Investigate /free-estimate/ page — form may be broken (1 click, 0 conv, sitelink pointing there)</td>
+        <td>Fix could unlock conversion from high-intent visitors</td>
+        <td>10 min check</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">P3</span></td>
+        <td>After structure fix, add Max CPC cap of $6.50 to reduce rank-lost IS and improve ad position</td>
+        <td>Recover 15-20% of rank-lost IS</td>
+        <td>2 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">P3</span></td>
+        <td>Apply weekend ad schedule reduction (Sat/Sun: -25%) — $193 spent on weekends with 0 conversions</td>
+        <td>Reallocates ~$35/mo to weekday converting traffic</td>
+        <td>5 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">P3</span></td>
+        <td>Verify structured snippets in UI — if missing, add "Models" header with pool lines</td>
+        <td>Ad real estate / CTR improvement</td>
+        <td>5 min</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">P3</span></td>
+        <td>Modest budget increase to $20/day ($600/mo) after implementing P1 fixes</td>
+        <td>Reduces 16.2% budget-lost IS without overspending the market</td>
+        <td>2 min</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- ===== 15. REBUILD SPEC ===== -->
+<div class="section" id="rebuild">
+  <div class="section-header">
+    <div class="section-num">15</div>
+    <div class="section-title">Campaign Rebuild Specification</div>
+  </div>
+  <div class="info-banner">
+    Given the small budget, a full rebuild may be overkill — but restructuring from 1 ad group to 3 themed ad groups would significantly improve relevance and CPA. Below is a minimal restructure appropriate for a $500/mo account.
+  </div>
+
+  <div class="copy-section">
+    <h4>Proposed Campaign Structure</h4>
+    <div class="copy-box">CAMPAIGN: Leisure Pools Lake City | Budget: $20/day | Bidding: Max Clicks + $6.50 CPC cap
+Geo: Lake City FL + 30-mile radius | Geo Type: PRESENCE | Network: Search only
+
+AD GROUP 1: Fiberglass Pools
+Keywords:
+  [fiberglass pools]                    (Exact)
+  "fiberglass pool"                     (Phrase)
+  "fiberglass inground pool"            (Phrase)
+  "prefab pools"                        (Phrase)
+  "large fiberglass pools"              (Phrase - add from search terms)
+Final URL: /download-brochure/
+
+AD GROUP 2: Pool Builder/Contractor
+Keywords:
+  "pool builder near me"                (Phrase)
+  "pool builder"                        (Phrase)
+  "pool contractor"                     (Phrase)
+  "pool companies near me"              (Phrase)
+  "pool installation"                   (Phrase)
+  "pool companies"                      (Phrase)
+Final URL: /free-estimate/ (once verified working) or /download-brochure/
+
+AD GROUP 3: Inground Pools General
+Keywords:
+  "inground pools"                      (Phrase)
+  "in ground pools"                     (Phrase)
+  "inground pool designs"               (Phrase)
+  "affordable inground pools"           (Phrase)
+Final URL: /fiberglass-pool-designs/
+
+BRAND CAMPAIGN (Separate, $3/day):
+AD GROUP: Brand
+Keywords:
+  [leisure pools]                       (Exact)
+  [leisure pools lake city]             (Exact)
+  [leisurepoolslakecity.com]            (Exact)
+Final URL: leisurepoolslakecity.com (homepage OK for brand)</div>
+  </div>
+
+  <div class="copy-section" style="margin-top:16px;">
+    <h4>Negative Keywords — Campaign Level (Add to All Ad Groups)</h4>
+    <div class="copy-box">fort wayne | mishawaka | indiana | above ground | above-ground | aboveground
+pool liner | liner replacement | liner repair | diy | do it yourself
+concrete pool kit | metal pool | lux arts | river pools | great escape
+leslies | leslie's | beachscape | vinyl pool | vinyl liner | semi in ground
+semi inground | kit pool | pool chemicals | pool supplies | pool maintenance
+pool repair | pool service | pool cleaning | pool cover | pool heater
+pool pump | pool filter | pool toys | intex | bestway | coleman pool</div>
+  </div>
+
+  <div class="copy-section" style="margin-top:16px;">
+    <h4>RSA Copy Template — Ad Group 1: Fiberglass Pools</h4>
+    <div class="copy-label">Headlines (15 max, 30 chars) — mark PIN positions</div>
+    <div class="copy-box">PIN 1: Fiberglass Pools in Lake City
+PIN 2: Leisure Pools Authorized Dealer
+Fiberglass Inground Pools
+Low-Maintenance Pool Installation
+Custom Fiberglass Pool Designs
+Get a Free Pool Estimate
+Durable Lifetime Warranty Pools
+Pool Installation Lake City FL
+Beautiful Pools, Easy Living
+Prefab Fiberglass Pool Experts
+Request Your Free Brochure
+Inground Pools Starting Today
+Over 50 Pool Designs Available</div>
+    <div class="copy-label" style="margin-top:10px;">Descriptions (4 max, 90 chars)</div>
+    <div class="copy-box">PIN 1: Leisure Pools dealer serving Lake City & North FL. Request your free brochure today.
+Explore 50+ fiberglass pool designs. Low-maintenance, lifetime warranty. Free estimate.
+Custom fiberglass pools installed in Lake City, FL. No vinyl liners, no concrete mess.
+Download our 2025 pool guide — beautiful designs, pricing, and local installation info.</div>
+  </div>
+</div>
+
+<!-- ===== 16. PRE-LAUNCH CHECKLIST ===== -->
+<div class="section" id="checklist">
+  <div class="section-header">
+    <div class="section-num">16</div>
+    <div class="section-title">Pre-Launch / Quick-Win Checklist</div>
+  </div>
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+    <div>
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:10px;">Immediate Actions (This Week)</div>
+      <ul class="checklist">
+        <li>Change RSA final URL to /download-brochure/</li>
+        <li>Add ~40 campaign-level negative keywords</li>
+        <li>Add "leisure pools" variants as campaign negatives</li>
+        <li>Manually review RSA headlines in UI</li>
+        <li>Test /free-estimate/ form — confirm it works</li>
+        <li>Verify structured snippet asset content in UI</li>
+        <li>Add Max CPC cap ($6.50) to campaign</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:11px;text-transform:uppercase;letter-spacing:1px;color:var(--accent);margin-bottom:10px;">Structural Improvements (Next 30 Days)</div>
+      <ul class="checklist">
+        <li>Restructure to 3 themed ad groups</li>
+        <li>Convert top keywords to phrase match</li>
+        <li>Create separate brand campaign ($3/day)</li>
+        <li>Apply weekend ad schedule adjustment (-25%)</li>
+        <li>Increase daily budget to $20/day post-fixes</li>
+        <li>Add "large fiberglass pools" as new keyword (converted)</li>
+        <li>After 30 days: evaluate transition to tCPA ($120 target)</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</div><!-- /content -->
+
+<div class="footer">
+  Elite Leisure Pools Lake City &nbsp;·&nbsp; Account 5818535707 &nbsp;·&nbsp; Audit: 2026-03-23 &nbsp;·&nbsp; Explore Industries / Leisure Pools &nbsp;·&nbsp; READ-ONLY ANALYSIS — NO CHANGES MADE
+</div>
+
+</body>
+</html>

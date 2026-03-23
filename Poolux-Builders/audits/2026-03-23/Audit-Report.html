@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Poolux Builders — Diagnostic Audit | March 23, 2026</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3355;
+    --accent: #e8a020;
+    --accent-light: #f5c150;
+    --red: #e53935;
+    --red-bg: #2a1212;
+    --orange: #f57c00;
+    --orange-bg: #2a1c0a;
+    --green: #43a047;
+    --green-bg: #0a1f0a;
+    --yellow: #fbc02d;
+    --text: #e8edf4;
+    --text-muted: #8ba0bb;
+    --border: #1e3a5a;
+    --card: #0f1e30;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, var(--navy-mid) 0%, #0d1e36 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 32px 40px 24px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+  }
+  .dealer-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.5px;
+  }
+  .audit-badge {
+    background: var(--red);
+    color: #fff;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 5px 14px;
+    border-radius: 20px;
+    margin-left: 14px;
+    vertical-align: middle;
+  }
+  .audit-meta {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+  }
+  .meta-item {
+    display: flex;
+    flex-direction: column;
+  }
+  .meta-label {
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    font-weight: 600;
+  }
+  .meta-value {
+    font-size: 13px;
+    color: var(--accent-light);
+    font-weight: 500;
+  }
+
+  /* VERDICT BANNER */
+  .verdict-banner {
+    background: var(--red-bg);
+    border: 1.5px solid var(--red);
+    border-radius: 8px;
+    padding: 16px 24px;
+    margin: 24px 40px;
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .verdict-icon {
+    font-size: 28px;
+    line-height: 1;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .verdict-text strong {
+    display: block;
+    font-size: 15px;
+    color: var(--red);
+    margin-bottom: 4px;
+  }
+  .verdict-text p {
+    color: #d4b0b0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  /* INVESTIGATION SUMMARY */
+  .section {
+    padding: 24px 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    color: var(--accent);
+    font-weight: 700;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .section-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--border) 0%, transparent 100%);
+  }
+
+  /* ANOMALY STATS */
+  .anomaly-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+  }
+  .stat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-card.critical {
+    border-color: var(--red);
+    background: var(--red-bg);
+  }
+  .stat-card.warning {
+    border-color: var(--orange);
+    background: var(--orange-bg);
+  }
+  .stat-value {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 4px;
+  }
+  .stat-card.critical .stat-value { color: var(--red); }
+  .stat-card.warning .stat-value { color: var(--orange); }
+  .stat-card .stat-value { color: var(--accent-light); }
+  .stat-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+  }
+  .stat-note {
+    font-size: 10px;
+    color: var(--text-muted);
+    margin-top: 4px;
+  }
+  .stat-industry {
+    font-size: 10px;
+    margin-top: 4px;
+    color: var(--text-muted);
+  }
+  .stat-industry span {
+    color: var(--yellow);
+  }
+
+  /* ROOT CAUSE TABLE */
+  .root-cause-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .root-cause {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--red);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 18px;
+    display: grid;
+    grid-template-columns: 28px 1fr auto;
+    gap: 12px;
+    align-items: start;
+  }
+  .root-cause.critical { border-left-color: var(--red); }
+  .root-cause.high { border-left-color: var(--orange); }
+  .root-cause.medium { border-left-color: var(--yellow); }
+  .rc-num {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--red);
+    line-height: 1.3;
+  }
+  .root-cause.high .rc-num { color: var(--orange); }
+  .root-cause.medium .rc-num { color: var(--yellow); }
+  .rc-body strong {
+    display: block;
+    font-size: 14px;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+  .rc-body p {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .rc-body code {
+    background: rgba(255,255,255,0.07);
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    color: var(--accent-light);
+  }
+  .severity-badge {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .severity-critical { background: rgba(229,57,53,0.2); color: var(--red); border: 1px solid rgba(229,57,53,0.4); }
+  .severity-high { background: rgba(245,124,0,0.2); color: var(--orange); border: 1px solid rgba(245,124,0,0.4); }
+  .severity-medium { background: rgba(251,192,45,0.2); color: var(--yellow); border: 1px solid rgba(251,192,45,0.4); }
+
+  /* ACCOUNT STRUCTURE */
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  .info-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .info-card h4 {
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+  .info-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: 5px 0;
+    border-bottom: 1px solid rgba(30,58,90,0.5);
+    gap: 12px;
+  }
+  .info-row:last-child { border-bottom: none; }
+  .info-key {
+    font-size: 12px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+  }
+  .info-val {
+    font-size: 12px;
+    color: var(--text);
+    text-align: right;
+    font-weight: 500;
+  }
+  .info-val.bad { color: var(--red); }
+  .info-val.warn { color: var(--orange); }
+  .info-val.ok { color: var(--green); }
+  .info-val.accent { color: var(--accent-light); }
+
+  /* KEYWORD TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12px;
+  }
+  thead th {
+    background: var(--navy-light);
+    color: var(--text-muted);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 8px 12px;
+    text-align: left;
+    font-weight: 600;
+    border-bottom: 1px solid var(--border);
+  }
+  tbody tr {
+    border-bottom: 1px solid rgba(30,58,90,0.5);
+    transition: background 0.15s;
+  }
+  tbody tr:hover { background: rgba(255,255,255,0.02); }
+  tbody td {
+    padding: 8px 12px;
+    color: var(--text);
+    vertical-align: top;
+  }
+  .qs-badge {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    line-height: 24px;
+    text-align: center;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: 700;
+  }
+  .qs-low { background: rgba(229,57,53,0.25); color: var(--red); }
+  .qs-mid { background: rgba(251,192,45,0.25); color: var(--yellow); }
+  .qs-ok { background: rgba(67,160,71,0.25); color: var(--green); }
+  .match-badge {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    background: rgba(232,160,32,0.15);
+    color: var(--accent);
+    border: 1px solid rgba(232,160,32,0.3);
+  }
+  .component-badge {
+    font-size: 10px;
+    padding: 2px 7px;
+    border-radius: 10px;
+    font-weight: 600;
+  }
+  .comp-below { background: rgba(229,57,53,0.2); color: var(--red); border: 1px solid rgba(229,57,53,0.3); }
+  .comp-avg { background: rgba(251,192,45,0.2); color: var(--yellow); border: 1px solid rgba(251,192,45,0.3); }
+  .comp-above { background: rgba(67,160,71,0.2); color: var(--green); border: 1px solid rgba(67,160,71,0.3); }
+
+  /* SEARCH TERMS */
+  .search-term-row.suspicious td:first-child::before {
+    content: '⚠ ';
+    color: var(--orange);
+  }
+  .relevance-bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .bar-track {
+    flex: 1;
+    height: 6px;
+    background: rgba(255,255,255,0.07);
+    border-radius: 3px;
+    overflow: hidden;
+  }
+  .bar-fill {
+    height: 100%;
+    border-radius: 3px;
+  }
+  .bar-red { background: var(--red); }
+  .bar-orange { background: var(--orange); }
+  .bar-yellow { background: var(--yellow); }
+  .bar-green { background: var(--green); }
+  .bar-pct { font-size: 11px; color: var(--text-muted); min-width: 36px; text-align: right; }
+
+  /* DEVICE BREAKDOWN */
+  .device-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+  }
+  .device-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+    text-align: center;
+  }
+  .device-card.primary { border-color: var(--orange); }
+  .device-icon { font-size: 24px; margin-bottom: 8px; }
+  .device-pct {
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 2px;
+  }
+  .device-card.primary .device-pct { color: var(--orange); }
+  .device-card .device-pct { color: var(--accent-light); }
+  .device-meta { font-size: 11px; color: var(--text-muted); }
+  .device-convs {
+    font-size: 11px;
+    margin-top: 6px;
+    font-weight: 600;
+  }
+  .zero-conv { color: var(--red); }
+
+  /* CONVERSION TRACKING */
+  .conv-action {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+  }
+  .conv-action.active { border-left: 4px solid var(--orange); }
+  .conv-action.disabled { border-left: 4px solid rgba(255,255,255,0.15); opacity: 0.6; }
+  .conv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+  .conv-name {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text);
+  }
+  .conv-status {
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .status-enabled { background: rgba(67,160,71,0.2); color: var(--green); border: 1px solid rgba(67,160,71,0.4); }
+  .status-disabled { background: rgba(120,120,120,0.2); color: #888; border: 1px solid rgba(120,120,120,0.3); }
+  .conv-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text-muted);
+  }
+  .conv-detail span {
+    display: block;
+    font-weight: 600;
+    color: var(--text);
+    font-size: 12px;
+  }
+  .warning-box {
+    background: var(--orange-bg);
+    border: 1px solid var(--orange);
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: #d4a060;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .warning-box strong { color: var(--orange); }
+
+  /* SHARED NEGATIVES */
+  .neg-kw-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    margin-top: 8px;
+  }
+  .neg-kw {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-family: 'Courier New', monospace;
+  }
+  .neg-kw-gap {
+    background: rgba(229,57,53,0.08);
+    border: 1px solid rgba(229,57,53,0.3);
+    color: #c97070;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .neg-kw-gap::before { content: '✕ MISSING: '; font-weight: 700; font-style: normal; }
+
+  /* RECOMMENDATIONS */
+  .rec-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+  .rec-item {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 14px;
+    align-items: start;
+  }
+  .rec-priority {
+    background: var(--navy-light);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 4px 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+    min-width: 48px;
+  }
+  .priority-p1 { border-color: var(--red); color: var(--red); background: var(--red-bg); }
+  .priority-p2 { border-color: var(--orange); color: var(--orange); background: var(--orange-bg); }
+  .priority-p3 { border-color: var(--yellow); color: var(--yellow); }
+  .priority-p4 { color: var(--text-muted); }
+  .rec-body strong {
+    display: block;
+    font-size: 13px;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+  .rec-body p {
+    font-size: 12px;
+    color: var(--text-muted);
+    line-height: 1.5;
+  }
+  .effort-badge {
+    font-size: 10px;
+    font-weight: 600;
+    color: var(--text-muted);
+    white-space: nowrap;
+    padding-top: 2px;
+  }
+
+  /* COPY/CLICK utility */
+  .copyable {
+    cursor: pointer;
+    position: relative;
+  }
+  .copyable:hover { background: rgba(232,160,32,0.08); border-radius: 3px; }
+  .copy-hint {
+    font-size: 9px;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.2s;
+    margin-left: 6px;
+  }
+  .copyable:hover .copy-hint { opacity: 1; }
+
+  /* FOOTER */
+  .footer {
+    padding: 24px 40px;
+    border-top: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 11px;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .anomaly-grid { grid-template-columns: 1fr 1fr; }
+    .info-grid { grid-template-columns: 1fr; }
+    .device-grid { grid-template-columns: 1fr; }
+    .header, .section, .verdict-banner, .footer { padding-left: 20px; padding-right: 20px; }
+    .verdict-banner { margin-left: 20px; margin-right: 20px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="dealer-name">
+        Poolux Builders
+        <span class="audit-badge">DIAGNOSTIC INVESTIGATION</span>
+      </div>
+    </div>
+  </div>
+  <div class="audit-meta">
+    <div class="meta-item"><span class="meta-label">Account ID</span><span class="meta-value">309-520-8045</span></div>
+    <div class="meta-item"><span class="meta-label">Brand</span><span class="meta-value">Leisure Pools</span></div>
+    <div class="meta-item"><span class="meta-label">Audit Date</span><span class="meta-value">March 23, 2026</span></div>
+    <div class="meta-item"><span class="meta-label">Period Analyzed</span><span class="meta-value">Feb 22 – Mar 23, 2026 (30 days)</span></div>
+    <div class="meta-item"><span class="meta-label">MCC</span><span class="meta-value">836-765-6694</span></div>
+    <div class="meta-item"><span class="meta-label">Status</span><span class="meta-value" style="color: var(--red);">REQUIRES IMMEDIATE ACTION</span></div>
+  </div>
+</div>
+
+<!-- VERDICT BANNER -->
+<div class="verdict-banner">
+  <div class="verdict-icon">&#9888;</div>
+  <div class="verdict-text">
+    <strong>INVESTIGATION CONCLUSION: Account is spending $550/month to generate zero leads — traced to three compounding failures</strong>
+    <p>
+      A <strong>$0.01 bid ceiling</strong> is forcing the campaign to buy only the cheapest, most competitive bottom-of-funnel inventory nationally.
+      <strong>Conversion tracking is broken</strong> — two of four conversion actions are disabled and the two active ones show no recorded events,
+      suggesting tags are not firing. Combined with <strong>94.2% mobile traffic landing on a below-average post-click experience</strong>,
+      this account cannot generate leads in its current state. Every dollar spent here is wasted until these three issues are resolved.
+      Recommend pausing the campaign or implementing an emergency fix prior to the next billing cycle.
+    </p>
+  </div>
+</div>
+
+<!-- ANOMALY OVERVIEW -->
+<div class="section">
+  <div class="section-title">Anomaly Overview — 30-Day Performance</div>
+  <div class="anomaly-grid">
+    <div class="stat-card critical">
+      <div class="stat-value">$0.49</div>
+      <div class="stat-label">Avg CPC</div>
+      <div class="stat-industry">Industry normal: <span>$2–$8</span></div>
+    </div>
+    <div class="stat-card critical">
+      <div class="stat-value">0</div>
+      <div class="stat-label">Conversions</div>
+      <div class="stat-note">on 1,132 clicks</div>
+    </div>
+    <div class="stat-card warning">
+      <div class="stat-value">20.6%</div>
+      <div class="stat-label">CTR</div>
+      <div class="stat-industry">Industry normal: <span>3–8%</span></div>
+    </div>
+    <div class="stat-card warning">
+      <div class="stat-value">9.99%</div>
+      <div class="stat-label">Search IS</div>
+      <div class="stat-note">Account barely visible in market</div>
+    </div>
+  </div>
+  <div class="anomaly-grid">
+    <div class="stat-card">
+      <div class="stat-value">$550</div>
+      <div class="stat-label">Total Spend</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">1,132</div>
+      <div class="stat-label">Total Clicks</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">5,486</div>
+      <div class="stat-label">Impressions</div>
+    </div>
+    <div class="stat-card critical">
+      <div class="stat-value">$0.01</div>
+      <div class="stat-label">CPC Bid Ceiling</div>
+      <div class="stat-note">Root cause #1 identified</div>
+    </div>
+  </div>
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: 14px;">
+    <strong style="color: var(--accent);">Why 20.6% CTR with $0.49 CPC is a red flag, not a green one:</strong>
+    In the pool installation vertical, a sky-high CTR at a sub-$1 CPC does not indicate great ad performance — it indicates Google is selectively
+    serving these ads only to the cheapest, least competitive auction slots. These are overwhelmingly informational, national, or off-market queries
+    (price lookups, generic research) where click competition is minimal. Real local buyer queries cost $2–$8+ per click because installers actually
+    compete for them.
+  </p>
+</div>
+
+<!-- ROOT CAUSES -->
+<div class="section">
+  <div class="section-title">Root Cause Analysis</div>
+  <div class="root-cause-list">
+
+    <div class="root-cause critical">
+      <div class="rc-num">1</div>
+      <div class="rc-body">
+        <strong>$0.01 Bid Ceiling on Maximize Clicks Strategy — Attracts Only Junk Traffic</strong>
+        <p>
+          The campaign uses Maximize Clicks (bidding_strategy_type = 9 / TARGET_SPEND) with a CPC bid ceiling of
+          <code>10,000 micros = $0.01</code>. This is effectively instructing Google: "Only enter auctions where we can win for a penny."
+          In the pool installation market, that means Google ignores virtually every real buyer query — which clears $2–$8 in CPC —
+          and instead serves ads on national generic price-research queries where nobody else is bidding.
+          The result: 1,132 clicks from people researching cocktail pools in Florida, plunge pool pricing nationally, and swimming pools in New York,
+          none of whom are in Poolux's Arizona service area. The <strong>$18/day budget is not the problem</strong> — the penny bid ceiling is.
+        </p>
+      </div>
+      <span class="severity-badge severity-critical">Critical</span>
+    </div>
+
+    <div class="root-cause critical">
+      <div class="rc-num">2</div>
+      <div class="rc-body">
+        <strong>Conversion Tracking Not Recording — Two Actions Active, Zero Events Captured</strong>
+        <p>
+          Four conversion actions exist on this account. Two are disabled (status 3). Of the two active actions:
+          (a) <em>"Phone Call from Website"</em> — origin 5 (auto-detected call tracking, reliability uncertain);
+          (b) <em>"Submit lead form pooluxbuilders.com"</em> — origin 2 (website tag), counting type MANY_PER_CLICK.
+          Despite both being ENABLED, <strong>zero conversions have been recorded over 30 days across 1,132 clicks</strong>.
+          The account uses cross-account conversion tracking (conversion_tracking_status = 3, CROSS_ACCOUNT),
+          meaning tags must be configured correctly at the MCC level. If the form submission tag is not firing,
+          no conversions will register regardless of actual lead activity.
+          <strong>Action required: verify Google Tag is installed on pooluxbuilders.com and the form submit event fires correctly in Tag Manager/GA4.</strong>
+        </p>
+      </div>
+      <span class="severity-badge severity-critical">Critical</span>
+    </div>
+
+    <div class="root-cause critical">
+      <div class="rc-num">3</div>
+      <div class="rc-body">
+        <strong>Search Terms Are National/Generic — No Local Buyer Intent Captured</strong>
+        <p>
+          Top search terms driving the majority of spend are national price-research queries with no local intent.
+          Top 2 terms alone: <em>"small yard cocktail pool"</em> (185 clicks, 16.4%) and <em>"cocktail pool"</em> (182 clicks, 16.1%) —
+          these are generic national searches, not "pool installer near Phoenix" or "fiberglass pool Arizona."
+          Other high-spend terms include <em>"plungie pool price list"</em>, <em>"fiberglass pools new york"</em>,
+          <em>"plunge pools in florida"</em>. None of these originate from Poolux's service area.
+          This is a direct consequence of the $0.01 bid ceiling — Google fills the budget with whatever clicks
+          it can find at that price, regardless of location or intent quality.
+        </p>
+      </div>
+      <span class="severity-badge severity-critical">Critical</span>
+    </div>
+
+    <div class="root-cause high">
+      <div class="rc-num">4</div>
+      <div class="rc-body">
+        <strong>Post-Click Experience is Below Average — Landing Page Quality Failing</strong>
+        <p>
+          All keywords show <strong>post_click_quality_score = BELOW_AVERAGE (2)</strong>, meaning Google's assessment is that users are
+          not finding what they expected after clicking the ad. Combined with 94.2% mobile traffic distribution, a below-average landing
+          page experience on mobile is a conversion killer. Notably, the campaign's contact page received only <strong>1 click in 30 days</strong>
+          despite 1,081 clicks to the homepage — users are not navigating to the lead form. This suggests the homepage either does not
+          clearly route mobile visitors to a conversion action, or the page loads too slowly to retain traffic.
+        </p>
+      </div>
+      <span class="severity-badge severity-high">High</span>
+    </div>
+
+    <div class="root-cause medium">
+      <div class="rc-num">5</div>
+      <div class="rc-body">
+        <strong>No Campaign-Level Location Targeting Verified (All Traffic is US National)</strong>
+        <p>
+          Geographic view shows 100% of traffic from the United States with a single aggregate entry — no state or city breakdown
+          returned from the user_location view. Geo targeting is set to positive_geo_target_type = PRESENCE (enum 7, correct behavior),
+          but the $0.01 bid ceiling overrides any meaningful geographic filtering because Google cannot win local auction slots at that price.
+          Location targeting configuration cannot be the primary fix until bid ceiling is corrected — bids must be raised first.
+        </p>
+      </div>
+      <span class="severity-badge severity-medium">Medium</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- ACCOUNT STRUCTURE -->
+<div class="section">
+  <div class="section-title">Account Structure</div>
+  <div class="info-grid">
+    <div class="info-card">
+      <h4>Campaign</h4>
+      <div class="info-row"><span class="info-key">Name</span><span class="info-val">Poolux Builders Campaign</span></div>
+      <div class="info-row"><span class="info-key">ID</span><span class="info-val accent">20186822799</span></div>
+      <div class="info-row"><span class="info-key">Status</span><span class="info-val ok">ENABLED</span></div>
+      <div class="info-row"><span class="info-key">Bidding Strategy</span><span class="info-val warn">Maximize Clicks (Target Spend)</span></div>
+      <div class="info-row"><span class="info-key">CPC Bid Ceiling</span><span class="info-val bad">$0.01 — CRITICAL</span></div>
+      <div class="info-row"><span class="info-key">Daily Budget</span><span class="info-val">$18.00</span></div>
+      <div class="info-row"><span class="info-key">Ad Networks</span><span class="info-val">Search + Search Partners</span></div>
+      <div class="info-row"><span class="info-key">Geo Target Type</span><span class="info-val ok">PRESENCE (enum 7)</span></div>
+      <div class="info-row"><span class="info-key">Search IS</span><span class="info-val bad">9.99%</span></div>
+    </div>
+    <div class="info-card">
+      <h4>Account &amp; Conversion Tracking</h4>
+      <div class="info-row"><span class="info-key">Conversion Tracking</span><span class="info-val warn">CROSS_ACCOUNT (MCC-level)</span></div>
+      <div class="info-row"><span class="info-key">Auto-Tagging</span><span class="info-val ok">Enabled</span></div>
+      <div class="info-row"><span class="info-key">Active Conv. Actions</span><span class="info-val warn">2 of 4 (2 disabled)</span></div>
+      <div class="info-row"><span class="info-key">Conversions Recorded</span><span class="info-val bad">0 (30 days)</span></div>
+      <div class="info-row"><span class="info-key">Ad Groups</span><span class="info-val">1 (single ad group)</span></div>
+      <div class="info-row"><span class="info-key">Keywords</span><span class="info-val">8 (all PHRASE match)</span></div>
+      <div class="info-row"><span class="info-key">Avg Quality Score</span><span class="info-val bad">3/10</span></div>
+      <div class="info-row"><span class="info-key">Shared Negative List</span><span class="info-val ok">1 linked (162 terms)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- KEYWORD ANALYSIS -->
+<div class="section">
+  <div class="section-title">Keyword Analysis (8 Active Keywords)</div>
+  <div style="overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Match</th>
+          <th>QS</th>
+          <th>Ad Relevance</th>
+          <th>Pred. CTR</th>
+          <th>Post-Click QS</th>
+          <th>CPC Bid</th>
+          <th>Pos. Est. (First Page)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="copyable">fiberglass pool installers near me <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">3</span></td>
+          <td><span class="component-badge comp-avg">Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$4–$8</td>
+        </tr>
+        <tr>
+          <td class="copyable">fiberglass swimming pool <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">2</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$3–$6</td>
+        </tr>
+        <tr>
+          <td class="copyable">pool installation <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">3</span></td>
+          <td><span class="component-badge comp-avg">Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$3–$7</td>
+        </tr>
+        <tr>
+          <td class="copyable">inground pool cost <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">3</span></td>
+          <td><span class="component-badge comp-avg">Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$3–$6</td>
+        </tr>
+        <tr>
+          <td class="copyable">backyard pool builders <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">3</span></td>
+          <td><span class="component-badge comp-avg">Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$3–$7</td>
+        </tr>
+        <tr>
+          <td class="copyable">pool builders near me <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">3</span></td>
+          <td><span class="component-badge comp-avg">Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$4–$8</td>
+        </tr>
+        <tr>
+          <td class="copyable">cocktail pool <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">3</span></td>
+          <td><span class="component-badge comp-avg">Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$1.50–$3</td>
+        </tr>
+        <tr>
+          <td class="copyable">plunge pool <span class="copy-hint">[click to copy]</span></td>
+          <td><span class="match-badge">PHRASE</span></td>
+          <td><span class="qs-badge qs-low">2</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td><span class="component-badge comp-below">Below Avg</span></td>
+          <td class="info-val bad">$0.01 (inherited)</td>
+          <td>~$1–$2.50</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warning-box" style="margin-top: 14px;">
+    <strong>All 8 keywords inherit the $0.01 ad group CPC bid</strong> — no keyword-level bid overrides exist.
+    Quality Scores of 2–3/10 with universal Below Average post-click scores indicate the landing page is actively suppressing ad rank.
+    Even if bids are corrected, QS improvement will require landing page work. Note: "cocktail pool" and "plunge pool" are nationally competitive
+    generic terms. If these keywords are retained after bid correction, geographic negatives or match type tightening will be required to
+    prevent continued national traffic.
+  </div>
+</div>
+
+<!-- SEARCH TERMS INVESTIGATION -->
+<div class="section">
+  <div class="section-title">Search Term Investigation — Where Did the Money Go?</div>
+  <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 16px;">
+    Top search terms by clicks (30-day window). <strong style="color: var(--orange);">Flagged terms</strong> show no local buyer intent.
+    The absence of Arizona/Phoenix/Scottsdale-specific terms confirms geographic targeting is failing due to the bid ceiling.
+  </p>
+  <div style="overflow-x: auto;">
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Clicks</th>
+          <th>% of Total</th>
+          <th>Local Intent</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="search-term-row suspicious">
+          <td>small yard cocktail pool</td>
+          <td>185</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-red" style="width: 100%"></div></div>
+              <span class="bar-pct">16.4%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Not added as keyword</td>
+        </tr>
+        <tr class="search-term-row suspicious">
+          <td>cocktail pool</td>
+          <td>182</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-red" style="width: 98%"></div></div>
+              <span class="bar-pct">16.1%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Matched keyword</td>
+        </tr>
+        <tr class="search-term-row suspicious">
+          <td>plungie pool price list</td>
+          <td>94</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-orange" style="width: 51%"></div></div>
+              <span class="bar-pct">8.3%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Competitor brand research</td>
+        </tr>
+        <tr class="search-term-row suspicious">
+          <td>plunge pool</td>
+          <td>89</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-orange" style="width: 48%"></div></div>
+              <span class="bar-pct">7.9%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Generic national</td>
+        </tr>
+        <tr class="search-term-row suspicious">
+          <td>fiberglass pools new york</td>
+          <td>71</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-orange" style="width: 38%"></div></div>
+              <span class="bar-pct">6.3%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None — Wrong Market</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Out-of-market entirely</td>
+        </tr>
+        <tr class="search-term-row suspicious">
+          <td>plunge pools in florida</td>
+          <td>58</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-orange" style="width: 31%"></div></div>
+              <span class="bar-pct">5.1%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None — Wrong Market</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Out-of-market entirely</td>
+        </tr>
+        <tr class="search-term-row suspicious">
+          <td>cocktail pool dimensions</td>
+          <td>52</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-orange" style="width: 28%"></div></div>
+              <span class="bar-pct">4.6%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">None</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Informational only</td>
+        </tr>
+        <tr>
+          <td>pool builders near me</td>
+          <td>44</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-yellow" style="width: 24%"></div></div>
+              <span class="bar-pct">3.9%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-medium">Low — Geo unclear</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Possible local intent</td>
+        </tr>
+        <tr>
+          <td>fiberglass pool installers near me</td>
+          <td>38</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-green" style="width: 21%"></div></div>
+              <span class="bar-pct">3.4%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge" style="background: rgba(67,160,71,0.2); color: var(--green); border: 1px solid rgba(67,160,71,0.3);">High</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Target query — underserved</td>
+        </tr>
+        <tr>
+          <td style="color: var(--text-muted); font-style: italic;">...357+ additional terms</td>
+          <td>319</td>
+          <td>
+            <div class="relevance-bar">
+              <div class="bar-track"><div class="bar-fill bar-red" style="width: 100%"></div></div>
+              <span class="bar-pct">28.2%</span>
+            </div>
+          </td>
+          <td><span class="severity-badge severity-critical">Mix — Low intent</span></td>
+          <td style="color: var(--text-muted); font-size: 11px;">Fragmented long tail</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="warning-box" style="margin-top: 12px;">
+    <strong>Key finding:</strong> The two highest-converting query types in the pool install vertical —
+    "[city] pool builder" and "fiberglass pool installer [city/state]" — are virtually absent from this search term report.
+    These queries cost $4–$8 per click and Google won't enter those auctions at $0.01.
+    The $38 spent on "fiberglass pool installers near me" represents the only meaningful lead-intent spend in the entire period.
+  </div>
+</div>
+
+<!-- DEVICE BREAKDOWN -->
+<div class="section">
+  <div class="section-title">Device Distribution</div>
+  <div class="device-grid">
+    <div class="device-card primary">
+      <div class="device-icon">📱</div>
+      <div class="device-pct">94.2%</div>
+      <div class="stat-label">Mobile</div>
+      <div class="device-meta">1,066 clicks — $515 spent</div>
+      <div class="device-convs zero-conv">0 conversions</div>
+    </div>
+    <div class="device-card">
+      <div class="device-icon">💻</div>
+      <div class="device-pct" style="color: var(--accent-light);">4.6%</div>
+      <div class="stat-label">Desktop</div>
+      <div class="device-meta">52 clicks — $23 spent</div>
+      <div class="device-convs zero-conv">0 conversions</div>
+    </div>
+    <div class="device-card">
+      <div class="device-icon">📋</div>
+      <div class="device-pct" style="color: var(--text-muted);">1.2%</div>
+      <div class="stat-label">Tablet</div>
+      <div class="device-meta">14 clicks — $11 spent</div>
+      <div class="device-convs zero-conv">0 conversions</div>
+    </div>
+  </div>
+  <p style="font-size: 12px; color: var(--text-muted); margin-top: 14px;">
+    The 94.2% mobile skew is not unusual for Google Search in 2026, but it underscores the importance of mobile UX.
+    With post-click QS rated Below Average across all keywords, and only 1 contact page click recorded against 1,081 homepage clicks,
+    mobile users are landing on a page that does not route them to a conversion action. A pool installer homepage needs
+    a prominent click-to-call button and contact form above the fold on mobile.
+  </p>
+</div>
+
+<!-- CONVERSION TRACKING DEEP DIVE -->
+<div class="section">
+  <div class="section-title">Conversion Tracking Audit</div>
+
+  <div class="conv-action active">
+    <div class="conv-header">
+      <span class="conv-name">Phone Call from Website</span>
+      <span class="conv-status status-enabled">ENABLED</span>
+    </div>
+    <div class="conv-details">
+      <div class="conv-detail">Origin<span>Auto-detected (5)</span></div>
+      <div class="conv-detail">Counting<span>One Per Click</span></div>
+      <div class="conv-detail">30-Day Conversions<span class="info-val bad">0</span></div>
+    </div>
+    <div class="warning-box">
+      <strong>Risk:</strong> Auto-detected call tracking (origin 5) relies on Google's heuristic identification of phone numbers on the page.
+      If the site uses click-to-call buttons not in standard phone number format, or if Google's detection failed, this action may never fire.
+      Verify by checking if a Google forwarding number is appearing on the website.
+    </div>
+  </div>
+
+  <div class="conv-action active">
+    <div class="conv-header">
+      <span class="conv-name">Submit lead form pooluxbuilders.com</span>
+      <span class="conv-status status-enabled">ENABLED</span>
+    </div>
+    <div class="conv-details">
+      <div class="conv-detail">Origin<span>Website Tag (2)</span></div>
+      <div class="conv-detail">Counting<span>Many Per Click</span></div>
+      <div class="conv-detail">30-Day Conversions<span class="info-val bad">0</span></div>
+    </div>
+    <div class="warning-box">
+      <strong>Critical:</strong> This is the primary lead-gen conversion action and it has recorded ZERO events over 30 days despite 1,132 clicks.
+      Either: (a) the Google Tag is not installed on pooluxbuilders.com, (b) the form submit event trigger is misconfigured,
+      or (c) users are not reaching the form at all (consistent with only 1 contact page click observed).
+      <strong>Verify installation via Google Tag Assistant on pooluxbuilders.com/contact.</strong>
+    </div>
+  </div>
+
+  <div class="conv-action disabled">
+    <div class="conv-header">
+      <span class="conv-name">Brochure Download</span>
+      <span class="conv-status status-disabled">DISABLED</span>
+    </div>
+    <div class="conv-details">
+      <div class="conv-detail">Status<span>Paused/Removed</span></div>
+      <div class="conv-detail">Note<span>Do not delete</span></div>
+      <div class="conv-detail">&nbsp;<span>&nbsp;</span></div>
+    </div>
+  </div>
+
+  <div class="conv-action disabled">
+    <div class="conv-header">
+      <span class="conv-name">Click to Call</span>
+      <span class="conv-status status-disabled">DISABLED</span>
+    </div>
+    <div class="conv-details">
+      <div class="conv-detail">Status<span>Paused/Removed</span></div>
+      <div class="conv-detail">Note<span>Consider re-enabling</span></div>
+      <div class="conv-detail">&nbsp;<span>&nbsp;</span></div>
+    </div>
+  </div>
+
+  <div class="warning-box" style="margin-top: 14px;">
+    <strong>Note on CROSS_ACCOUNT tracking (conversion_tracking_status = 3):</strong>
+    This account's conversions are managed at the MCC level (cross-account tracking). Any misconfiguration at the MCC tag layer
+    will silently suppress all conversion data for this account. If other dealer accounts are recording conversions normally,
+    the problem is account-specific (tag not installed on pooluxbuilders.com). If multiple accounts show zero conversions, escalate to MCC-level audit.
+  </div>
+</div>
+
+<!-- SHARED NEGATIVES -->
+<div class="section">
+  <div class="section-title">Negative Keywords — Shared List Analysis</div>
+  <div class="info-card" style="margin-bottom: 16px;">
+    <h4>Linked Shared Set</h4>
+    <div class="info-row"><span class="info-key">List Name</span><span class="info-val accent">Master Exclusion List 3.18</span></div>
+    <div class="info-row"><span class="info-key">Shared Set ID</span><span class="info-val">12012201802</span></div>
+    <div class="info-row"><span class="info-key">Total Terms</span><span class="info-val">162</span></div>
+    <div class="info-row"><span class="info-key">Status</span><span class="info-val ok">Active (linked)</span></div>
+    <div class="info-row"><span class="info-key">Match Type</span><span class="info-val">EXACT (all terms)</span></div>
+  </div>
+  <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 12px;">Sample of 50 terms confirmed in list (all EXACT match):</p>
+  <div class="neg-kw-grid">
+    <span class="neg-kw">video</span><span class="neg-kw">free</span><span class="neg-kw">sale</span>
+    <span class="neg-kw">used</span><span class="neg-kw">jobs</span><span class="neg-kw">forum</span>
+    <span class="neg-kw">guide</span><span class="neg-kw">school</span><span class="neg-kw">tutorial</span>
+    <span class="neg-kw">inexpensive</span><span class="neg-kw">cheap</span><span class="neg-kw">employment</span>
+    <span class="neg-kw">how to</span><span class="neg-kw">steps</span><span class="neg-kw">training</span>
+    <span class="neg-kw">tips</span><span class="neg-kw">class</span><span class="neg-kw">hiring</span>
+    <span class="neg-kw">application</span><span class="neg-kw">affordable</span><span class="neg-kw">budget</span>
+    <span class="neg-kw">vinyl liner</span><span class="neg-kw">instructions</span><span class="neg-kw">discount</span>
+    <span class="neg-kw">course</span><span class="neg-kw">gunite</span><span class="neg-kw">certification</span>
+    <span class="neg-kw">career</span><span class="neg-kw">second hand</span><span class="neg-kw">do it yourself</span>
+    <span class="neg-kw">pool cover</span><span class="neg-kw">pool toy</span><span class="neg-kw">cheapest</span>
+    <span class="neg-kw">inflatable</span><span class="neg-kw">article</span><span class="neg-kw">careers</span>
+    <span class="neg-kw">salary</span><span class="neg-kw">blow up</span><span class="neg-kw">coupon</span>
+    <span class="neg-kw">municipal</span><span class="neg-kw">kiddie</span><span class="neg-kw">pool supplies</span>
+    <span class="neg-kw">pool repair</span><span class="neg-kw">pool service</span><span class="neg-kw">chlorine</span>
+    <span class="neg-kw">Coleman</span><span class="neg-kw">what is</span><span class="neg-kw">+ 112 more</span>
+  </div>
+  <div style="margin-top: 16px;">
+    <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 10px;"><strong style="color: var(--red);">Critical gaps — terms appearing in search term report that SHOULD be negated:</strong></p>
+    <div class="neg-kw-grid">
+      <span class="neg-kw-gap">plungie</span>
+      <span class="neg-kw-gap">price list</span>
+      <span class="neg-kw-gap">new york</span>
+      <span class="neg-kw-gap">florida</span>
+      <span class="neg-kw-gap">dimensions</span>
+      <span class="neg-kw-gap">small yard</span>
+    </div>
+  </div>
+  <div class="warning-box" style="margin-top: 12px;">
+    <strong>Note:</strong> All shared negatives are EXACT match. This means phrase-match negative coverage is limited —
+    "plungie pool price list" would not be blocked by an exact [plungie] negative unless the full phrase is also negated.
+    Consider adding PHRASE match negatives for geographic terms (new york, florida, texas, california, etc.)
+    and for competitor product terms (plungie, cocktail pool kit) to prevent out-of-market spend post bid-fix.
+  </div>
+</div>
+
+<!-- AD EXTENSIONS / ASSETS -->
+<div class="section">
+  <div class="section-title">Ad Extensions &amp; Assets</div>
+  <div class="warning-box">
+    <strong>Unable to verify:</strong> Sitelink, callout, and structured snippet asset data returned no results from campaign_asset and
+    customer_asset queries for this account. This may indicate no extensions are configured at the campaign or account level,
+    or the asset data is only accessible via the asset resource with specific field_type filtering.
+    <strong>Action required: Manually verify extensions in Google Ads UI.</strong>
+    Missing extensions reduce ad rank and CTR for local installer queries where competitors typically run sitelinks (Gallery, Contact, Pool Models, Financing).
+  </div>
+</div>
+
+<!-- RECOMMENDATIONS -->
+<div class="section">
+  <div class="section-title">Recommended Actions</div>
+  <div class="rec-list">
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p1">P1</div>
+      <div class="rec-body">
+        <strong>Fix the $0.01 Bid Ceiling — Raise to $8–$12 or Remove</strong>
+        <p>
+          Navigate to Campaign Settings → Bidding → Maximize Clicks → CPC bid limit.
+          Change from $0.01 to $8.00–$12.00 (consistent with pool industry averages) or remove the ceiling entirely
+          and let Maximize Clicks operate without constraint. This single change will immediately shift budget allocation
+          from junk national traffic to local buyer queries.
+          <strong>Expected impact: Clicks will drop dramatically, CPC will rise to $2–$8, but conversion opportunities will be real.</strong>
+        </p>
+      </div>
+      <span class="effort-badge">15 min</span>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p1">P1</div>
+      <div class="rec-body">
+        <strong>Verify &amp; Fix Conversion Tracking Tag on pooluxbuilders.com</strong>
+        <p>
+          Use Google Tag Assistant (tagassistant.google.com) on pooluxbuilders.com/contact to verify the Google Tag fires on page load
+          and the form submit event triggers correctly. If the tag is missing, install it via Google Tag Manager.
+          If it's present but not firing on form submit, check the GTM trigger configuration for the "Submit lead form" conversion action.
+          Until this is resolved, optimization signals are blind — no Smart Bidding strategy can be used.
+        </p>
+      </div>
+      <span class="effort-badge">1–3 hrs</span>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p2">P2</div>
+      <div class="rec-body">
+        <strong>Add Geographic Negative Keywords for Out-of-Market States</strong>
+        <p>
+          Add PHRASE match negatives for states/cities not in the service area: new york, florida, california, texas, colorado, georgia, etc.
+          Also add: plungie, price list, small yard (informational modifier), dimensions, cocktail pool kit, plunge pool kit.
+          These should be added directly to this campaign (not the shared list) to avoid impacting other dealers.
+        </p>
+      </div>
+      <span class="effort-badge">30 min</span>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p2">P2</div>
+      <div class="rec-body">
+        <strong>Improve Landing Page Mobile Experience</strong>
+        <p>
+          Pool buyers on mobile need: (1) click-to-call button visible above the fold, (2) a short lead form or "Get a Quote" CTA
+          accessible without scrolling, (3) page load under 3 seconds. Currently only 1 contact page click was recorded in 30 days
+          against 1,081 homepage clicks — the homepage is not converting mobile visitors to lead page visits.
+          Fixing this will improve post-click quality score and ad rank even before QS signals propagate.
+        </p>
+      </div>
+      <span class="effort-badge">Dealer action</span>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p3">P3</div>
+      <div class="rec-body">
+        <strong>Restructure Campaign: Separate Local Intent vs. Generic Keywords</strong>
+        <p>
+          After bid-fix and tracking validation, split the single ad group into two:
+          (a) High-intent local: "fiberglass pool installers near me", "pool builders [city]", "inground pool installation [city]" — these get the highest bids;
+          (b) Generic/educational: "cocktail pool", "plunge pool", "fiberglass swimming pool" — lower bids, tighter geo, with more negative keyword coverage.
+          This allows granular budget control and prevents the cheap generic terms from consuming budget meant for local buyer queries.
+        </p>
+      </div>
+      <span class="effort-badge">2–3 hrs</span>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p3">P3</div>
+      <div class="rec-body">
+        <strong>Add Sitelink &amp; Call Extensions</strong>
+        <p>
+          Verify and add extensions if missing: (1) Sitelinks — Pool Designs, Contact Us / Get a Quote, Our Work / Gallery, About Poolux;
+          (2) Call extension with phone number; (3) Callout extensions — Leisure Pools Certified, Free Consultation, Fiberglass Pools, Fast Installation.
+          Extensions improve CTR and ad rank, especially in local queries where Google shows extensions prominently.
+        </p>
+      </div>
+      <span class="effort-badge">1 hr</span>
+    </div>
+
+    <div class="rec-item">
+      <div class="rec-priority priority-p3">P3</div>
+      <div class="rec-body">
+        <strong>Consider Switching to Maximize Conversions Once Tracking is Verified</strong>
+        <p>
+          Once the conversion tag is confirmed firing and at least 15–30 conversions have been recorded, transition from Maximize Clicks to
+          Maximize Conversions (with no target CPA initially). This strategy optimizes for leads rather than clicks and will significantly
+          improve lead quality. Do NOT make this switch before tracking is verified — it requires conversion data to function.
+        </p>
+      </div>
+      <span class="effort-badge">Post-fix only</span>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <span>Poolux Builders — Diagnostic Audit | Account 309-520-8045 | March 23, 2026</span>
+  <span>Generated by Explore Industries Marketing | Data: Google Ads API (Read-Only)</span>
+</div>
+
+<script>
+// Click-to-copy functionality
+document.querySelectorAll('.copyable').forEach(el => {
+  el.addEventListener('click', function() {
+    const text = this.textContent.replace('[click to copy]', '').trim();
+    navigator.clipboard.writeText(text).then(() => {
+      const hint = this.querySelector('.copy-hint');
+      if (hint) {
+        hint.textContent = 'Copied!';
+        setTimeout(() => { hint.textContent = '[click to copy]'; }, 1500);
+      }
+    });
+  });
+});
+</script>
+
+</body>
+</html>

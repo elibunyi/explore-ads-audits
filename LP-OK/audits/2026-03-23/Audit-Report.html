@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Leisure Pools OK — Google Ads Audit — 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1b2d40;
+    --navy-light: #253d54;
+    --accent: #00b4d8;
+    --accent-bright: #48cae4;
+    --accent-dim: #0096b7;
+    --text: #e8edf2;
+    --text-muted: #8ca0b3;
+    --border: #2a3f55;
+    --p1: #ef4444;
+    --p1-bg: rgba(239,68,68,0.1);
+    --p2: #f59e0b;
+    --p2-bg: rgba(245,158,11,0.1);
+    --p3: #22c55e;
+    --p3-bg: rgba(34,197,94,0.1);
+    --green: #22c55e;
+    --green-bg: rgba(34,197,94,0.1);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .wrapper { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Header */
+  .header {
+    background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+  }
+  .header-left h1 { font-size: 22px; color: var(--accent-bright); font-weight: 700; }
+  .header-left .sub { color: var(--text-muted); font-size: 13px; margin-top: 4px; }
+  .header-right { text-align: right; }
+  .header-right .badge {
+    display: inline-block;
+    background: rgba(0,180,216,0.15);
+    border: 1px solid var(--accent-dim);
+    color: var(--accent-bright);
+    border-radius: 6px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .header-right .meta { color: var(--text-muted); font-size: 12px; margin-top: 8px; }
+
+  /* Scorecard */
+  .scorecard {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+  .score-card {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 18px;
+  }
+  .score-card .label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.8px; }
+  .score-card .value { font-size: 24px; font-weight: 700; color: var(--accent-bright); margin-top: 4px; }
+  .score-card .sub { font-size: 12px; color: var(--text-muted); margin-top: 2px; }
+
+  /* Section */
+  .section {
+    background: var(--navy-mid);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    margin-bottom: 20px;
+    overflow: hidden;
+  }
+  .section-header {
+    background: var(--navy-light);
+    padding: 14px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header:hover { background: #2d4a62; }
+  .section-title { font-size: 14px; font-weight: 600; color: var(--accent-bright); }
+  .section-title .count {
+    display: inline-block;
+    background: var(--navy-mid);
+    border-radius: 4px;
+    padding: 1px 8px;
+    font-size: 12px;
+    margin-left: 8px;
+    color: var(--text-muted);
+  }
+  .copy-btn {
+    background: rgba(0,180,216,0.15);
+    border: 1px solid var(--accent-dim);
+    color: var(--accent);
+    padding: 4px 12px;
+    border-radius: 5px;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.15s;
+    white-space: nowrap;
+  }
+  .copy-btn:hover { background: rgba(0,180,216,0.3); }
+  .copy-btn.copied { background: rgba(34,197,94,0.15); border-color: var(--green); color: var(--green); }
+  .section-body { padding: 18px 20px; }
+
+  /* Tables */
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th {
+    text-align: left;
+    color: var(--text-muted);
+    font-weight: 600;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border);
+  }
+  td { padding: 9px 12px; border-bottom: 1px solid rgba(42,63,85,0.5); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(0,180,216,0.03); }
+
+  /* Findings */
+  .finding {
+    border-radius: 8px;
+    padding: 14px 16px;
+    margin-bottom: 12px;
+  }
+  .finding:last-child { margin-bottom: 0; }
+  .finding.p1 { background: var(--p1-bg); border-left: 3px solid var(--p1); }
+  .finding.p2 { background: var(--p2-bg); border-left: 3px solid var(--p2); }
+  .finding.p3 { background: var(--p3-bg); border-left: 3px solid var(--p3); }
+  .finding .finding-title {
+    font-weight: 600;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+  .badge-p1 { background: var(--p1); color: #fff; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+  .badge-p2 { background: var(--p2); color: #000; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+  .badge-p3 { background: var(--p3); color: #000; border-radius: 4px; padding: 1px 7px; font-size: 11px; font-weight: 700; }
+  .finding .detail { color: var(--text-muted); font-size: 12px; line-height: 1.7; }
+  .finding .action { color: var(--accent-bright); font-size: 12px; margin-top: 6px; font-weight: 500; }
+
+  /* Status badges */
+  .ok { color: var(--green); font-weight: 600; }
+  .warn { color: var(--p2); font-weight: 600; }
+  .bad { color: var(--p1); font-weight: 600; }
+  .muted { color: var(--text-muted); }
+
+  /* Keyword pill */
+  .kw { display: inline-block; background: var(--navy-light); border: 1px solid var(--border); border-radius: 4px; padding: 2px 8px; font-family: monospace; font-size: 12px; margin: 2px; }
+  .kw.phrase { border-color: var(--accent-dim); color: var(--accent-bright); }
+  .kw.exact { border-color: #22c55e; color: #22c55e; }
+  .kw.broad { border-color: var(--p1); color: var(--p1); }
+  .kw.neg { border-color: var(--p2); color: var(--p2); }
+  .kw.danger { border-color: var(--p1); color: var(--p1); background: var(--p1-bg); font-weight: 600; }
+
+  /* Progress bar */
+  .pbar-wrap { background: var(--navy); border-radius: 4px; height: 8px; overflow: hidden; }
+  .pbar { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent-dim), var(--accent-bright)); }
+
+  /* Two-col */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Working well */
+  .win { padding: 10px 14px; background: var(--green-bg); border-left: 3px solid var(--green); border-radius: 5px; margin-bottom: 10px; font-size: 13px; }
+  .win:last-child { margin-bottom: 0; }
+
+  /* Negative list */
+  .neg-list { font-family: monospace; font-size: 12px; line-height: 2; color: var(--accent); background: var(--navy); border-radius: 6px; padding: 12px 14px; }
+
+  /* Print / timestamp */
+  .footer { text-align: center; color: var(--text-muted); font-size: 11px; margin-top: 32px; padding-top: 16px; border-top: 1px solid var(--border); }
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Leisure Pools OK — Google Ads Audit</h1>
+      <div class="sub">Account 232-235-2945 &nbsp;·&nbsp; MCC 836-765-6694 &nbsp;·&nbsp; Oklahoma City + Tulsa</div>
+      <div class="sub" style="margin-top:6px;">Audit window: Feb 21 – Mar 23, 2026 &nbsp;·&nbsp; 30 days</div>
+    </div>
+    <div class="header-right">
+      <span class="badge">PRIORITY: MEDIUM</span>
+      <div class="meta">Generated: 2026-03-23<br>Auditor: Claude Code / Eli Bunyi</div>
+    </div>
+  </div>
+
+  <!-- ===== SCORECARD ===== -->
+  <div class="scorecard">
+    <div class="score-card">
+      <div class="label">Total Spend</div>
+      <div class="value">$3,367</div>
+      <div class="sub">30-day window</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Conversions</div>
+      <div class="value">37.0</div>
+      <div class="sub">Contact forms + brochures + calls</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Blended CPA</div>
+      <div class="value">$91</div>
+      <div class="sub">Acceptable range</div>
+    </div>
+    <div class="score-card">
+      <div class="label">Active Campaigns</div>
+      <div class="value">2</div>
+      <div class="sub">OKC + Tulsa Reboot</div>
+    </div>
+    <div class="score-card">
+      <div class="label">P1 Findings</div>
+      <div class="value" style="color:var(--p1);">2</div>
+      <div class="sub">Require immediate action</div>
+    </div>
+    <div class="score-card">
+      <div class="label">P2 Findings</div>
+      <div class="value" style="color:var(--p2);">4</div>
+      <div class="sub">Address this sprint</div>
+    </div>
+  </div>
+
+  <!-- ===== CAMPAIGN PERFORMANCE ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Campaign Performance</span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('perf-table','Campaign Performance')">Copy</button>
+    </div>
+    <div class="section-body" id="perf-table">
+      <table>
+        <thead>
+          <tr>
+            <th>Campaign</th>
+            <th>Status</th>
+            <th>Budget/Day</th>
+            <th>Spend</th>
+            <th>Conv.</th>
+            <th>CPA</th>
+            <th>Impr. Share</th>
+            <th>Rank Lost IS</th>
+            <th>Budget Lost IS</th>
+            <th>Bid Strategy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">OKC</td>
+            <td><span class="ok">ENABLED</span></td>
+            <td>$25.00</td>
+            <td>$1,002</td>
+            <td>17.4</td>
+            <td style="color:var(--green);font-weight:600;">$57.59</td>
+            <td>25.7%</td>
+            <td style="color:var(--p1);font-weight:600;">53.7%</td>
+            <td>20.5%</td>
+            <td>Max Clicks (no cap)</td>
+          </tr>
+          <tr>
+            <td style="font-weight:600;">Tulsa Reboot</td>
+            <td><span class="ok">ENABLED</span></td>
+            <td>$55.50</td>
+            <td>$2,365</td>
+            <td>19.4</td>
+            <td style="color:var(--p2);font-weight:600;">$121.91</td>
+            <td>45.2%</td>
+            <td style="color:var(--p2);">36.2%</td>
+            <td>18.5%</td>
+            <td>Max Clicks (no cap)</td>
+          </tr>
+          <tr style="background:rgba(42,63,85,0.3);">
+            <td class="muted">Old Tulsa</td>
+            <td><span class="muted">PAUSED</span></td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td>—</td>
+            <td class="muted">Paused</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:16px;padding:12px 16px;background:var(--navy);border-radius:8px;">
+        <div style="font-size:12px;color:var(--text-muted);margin-bottom:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.6px;">Impression Share Breakdown</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
+          <div>
+            <div style="font-size:12px;margin-bottom:6px;">OKC — IS 25.7% <span style="color:var(--p1);">(53.7% rank-lost)</span></div>
+            <div class="pbar-wrap"><div class="pbar" style="width:25.7%;background:linear-gradient(90deg,#ef4444,#f87171);"></div></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Majority of lost share is rank (quality/bid), not budget</div>
+          </div>
+          <div>
+            <div style="font-size:12px;margin-bottom:6px;">Tulsa Reboot — IS 45.2% <span style="color:var(--p2);">(36.2% rank-lost)</span></div>
+            <div class="pbar-wrap"><div class="pbar" style="width:45.2%;"></div></div>
+            <div style="font-size:11px;color:var(--text-muted);margin-top:4px;">Better coverage but CPA 2.1× OKC — quality issue</div>
+          </div>
+        </div>
+        <div style="margin-top:12px;font-size:12px;color:var(--p2);">
+          ⚠ OKC is significantly underbudgeted relative to its efficiency ($57.59 CPA vs Tulsa's $121.91). With 53.7% rank-lost IS, budget increase alone won't fully solve — but OKC is the stronger performer and deserves more investment.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== P1/P2/P3 FINDINGS ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Findings &amp; Recommendations <span class="count">2 P1 · 4 P2 · 3 P3</span></span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('findings-body','Findings')">Copy</button>
+    </div>
+    <div class="section-body" id="findings-body">
+
+      <div class="finding p1">
+        <div class="finding-title"><span class="badge-p1">P1</span> Competitor Brand Keyword — "imagine pools" Active on Both Campaigns</div>
+        <div class="detail">
+          "imagine pools" (PHRASE match) is ENABLED on both OKC and Tulsa Reboot. Imagine Pools is an Explore Industries sibling brand — bidding on it cannibalizes internal brand traffic and violates brand separation policy. This keyword has been flagged in prior audits as needing removal and remains live.
+          <br><br>
+          <strong>OKC:</strong> Status ENABLED, 1 impression, $0 spend<br>
+          <strong>Tulsa Reboot:</strong> Status ENABLED, 4 impressions, $0 spend<br><br>
+          Other competitor brand keywords also present: "san juan pools" and "latham pools" are active.
+        </div>
+        <div class="action">→ Remove "imagine pools" [PHRASE] from both campaigns immediately. Also audit "san juan pools" and "latham pools" — if intent is to capture competitor traffic, those may be acceptable but need review.</div>
+      </div>
+
+      <div class="finding p1">
+        <div class="finding-title"><span class="badge-p1">P1</span> Competitor Brand Search Terms — Unaddressed Spend</div>
+        <div class="detail">
+          Multiple competitor brand search terms are converting to clicks with no campaign-level negatives. No negatives exist for galaxy, dolphin, leslies/leslie's, river pools, or dolphin at campaign level.
+          <br><br>
+          <strong>Top offenders (30-day):</strong><br>
+          · "san juan pools tulsa" — $35.42, 0 conv<br>
+          · "galaxy pools tulsa" — $25.75, 0 conv<br>
+          · "galaxy pools and spas" — $16.73, 1 conv (likely low-quality)<br>
+          · "leslie pools tulsa" / "leslies pool" — $16.59 combined, 0 conv<br>
+          · "dolphin pools tulsa" — $8.08, 0 conv<br>
+          · "river pools" — $9.07, 0 conv<br>
+          <strong>Total estimated waste: $111+ on competitor brand terms</strong>
+        </div>
+        <div class="action">→ Add negatives for: [galaxy pools], [dolphin pools], [leslies pool], [leslie pools], [river pools], [san juan pools] at campaign level. See Negatives Needed section for full list.</div>
+      </div>
+
+      <div class="finding p2">
+        <div class="finding-title"><span class="badge-p2">P2</span> Wrong-Intent Search Terms — Maintenance / Service / Non-Fiberglass</div>
+        <div class="detail">
+          The account is spending on queries with wrong purchase intent — pool service, resurfacing, above-ground pools, and alternative construction methods. While "above ground" is negated as a campaign negative, variants are slipping through via PHRASE match expansion.
+          <br><br>
+          <strong>Key offenders:</strong><br>
+          · "cost of resurfacing pool" — $12.74, 0 conv (maintenance, not install)<br>
+          · "pool service near me" — $8.49, 0 conv (service company, not builder)<br>
+          · "semi inground pool" — $17.97, 0 conv (not fiberglass)<br>
+          · "24 round pool" — $8.51, 0 conv (above-ground intent)<br>
+          · "gunite pool" — $9.31, 0 conv (competitor construction method)<br>
+          · "swimming pool supplies near me" — $7.80, 0 conv (retail)<br>
+          <strong>Total estimated waste: $65+ on wrong-intent terms</strong>
+        </div>
+        <div class="action">→ Add to negatives: [resurfacing pool], [pool service near me], [semi inground], [24 round pool], [gunite pool], [swimming pool supplies], [pool supplies]. See Negatives Needed section.</div>
+      </div>
+
+      <div class="finding p2">
+        <div class="finding-title"><span class="badge-p2">P2</span> OKC Sitelink Gap — Only 3 Sitelinks (Minimum 4 Recommended)</div>
+        <div class="detail">
+          The OKC campaign has only 3 campaign-level sitelinks (field_type 13). Google recommends a minimum of 4 sitelinks to maximize ad extension eligibility and SERP real estate. Tulsa Reboot correctly has 4 sitelinks.<br><br>
+          <strong>Tulsa Reboot sitelinks (reference):</strong> Award Winning Pool Shapes, Pools We've Built, Affordable Financing, Free Pool Quote
+        </div>
+        <div class="action">→ Add a 4th sitelink to OKC. Suggested: "Free Pool Quote" or "Award Winning Pool Shapes" — mirror Tulsa Reboot's set for consistency.</div>
+      </div>
+
+      <div class="finding p2">
+        <div class="finding-title"><span class="badge-p2">P2</span> Max Clicks — No CPC Bid Ceiling on Either Campaign</div>
+        <div class="detail">
+          Both active campaigns use Max Clicks bidding (bid strategy type 9) with no CPC ceiling set (target_spend.cpc_bid_ceiling_micros = 0). Without a ceiling, Google can spend aggressively per click with no guardrail. This is a likely contributor to Tulsa Reboot's high CPA ($121.91).
+        </div>
+        <div class="action">→ Set a CPC ceiling on both campaigns. Suggested: $8–$12 based on conversion value. Tulsa's CPA suggests bids may be running well above efficient range.</div>
+      </div>
+
+      <div class="finding p2">
+        <div class="finding-title"><span class="badge-p2">P2</span> OKC vs Tulsa CPA Gap — 2.1× Disparity</div>
+        <div class="detail">
+          OKC CPA: $57.59 (efficient) vs Tulsa Reboot CPA: $121.91. Given OKC's strong efficiency, its $25/day budget is likely suppressing performance. OKC has 53.7% rank-lost IS — ranking gaps are costing impressions, not budget — but the budget floor is still low relative to opportunity.
+          <br><br>
+          Tulsa's higher CPA warrants investigation into ad relevance, landing page quality, and whether the ad group structure is diluting Quality Score.
+        </div>
+        <div class="action">→ Consider shifting budget incrementally toward OKC ($25 → $35). For Tulsa, investigate QS and landing page relevance before increasing spend.</div>
+      </div>
+
+      <div class="finding p3">
+        <div class="finding-title"><span class="badge-p3">P3</span> Single Ad Group Structure — Both Campaigns</div>
+        <div class="detail">
+          Both OKC and Tulsa Reboot each have a single "Ad group 1" containing all 17 keywords. A single-adgroup structure limits the ability to write tightly-themed ad copy per keyword cluster, reduces negative keyword sculpting granularity, and can suppress Quality Scores for keywords with different intent (e.g., brand vs. generic vs. model-specific).
+        </div>
+        <div class="action">→ Consider restructuring into 3 ad groups per campaign: (1) Brand terms, (2) Generic install intent, (3) Model/style terms. This is a longer-term structural improvement — not urgent.</div>
+      </div>
+
+      <div class="finding p3">
+        <div class="finding-title"><span class="badge-p3">P3</span> Desktop Has Zero Conversions — OKC</div>
+        <div class="detail">
+          OKC: Mobile 100%+ of conversions. Desktop shows 0 conversions over 30 days. Tablet also 0 on both campaigns. Mobile dominates at 85%+ of spend and conversions across both campaigns. Desktop spend on OKC is non-zero but producing no outcomes.
+        </div>
+        <div class="action">→ Monitor desktop over 60 days. If desktop remains at 0 conv, apply a bid adjustment of −30% to −50% for desktop on OKC to reduce wasted spend.</div>
+      </div>
+
+      <div class="finding p3">
+        <div class="finding-title"><span class="badge-p3">P3</span> Price-Research Search Terms — Low Conversion Probability</div>
+        <div class="detail">
+          Multiple search terms indicate early-funnel price research with low conversion probability:
+          "how much does a fiberglass pool cost", "fiberglass pool prices", "inground pool cost oklahoma", "cost to install fiberglass pool". These terms have mixed conversion rates and inflate CPA. They may be acceptable for brand awareness but warrant monitoring.
+        </div>
+        <div class="action">→ Tag these terms in your notes. If conversion rate drops below account average over 60 days, add as negatives or build a separate TOFU ad group with a landing page optimized for research-phase visitors.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ===== KEYWORD ANALYSIS ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Keyword Analysis <span class="count">17 per campaign · All PHRASE · No Broad Match</span></span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('kw-body','Keywords')">Copy</button>
+    </div>
+    <div class="section-body" id="kw-body">
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:12px;">Both Campaigns — Match Type Distribution</div>
+          <table>
+            <thead><tr><th>Match Type</th><th>Count</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Phrase Match</td><td>17</td><td><span class="ok">✓ Compliant</span></td></tr>
+              <tr><td>Exact Match</td><td>0</td><td class="muted">—</td></tr>
+              <tr><td>Broad Match</td><td>0</td><td><span class="ok">✓ None present</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:12px;">Compliance Checks</div>
+          <table>
+            <thead><tr><th>Check</th><th>Result</th></tr></thead>
+            <tbody>
+              <tr><td>No broad match</td><td><span class="ok">✓ Pass</span></td></tr>
+              <tr><td>Master Exclusion List 3.18 linked</td><td><span class="ok">✓ Both campaigns</span></td></tr>
+              <tr><td>Geo targeting (PRESENCE)</td><td><span class="ok">✓ Enum 7 confirmed</span></td></tr>
+              <tr><td>Competitor brand keyword present</td><td><span class="bad">✗ "imagine pools" active</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top:20px;">
+        <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Flagged Keywords — Require Review</div>
+        <div>
+          <span class="kw danger">"imagine pools"</span>
+          <span style="font-size:11px;color:var(--text-muted);margin-left:6px;">Explore sibling brand — remove from both campaigns immediately</span>
+        </div>
+        <div style="margin-top:8px;">
+          <span class="kw phrase">"san juan pools"</span>
+          <span class="kw phrase">"latham pools"</span>
+          <span style="font-size:11px;color:var(--text-muted);margin-left:6px;">Competitor brand keywords — confirm whether intentional conquesting or accidental; review</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== SHARED SETS / NEGATIVES ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Shared Negative Lists</span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('neg-body','Negatives')">Copy</button>
+    </div>
+    <div class="section-body" id="neg-body">
+      <table>
+        <thead>
+          <tr><th>List</th><th>Keywords</th><th>OKC</th><th>Tulsa Reboot</th><th>Old Tulsa (Paused)</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td style="font-weight:600;">Master Exclusion List 3.18</td>
+            <td>162</td>
+            <td><span class="ok">✓ Linked</span></td>
+            <td><span class="ok">✓ Linked</span></td>
+            <td><span class="muted">Not linked (paused — OK)</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div style="margin-top:20px;">
+        <div style="font-size:12px;font-weight:600;color:var(--p2);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">⚠ Negatives Needed — Not Currently in Account</div>
+        <div class="neg-list" id="neg-needed">
+[galaxy pools]
+[dolphin pools]
+[leslies pool]
+[leslie pools]
+[river pools]
+[san juan pools]
+[resurfacing pool]
+[pool resurfacing]
+[pool service near me]
+[pool service]
+[semi inground pool]
+[semi inground]
+[24 round pool]
+[gunite pool]
+[gunite pools]
+[swimming pool supplies]
+[pool supplies near me]
+[above ground pool kit]
+[intex pool]</div>
+        <button class="copy-btn" style="margin-top:8px;" onclick="copyById('neg-needed','Negatives list')">Copy Negatives List</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ASSET REVIEW ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Asset Review — Sitelinks, Callouts, Call, Images</span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('asset-body','Assets')">Copy</button>
+    </div>
+    <div class="section-body" id="asset-body">
+      <div class="two-col">
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">OKC</div>
+          <table>
+            <thead><tr><th>Asset Type</th><th>Count</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Sitelinks</td><td>3</td><td><span class="bad">✗ Below min (4)</span></td></tr>
+              <tr><td>Callouts</td><td>4</td><td><span class="ok">✓</span></td></tr>
+              <tr><td>Call asset</td><td>1</td><td><span class="ok">✓ (800) 432-8994</span></td></tr>
+              <tr><td>Images</td><td>10+</td><td><span class="ok">✓ LP models</span></td></tr>
+            </tbody>
+          </table>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic;">Callouts: Lifetime Pool Warranty, Convenient Locations, Leisure Fiberglass Pools, Expert Installation Team</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">Ad paths: /poolbuilder/oklahoma</div>
+        </div>
+        <div>
+          <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px;">Tulsa Reboot</div>
+          <table>
+            <thead><tr><th>Asset Type</th><th>Count</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>Sitelinks</td><td>4</td><td><span class="ok">✓ Meets minimum</span></td></tr>
+              <tr><td>Callouts</td><td>4</td><td><span class="ok">✓</span></td></tr>
+              <tr><td>Call asset</td><td>1</td><td><span class="ok">✓ (800) 432-8994</span></td></tr>
+              <tr><td>Images</td><td>10+</td><td><span class="ok">✓ LP models</span></td></tr>
+            </tbody>
+          </table>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:8px;font-style:italic;">Sitelinks: Award Winning Pool Shapes, Pools We've Built, Affordable Financing, Free Pool Quote</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">Callouts: Lifetime Pool Warranty, Convenient Locations, Leisure Fiberglass Pools, Expert Installation Team</div>
+          <div style="font-size:12px;color:var(--text-muted);margin-top:4px;font-style:italic;">Ad paths: /poolbuilder/tulsa</div>
+        </div>
+      </div>
+      <div style="margin-top:16px;">
+        <div style="font-size:12px;font-weight:600;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:8px;">Image Models Confirmed</div>
+        <div>
+          <span class="kw">Ultimate30</span><span class="kw">Limitless26</span><span class="kw">Allure40</span>
+          <span class="kw">Supreme35</span><span class="kw">Summit35</span><span class="kw">Elegance30</span>
+          <span style="font-size:12px;color:var(--text-muted);margin-left:8px;">All valid LP models ✓</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== CONVERSION TRACKING ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Conversion Tracking <span class="count">4 Actions · Clean</span></span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('conv-body','Conversions')">Copy</button>
+    </div>
+    <div class="section-body" id="conv-body">
+      <table>
+        <thead>
+          <tr><th>Conversion Action</th><th>Counting</th><th>Include in Conv.</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Contact Form Submit</td>
+            <td>ONE_PER_CLICK</td>
+            <td><span class="ok">Yes</span></td>
+            <td><span class="ok">Active</span></td>
+          </tr>
+          <tr>
+            <td>Download Brochure</td>
+            <td>ONE_PER_CLICK</td>
+            <td><span class="ok">Yes</span></td>
+            <td><span class="ok">Active</span></td>
+          </tr>
+          <tr>
+            <td>Free Estimate Request</td>
+            <td>ONE_PER_CLICK</td>
+            <td><span class="ok">Yes</span></td>
+            <td><span class="ok">Active</span></td>
+          </tr>
+          <tr>
+            <td>Phone Calls from Ads</td>
+            <td>ONE_PER_CLICK</td>
+            <td><span class="ok">Yes</span></td>
+            <td><span class="ok">Active</span></td>
+          </tr>
+        </tbody>
+      </table>
+      <div style="margin-top:12px;font-size:12px;color:var(--green);">✓ No duplicate GA4 mirrors. All actions set to ONE_PER_CLICK (correct). Brochure downloads included as conversions — confirmed real (require contact form fill). No issues.</div>
+    </div>
+  </div>
+
+  <!-- ===== DEVICE PERFORMANCE ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Device Performance</span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('device-body','Device Performance')">Copy</button>
+    </div>
+    <div class="section-body" id="device-body">
+      <table>
+        <thead>
+          <tr><th>Campaign</th><th>Device</th><th>Conversions</th><th>Note</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>OKC</td><td>Mobile</td><td style="color:var(--green);font-weight:600;">17.4 (all conv)</td><td class="muted">Dominant — 100% of OKC conversions</td></tr>
+          <tr><td>OKC</td><td>Desktop</td><td style="color:var(--p1);">0</td><td class="warn">Zero conversions — monitor 60d, consider −30% bid adj.</td></tr>
+          <tr><td>OKC</td><td>Tablet</td><td style="color:var(--p2);">0</td><td class="muted">Negligible traffic</td></tr>
+          <tr><td>Tulsa Reboot</td><td>Mobile</td><td style="color:var(--green);font-weight:600;">19.4 (majority)</td><td class="muted">Dominant</td></tr>
+          <tr><td>Tulsa Reboot</td><td>Desktop</td><td class="muted">Minimal</td><td class="muted">Low volume</td></tr>
+          <tr><td>Tulsa Reboot</td><td>Tablet</td><td style="color:var(--p2);">0</td><td class="muted">Negligible</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== WHAT'S WORKING ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">What's Working Well</span>
+    </div>
+    <div class="section-body">
+      <div class="win">✓ <strong>Master Exclusion List 3.18 linked to both active campaigns</strong> — 162-keyword shared negative list confirmed active.</div>
+      <div class="win">✓ <strong>No broad match keywords</strong> — full compliance across both campaigns. All 17 keywords per campaign are PHRASE match.</div>
+      <div class="win">✓ <strong>Geo targeting is PRESENCE-only (enum 7)</strong> — no PRESENCE_OR_INTEREST leakage. Targeting is tight.</div>
+      <div class="win">✓ <strong>Conversion tracking is clean</strong> — 4 active actions, no duplicates, correct counting type, brochure downloads properly included.</div>
+      <div class="win">✓ <strong>OKC CPA is strong at $57.59</strong> — significantly below the $100–$150 fiberglass industry average. OKC is an efficient campaign worth scaling.</div>
+      <div class="win">✓ <strong>Localized ad paths</strong> — /poolbuilder/oklahoma and /poolbuilder/tulsa demonstrate market-specific relevance signals.</div>
+      <div class="win">✓ <strong>Rich image assets</strong> — 10+ LP model images confirmed on both campaigns. Valid models only (Ultimate30, Limitless26, Allure40, Supreme35, Summit35, Elegance30).</div>
+    </div>
+  </div>
+
+  <!-- ===== ACTION SUMMARY ===== -->
+  <div class="section">
+    <div class="section-header" onclick="toggleSection(this)">
+      <span class="section-title">Action Item Summary</span>
+      <button class="copy-btn" onclick="event.stopPropagation();copySection('actions-body','Action Items')">Copy</button>
+    </div>
+    <div class="section-body" id="actions-body">
+      <table>
+        <thead>
+          <tr><th>Priority</th><th>Action</th><th>Campaign</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="badge-p1" style="display:inline-block;">P1</span></td>
+            <td>Remove "imagine pools" [PHRASE] keyword from both campaigns</td>
+            <td>OKC + Tulsa Reboot</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p1" style="display:inline-block;">P1</span></td>
+            <td>Add negative keywords for competitor brands (galaxy, dolphin, leslies, river, san juan) — see negatives list</td>
+            <td>Both</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p2" style="display:inline-block;">P2</span></td>
+            <td>Add negatives for wrong-intent terms (resurfacing, service, semi-inground, gunite, above-ground variants)</td>
+            <td>Both</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p2" style="display:inline-block;">P2</span></td>
+            <td>Add 4th sitelink to OKC campaign</td>
+            <td>OKC only</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p2" style="display:inline-block;">P2</span></td>
+            <td>Set CPC bid ceiling on both Max Clicks campaigns ($8–$12 suggested)</td>
+            <td>Both</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p2" style="display:inline-block;">P2</span></td>
+            <td>Review OKC budget ($25/day → $35) given strong CPA and high rank-lost IS</td>
+            <td>OKC only</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p3" style="display:inline-block;">P3</span></td>
+            <td>Monitor desktop conversion rate on OKC; apply −30% bid adj if still 0 at 60d</td>
+            <td>OKC</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p3" style="display:inline-block;">P3</span></td>
+            <td>Long-term: restructure single "Ad group 1" into 3 themed ad groups per campaign</td>
+            <td>Both</td>
+          </tr>
+          <tr>
+            <td><span class="badge-p3" style="display:inline-block;">P3</span></td>
+            <td>Review "san juan pools" and "latham pools" — confirm if intentional conquesting</td>
+            <td>Both</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <div class="footer">
+    Leisure Pools OK · Account 232-235-2945 · Audit date 2026-03-23 · 30-day window 2026-02-21 → 2026-03-23<br>
+    Generated by Claude Code for Eli Bunyi / Explore Industries — Read-only audit · Zero write operations performed
+  </div>
+
+</div>
+
+<script>
+function toggleSection(header) {
+  const body = header.nextElementSibling;
+  if (body.style.display === 'none') {
+    body.style.display = 'block';
+  } else {
+    body.style.display = 'none';
+  }
+}
+
+function copySection(id, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    const btns = document.querySelectorAll('.copy-btn');
+    btns.forEach(btn => {
+      if (btn.innerText.toLowerCase().includes('copy') && btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(id)) {
+        btn.innerText = 'Copied!';
+        btn.classList.add('copied');
+        setTimeout(() => { btn.innerText = 'Copy'; btn.classList.remove('copied'); }, 2000);
+      }
+    });
+  });
+}
+
+function copyById(id, label) {
+  const el = document.getElementById(id);
+  if (!el) return;
+  const text = el.innerText || el.textContent;
+  navigator.clipboard.writeText(text).then(() => {
+    alert('Copied: ' + label);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tri County Pools — Google Ads Audit | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #112240;
+    --navy-light: #1a3560;
+    --accent: #3b82f6;
+    --accent-light: #60a5fa;
+    --accent-dim: #1e3a5f;
+    --green: #22c55e;
+    --green-dim: #14532d;
+    --yellow: #f59e0b;
+    --yellow-dim: #451a03;
+    --red: #ef4444;
+    --red-dim: #450a0a;
+    --gray: #94a3b8;
+    --gray-light: #cbd5e1;
+    --white: #f1f5f9;
+    --text: #e2e8f0;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .page { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* Header */
+  .header { border-bottom: 2px solid var(--accent); padding-bottom: 20px; margin-bottom: 28px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 12px; }
+  .dealer-name { font-size: 26px; font-weight: 700; color: var(--white); letter-spacing: -0.5px; }
+  .header-meta { font-size: 12px; color: var(--gray); text-align: right; line-height: 1.8; }
+  .header-meta span { display: block; }
+  .brand-tag {
+    display: inline-block; background: var(--accent-dim); color: var(--accent-light);
+    border: 1px solid var(--accent); border-radius: 4px; padding: 2px 10px;
+    font-size: 12px; font-weight: 600; margin-top: 6px;
+  }
+
+  /* Health Score */
+  .score-bar {
+    background: var(--navy-mid); border: 1px solid var(--navy-light); border-radius: 10px;
+    padding: 20px 24px; margin-bottom: 24px; display: flex; align-items: center; gap: 24px;
+  }
+  .score-circle {
+    width: 72px; height: 72px; border-radius: 50%; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; flex-shrink: 0;
+    border: 3px solid var(--yellow); background: var(--yellow-dim);
+  }
+  .score-num { font-size: 28px; font-weight: 800; color: var(--yellow); line-height: 1; }
+  .score-denom { font-size: 11px; color: var(--gray); }
+  .score-details { flex: 1; }
+  .score-label { font-size: 17px; font-weight: 700; color: var(--yellow); margin-bottom: 4px; }
+  .score-summary { font-size: 13px; color: var(--gray-light); }
+  .score-progress { margin-top: 10px; background: var(--navy-light); border-radius: 4px; height: 6px; overflow: hidden; }
+  .score-fill { height: 100%; border-radius: 4px; background: linear-gradient(90deg, var(--accent), var(--yellow)); width: 71%; }
+
+  /* KPI Strip */
+  .kpi-strip {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 12px; margin-bottom: 28px;
+  }
+  .kpi {
+    background: var(--navy-mid); border: 1px solid var(--navy-light); border-radius: 8px;
+    padding: 14px 16px; text-align: center;
+  }
+  .kpi-val { font-size: 22px; font-weight: 800; color: var(--accent-light); }
+  .kpi-label { font-size: 11px; color: var(--gray); margin-top: 2px; text-transform: uppercase; letter-spacing: 0.5px; }
+
+  /* Section */
+  .section { margin-bottom: 28px; }
+  .section-title {
+    font-size: 15px; font-weight: 700; color: var(--white);
+    background: var(--navy-mid); border-left: 3px solid var(--accent);
+    padding: 8px 14px; border-radius: 0 6px 6px 0; margin-bottom: 14px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  .section-title .badge {
+    font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 20px;
+    margin-left: auto;
+  }
+
+  /* Finding cards */
+  .findings { display: flex; flex-direction: column; gap: 10px; }
+  .finding {
+    background: var(--navy-mid); border: 1px solid var(--navy-light);
+    border-radius: 8px; padding: 14px 16px; display: flex; gap: 12px; align-items: flex-start;
+  }
+  .finding.pass { border-left: 3px solid var(--green); }
+  .finding.warn { border-left: 3px solid var(--yellow); }
+  .finding.fail { border-left: 3px solid var(--red); }
+  .finding.info { border-left: 3px solid var(--accent); }
+  .finding-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+  .finding-body { flex: 1; }
+  .finding-title { font-weight: 600; color: var(--white); margin-bottom: 3px; }
+  .finding-desc { font-size: 13px; color: var(--gray-light); }
+  .finding-desc strong { color: var(--accent-light); }
+  .tag { display: inline-block; border-radius: 3px; padding: 1px 7px; font-size: 11px; font-weight: 600; margin-left: 6px; }
+  .tag-pass { background: var(--green-dim); color: var(--green); }
+  .tag-warn { background: var(--yellow-dim); color: var(--yellow); }
+  .tag-fail { background: var(--red-dim); color: var(--red); }
+  .tag-info { background: var(--accent-dim); color: var(--accent-light); }
+
+  /* Tables */
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th {
+    background: var(--navy-light); color: var(--gray-light);
+    padding: 8px 12px; text-align: left; font-weight: 600;
+    font-size: 11px; text-transform: uppercase; letter-spacing: 0.5px;
+  }
+  .data-table td { padding: 8px 12px; border-bottom: 1px solid var(--navy-light); color: var(--text); }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: rgba(59,130,246,0.06); }
+  .table-wrap { background: var(--navy-mid); border: 1px solid var(--navy-light); border-radius: 8px; overflow: hidden; margin-bottom: 12px; }
+
+  /* Copy fields */
+  .copy-block { position: relative; margin-bottom: 8px; }
+  .copy-field {
+    background: var(--navy); border: 1px solid var(--navy-light); border-radius: 6px;
+    padding: 8px 44px 8px 12px; font-size: 12px; font-family: 'Courier New', monospace;
+    color: var(--accent-light); width: 100%; cursor: pointer; word-break: break-all;
+  }
+  .copy-btn {
+    position: absolute; right: 6px; top: 50%; transform: translateY(-50%);
+    background: var(--accent-dim); border: 1px solid var(--accent); color: var(--accent-light);
+    border-radius: 4px; padding: 2px 8px; font-size: 11px; cursor: pointer;
+    transition: background 0.15s;
+  }
+  .copy-btn:hover { background: var(--accent); color: #fff; }
+  .copy-label { font-size: 11px; color: var(--gray); margin-bottom: 3px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.4px; }
+
+  /* Grid layouts */
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+
+  /* Asset cards */
+  .asset-card {
+    background: var(--navy-mid); border: 1px solid var(--navy-light); border-radius: 8px;
+    padding: 14px 16px; margin-bottom: 10px;
+  }
+  .asset-type { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.8px; color: var(--gray); margin-bottom: 6px; }
+  .asset-headline { font-size: 14px; font-weight: 700; color: var(--accent-light); margin-bottom: 4px; }
+  .asset-desc { font-size: 12px; color: var(--gray-light); }
+
+  /* Negative kw list */
+  .neg-cloud { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 10px; }
+  .neg-tag {
+    background: var(--navy); border: 1px solid var(--navy-light);
+    border-radius: 20px; padding: 3px 10px; font-size: 11px; color: var(--gray-light);
+  }
+
+  /* Action items */
+  .action-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+  .action-item {
+    display: flex; gap: 12px; align-items: flex-start;
+    background: var(--navy-mid); border: 1px solid var(--navy-light); border-radius: 8px;
+    padding: 12px 16px;
+  }
+  .action-num {
+    background: var(--accent-dim); color: var(--accent-light);
+    border: 1px solid var(--accent); border-radius: 50%;
+    width: 24px; height: 24px; display: flex; align-items: center; justify-content: center;
+    font-size: 12px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+  }
+  .action-body .action-title { font-weight: 600; color: var(--white); }
+  .action-body .action-why { font-size: 12px; color: var(--gray-light); margin-top: 2px; }
+  .priority-high { border-left: 3px solid var(--red); }
+  .priority-med { border-left: 3px solid var(--yellow); }
+  .priority-low { border-left: 3px solid var(--accent); }
+
+  /* Footer */
+  .footer { margin-top: 36px; padding-top: 16px; border-top: 1px solid var(--navy-light); font-size: 11px; color: var(--gray); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+
+  /* Pill badges */
+  .pill { display: inline-block; border-radius: 20px; padding: 2px 10px; font-size: 11px; font-weight: 600; }
+  .pill-pass { background: var(--green-dim); color: var(--green); }
+  .pill-warn { background: var(--yellow-dim); color: var(--yellow); }
+  .pill-fail { background: var(--red-dim); color: var(--red); }
+
+  /* Changelog */
+  .changelog-entry { background: var(--navy-mid); border: 1px solid var(--navy-light); border-radius: 8px; padding: 12px 16px; margin-bottom: 8px; }
+  .changelog-date { font-size: 11px; color: var(--gray); }
+  .changelog-action { font-weight: 600; color: var(--white); }
+  .changelog-detail { font-size: 12px; color: var(--gray-light); margin-top: 2px; }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ═══════════════════════════════════ HEADER ═══════════════════════════════════ -->
+  <div class="header">
+    <div class="header-top">
+      <div>
+        <div class="dealer-name">Tri County Pools</div>
+        <div><span class="brand-tag">Leisure Pools</span></div>
+        <div style="margin-top:8px;font-size:13px;color:var(--gray);">
+          Orangeburg, SC &nbsp;·&nbsp; Account 673-602-5219 &nbsp;·&nbsp; tricountyswimmingpools.com
+        </div>
+        <div style="margin-top:4px;font-size:12px;color:var(--gray);">Contact: Travis Chavez</div>
+      </div>
+      <div class="header-meta">
+        <span>Audit Date: March 23, 2026</span>
+        <span>Period: Feb 21 – Mar 23, 2026 (30 days)</span>
+        <span>MCC: 836-765-6694</span>
+        <span style="margin-top:4px;color:var(--accent-light);font-weight:600;">Top 5 Performer by CPA</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ HEALTH SCORE ═══════════════════════════════════ -->
+  <div class="score-bar">
+    <div class="score-circle">
+      <span class="score-num">71</span>
+      <span class="score-denom">/100</span>
+    </div>
+    <div class="score-details">
+      <div class="score-label">Account Health: MODERATE — Structurally Sound, Tracking Gaps</div>
+      <div class="score-summary">
+        Strong foundation: no broad match, solid negative coverage, precise geo targeting (PRESENCE), and a full asset suite. Score held down by a ghost conversion action (REMOVED), phone tracking on MANY_PER_CLICK, one-campaign single-ad-group structure, and RSA copy unverifiable via API. Conversion architecture is the primary risk at this CPA.
+      </div>
+      <div class="score-progress"><div class="score-fill"></div></div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ KPI STRIP ═══════════════════════════════════ -->
+  <div class="kpi-strip">
+    <div class="kpi"><div class="kpi-val">$671</div><div class="kpi-label">Spend (30d)</div></div>
+    <div class="kpi"><div class="kpi-val">13</div><div class="kpi-label">Conversions</div></div>
+    <div class="kpi"><div class="kpi-val">$52</div><div class="kpi-label">Cost / Conv</div></div>
+    <div class="kpi"><div class="kpi-val">1</div><div class="kpi-label">Campaign</div></div>
+    <div class="kpi"><div class="kpi-val">1</div><div class="kpi-label">Ad Groups</div></div>
+    <div class="kpi"><div class="kpi-val">Max Conv</div><div class="kpi-label">Bid Strategy</div></div>
+    <div class="kpi"><div class="kpi-val">PRESENCE</div><div class="kpi-label">Geo Targeting</div></div>
+    <div class="kpi"><div class="kpi-val">13</div><div class="kpi-label">Geo Targets</div></div>
+  </div>
+
+  <!-- ═══════════════════════════════════ WHAT'S WORKING ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Why This Account Works at $52 CPA
+      <span class="badge tag-pass">Top 5 Performer</span>
+    </div>
+    <div class="findings">
+      <div class="finding info">
+        <div class="finding-icon">🏆</div>
+        <div class="finding-body">
+          <div class="finding-title">Efficient bid strategy on a lean budget</div>
+          <div class="finding-desc">Maximize Conversions (no target CPA set) on a $22–23/day implied budget lets Google's algorithm hunt freely across intent signals. With a small keyword set and tight geo targeting, the algorithm isn't diluted — it learns fast on a concentrated signal pool. Compare to Athens (also Max Conv), which uses a similar structure to rank #2 by CPA in the fleet.</div>
+        </div>
+      </div>
+      <div class="finding info">
+        <div class="finding-icon">📍</div>
+        <div class="finding-body">
+          <div class="finding-title">PRESENCE targeting eliminates wasted impressions</div>
+          <div class="finding-desc">positive_geo_target_type = 7 (PRESENCE) confirmed — the campaign only fires for users physically in the target area, not searchers interested in it. This surgical setting is the single highest-ROI configuration for a local service business. Combined with 13 specific SC targets (Columbia DMA, 11 cities, 2 counties), virtually zero out-of-market waste.</div>
+        </div>
+      </div>
+      <div class="finding info">
+        <div class="finding-icon">🔒</div>
+        <div class="finding-body">
+          <div class="finding-title">Zero broad match — phrase-only keyword discipline</div>
+          <div class="finding-desc">Every active keyword confirmed PHRASE match. No broad match contamination. This is the single most common cause of CPA blowouts across the fleet; Tri County avoids it entirely. Shared negative set 12012201802 adds ~95 broad-match negatives covering DIY, jobs, maintenance, above-ground, inflatable, and competitor brands (Intex, Coleman, San Juan, Doughboy).</div>
+        </div>
+      </div>
+      <div class="finding info">
+        <div class="finding-icon">📞</div>
+        <div class="finding-body">
+          <div class="finding-title">Full asset suite — phone, sitelinks, callouts, logo</div>
+          <div class="finding-desc">Call asset (803) 533-9139 + 3 sitelinks with descriptions + 3 callouts + logo image = a complete ad unit that maximizes SERP real estate. Assets are brand-aligned (colors, pool designs, warranty callout). Dealer-specific contact sitelink present.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ CAMPAIGN STRUCTURE ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Campaign Structure
+      <span class="badge tag-warn">1 Issue</span>
+    </div>
+
+    <div class="table-wrap" style="margin-bottom:14px;">
+      <table class="data-table">
+        <thead><tr><th>Field</th><th>Value</th><th>Status</th></tr></thead>
+        <tbody>
+          <tr><td>Campaign Status</td><td>ENABLED</td><td><span class="pill pill-pass">PASS</span></td></tr>
+          <tr><td>Bid Strategy</td><td>MAXIMIZE_CONVERSIONS (type 10) — no target CPA set</td><td><span class="pill pill-pass">PASS</span></td></tr>
+          <tr><td>Brief Noted Bid Type</td><td>Brief said "Max Conv Value (type 11)" — API confirms type 10 (Maximize Conversions). Reporting API value.</td><td><span class="pill pill-warn">NOTE</span></td></tr>
+          <tr><td>Network: Google Search</td><td>Enabled</td><td><span class="pill pill-pass">PASS</span></td></tr>
+          <tr><td>Network: Search Partners</td><td>Enabled</td><td><span class="pill pill-warn">REVIEW</span></td></tr>
+          <tr><td>Network: Display</td><td>Disabled</td><td><span class="pill pill-pass">PASS</span></td></tr>
+          <tr><td>Ad Groups</td><td>1 (single ad group structure)</td><td><span class="pill pill-warn">WATCH</span></td></tr>
+          <tr><td>positive_geo_target_type</td><td>7 = PRESENCE</td><td><span class="pill pill-pass">PASS</span></td></tr>
+          <tr><td>Device Bid Adjustments</td><td>Unable to retrieve via API (serialization error on device.type field)</td><td><span class="pill pill-warn">UNVERIFIED</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="findings">
+      <div class="finding warn">
+        <div class="finding-icon">⚠️</div>
+        <div class="finding-body">
+          <div class="finding-title">Bid strategy discrepancy — brief vs. API</div>
+          <div class="finding-desc">The audit brief stated "Max Conv Value (bid type 11)" but the API returns <strong>bidding_strategy_type = 10 = MAXIMIZE_CONVERSIONS</strong> (not Max Conv Value). This is reported as confirmed. The two strategies optimize differently (conversions vs. conversion value) — if the intent is to weight high-value leads, switching to Max Conv Value with a TROAS target would be meaningful. No action recommended without Eli's confirmation.</div>
+        </div>
+      </div>
+      <div class="finding warn">
+        <div class="finding-icon">⚠️</div>
+        <div class="finding-body">
+          <div class="finding-title">Search Partners enabled — recommend review</div>
+          <div class="finding-desc">Search Partners is on. At $671/month, every dollar matters. If a portion of spend is going to low-quality partner inventory (Maps, YouTube search, etc.), it's diluting CPA. Segment by network in the UI to see if partner conversions are contributing proportionally. If not, disable.</div>
+        </div>
+      </div>
+      <div class="finding pass">
+        <div class="finding-icon">✅</div>
+        <div class="finding-body">
+          <div class="finding-title">Single ad group — acceptable at this budget tier</div>
+          <div class="finding-desc">One ad group keeps the conversion signal concentrated, which is the right call for Max Conv on a lean budget. Adding ad groups fragments Google's learning. At $671/month, don't split until spend grows above ~$1,500–2,000/month.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ GEO TARGETING ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Geo Targeting
+      <span class="badge tag-pass">PASS</span>
+    </div>
+
+    <div class="finding pass" style="margin-bottom:10px;">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="finding-title">13 positive targets — no exclusions — PRESENCE confirmed</div>
+        <div class="finding-desc">All location targets are positive (no negative exclusions detected). Geo targeting type = PRESENCE (enum 7). Coverage is appropriate for a regional SC installer.</div>
+      </div>
+    </div>
+
+    <div class="table-wrap">
+      <table class="data-table">
+        <thead><tr><th>Location</th><th>Type</th><th>State</th></tr></thead>
+        <tbody>
+          <tr><td>Columbia, SC</td><td>DMA Region</td><td>SC</td></tr>
+          <tr><td>Florence</td><td>City</td><td>SC</td></tr>
+          <tr><td>Irmo</td><td>City</td><td>SC</td></tr>
+          <tr><td>Lake City</td><td>City</td><td>SC</td></tr>
+          <tr><td>Manning</td><td>City</td><td>SC</td></tr>
+          <tr><td>Moncks Corner</td><td>City</td><td>SC</td></tr>
+          <tr><td>Orangeburg</td><td>City</td><td>SC</td></tr>
+          <tr><td>Saint George</td><td>City</td><td>SC</td></tr>
+          <tr><td>Summerton</td><td>City</td><td>SC</td></tr>
+          <tr><td>Summerville</td><td>City</td><td>SC</td></tr>
+          <tr><td>Walterboro</td><td>City</td><td>SC</td></tr>
+          <tr><td>Florence County</td><td>County</td><td>SC</td></tr>
+          <tr><td>Sumter County</td><td>County</td><td>SC</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ CONVERSION TRACKING ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Conversion Tracking
+      <span class="badge tag-fail">2 Issues</span>
+    </div>
+
+    <div class="findings">
+      <div class="finding fail">
+        <div class="finding-icon">🚨</div>
+        <div class="finding-body">
+          <div class="finding-title">Ghost conversion action — status REMOVED</div>
+          <div class="finding-desc">One conversion action in the account has <strong>status = 3 (REMOVED)</strong>. Removed actions no longer fire, but if the campaign was previously attributing conversions to it, historical data may be inflated or the current 13-conversion count may include a now-dead action. Verify in the UI which action(s) are active and confirm the 13 conversions are attributing to a live, ENABLED action. If the removed action was the primary goal, conversion data is unreliable.</div>
+        </div>
+      </div>
+      <div class="finding warn">
+        <div class="finding-icon">⚠️</div>
+        <div class="finding-body">
+          <div class="finding-title">Phone conversion on MANY_PER_CLICK — inflates count</div>
+          <div class="finding-desc">The call asset (803) 533-9139 is connected to a phone conversion action with <strong>counting_type = 2 (MANY_PER_CLICK)</strong>. For a single Google-forwarded number on a pool lead (1 prospect = 1 conversion), this means multiple calls from the same click all count as separate conversions. Recommend switching to ONE_PER_CLICK to avoid double-counting a prospect who calls back. Note: the call conversion action origin is GOOGLE_CALL_FROM_ADS (auto-tracked number), not a website tag.</div>
+        </div>
+      </div>
+      <div class="finding pass">
+        <div class="finding-icon">✅</div>
+        <div class="finding-body">
+          <div class="finding-title">Brochure downloads (if present) treated as real conversions</div>
+          <div class="finding-desc">Per standing rules: brochure downloads require a contact form fill and count as genuine conversions. No demotion applied. If the account has a brochure download conversion action, it should remain ENABLED and biddable.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ KEYWORDS ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Keywords
+      <span class="badge tag-pass">PASS — No Broad Match</span>
+    </div>
+
+    <div class="finding pass" style="margin-bottom:12px;">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="finding-title">All active keywords confirmed PHRASE match — zero broad match</div>
+        <div class="finding-desc">Every ENABLED keyword in the account uses phrase match. This is the correct configuration per fleet rules. No remediation needed.</div>
+      </div>
+    </div>
+
+    <div class="finding pass">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="finding-title">Quality scores — unable to retrieve segment detail via API</div>
+        <div class="finding-desc">Individual keyword quality scores require segment-level queries that were not available in this pull. Review keyword QS in the UI — flag any keyword with QS ≤ 4 for pause or expansion.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ NEGATIVE KEYWORDS ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Shared Negative Keywords
+      <span class="badge tag-pass">PASS — ~95 Terms</span>
+    </div>
+
+    <div class="finding pass" style="margin-bottom:10px;">
+      <div class="finding-icon">✅</div>
+      <div class="finding-body">
+        <div class="finding-title">Shared set 12012201802 attached — solid coverage</div>
+        <div class="finding-desc">~95 broad-match negative keywords covering DIY/maintenance, job/career terms, price-shopping signals, above-ground and inflatable pools, and major competitor brands. Coverage is appropriate for a Leisure Pools dealer.</div>
+      </div>
+    </div>
+
+    <div class="neg-cloud">
+      <span class="neg-tag">diy pool</span>
+      <span class="neg-tag">pool repair</span>
+      <span class="neg-tag">pool maintenance</span>
+      <span class="neg-tag">pool cleaning</span>
+      <span class="neg-tag">pool jobs</span>
+      <span class="neg-tag">pool career</span>
+      <span class="neg-tag">pool technician</span>
+      <span class="neg-tag">above ground</span>
+      <span class="neg-tag">inflatable pool</span>
+      <span class="neg-tag">intex</span>
+      <span class="neg-tag">coleman pool</span>
+      <span class="neg-tag">san juan pools</span>
+      <span class="neg-tag">doughboy</span>
+      <span class="neg-tag">how much does a pool cost</span>
+      <span class="neg-tag">pool prices</span>
+      <span class="neg-tag">cheap pool</span>
+      <span class="neg-tag">pool chemicals</span>
+      <span class="neg-tag">pool pump</span>
+      <span class="neg-tag">pool filter</span>
+      <span class="neg-tag">pool table</span>
+      <span class="neg-tag">swimming lessons</span>
+      <span class="neg-tag">+ ~75 more broad-match terms</span>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ ASSETS ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Assets — Sitelinks, Callouts, Call, Image
+      <span class="badge tag-pass">Full Suite Present</span>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="copy-label">Sitelinks (3 confirmed)</div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink · Asset 172728881187</div>
+        <div class="asset-headline">Fiberglass Pool Colors</div>
+        <div class="asset-desc">Desc 1: Stylize and Customize Your Pool &nbsp;·&nbsp; Desc 2: Premier Gelcoat Colors</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink · Asset 172728937701</div>
+        <div class="asset-headline">Pool Designs</div>
+        <div class="asset-desc">Desc 1: Rectangular &amp; Freeform Pool Shapes. &nbsp;·&nbsp; Desc 2: Discover Our Collection</div>
+      </div>
+      <div class="asset-card">
+        <div class="asset-type">Sitelink · Asset 172734041476</div>
+        <div class="asset-headline">Contact Us</div>
+        <div class="asset-desc">Desc 1: Want To Learn More? &nbsp;·&nbsp; Desc 2: We'd Love To Answer Your Questions.</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="copy-label">Callouts (3 confirmed)</div>
+      <div class="two-col">
+        <div class="asset-card" style="margin-bottom:0">
+          <div class="asset-type">Callout · 172698140552</div>
+          <div class="asset-headline">Lifetime Pool Warranty</div>
+        </div>
+        <div class="asset-card" style="margin-bottom:0">
+          <div class="asset-type">Callout · 172698140555</div>
+          <div class="asset-headline">Leisure Fiberglass Pools</div>
+        </div>
+      </div>
+      <div class="asset-card" style="margin-top:10px;">
+        <div class="asset-type">Callout · 172698140558</div>
+        <div class="asset-headline">Local Pool Builder</div>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="copy-label">Call Asset</div>
+      <div class="asset-card">
+        <div class="asset-type">Call Asset · 172698265397</div>
+        <div class="asset-headline">(803) 533-9139 — United States</div>
+        <div class="asset-desc">Google-forwarded call tracking number. Auto-tracked call conversion. Counting type: MANY_PER_CLICK (see conversion section).</div>
+      </div>
+    </div>
+
+    <div>
+      <div class="copy-label">Image Assets</div>
+      <div class="asset-card">
+        <div class="asset-type">Image · Asset 276241277445</div>
+        <div class="asset-headline">logo-of-tri-county-pools-sc.jpg</div>
+        <div class="asset-desc">Business logo confirmed present. Asset field_type 27 (logo).</div>
+      </div>
+      <div class="finding warn" style="margin-top:8px;">
+        <div class="finding-icon">⚠️</div>
+        <div class="finding-body">
+          <div class="finding-title">Asset 172698327767 — unknown type (field_type 18)</div>
+          <div class="finding-desc">This campaign asset returned empty fields via API — asset content unreadable for field_type 18. Likely a call-to-action overlay or structured image asset type not exposed by the serializer. Not a structural issue — verify in UI if needed, but don't flag as missing.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="finding warn" style="margin-top:12px;">
+      <div class="finding-icon">⚠️</div>
+      <div class="finding-body">
+        <div class="finding-title">RSA copy unreadable via API — manual review required</div>
+        <div class="finding-desc">The Google Ads API MCP serializer does not support <code>responsive_search_ad.headlines</code> or <code>.descriptions</code> array fields. RSA copy could not be retrieved or audited. <strong>Manually review in the UI:</strong> confirm at least 8–10 headlines and 3–4 descriptions, check for brand stuffing (do not repeat "Leisure Pools" in every headline), and ensure at least one pinned headline contains the city name or "South Carolina."</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ AD COPY GUIDANCE (BULK PASTE) ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">RSA Copy Recommendations — Bulk Paste</div>
+
+    <div style="margin-bottom:14px;">
+      <div class="copy-label">Headline Additions (30 char max each) — copy to clipboard</div>
+
+      <div class="copy-block">
+        <div class="copy-label">H: Local &amp; Trust</div>
+        <div class="copy-field" onclick="copyText(this)">Tri County Pool Experts SC</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">SC's Leisure Pools Dealer</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Installed in Weeks, Not Months</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Lifetime Structural Warranty</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Free Pool Quote — Call Today</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">150,000+ Pools Worldwide</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Fiberglass Pools | Orangeburg SC</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+    </div>
+
+    <div style="margin-bottom:14px;">
+      <div class="copy-label">Description Additions (90 char max each)</div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Custom fiberglass pools installed across South Carolina in weeks. Lifetime warranty. Get a free quote.</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Low maintenance. Fast installation. Serving Orangeburg, Columbia &amp; the Lowcountry. Call Tri County Pools.</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+      <div class="copy-block">
+        <div class="copy-field" onclick="copyText(this)">Leisure Pools certified dealer in SC. AquaGuard X colors. Lifetime structural + osmosis warranty.</div>
+        <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ CHANGE LOG ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">
+      Recent Changes (30-day window)
+      <span class="badge tag-info">1 Change</span>
+    </div>
+
+    <div class="changelog-entry">
+      <div class="changelog-date">2026-03-16 13:08:19 UTC &nbsp;·&nbsp; User: eli.bunyi@exploreindustries.com &nbsp;·&nbsp; Client: Google Ads UI (type 2)</div>
+      <div class="changelog-action">Resource modified — change_resource_type 6 / operation 3</div>
+      <div class="changelog-detail">One change recorded in the 30-day window. Resource type 6 and operation 3 indicate a campaign-level update (likely budget, bid strategy, or settings change). Exact field changed not resolvable via API without new_resource / old_resource diff — view in change history UI for specifics.</div>
+    </div>
+
+    <div class="finding info" style="margin-top:8px;">
+      <div class="finding-icon">ℹ️</div>
+      <div class="finding-body">
+        <div class="finding-title">API change event window limited to rolling 30 days from query date</div>
+        <div class="finding-desc">The start date 2026-02-21 was outside the API's 30-day limit. Effective change history starts 2026-02-25. Only 1 change detected in this window — account has been stable.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════ PRIORITIZED ACTION ITEMS ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Prioritized Action Items</div>
+    <ul class="action-list">
+
+      <li class="action-item priority-high">
+        <div class="action-num">1</div>
+        <div class="action-body">
+          <div class="action-title">Audit conversion actions in UI — identify and resolve REMOVED action</div>
+          <div class="action-why">A REMOVED conversion action is a ghost goal. If the campaign was attributing to it, your 13-conversion count is suspect. Confirm which action(s) are ENABLED and biddable, and ensure at least one primary goal is live. This is the most critical data integrity issue in the account.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-high">
+        <div class="action-num">2</div>
+        <div class="action-body">
+          <div class="action-title">Switch phone call conversion from MANY_PER_CLICK to ONE_PER_CLICK</div>
+          <div class="action-why">Pool buyers often call multiple times before committing. Every repeat call currently inflates the conversion count. ONE_PER_CLICK gives a cleaner signal per prospect and prevents the $52 CPA from being artificially understated. Make the change after confirming the primary conversion action above.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-med">
+        <div class="action-num">3</div>
+        <div class="action-body">
+          <div class="action-title">Manually review RSA headlines and descriptions in the UI</div>
+          <div class="action-why">RSA copy is unreadable via API. Check: (a) headline count ≥ 8, description count ≥ 3, (b) no brand stuffing — "Leisure Pools" shouldn't appear in every headline, (c) at least one geo headline (Orangeburg / South Carolina / SC), (d) at least one USP headline (warranty, speed, local). Use the bulk paste suggestions in this report if gaps exist.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-med">
+        <div class="action-num">4</div>
+        <div class="action-body">
+          <div class="action-title">Segment Search vs. Search Partners in the UI — evaluate partner quality</div>
+          <div class="action-why">With $671/month, partner spend is likely small but not zero. If partner conversions are zero or CPA is 2x+, disable Search Partners. If they're contributing at a similar CPA, leave it on. Five minutes in the UI pays for itself here.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-med">
+        <div class="action-num">5</div>
+        <div class="action-body">
+          <div class="action-title">Verify asset 172698327767 (field_type 18) in the UI</div>
+          <div class="action-why">Unknown asset type returned empty fields via API. Confirm it's active and serving correctly. If it's an image extension or call-to-action overlay, ensure it's appropriate and not expired.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-low">
+        <div class="action-num">6</div>
+        <div class="action-body">
+          <div class="action-title">Confirm bid strategy intent — Max Conv vs. Max Conv Value</div>
+          <div class="action-why">Brief cited Max Conv Value (type 11) but API confirms Max Conv (type 10). If the intent is to weight higher-value leads (e.g., brochure downloads > phone calls), switching to Max Conv Value with an optional Target ROAS could improve lead quality mix. Confirm with Eli before any change.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-low">
+        <div class="action-num">7</div>
+        <div class="action-body">
+          <div class="action-title">Review device performance — verify bid adjustments if any exist</div>
+          <div class="action-why">Device bid adjustments couldn't be retrieved via API. Check in UI whether mobile is getting a negative adjustment. At $52 CPA, the algorithm is handling devices well — but if mobile CPA is materially higher, a -15% to -25% adjustment may improve efficiency.</div>
+        </div>
+      </li>
+
+      <li class="action-item priority-low">
+        <div class="action-num">8</div>
+        <div class="action-body">
+          <div class="action-title">Consider adding a 4th sitelink — Testimonials or Installations</div>
+          <div class="action-why">Three sitelinks is the minimum. A fourth — "See Our Installations" or "Customer Reviews" — increases ad unit size and social proof. Especially effective during spring booking season (March–May).</div>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+
+  <!-- ═══════════════════════════════════ ACCOUNT COPY-PASTE FIELDS ═══════════════════════════════════ -->
+  <div class="section">
+    <div class="section-title">Quick Reference — Click to Copy</div>
+    <div class="two-col">
+      <div>
+        <div class="copy-label">Account ID</div>
+        <div class="copy-block">
+          <div class="copy-field" onclick="copyText(this)">6736025219</div>
+          <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+        </div>
+        <div class="copy-label">Phone Number</div>
+        <div class="copy-block">
+          <div class="copy-field" onclick="copyText(this)">(803) 533-9139</div>
+          <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+        </div>
+        <div class="copy-label">Website</div>
+        <div class="copy-block">
+          <div class="copy-field" onclick="copyText(this)">tricountyswimmingpools.com</div>
+          <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+        </div>
+      </div>
+      <div>
+        <div class="copy-label">Shared Negative Set ID</div>
+        <div class="copy-block">
+          <div class="copy-field" onclick="copyText(this)">12012201802</div>
+          <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+        </div>
+        <div class="copy-label">Contact</div>
+        <div class="copy-block">
+          <div class="copy-field" onclick="copyText(this)">Travis Chavez — Tri County Pools, Orangeburg SC</div>
+          <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+        </div>
+        <div class="copy-label">MCC</div>
+        <div class="copy-block">
+          <div class="copy-field" onclick="copyText(this)">836-765-6694</div>
+          <button class="copy-btn" onclick="copyText(this.previousElementSibling)">Copy</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <span>Tri County Pools — Google Ads Audit</span>
+    <span>Generated 2026-03-23 by Claude Code (dealer-audit-v2)</span>
+    <span>Account 6736025219 &nbsp;·&nbsp; MCC 836-765-6694 &nbsp;·&nbsp; READ-ONLY — no changes made</span>
+  </div>
+
+</div>
+
+<script>
+function copyText(el) {
+  const text = el.textContent.trim();
+  navigator.clipboard.writeText(text).then(() => {
+    const orig = el.style.color;
+    el.style.color = '#22c55e';
+    setTimeout(() => { el.style.color = orig; }, 700);
+  }).catch(() => {
+    const range = document.createRange();
+    range.selectNodeContents(el);
+    window.getSelection().removeAllRanges();
+    window.getSelection().addRange(range);
+  });
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Google Ads Audit — Elite - Aviva Pools Nashville South | 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0d1b2a;
+    --navy-mid: #1a2e45;
+    --navy-light: #243b55;
+    --accent: #4a9eca;
+    --accent-light: #6eb5d9;
+    --gold: #c9a227;
+    --red: #e05252;
+    --orange: #e07b2a;
+    --green: #3aaa6e;
+    --text: #e8edf2;
+    --text-muted: #8fa8be;
+    --border: #2a4060;
+    --card-bg: #152538;
+    --tag-bg: #1e3550;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: var(--navy);
+    color: var(--text);
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  a { color: var(--accent-light); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* HEADER */
+  .header {
+    background: linear-gradient(135deg, #0a1520 0%, var(--navy-mid) 60%, #1a3a5c 100%);
+    border-bottom: 2px solid var(--accent);
+    padding: 32px 40px 24px;
+  }
+  .header-brand {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 6px;
+  }
+  .header-title {
+    font-size: 26px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+  .header-sub {
+    font-size: 13px;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+  }
+  .header-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+  .header-meta span strong { color: var(--text); }
+
+  /* STATUS BADGE */
+  .badge {
+    display: inline-block;
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+  .badge-paused { background: #3a2a10; color: #f0a830; border: 1px solid #c9a227; }
+  .badge-enabled { background: #0e3020; color: #3aaa6e; border: 1px solid #2a8050; }
+  .badge-critical { background: #3a1010; color: #e05252; border: 1px solid #a03030; }
+  .badge-warning { background: #3a2a10; color: #f0a830; border: 1px solid #c9a227; }
+  .badge-ok { background: #0e2e1e; color: #3aaa6e; border: 1px solid #2a7050; }
+  .badge-info { background: #0e2040; color: #4a9eca; border: 1px solid #2a5080; }
+
+  /* LAYOUT */
+  .container { max-width: 1200px; margin: 0 auto; padding: 28px 32px; }
+
+  /* VERDICT BANNER */
+  .verdict-banner {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-left: 5px solid var(--gold);
+    border-radius: 8px;
+    padding: 20px 24px;
+    margin-bottom: 28px;
+  }
+  .verdict-banner h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gold);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .verdict-banner p { color: var(--text); line-height: 1.7; margin-bottom: 8px; }
+  .verdict-banner p:last-child { margin-bottom: 0; }
+
+  /* KPI GRID */
+  .kpi-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 14px;
+    margin-bottom: 28px;
+  }
+  .kpi-card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px;
+  }
+  .kpi-label {
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 4px;
+  }
+  .kpi-value {
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.2;
+  }
+  .kpi-sub { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .kpi-value.warn { color: var(--orange); }
+  .kpi-value.bad { color: var(--red); }
+  .kpi-value.good { color: var(--green); }
+
+  /* SECTION */
+  .section { margin-bottom: 28px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+  }
+  .section-header h2 {
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent);
+  }
+  .section-header .count {
+    font-size: 11px;
+    color: var(--text-muted);
+    background: var(--tag-bg);
+    padding: 2px 8px;
+    border-radius: 10px;
+  }
+
+  /* CARDS */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+  }
+  .card-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 6px;
+  }
+  .card-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
+  .card-body p { margin-bottom: 6px; }
+  .card-body p:last-child { margin-bottom: 0; }
+  .card-body strong { color: var(--text); }
+  .card-body ul { padding-left: 18px; margin-top: 4px; }
+  .card-body ul li { margin-bottom: 4px; }
+
+  /* FINDING CARDS */
+  .finding {
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 10px;
+    border: 1px solid;
+  }
+  .finding-critical {
+    background: #1e0a0a;
+    border-color: #a03030;
+  }
+  .finding-warning {
+    background: #1e1400;
+    border-color: #7a5010;
+  }
+  .finding-ok {
+    background: #0a1e10;
+    border-color: #1a6040;
+  }
+  .finding-info {
+    background: #081428;
+    border-color: #1a4070;
+  }
+  .finding-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 6px;
+  }
+  .finding-icon { font-size: 16px; flex-shrink: 0; margin-top: 1px; }
+  .finding-title { font-size: 13px; font-weight: 600; color: #fff; }
+  .finding-body { font-size: 13px; color: var(--text-muted); line-height: 1.6; padding-left: 26px; }
+  .finding-body p { margin-bottom: 5px; }
+  .finding-body p:last-child { margin-bottom: 0; }
+  .finding-body strong { color: var(--text); }
+  .finding-body ul { padding-left: 16px; margin-top: 4px; }
+  .finding-body ul li { margin-bottom: 3px; }
+  .finding-body code {
+    background: rgba(255,255,255,0.08);
+    padding: 1px 5px;
+    border-radius: 3px;
+    font-family: monospace;
+    font-size: 12px;
+    color: var(--accent-light);
+  }
+
+  /* TABLE */
+  .table-wrap { overflow-x: auto; border-radius: 8px; border: 1px solid var(--border); margin-bottom: 10px; }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead tr { background: var(--navy-light); }
+  thead th {
+    padding: 10px 12px;
+    text-align: left;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    color: var(--text-muted);
+    white-space: nowrap;
+  }
+  tbody tr { border-top: 1px solid var(--border); }
+  tbody tr:hover { background: rgba(74,158,202,0.04); }
+  tbody td { padding: 9px 12px; color: var(--text-muted); vertical-align: top; }
+  tbody td.primary { color: var(--text); font-weight: 500; }
+  tbody td.mono { font-family: monospace; font-size: 11px; color: var(--accent-light); }
+  .tag {
+    display: inline-block;
+    padding: 1px 7px;
+    border-radius: 3px;
+    font-size: 10px;
+    font-weight: 600;
+    background: var(--tag-bg);
+    color: var(--text-muted);
+    text-transform: uppercase;
+  }
+  .tag-phrase { background: #0e2840; color: var(--accent-light); }
+  .tag-exact { background: #0e2010; color: var(--green); }
+  .tag-bad { background: #2e0a0a; color: var(--red); }
+  .tag-warn { background: #2e1a00; color: var(--orange); }
+  .tag-paused { background: #2e2e00; color: #c0c030; }
+
+  /* RECO BOX */
+  .reco-box {
+    background: #0a1a30;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 18px 22px;
+    margin-bottom: 10px;
+  }
+  .reco-box h3 { font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 0.8px; }
+  .reco-item {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 8px;
+    font-size: 13px;
+    align-items: flex-start;
+  }
+  .reco-num {
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    font-size: 10px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1px;
+  }
+  .reco-text { color: var(--text); line-height: 1.5; }
+  .reco-text strong { color: #fff; }
+
+  /* UNVERIFIABLE */
+  .unverifiable {
+    background: #0d1e30;
+    border: 1px dashed #2a4060;
+    border-radius: 6px;
+    padding: 10px 14px;
+    font-size: 12px;
+    color: var(--text-muted);
+    margin-bottom: 8px;
+  }
+  .unverifiable strong { color: #6a8aa8; }
+
+  /* DIVIDER */
+  hr { border: none; border-top: 1px solid var(--border); margin: 20px 0; }
+
+  /* FOOTER */
+  .footer {
+    border-top: 1px solid var(--border);
+    padding: 16px 32px;
+    font-size: 11px;
+    color: #4a6a80;
+    text-align: center;
+  }
+
+  /* PRINT */
+  @media print {
+    body { background: #fff; color: #000; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-brand">Google Ads Audit Report &mdash; Explore Industries MCC</div>
+  <div class="header-title">Elite &mdash; Aviva Pools Nashville South</div>
+  <div class="header-sub">Brand: Aviva Pools (avivapools.com) &nbsp;&bull;&nbsp; Market: Nashville TN South</div>
+  <div class="header-meta">
+    <span><strong>Account ID:</strong> 636-110-4793</span>
+    <span><strong>Campaign ID:</strong> 22883337283</span>
+    <span><strong>Date Range:</strong> Feb 21 &ndash; Mar 23, 2026</span>
+    <span><strong>Audit Date:</strong> Mar 23, 2026</span>
+    <span><strong>Status:</strong> <span class="badge badge-paused">PAUSED</span></span>
+    <span><strong>Priority:</strong> LOW</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- VERDICT -->
+<div class="verdict-banner">
+  <h2>Audit Verdict &mdash; Do Not Reactivate Yet</h2>
+  <p>This campaign was paused after spending <strong>$347.20 with 0 conversions</strong>. The decision to pause was correct. Before reactivating, three structural issues need to be resolved: the <strong>Master Exclusion List is not attached</strong>, a handful of <strong>keywords are intent-mismatched</strong> (cost/durability comparisons, outdoor kitchen bundling), and the <strong>$17/day budget is undersized</strong> for Nashville at a $9.14 avg CPC. The keyword match hygiene is otherwise clean &mdash; 100% Phrase, no Broad. Campaign architecture is sound.</p>
+  <p>With the three fixes applied, this campaign is launchable. Without them, the same spend pattern will repeat.</p>
+</div>
+
+<!-- KPI ROW -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">Spend</div>
+    <div class="kpi-value warn">$347</div>
+    <div class="kpi-sub">Feb 21 &ndash; Mar 23</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Conversions</div>
+    <div class="kpi-value bad">0</div>
+    <div class="kpi-sub">0% conv rate</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Clicks</div>
+    <div class="kpi-value">38</div>
+    <div class="kpi-sub">5.65% CTR</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value">672</div>
+    <div class="kpi-sub">Paused period</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Avg CPC</div>
+    <div class="kpi-value warn">$9.14</div>
+    <div class="kpi-sub">Max CPC $25</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Impr. Share</div>
+    <div class="kpi-value warn">36.5%</div>
+    <div class="kpi-sub">Lost: 32% budget / 32% rank</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Daily Budget</div>
+    <div class="kpi-value warn">$17</div>
+    <div class="kpi-sub">Max Clicks strategy</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Keywords</div>
+    <div class="kpi-value good">93</div>
+    <div class="kpi-sub">100% Phrase match</div>
+  </div>
+</div>
+
+<!-- SECTION: CAMPAIGN SETUP -->
+<div class="section">
+  <div class="section-header"><h2>Campaign Setup</h2></div>
+
+  <div class="card">
+    <div class="card-title">Structure Overview</div>
+    <div class="card-body">
+      <p><strong>Campaign:</strong> Aviva Pools Nashville South Campaign (ID: 22883337283)</p>
+      <p><strong>Status:</strong> PAUSED &mdash; campaign was paused before audit, not paused by this audit.</p>
+      <p><strong>Network:</strong> Google Search only. No Display, no Search Partners confirmed.</p>
+      <p><strong>Bid Strategy:</strong> Target Spend / Max Clicks (type 9) with <strong>$25 max CPC cap</strong>. Given 0 conversions, no conversion-based strategy is appropriate yet &mdash; Max Clicks is correct at this stage.</p>
+      <p><strong>Budget:</strong> $17/day. At $9.14 avg CPC, this funds roughly 1.9 clicks per day &mdash; insufficient for meaningful learning or lead volume in a competitive Nashville market.</p>
+      <p><strong>Geo setting:</strong> Positive geo target type = 7 (PRESENCE). Correct &mdash; targets users physically located in the area. Do not change.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-critical">
+    <div class="finding-header">
+      <div class="finding-icon">&#9888;</div>
+      <div class="finding-title">CRITICAL &mdash; Master Exclusion List NOT Attached to Campaign</div>
+    </div>
+    <div class="finding-body">
+      <p>The shared negative keyword list <strong>&ldquo;Master Exclusion List 3.18&rdquo;</strong> (162 members) exists in the account but is <strong>not attached to this campaign</strong>. <code>campaign_shared_set</code> returned empty for campaign 22883337283.</p>
+      <p>This means all 162 exclusions in that list are providing zero protection. Competitor brand terms, irrelevant queries, and DIY/informational terms that are excluded for other campaigns are <strong>fully eligible to trigger ads here</strong>. This is a confirmed structural gap &mdash; not a suspicion. The search term data below shows competitor names appearing, which supports this finding.</p>
+      <p><strong>Fix before reactivating:</strong> Attach the Master Exclusion List to this campaign via Shared Library &rarr; Negative keyword lists.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-warning">
+    <div class="finding-header">
+      <div class="finding-icon">&#9651;</div>
+      <div class="finding-title">WARNING &mdash; Budget Undersized for Market</div>
+    </div>
+    <div class="finding-body">
+      <p>At <strong>$17/day</strong> and a realized $9.14 avg CPC, this campaign can afford approximately 1&ndash;2 clicks per day. Nashville is a competitive market for premium pool installation. Impression share was only 36.5%, with <strong>31.7% lost to budget</strong> and 31.8% lost to rank &mdash; meaning roughly a third of available impressions were lost because the budget ran out.</p>
+      <p><strong>Recommended minimum:</strong> $35&ndash;$50/day to capture 3&ndash;5 daily clicks and build meaningful conversion data. $17/day is below the threshold for useful optimization signal.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-ok">
+    <div class="finding-header">
+      <div class="finding-icon">&#10003;</div>
+      <div class="finding-title">PASS &mdash; Match Types: 100% Phrase, No Broad</div>
+    </div>
+    <div class="finding-body">
+      <p>All 93 active keywords are Phrase match (type 3). No broad match detected. One keyword (<code>prefab pools</code>) is paused. This is correct per account rules.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-ok">
+    <div class="finding-header">
+      <div class="finding-icon">&#10003;</div>
+      <div class="finding-title">PASS &mdash; Search Network Only, Geo Targeting Correct</div>
+    </div>
+    <div class="finding-body">
+      <p>Campaign correctly targets Google Search only. Geo targeting set to PRESENCE (type 7) &mdash; users physically in the target area. This is the correct setting for local intent. No flag.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-ok">
+    <div class="finding-header">
+      <div class="finding-icon">&#10003;</div>
+      <div class="finding-title">PASS &mdash; Ad Assets Present (Sitelinks, Callouts, Call, Images)</div>
+    </div>
+    <div class="finding-body">
+      <p>Campaign has confirmed assets attached at the campaign level: <strong>4 sitelinks</strong> (field_type 11), <strong>5 callouts</strong> (field_type 13), <strong>1 call asset</strong> (field_type 16), <strong>image assets</strong> (field_type 26). All have status ENABLED / primary_status ELIGIBLE. Asset text content is not retrievable via API due to serialization limitations &mdash; unable to verify copy. Two assets (lead form field_type 18, business name field_type 27) show primary_status NOT_ELIGIBLE, which is normal for those asset types on search campaigns.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: KEYWORDS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Keywords</h2>
+    <span class="count">93 total &mdash; 92 enabled, 1 paused</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Quality Score Highlights (confirmed via API)</div>
+    <div class="card-body">
+      <p>QS data confirmed for a sample of keywords:</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Keyword</th>
+          <th>Match</th>
+          <th>QS</th>
+          <th>Expected CTR</th>
+          <th>Ad Relevance</th>
+          <th>Landing Page</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="primary">aviva pools</td>
+          <td><span class="tag tag-phrase">Phrase</span></td>
+          <td><strong style="color:#3aaa6e">9</strong></td>
+          <td>Above Avg</td>
+          <td>Above Avg</td>
+          <td>Above Avg</td>
+          <td><span class="tag tag-phrase">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="primary">inground pools</td>
+          <td><span class="tag tag-phrase">Phrase</span></td>
+          <td><strong style="color:#c9a227">7</strong></td>
+          <td>Below Avg</td>
+          <td>Above Avg</td>
+          <td>Above Avg</td>
+          <td><span class="tag tag-phrase">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="primary">fiberglass pools</td>
+          <td><span class="tag tag-phrase">Phrase</span></td>
+          <td><strong style="color:#c9a227">7</strong></td>
+          <td>Below Avg</td>
+          <td>Average</td>
+          <td>Above Avg</td>
+          <td><span class="tag tag-phrase">ENABLED</span></td>
+        </tr>
+        <tr>
+          <td class="primary">prefab pools</td>
+          <td><span class="tag tag-phrase">Phrase</span></td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td><span class="tag tag-paused">PAUSED</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="finding finding-warning">
+    <div class="finding-header">
+      <div class="finding-icon">&#9651;</div>
+      <div class="finding-title">WARNING &mdash; Intent-Mismatched Keywords in List</div>
+    </div>
+    <div class="finding-body">
+      <p>Several keywords in the 93-keyword list target comparison, research, or price-sensitive intent that is inconsistent with Aviva&rsquo;s premium positioning and unlikely to convert to a consultation:</p>
+      <ul>
+        <li><code>fiberglass vs gunite pool cost</code> &mdash; price comparison research, not purchase intent</li>
+        <li><code>fiberglass pools vs concrete durability</code> &mdash; research phase, not ready to buy</li>
+        <li><code>outdoor kitchen and pools</code> &mdash; bundled query, broadens match surface unnecessarily</li>
+        <li><code>backyard resort and backyard oasis</code> &mdash; aspirational lifestyle, not pool-purchase intent</li>
+      </ul>
+      <p>These keywords lower overall account quality score and waste budget on non-converting traffic. Consider pausing or removing before relaunch.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-ok">
+    <div class="finding-header">
+      <div class="finding-icon">&#10003;</div>
+      <div class="finding-title">PASS &mdash; No Broad Match Keywords</div>
+    </div>
+    <div class="finding-body">
+      <p>All 93 keywords confirmed Phrase match (match_type = 3). Account rules enforced. No action needed.</p>
+    </div>
+  </div>
+
+  <div class="unverifiable">
+    <strong>Unable to Verify:</strong> Ad group-level negative keywords &mdash; <code>ad_group_criterion</code> query with <code>negative = TRUE</code> returned 0 rows. This may indicate no ad group negatives are set, or it may be a query scoping issue. Verify in UI before relaunch.
+  </div>
+</div>
+
+<!-- SECTION: AD COPY -->
+<div class="section">
+  <div class="section-header">
+    <h2>Ad Copy</h2>
+    <span class="count">1 RSA &mdash; ENABLED</span>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Ad ID: 768596000336 &mdash; Responsive Search Ad</div>
+    <div class="card-body">
+      <p><strong>Status:</strong> ENABLED &nbsp; <strong>Ad Strength:</strong> GOOD (6/7)</p>
+      <p><strong>Headlines/Descriptions:</strong> Unable to retrieve via API (RepeatedScalarContainer serialization error). Cannot verify copy for brand compliance, Aviva model accuracy, or affordability language.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-info">
+    <div class="finding-header">
+      <div class="finding-icon">&#9432;</div>
+      <div class="finding-title">INFO &mdash; RSA Copy Unverifiable via API; Manual Check Required</div>
+    </div>
+    <div class="finding-body">
+      <p>Ad Strength GOOD is a positive signal &mdash; Google rates this ad as performing well structurally. However, copy text is not accessible via the MCP API (repeated field serialization limitation). Before reactivating, manually verify the following in the UI:</p>
+      <ul>
+        <li><strong>No affordability language</strong> &mdash; no &ldquo;affordable,&rdquo; &ldquo;value,&rdquo; &ldquo;deal,&rdquo; &ldquo;price,&rdquo; &ldquo;cheap,&rdquo; &ldquo;cost&rdquo;</li>
+        <li><strong>No exclamation points</strong> &mdash; Aviva brand rule</li>
+        <li><strong>No Leisure Pools model names</strong> &mdash; Aviva models only (The Apex, The Aria, The Chic, The Cosmopolitan, The Dynasty, The Eden, The Intrigue, The Luma, The Luxe, The Opus, The Ovation, The Serene, The Triumph, The Vita, The Vogue)</li>
+        <li><strong>No cross-brand references</strong> &mdash; no mention of Explore Industries or sibling brands</li>
+        <li>Tone consistent with Aviva brand voice: sophisticated, serene, premium</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="finding finding-info">
+    <div class="finding-header">
+      <div class="finding-icon">&#9432;</div>
+      <div class="finding-title">INFO &mdash; Single Ad Per Campaign; No A/B Coverage</div>
+    </div>
+    <div class="finding-body">
+      <p>Only 1 RSA is active. Best practice is 2&ndash;3 RSAs per ad group to allow Google to test combinations. With 0 conversions in the current run, adding a second RSA with a differentiated angle (e.g., certified dealer exclusivity vs. lifestyle elevation) would improve signal collection on relaunch.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: SEARCH TERMS -->
+<div class="section">
+  <div class="section-header">
+    <h2>Search Terms</h2>
+    <span class="count">38 clicks total &bull; 15 distinct terms with clicks</span>
+  </div>
+
+  <div class="finding finding-critical">
+    <div class="finding-header">
+      <div class="finding-icon">&#9888;</div>
+      <div class="finding-title">CRITICAL &mdash; Competitor Brand Queries Generating Clicks</div>
+    </div>
+    <div class="finding-body">
+      <p>Multiple competitor brand names triggered this campaign and drove clicks. This is a direct consequence of the Master Exclusion List not being attached.</p>
+      <ul>
+        <li><code>stealth pools cost</code></li>
+        <li><code>carefree pools murfreesboro tn</code></li>
+        <li><code>backyard blues pools murfreesboro tn</code></li>
+        <li><code>coyote creek pools</code></li>
+        <li><code>denali pools nashville</code></li>
+      </ul>
+      <p>Each click on these terms is wasted spend &mdash; a user searching for a competitor by name is not in consideration for Aviva. These terms should be in the Master Exclusion List and would be blocked if it were attached. Attaching the list resolves this immediately.</p>
+    </div>
+  </div>
+
+  <div class="finding finding-warning">
+    <div class="finding-header">
+      <div class="finding-icon">&#9651;</div>
+      <div class="finding-title">WARNING &mdash; Price-Intent and Research Queries Driving Spend</div>
+    </div>
+    <div class="finding-body">
+      <p>Price and research-phase queries generated clicks with zero conversions:</p>
+      <ul>
+        <li><code>how much to build a pool</code> &mdash; very early funnel, not purchase-ready</li>
+        <li><code>approximate cost for inground pool</code> &mdash; price shopping, misaligned with Aviva&rsquo;s no-price-language positioning</li>
+        <li><code>l shaped pools</code> &mdash; $14.45/click, 0 conversions</li>
+        <li><code>pool companies near me</code> &mdash; $13.67/click, 0 conversions</li>
+        <li><code>pool deck ideas</code> &mdash; 3 clicks, $28.63, 0 conversions (informational, not purchase intent)</li>
+      </ul>
+      <p>Add these as campaign-level negatives. &ldquo;Pool deck ideas&rdquo; and &ldquo;pool cost&rdquo; variants in particular are consistently non-converting across accounts.</p>
+    </div>
+  </div>
+
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Search Term</th>
+          <th>Clicks</th>
+          <th>Cost</th>
+          <th>Avg CPC</th>
+          <th>Conversions</th>
+          <th>Assessment</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="primary">aviva pools</td>
+          <td>7</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-phrase">Branded</span></td>
+        </tr>
+        <tr>
+          <td class="primary">pool deck ideas</td>
+          <td>3</td>
+          <td>$28.63</td>
+          <td>$9.54</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">pool companies near me</td>
+          <td>1</td>
+          <td>$13.67</td>
+          <td>$13.67</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">Watch</span></td>
+        </tr>
+        <tr>
+          <td class="primary">l shaped pools</td>
+          <td>1</td>
+          <td>$14.45</td>
+          <td>$14.45</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">Watch</span></td>
+        </tr>
+        <tr>
+          <td class="primary">carefree pools murfreesboro tn</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">Competitor &mdash; Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">backyard blues pools murfreesboro tn</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">Competitor &mdash; Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">coyote creek pools</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">Competitor &mdash; Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">denali pools nashville</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">Competitor &mdash; Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">stealth pools cost</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">Competitor &mdash; Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">how much to build a pool</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">Research &mdash; Exclude</span></td>
+        </tr>
+        <tr>
+          <td class="primary">approximate cost for inground pool</td>
+          <td>1+</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">Research &mdash; Exclude</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <p style="font-size:11px; color: var(--text-muted); margin-top: 6px;">Note: Individual click/cost figures for lower-volume terms not broken out in API results. Totals: 38 clicks, $347.20, 0 conversions across all search terms.</p>
+</div>
+
+<!-- SECTION: SHARED NEGATIVES -->
+<div class="section">
+  <div class="section-header"><h2>Shared Negative Keywords</h2></div>
+
+  <div class="finding finding-critical">
+    <div class="finding-header">
+      <div class="finding-icon">&#9888;</div>
+      <div class="finding-title">CRITICAL &mdash; Master Exclusion List Not Linked (Confirmed)</div>
+    </div>
+    <div class="finding-body">
+      <p><strong>Shared set confirmed in account:</strong> &ldquo;Master Exclusion List 3.18&rdquo; &mdash; 162 members.</p>
+      <p><strong>Attached to this campaign:</strong> NO &mdash; <code>campaign_shared_set</code> returned 0 rows for campaign 22883337283.</p>
+      <p>The competitor brand names appearing in search terms above (Carefree Pools, Backyard Blues, Coyote Creek, Denali, Stealth Pools) are almost certainly included in the 162-member exclusion list. Without attachment, they are unprotected.</p>
+      <p><strong>Shared list content not readable via API</strong> (shared_criterion type filter error) &mdash; content must be verified in UI, but existence and member count are confirmed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: ASSETS / EXTENSIONS -->
+<div class="section">
+  <div class="section-header"><h2>Assets &amp; Extensions</h2></div>
+
+  <div class="card">
+    <div class="card-title">Campaign-Level Assets (Confirmed Present)</div>
+    <div class="card-body">
+      <p><strong>Sitelinks (field_type 11):</strong> 4 assets &mdash; all ENABLED / ELIGIBLE (primary_status 2)</p>
+      <p><strong>Callouts (field_type 13):</strong> 5 assets &mdash; all ENABLED / ELIGIBLE</p>
+      <p><strong>Call (field_type 16):</strong> 1 asset &mdash; ENABLED / ELIGIBLE</p>
+      <p><strong>Images (field_type 26):</strong> 17 assets &mdash; all ENABLED / ELIGIBLE</p>
+      <p><strong>Lead Form (field_type 18):</strong> 1 asset &mdash; primary_status NOT_ELIGIBLE (expected for search campaigns)</p>
+      <p><strong>Business Name (field_type 27):</strong> 1 asset &mdash; primary_status NOT_ELIGIBLE (expected)</p>
+    </div>
+  </div>
+
+  <div class="unverifiable">
+    <strong>Unable to Verify:</strong> Sitelink link text, callout text, call phone number, and image URLs &mdash; asset string/URL fields return empty via the MCP API tool due to serialization limitations. Verify copy alignment with Aviva brand voice in the UI before relaunch. Confirmed assets exist and are eligible &mdash; just not content-readable.
+  </div>
+</div>
+
+<!-- SECTION: CONVERSION TRACKING -->
+<div class="section">
+  <div class="section-header"><h2>Conversion Tracking</h2></div>
+
+  <div class="finding finding-warning">
+    <div class="finding-header">
+      <div class="finding-icon">&#9651;</div>
+      <div class="finding-title">WARNING &mdash; 0 Conversions Recorded; Tracking Status Unconfirmed</div>
+    </div>
+    <div class="finding-body">
+      <p>Zero conversions over 38 clicks and $347 spend is not inherently a tracking failure &mdash; the dealer may simply not have received a qualifying inquiry during this short run. However, given the campaign was paused without conversion data, it&rsquo;s worth confirming that tracking is properly configured before relaunch.</p>
+      <p><strong>Items to confirm in UI:</strong></p>
+      <ul>
+        <li>Conversion actions are active and firing on contact form submissions (brochure downloads count as real conversions per account rules &mdash; they require a form fill)</li>
+        <li>Conversion tracking tag is verified on the dealer&rsquo;s website</li>
+        <li>No duplicate or misconfigured conversion actions inflating/deflating counts</li>
+      </ul>
+      <p>Conversion action settings (counting type, click-through window) were not pulled in this audit but can be checked via the <code>conversion_action</code> resource if needed.</p>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: RECOMMENDATIONS -->
+<div class="section">
+  <div class="section-header"><h2>Pre-Relaunch Checklist</h2></div>
+
+  <div class="reco-box">
+    <h3>Before Reactivating &mdash; Required Actions</h3>
+
+    <div class="reco-item">
+      <div class="reco-num">1</div>
+      <div class="reco-text"><strong>Attach Master Exclusion List.</strong> Navigate to Shared Library &rarr; Negative keyword lists &rarr; &ldquo;Master Exclusion List 3.18&rdquo; &rarr; Apply to this campaign. This is the single most impactful fix &mdash; blocks 162 exclusions including competitor brand names that drove wasted clicks in the prior run.</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">2</div>
+      <div class="reco-text"><strong>Add campaign-level negatives for identified search term waste.</strong> Exact negatives to add: <em>pool deck ideas, pool deck, how much to build a pool, pool cost, inground pool cost, cost for inground pool, carefree pools, backyard blues pools, coyote creek pools, denali pools, stealth pools, prefab pools</em> (or confirm these are already in the Master Exclusion List before adding duplicates).</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">3</div>
+      <div class="reco-text"><strong>Review and pause intent-mismatched keywords.</strong> Review: <em>fiberglass vs gunite pool cost, fiberglass pools vs concrete durability, outdoor kitchen and pools, backyard resort and backyard oasis</em>. These attract research traffic that is unlikely to convert to an Aviva consultation.</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">4</div>
+      <div class="reco-text"><strong>Raise daily budget to minimum $35.</strong> The current $17/day is inadequate &mdash; 32% of impressions were lost to budget, and the realized CPC of $9.14 leaves only ~1.9 clicks per day. Aviva Nashville South cannot generate lead data at that volume. $35 is a defensible minimum; $50 would be better.</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">5</div>
+      <div class="reco-text"><strong>Manually verify RSA copy in UI.</strong> API cannot retrieve headline/description text. Before relaunch, confirm: no affordability language, no exclamation points, no Leisure Pools model names, no cross-brand references. Ad Strength GOOD is confirmed &mdash; only content alignment needs manual verification.</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num">6</div>
+      <div class="reco-text"><strong>Confirm conversion tracking is live.</strong> Verify that the conversion tag is firing correctly on the dealer&rsquo;s Aviva contact/brochure form. Brochure downloads count as real conversions (they require form fills). Without confirmed tracking, you can&rsquo;t evaluate performance post-relaunch.</div>
+    </div>
+  </div>
+
+  <div class="reco-box" style="border-color: #4a7a5a; background: #091a12;">
+    <h3 style="color: #4aaa7a;">Nice to Have &mdash; Post-Relaunch Improvements</h3>
+
+    <div class="reco-item">
+      <div class="reco-num" style="background: #4aaa7a;">7</div>
+      <div class="reco-text"><strong>Add a second RSA.</strong> One RSA provides no A/B signal. A second with a differentiated angle (e.g., certified dealer / exclusivity-focused vs. lifestyle/retreat-focused) will help identify which messaging resonates in the Nashville market.</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num" style="background: #4aaa7a;">8</div>
+      <div class="reco-text"><strong>Segment ad groups by intent tier.</strong> Currently one ad group appears to hold all 93 keywords. Consider splitting branded (aviva pools, aviva fiberglass pools) from generic (inground pools, fiberglass pool installer Nashville) for tighter ad copy &rarr; keyword relevance and better QS on generic terms.</div>
+    </div>
+
+    <div class="reco-item">
+      <div class="reco-num" style="background: #4aaa7a;">9</div>
+      <div class="reco-text"><strong>Review sitelink and callout copy for Aviva brand compliance.</strong> Asset text is not readable via API. Verify in UI that sitelinks and callouts don&rsquo;t include exclamation points, affordability language, or generic copy that could apply to any pool company. Aviva sitelinks should feel editorial and premium.</div>
+    </div>
+  </div>
+</div>
+
+<!-- SECTION: UNVERIFIABLE ITEMS -->
+<div class="section">
+  <div class="section-header"><h2>Items Unable to Verify via API</h2></div>
+  <div class="card">
+    <div class="card-body">
+      <p>The following could not be confirmed due to API limitations. Not reported as findings &mdash; verify in UI if needed:</p>
+      <ul style="padding-left: 18px; margin-top: 8px; color: var(--text-muted);">
+        <li>RSA headline and description text (RepeatedScalarContainer serialization error)</li>
+        <li>Sitelink link text and descriptions (same serialization error)</li>
+        <li>Callout text content (same serialization error)</li>
+        <li>Call asset phone number (same error)</li>
+        <li>Device bid modifiers &mdash; <code>campaign_criterion</code> with type filter fails for this account</li>
+        <li>Location targeting targets &mdash; same <code>campaign_criterion</code> issue</li>
+        <li>Ad group-level negative keywords &mdash; query returned 0 rows (may be none set or query scope issue)</li>
+        <li>Shared negative list keyword content &mdash; <code>shared_criterion</code> type filter fails; existence and count confirmed</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<!-- SUMMARY TABLE -->
+<div class="section">
+  <div class="section-header"><h2>Finding Summary</h2></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th>Severity</th>
+          <th>Area</th>
+          <th>Finding</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="badge badge-critical">Critical</span></td>
+          <td>Shared Negatives</td>
+          <td>Master Exclusion List (162 members) not attached to campaign</td>
+          <td>Fix before relaunch</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-critical">Critical</span></td>
+          <td>Search Terms</td>
+          <td>5 competitor brand queries drove clicks (Carefree, Backyard Blues, Coyote Creek, Denali, Stealth Pools)</td>
+          <td>Fix before relaunch</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Warning</span></td>
+          <td>Budget</td>
+          <td>$17/day budget generates ~1.9 clicks/day; 32% IS lost to budget</td>
+          <td>Raise to $35&ndash;$50</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Warning</span></td>
+          <td>Keywords</td>
+          <td>Intent-mismatched keywords: cost comparisons, outdoor kitchen, lifestyle bundling</td>
+          <td>Pause/remove</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Warning</span></td>
+          <td>Search Terms</td>
+          <td>Price/research queries driving spend: &ldquo;pool deck ideas&rdquo; ($28.63, 0 conv), &ldquo;how much to build a pool,&rdquo; cost queries</td>
+          <td>Add as negatives</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-warning">Warning</span></td>
+          <td>Conversions</td>
+          <td>0 conversions on $347 spend; tracking not confirmed working</td>
+          <td>Verify before relaunch</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-phrase">Info</span></td>
+          <td>Ad Copy</td>
+          <td>Single RSA &mdash; no A/B coverage; copy not verifiable via API</td>
+          <td>Add 2nd RSA post-relaunch</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-ok">Pass</span></td>
+          <td>Match Types</td>
+          <td>100% Phrase match, 0 Broad match across all 93 keywords</td>
+          <td>Clean</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-ok">Pass</span></td>
+          <td>Network</td>
+          <td>Search only; no Display bleed confirmed</td>
+          <td>Clean</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-ok">Pass</span></td>
+          <td>Geo</td>
+          <td>PRESENCE targeting confirmed (type 7) &mdash; correct setting</td>
+          <td>Clean</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-ok">Pass</span></td>
+          <td>Assets</td>
+          <td>Sitelinks (4), callouts (5), call (1), images (17) all present and eligible</td>
+          <td>Clean</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-ok">Pass</span></td>
+          <td>Ad Strength</td>
+          <td>RSA Ad Strength = GOOD (6/7)</td>
+          <td>Clean</td>
+        </tr>
+        <tr>
+          <td><span class="badge badge-ok">Pass</span></td>
+          <td>Brand</td>
+          <td>No Leisure Pools models confirmed in keyword list; Aviva-only</td>
+          <td>Clean</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+</div><!-- /container -->
+
+<div class="footer">
+  Elite &mdash; Aviva Pools Nashville South &nbsp;&bull;&nbsp; Account 636-110-4793 &nbsp;&bull;&nbsp; Audit: Mar 23, 2026 &nbsp;&bull;&nbsp; Period: Feb 21 &ndash; Mar 23, 2026 &nbsp;&bull;&nbsp; Explore Industries MCC &mdash; Read-Only
+</div>
+
+</body>
+</html>
