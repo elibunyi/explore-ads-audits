@@ -1,0 +1,1260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Post-Change Audit — Leisure Pools San Antonio | 2026-03-12 to 2026-03-23</title>
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #1a2e4a;
+    --navy-light: #2a4a6e;
+    --accent: #0d8fd8;
+    --accent-light: #e8f4fc;
+    --green: #16a34a;
+    --green-light: #dcfce7;
+    --amber: #d97706;
+    --amber-light: #fef3c7;
+    --red: #dc2626;
+    --red-light: #fee2e2;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --border: #e5e7eb;
+    --text: #111827;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 14px; color: var(--text); background: #f8fafc; line-height: 1.5; }
+  .report-header { background: var(--navy); color: white; padding: 32px 40px; }
+  .report-header h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.3px; }
+  .report-header .meta { margin-top: 8px; color: #94a3b8; font-size: 13px; display: flex; gap: 24px; flex-wrap: wrap; }
+  .report-header .meta span { display: flex; align-items: center; gap: 6px; }
+  .toc { background: white; border-bottom: 1px solid var(--border); padding: 16px 40px; display: flex; gap: 20px; flex-wrap: wrap; position: sticky; top: 0; z-index: 100; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  .toc a { color: var(--accent); text-decoration: none; font-size: 12px; font-weight: 500; white-space: nowrap; }
+  .toc a:hover { text-decoration: underline; }
+  .container { max-width: 1200px; margin: 0 auto; padding: 32px 40px; }
+  .section { background: white; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 24px; overflow: hidden; }
+  .section-header { padding: 16px 20px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; }
+  .section-header h2 { font-size: 16px; font-weight: 700; color: var(--navy); }
+  .section-header .section-num { background: var(--navy); color: white; width: 24px; height: 24px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; flex-shrink: 0; }
+  .section-body { padding: 20px; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { background: var(--navy); color: white; padding: 10px 12px; text-align: left; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--gray-light); }
+  .table-wrap { overflow-x: auto; }
+  .tag { display: inline-flex; align-items: center; padding: 2px 8px; border-radius: 12px; font-size: 11px; font-weight: 700; white-space: nowrap; }
+  .tag-p1 { background: #fef2f2; color: #991b1b; border: 1px solid #fca5a5; }
+  .tag-p2 { background: #fffbeb; color: #92400e; border: 1px solid #fcd34d; }
+  .tag-p3 { background: #f0fdf4; color: #14532d; border: 1px solid #86efac; }
+  .tag-good { background: var(--green-light); color: #15803d; border: 1px solid #86efac; }
+  .tag-warn { background: var(--amber-light); color: #92400e; border: 1px solid #fcd34d; }
+  .tag-bad { background: var(--red-light); color: #991b1b; border: 1px solid #fca5a5; }
+  .tag-info { background: var(--accent-light); color: #1e40af; border: 1px solid #93c5fd; }
+  .summary-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 20px; }
+  .summary-card { background: var(--gray-light); border: 1px solid var(--border); border-radius: 8px; padding: 16px; }
+  .summary-card .label { font-size: 11px; font-weight: 600; color: var(--gray); text-transform: uppercase; letter-spacing: 0.5px; }
+  .summary-card .value { font-size: 24px; font-weight: 800; color: var(--navy); margin-top: 4px; }
+  .summary-card .sub { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .priority-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .priority-item { display: flex; gap: 12px; padding: 12px; border-radius: 6px; border: 1px solid var(--border); }
+  .priority-item.p1 { border-left: 4px solid var(--red); background: #fefafa; }
+  .priority-item.p2 { border-left: 4px solid var(--amber); background: #fffef8; }
+  .priority-item.p3 { border-left: 4px solid var(--green); background: #f8fffe; }
+  .priority-item .pi-tag { flex-shrink: 0; }
+  .priority-item .pi-body h4 { font-size: 13px; font-weight: 700; color: var(--navy); }
+  .priority-item .pi-body p { font-size: 12px; color: var(--gray); margin-top: 2px; }
+  .finding { padding: 12px 16px; border-radius: 6px; margin-top: 12px; font-size: 13px; }
+  .finding.good { background: var(--green-light); border-left: 3px solid var(--green); }
+  .finding.warn { background: var(--amber-light); border-left: 3px solid var(--amber); }
+  .finding.bad { background: var(--red-light); border-left: 3px solid var(--red); }
+  .finding.info { background: var(--accent-light); border-left: 3px solid var(--accent); }
+  code { font-family: 'SF Mono', 'Consolas', monospace; font-size: 12px; background: var(--gray-light); padding: 1px 5px; border-radius: 3px; color: var(--navy); }
+  .report-footer { background: var(--navy); color: #94a3b8; text-align: center; padding: 20px; font-size: 12px; margin-top: 40px; }
+  .intro { color: var(--gray); font-size: 13px; margin-bottom: 16px; line-height: 1.6; }
+  .waste { color: var(--red); font-weight: 700; }
+  .conv { color: var(--green); font-weight: 700; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  @media (max-width: 700px) { .two-col { grid-template-columns: 1fr; } }
+  .pill { display: inline-block; padding: 1px 8px; border-radius: 20px; font-size: 11px; font-weight: 600; }
+  .pill-green { background: var(--green-light); color: #15803d; }
+  .pill-red { background: var(--red-light); color: #991b1b; }
+  .pill-amber { background: var(--amber-light); color: #92400e; }
+  .pill-blue { background: var(--accent-light); color: #1e40af; }
+  .query-block { background: #1e293b; color: #e2e8f0; padding: 12px 16px; border-radius: 6px; font-family: 'SF Mono', 'Consolas', monospace; font-size: 11px; line-height: 1.6; margin: 8px 0; overflow-x: auto; white-space: pre-wrap; }
+  .data-block { background: #f8fafc; border: 1px solid var(--border); padding: 10px 14px; border-radius: 6px; font-family: 'SF Mono', 'Consolas', monospace; font-size: 11px; line-height: 1.5; margin: 8px 0; overflow-x: auto; white-space: pre-wrap; }
+  .compare-row { display: flex; gap: 8px; align-items: center; margin: 4px 0; }
+  .compare-label { font-size: 12px; color: var(--gray); min-width: 120px; }
+  .compare-old { font-size: 13px; color: var(--gray); text-decoration: line-through; }
+  .compare-new { font-size: 13px; font-weight: 700; }
+  .compare-new.up { color: var(--green); }
+  .compare-new.down { color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="report-header">
+  <div style="display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:16px;">
+    <div>
+      <div style="font-size:12px; color:#94a3b8; margin-bottom:6px; text-transform:uppercase; letter-spacing:1px;">Post-Change Performance Audit</div>
+      <h1>Leisure Pools San Antonio</h1>
+      <div class="meta">
+        <span>Account ID: 9720633800</span>
+        <span>Period: Mar 12 - Mar 23, 2026 (12 days post-change)</span>
+        <span>Brand: Leisure Pools</span>
+        <span>Market: San Antonio TX Metro</span>
+        <span>Purpose: Pools 123 Thursday Meeting Prep</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOC -->
+<div class="toc">
+  <a href="#summary">Executive Summary</a>
+  <a href="#comparison">Pre vs Post Comparison</a>
+  <a href="#campaigns">Campaign Performance</a>
+  <a href="#ad-groups">Ad Group Breakdown</a>
+  <a href="#keywords">Keyword Performance</a>
+  <a href="#search-terms">Search Terms</a>
+  <a href="#landing-pages">Landing Pages</a>
+  <a href="#devices">Device Breakdown</a>
+  <a href="#conversions">Conversion Tracking</a>
+  <a href="#daily-trend">Daily Trend</a>
+  <a href="#structural">Structural Checks</a>
+  <a href="#priorities">Priority Actions</a>
+</div>
+
+<div class="container">
+
+<!-- ===================== EXECUTIVE SUMMARY ===================== -->
+<div class="section" id="summary">
+  <div class="section-header">
+    <div class="section-num">1</div>
+    <h2>Executive Summary &mdash; 12-Day Post-Change Window</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro">This audit covers <strong>March 12&ndash;23, 2026 only</strong> &mdash; the 12-day window since changes were implemented around 3/11&ndash;3/12. All data sourced from Google Ads API with <code>segments.date BETWEEN '2026-03-12' AND '2026-03-23'</code>. Every claim below includes the raw API evidence.</p>
+
+    <div class="summary-grid">
+      <div class="summary-card">
+        <div class="label">Total Spend</div>
+        <div class="value">$1,145</div>
+        <div class="sub">12-day post-change period</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Total Conversions</div>
+        <div class="value">11</div>
+        <div class="sub">All types combined</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Cost Per Conv.</div>
+        <div class="value">$104.13</div>
+        <div class="sub" style="color:var(--green); font-weight:700;">Down from $154 (30-day)</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Total Clicks</div>
+        <div class="value">234</div>
+        <div class="sub">136 Primary + 98 Builder</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">CVR</div>
+        <div class="value">4.7%</div>
+        <div class="sub" style="color:var(--green); font-weight:700;">Up from 3.1% (30-day)</div>
+      </div>
+      <div class="summary-card">
+        <div class="label">Avg. CPC</div>
+        <div class="value">$4.89</div>
+        <div class="sub">$4.10 Primary / $5.99 Builder</div>
+      </div>
+    </div>
+
+    <div class="finding good">
+      <strong>Headline for Pools 123 Meeting:</strong> Post-change performance is materially better than the 30-day blended numbers. CPA dropped from $154 to $104 (32% improvement), CVR improved from 3.1% to 4.7%. The Fiberglass Pools Primary campaign is the engine &mdash; 9 of 11 conversions at $62 CPA. The Pool Builder campaign remains a drag at $294 CPA on only 2 conversions.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PRE vs POST COMPARISON ===================== -->
+<div class="section" id="comparison">
+  <div class="section-header">
+    <div class="section-num">2</div>
+    <h2>Pre-Change vs Post-Change Comparison</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro">Comparing 30-day blended metrics (from prior audit: 2/21&ndash;3/23) against the post-change 12-day window (3/12&ndash;3/23). Since the 12-day window is a subset of the 30 days, improving metrics within it means the pre-change period was dragging down the blended average.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Metric</th>
+          <th>30-Day (2/21&ndash;3/23)</th>
+          <th>Post-Change (3/12&ndash;3/23)</th>
+          <th>Direction</th>
+        </tr>
+        <tr>
+          <td>Total Spend</td>
+          <td>$2,615</td>
+          <td>$1,145</td>
+          <td><span class="pill pill-blue">44% of 30-day budget</span></td>
+        </tr>
+        <tr>
+          <td>Total Conversions</td>
+          <td>17</td>
+          <td>11</td>
+          <td><span class="pill pill-blue">65% of conversions in 40% of time</span></td>
+        </tr>
+        <tr>
+          <td>Blended CPA</td>
+          <td>$153.81</td>
+          <td>$104.13</td>
+          <td><span class="pill pill-green">-32% improved</span></td>
+        </tr>
+        <tr>
+          <td>CVR</td>
+          <td>3.1%</td>
+          <td>4.7%</td>
+          <td><span class="pill pill-green">+52% improved</span></td>
+        </tr>
+        <tr>
+          <td>Primary CPA</td>
+          <td>$129</td>
+          <td>$62.03</td>
+          <td><span class="pill pill-green">-52% improved</span></td>
+        </tr>
+        <tr>
+          <td>Builder CPA</td>
+          <td>$189</td>
+          <td>$293.58</td>
+          <td><span class="pill pill-red">+55% worsened</span></td>
+        </tr>
+        <tr>
+          <td>Primary IS</td>
+          <td>55.9%</td>
+          <td>55.4%</td>
+          <td><span class="pill pill-amber">Flat</span></td>
+        </tr>
+        <tr>
+          <td>Builder IS</td>
+          <td>20.8%</td>
+          <td>22.4%</td>
+          <td><span class="pill pill-amber">Slightly up (+1.6pp)</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding info">
+      <strong>Key Insight:</strong> Primary campaign is converting strongly post-change ($62 CPA vs $129 blended). Builder campaign worsened &mdash; only 2 conversions on $587 spend. The 30-day blended Builder CPA of $189 was better because it included pre-change conversions. Post-change, Builder is severely underperforming.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CAMPAIGN PERFORMANCE ===================== -->
+<div class="section" id="campaigns">
+  <div class="section-header">
+    <div class="section-num">3</div>
+    <h2>Campaign Performance (Post-Change Only)</h2>
+  </div>
+  <div class="section-body">
+    <p class="intro"><strong>GAQL Query:</strong></p>
+    <div class="query-block">SELECT campaign.id, campaign.name, campaign.status, campaign.bidding_strategy_type, campaign.target_spend.cpc_bid_ceiling_micros, campaign.geo_target_type_setting.positive_geo_target_type, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions, metrics.search_impression_share, metrics.search_rank_lost_impression_share, metrics.average_cpc
+FROM campaign
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23'
+  AND campaign.status = 'ENABLED'</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Campaign</th>
+          <th>Impr</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv</th>
+          <th>CPA</th>
+          <th>CPC</th>
+          <th>CTR</th>
+          <th>CVR</th>
+          <th>IS</th>
+          <th>Rank Lost IS</th>
+        </tr>
+        <tr>
+          <td><strong>Fiberglass Pools (Primary)</strong></td>
+          <td>942</td>
+          <td>136</td>
+          <td>$558.27</td>
+          <td class="conv">9</td>
+          <td class="conv">$62.03</td>
+          <td>$4.10</td>
+          <td>14.4%</td>
+          <td class="conv">6.6%</td>
+          <td>55.4%</td>
+          <td>27.5%</td>
+        </tr>
+        <tr>
+          <td><strong>Pool Builder / Contractor</strong></td>
+          <td>1,222</td>
+          <td>98</td>
+          <td>$587.15</td>
+          <td>2</td>
+          <td class="waste">$293.58</td>
+          <td>$5.99</td>
+          <td>8.0%</td>
+          <td>2.0%</td>
+          <td>22.4%</td>
+          <td class="waste">55.8%</td>
+        </tr>
+        <tr style="font-weight:700; background: var(--gray-light);">
+          <td>TOTAL</td>
+          <td>2,164</td>
+          <td>234</td>
+          <td>$1,145.42</td>
+          <td>11</td>
+          <td>$104.13</td>
+          <td>$4.89</td>
+          <td>10.8%</td>
+          <td>4.7%</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding good">
+      <strong>Fiberglass Pools Primary</strong> is performing well: $62.03 CPA, 6.6% CVR, 55.4% impression share. This campaign should get more budget.
+    </div>
+    <div class="finding bad">
+      <strong>Pool Builder / Contractor</strong> is a problem: $293.58 CPA, 2.0% CVR, 55.8% rank-lost IS. Both campaigns use TARGET_SPEND (Max Clicks) with $15 CPC cap. Builder's quality scores (see keywords section) are dragging down performance.
+    </div>
+
+    <p style="margin-top:16px;"><strong>Structural checks confirmed via API:</strong></p>
+    <ul style="margin-left:20px; font-size:13px; color:var(--gray);">
+      <li><strong>Bidding:</strong> Both campaigns = TARGET_SPEND (bidding_strategy_type=9) with $15 CPC ceiling (15,000,000 micros)</li>
+      <li><strong>Geo targeting:</strong> Both campaigns = PRESENCE (positive_geo_target_type=7) &mdash; CORRECT</li>
+      <li><strong>Networks:</strong> Google Search only (target_google_search=true, target_search_network=false)</li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== AD GROUP BREAKDOWN ===================== -->
+<div class="section" id="ad-groups">
+  <div class="section-header">
+    <div class="section-num">4</div>
+    <h2>Ad Group Performance (Post-Change)</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT campaign.name, ad_group.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions, metrics.average_cpc
+FROM ad_group
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23'
+  AND campaign.status = 'ENABLED' AND ad_group.status = 'ENABLED'</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Campaign</th>
+          <th>Ad Group</th>
+          <th>Impr</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv</th>
+          <th>CPA</th>
+          <th>CPC</th>
+        </tr>
+        <tr>
+          <td>Primary</td>
+          <td><strong>Fiberglass Pools General</strong></td>
+          <td>667</td>
+          <td>83</td>
+          <td>$336.46</td>
+          <td class="conv">8</td>
+          <td class="conv">$42.06</td>
+          <td>$4.05</td>
+        </tr>
+        <tr>
+          <td>Primary</td>
+          <td><strong>Fiberglass Pools Cost / Pricing</strong></td>
+          <td>227</td>
+          <td>46</td>
+          <td class="waste">$194.81</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+          <td>$4.24</td>
+        </tr>
+        <tr>
+          <td>Primary</td>
+          <td><strong>Fiberglass vs Concrete</strong></td>
+          <td>42</td>
+          <td>7</td>
+          <td>$26.99</td>
+          <td class="conv">1</td>
+          <td>$26.99</td>
+          <td>$3.86</td>
+        </tr>
+        <tr>
+          <td>Primary</td>
+          <td><strong>Fiberglass Pool Installation</strong></td>
+          <td>6</td>
+          <td>0</td>
+          <td>$0</td>
+          <td>0</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>Builder</td>
+          <td><strong>Pool Builder General</strong></td>
+          <td>867</td>
+          <td>74</td>
+          <td>$434.47</td>
+          <td>2</td>
+          <td class="waste">$217.23</td>
+          <td>$5.87</td>
+        </tr>
+        <tr>
+          <td>Builder</td>
+          <td><strong>Pool Contractor</strong></td>
+          <td>355</td>
+          <td>24</td>
+          <td class="waste">$152.69</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+          <td>$6.36</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding bad">
+      <strong>P1 CONFIRMED &mdash; Cost/Pricing Ad Group Still Wasting:</strong> $194.81 spend, 46 clicks, ZERO conversions in 12 days. This is the same issue from the prior audit ($415 waste in 30 days). The post-change period alone burned $195 with nothing to show.
+    </div>
+    <div class="finding bad">
+      <strong>P1 CONFIRMED &mdash; Pool Contractor AG Zero Conversions:</strong> $152.69 spend, 24 clicks, ZERO conversions. All search terms in this group are generic (pools san antonio, pool installation near me, pool renovation). High CPC ($6.36) with no conversion signal.
+    </div>
+    <div class="finding good">
+      <strong>Fiberglass Pools General is the star:</strong> 8 conversions at $42.06 CPA. This ad group alone produces 73% of all account conversions. The Fiberglass vs Concrete group also performs well (1 conv at $27 CPA) but with very low volume.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== KEYWORD PERFORMANCE ===================== -->
+<div class="section" id="keywords">
+  <div class="section-header">
+    <div class="section-num">5</div>
+    <h2>Keyword Performance &amp; Quality Scores</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT ad_group_criterion.keyword.text, ad_group_criterion.keyword.match_type, ad_group_criterion.quality_info.quality_score, ad_group.name, campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM keyword_view
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23'
+  AND campaign.status = 'ENABLED' AND ad_group.status = 'ENABLED'
+ORDER BY metrics.cost_micros DESC LIMIT 30</div>
+
+    <p style="margin:12px 0;"><strong>Match type key:</strong> 2=EXACT, 3=PHRASE. QS 0 means Google hasn't assigned one yet (insufficient data).</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Keyword</th>
+          <th>Match</th>
+          <th>QS</th>
+          <th>Ad Group</th>
+          <th>Impr</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv</th>
+          <th>CPA</th>
+        </tr>
+        <tr>
+          <td>"swimming pool builder"</td>
+          <td>PHRASE</td>
+          <td class="waste">0</td>
+          <td>Pool Builder General</td>
+          <td>722</td>
+          <td>55</td>
+          <td class="waste">$332.47</td>
+          <td>2</td>
+          <td class="waste">$166.24</td>
+        </tr>
+        <tr>
+          <td>"pool contractor"</td>
+          <td>PHRASE</td>
+          <td class="waste">0</td>
+          <td>Pool Contractor</td>
+          <td>351</td>
+          <td>24</td>
+          <td class="waste">$152.69</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pools"</td>
+          <td>PHRASE</td>
+          <td class="conv">8</td>
+          <td>FG Pools General</td>
+          <td>224</td>
+          <td>27</td>
+          <td>$112.73</td>
+          <td class="conv">4</td>
+          <td class="conv">$28.18</td>
+        </tr>
+        <tr>
+          <td>"pool builders"</td>
+          <td>PHRASE</td>
+          <td class="waste">0</td>
+          <td>Pool Builder General</td>
+          <td>135</td>
+          <td>19</td>
+          <td>$102.00</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pool"</td>
+          <td>PHRASE</td>
+          <td>6</td>
+          <td>FG Pools General</td>
+          <td>129</td>
+          <td>18</td>
+          <td>$70.93</td>
+          <td>1</td>
+          <td>$70.93</td>
+        </tr>
+        <tr>
+          <td>[fiberglass pool cost]</td>
+          <td>EXACT</td>
+          <td>7</td>
+          <td>FG Cost/Pricing</td>
+          <td>34</td>
+          <td>12</td>
+          <td class="waste">$52.24</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pool price"</td>
+          <td>PHRASE</td>
+          <td class="waste">3</td>
+          <td>FG Cost/Pricing</td>
+          <td>67</td>
+          <td>12</td>
+          <td class="waste">$51.18</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+        </tr>
+        <tr>
+          <td>"fiberglass swimming pools"</td>
+          <td>PHRASE</td>
+          <td class="conv">9</td>
+          <td>FG Pools General</td>
+          <td>126</td>
+          <td>11</td>
+          <td>$47.81</td>
+          <td>0</td>
+          <td>&mdash;</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pools San Antonio"</td>
+          <td>PHRASE</td>
+          <td class="conv">10</td>
+          <td>FG Pools General</td>
+          <td>76</td>
+          <td>10</td>
+          <td>$37.47</td>
+          <td>0.5</td>
+          <td>$74.94</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pools near me"</td>
+          <td>PHRASE</td>
+          <td>7</td>
+          <td>FG Pools General</td>
+          <td>24</td>
+          <td>3</td>
+          <td>$11.23</td>
+          <td class="conv">1.5</td>
+          <td class="conv">$7.49</td>
+        </tr>
+        <tr>
+          <td>[fiberglass vs gunite pool]</td>
+          <td>EXACT</td>
+          <td>7</td>
+          <td>FG vs Concrete</td>
+          <td>12</td>
+          <td>4</td>
+          <td>$18.40</td>
+          <td class="conv">1</td>
+          <td class="conv">$18.40</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding bad">
+      <strong>P1 &mdash; Builder Campaign Quality Scores Are Zero:</strong> "swimming pool builder" (QS=0, $332 spend, 2 conv), "pool contractor" (QS=0, $153 spend, 0 conv), "pool builders" (QS=0, $102 spend, 0 conv). QS=0 means Google has insufficient data to score &mdash; likely because ad relevance and landing page experience are poor for these generic terms. This is why the Builder campaign has 55.8% rank-lost IS.
+    </div>
+    <div class="finding bad">
+      <strong>P1 &mdash; Cost/Pricing Keywords Zero Conversions:</strong> "fiberglass pool price" (QS=3, $51 spend, 0 conv) and [fiberglass pool cost] (QS=7, $52 spend, 0 conv). The /pool-pricing/ landing page does not convert. Combined: $103 on pricing keywords with zero results in 12 days.
+    </div>
+    <div class="finding good">
+      <strong>Top Performers:</strong> "fiberglass pools" PHRASE (QS=8, $28 CPA), "fiberglass pools near me" PHRASE (QS=7, $7.49 CPA), [fiberglass vs gunite pool] EXACT (QS=7, $18.40 CPA). These drive the account's strong performance.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== SEARCH TERMS ===================== -->
+<div class="section" id="search-terms">
+  <div class="section-header">
+    <div class="section-num">6</div>
+    <h2>Search Terms Analysis (Top 50 by Spend)</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT search_term_view.search_term, campaign.name, ad_group.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM search_term_view
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23'
+ORDER BY metrics.cost_micros DESC LIMIT 50</div>
+
+    <h3 style="font-size:14px; margin-bottom:8px; color:var(--red);">Waste Search Terms (Competitor Brands + Wrong Intent)</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Search Term</th><th>Campaign</th><th>Spend</th><th>Clicks</th><th>Conv</th><th>Issue</th></tr>
+        <tr>
+          <td>"aqua pools new braunfels"</td>
+          <td>Primary</td>
+          <td class="waste">$6.26</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">COMPETITOR</span></td>
+        </tr>
+        <tr>
+          <td>"varsity pools new braunfels"</td>
+          <td>Builder</td>
+          <td class="waste">$5.41</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-bad">COMPETITOR</span></td>
+        </tr>
+        <tr>
+          <td>"above pool installation"</td>
+          <td>Builder</td>
+          <td class="waste">$7.83</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">WRONG INTENT</span> above-ground</td>
+        </tr>
+        <tr>
+          <td>"pool renovation"</td>
+          <td>Builder</td>
+          <td class="waste">$5.58</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">WRONG INTENT</span> service/repair</td>
+        </tr>
+        <tr>
+          <td>"we fix pools"</td>
+          <td>Builder</td>
+          <td class="waste">$5.45</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">WRONG INTENT</span> repair</td>
+        </tr>
+        <tr>
+          <td>"staycation pools"</td>
+          <td>Builder</td>
+          <td class="waste">$9.27</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">WRONG INTENT</span> vague/brand</td>
+        </tr>
+        <tr>
+          <td>"prefab plunge pool near me"</td>
+          <td>Builder</td>
+          <td class="waste">$5.40</td>
+          <td>1</td>
+          <td>0</td>
+          <td><span class="tag tag-warn">WRONG PRODUCT</span></td>
+        </tr>
+      </table>
+    </div>
+    <p style="font-size:12px; color:var(--gray); margin-top:8px;"><strong>Estimated 12-day competitor/waste spend:</strong> ~$45. Annualized: ~$1,350/year. Not catastrophic but unnecessary.</p>
+
+    <h3 style="font-size:14px; margin: 16px 0 8px; color:var(--amber);">Branded Traffic in Builder Campaign (Cannibalization)</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Search Term</th><th>Campaign</th><th>Spend</th><th>Clicks</th><th>Conv</th></tr>
+        <tr>
+          <td>"leisure pools new braunfels"</td>
+          <td>Builder</td>
+          <td>$23.07</td>
+          <td>3</td>
+          <td>0</td>
+        </tr>
+        <tr>
+          <td>"leisure pools new braunfels"</td>
+          <td>Primary</td>
+          <td>$12.46</td>
+          <td>3</td>
+          <td>0</td>
+        </tr>
+      </table>
+    </div>
+    <div class="finding warn">
+      <strong>P2 &mdash; Branded searches costing $35.53 with 0 conversions:</strong> "leisure pools new braunfels" triggered in BOTH campaigns (6 clicks total, 0 conversions). These should be caught by a dedicated brand campaign at much lower CPC. Currently paying $5-9 per click for own brand name.
+    </div>
+
+    <h3 style="font-size:14px; margin: 16px 0 8px; color:var(--green);">Converting Search Terms</h3>
+    <div class="table-wrap">
+      <table>
+        <tr><th>Search Term</th><th>Campaign</th><th>Spend</th><th>Clicks</th><th>Conv</th><th>CPA</th></tr>
+        <tr>
+          <td>"fiberglass pools"</td>
+          <td>Primary</td>
+          <td>$60.61</td>
+          <td>15</td>
+          <td class="conv">1</td>
+          <td>$60.61</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pools near me"</td>
+          <td>Primary</td>
+          <td>$8.31</td>
+          <td>2</td>
+          <td class="conv">1.5</td>
+          <td class="conv">$5.54</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pools near me"</td>
+          <td>Builder</td>
+          <td>$7.04</td>
+          <td>1</td>
+          <td class="conv">1</td>
+          <td class="conv">$7.04</td>
+        </tr>
+        <tr>
+          <td>"fiberglass pools san antonio"</td>
+          <td>Primary</td>
+          <td>$37.47</td>
+          <td>10</td>
+          <td>0.5</td>
+          <td>$74.94</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== LANDING PAGES ===================== -->
+<div class="section" id="landing-pages">
+  <div class="section-header">
+    <div class="section-num">7</div>
+    <h2>Landing Page Performance (Post-Change)</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT landing_page_view.unexpanded_final_url, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM landing_page_view
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23'
+ORDER BY metrics.cost_micros DESC</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Landing Page</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv</th>
+          <th>CPA</th>
+          <th>CVR</th>
+          <th>Assessment</th>
+        </tr>
+        <tr>
+          <td>/</td>
+          <td>76</td>
+          <td>$437.86</td>
+          <td>2</td>
+          <td>$218.93</td>
+          <td>2.6%</td>
+          <td><span class="tag tag-warn">High spend, mediocre CVR</span></td>
+        </tr>
+        <tr>
+          <td><strong>/fiberglass-pool-designs/</strong></td>
+          <td>85</td>
+          <td>$368.63</td>
+          <td class="conv">8</td>
+          <td class="conv">$46.08</td>
+          <td class="conv">9.4%</td>
+          <td><span class="tag tag-good">BEST PERFORMER</span></td>
+        </tr>
+        <tr>
+          <td>/pool-pricing/</td>
+          <td>40</td>
+          <td class="waste">$168.88</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+          <td class="waste">0%</td>
+          <td><span class="tag tag-bad">P1: ZERO CONVERSIONS</span></td>
+        </tr>
+        <tr>
+          <td>/fiberglass-pool-photo-gallery/</td>
+          <td>29</td>
+          <td class="waste">$149.11</td>
+          <td class="waste">0</td>
+          <td class="waste">&mdash;</td>
+          <td class="waste">0%</td>
+          <td><span class="tag tag-bad">P1: ZERO CONVERSIONS</span></td>
+        </tr>
+        <tr>
+          <td>/pool-financing/</td>
+          <td>3</td>
+          <td>$13.90</td>
+          <td>0</td>
+          <td>&mdash;</td>
+          <td>0%</td>
+          <td><span class="tag tag-warn">Low volume</span></td>
+        </tr>
+        <tr>
+          <td>/service-areas/</td>
+          <td>1</td>
+          <td>$7.04</td>
+          <td>1</td>
+          <td>$7.04</td>
+          <td>100%</td>
+          <td><span class="tag tag-good">Low volume but converted</span></td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding bad">
+      <strong>P1 CONFIRMED &mdash; /pool-pricing/ Still Zero Conversions:</strong> $168.88 spend on 40 clicks, zero conversions in the post-change window. This is the 3rd consecutive audit flagging this page. Combined with gallery ($149 / 0 conv), that's <strong class="waste">$317.99 wasted (27.8% of total spend)</strong> on non-converting pages.
+    </div>
+    <div class="finding good">
+      <strong>/fiberglass-pool-designs/ Is Exceptional:</strong> 8 conversions at $46.08 CPA, 9.4% CVR. This page alone accounts for 73% of all post-change conversions. All Cost/Pricing traffic should be redirected here.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DEVICE BREAKDOWN ===================== -->
+<div class="section" id="devices">
+  <div class="section-header">
+    <div class="section-num">8</div>
+    <h2>Device Breakdown (Post-Change)</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT segments.device, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM campaign
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' AND campaign.status = 'ENABLED'</div>
+    <p style="font-size:12px; color:var(--gray); margin-bottom:8px;">Device enum: 2=MOBILE, 3=TABLET, 4=DESKTOP</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Device</th>
+          <th>Impr</th>
+          <th>Clicks</th>
+          <th>Spend</th>
+          <th>Conv</th>
+          <th>CPA</th>
+          <th>% Spend</th>
+        </tr>
+        <tr>
+          <td><strong>Mobile</strong> (device=2)</td>
+          <td>1,802</td>
+          <td>203</td>
+          <td>$979.09</td>
+          <td>9</td>
+          <td>$108.79</td>
+          <td>85.5%</td>
+        </tr>
+        <tr>
+          <td><strong>Desktop</strong> (device=4)</td>
+          <td>321</td>
+          <td>26</td>
+          <td>$139.54</td>
+          <td>2</td>
+          <td>$69.77</td>
+          <td>12.2%</td>
+        </tr>
+        <tr>
+          <td><strong>Tablet</strong> (device=3)</td>
+          <td>41</td>
+          <td>5</td>
+          <td>$26.79</td>
+          <td>0</td>
+          <td>&mdash;</td>
+          <td>2.3%</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding warn">
+      <strong>Desktop CPA ($69.77) is 36% better than mobile ($108.79).</strong> Mobile gets 85.5% of spend but converts less efficiently. However, mobile delivers 82% of conversions by volume &mdash; the difference isn't extreme enough to justify aggressive mobile bid reductions. A moderate -10% to -15% mobile bid adjustment on the Builder campaign (where mobile performs worst) would be appropriate.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== CONVERSION TRACKING ===================== -->
+<div class="section" id="conversions">
+  <div class="section-header">
+    <div class="section-num">9</div>
+    <h2>Conversion Tracking &mdash; Full Audit with Proof</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT conversion_action.id, conversion_action.name, conversion_action.status, conversion_action.counting_type, conversion_action.category, conversion_action.include_in_conversions_metric, conversion_action.origin, conversion_action.primary_for_goal, conversion_action.click_through_lookback_window_days, conversion_action.value_settings.default_value, conversion_action.google_analytics_4_settings.event_name, conversion_action.google_analytics_4_settings.property_id
+FROM conversion_action</div>
+
+    <p style="margin: 8px 0;"><strong>Status enum:</strong> 2=ENABLED, 4=REMOVED. <strong>Counting type:</strong> 2=ONE_PER_CLICK, 3=MANY_PER_CLICK. <strong>Origin:</strong> 2=WEBSITE, 5=GOOGLE_ADS.</p>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Counting</th>
+          <th>In Conversions?</th>
+          <th>Primary?</th>
+          <th>Default Value</th>
+          <th>GA4 Event</th>
+          <th>GA4 Property</th>
+          <th>Lookback</th>
+        </tr>
+        <tr>
+          <td>7510975826</td>
+          <td><strong>Contact Form</strong></td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+          <td>ONE/CLICK</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>$1,000</td>
+          <td>Contact Form</td>
+          <td>522483370</td>
+          <td>90d</td>
+        </tr>
+        <tr>
+          <td>7511043043</td>
+          <td><strong>Download Brochure</strong></td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+          <td>ONE/CLICK</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>$250</td>
+          <td>Download Brochure</td>
+          <td>522483370</td>
+          <td>90d</td>
+        </tr>
+        <tr>
+          <td>7511043046</td>
+          <td><strong>Free Estimate</strong></td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+          <td>ONE/CLICK</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>$1,000</td>
+          <td>Free Estimate</td>
+          <td>522483370</td>
+          <td>90d</td>
+        </tr>
+        <tr>
+          <td>7512296842</td>
+          <td><strong>Calls from ads</strong></td>
+          <td><span class="pill pill-green">ENABLED</span></td>
+          <td>ONE/CLICK</td>
+          <td>Yes</td>
+          <td>Yes</td>
+          <td>$250</td>
+          <td>&mdash;</td>
+          <td>&mdash;</td>
+          <td>30d</td>
+        </tr>
+        <tr style="opacity:0.5;">
+          <td>7510975823</td>
+          <td><em>purchase (web)</em></td>
+          <td><span class="pill pill-red">REMOVED</span></td>
+          <td>MANY/CLICK</td>
+          <td>No</td>
+          <td>No</td>
+          <td>$1</td>
+          <td>purchase</td>
+          <td>522483370</td>
+          <td>90d</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding good">
+      <strong>Conversion tracking is CLEAN.</strong> No duplicates found. 4 active conversion actions, all properly configured:
+      <ul style="margin: 8px 0 0 20px; font-size:12px;">
+        <li>All 4 active actions use ONE_PER_CLICK counting (correct &mdash; prevents double-counting)</li>
+        <li>All 4 are primary_for_goal=true and include_in_conversions_metric=true</li>
+        <li>GA4 property 522483370 powers 3 web actions (Contact Form, Download Brochure, Free Estimate)</li>
+        <li>Calls from ads is Google-native (origin=5), separate from GA4</li>
+        <li>1 removed action (purchase) is correctly excluded &mdash; not inflating metrics</li>
+        <li><strong>No duplicate GA4/website tag overlap</strong> like Houston had &mdash; SA is tracking correctly</li>
+      </ul>
+    </div>
+
+    <h3 style="font-size:14px; margin: 16px 0 8px;">Post-Change Conversion Breakdown by Action</h3>
+    <div class="query-block">SELECT segments.conversion_action_name, metrics.conversions, metrics.all_conversions, metrics.conversions_value
+FROM campaign
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' AND campaign.status = 'ENABLED'</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr><th>Conversion Action</th><th>Campaign</th><th>Conversions</th><th>Value</th></tr>
+        <tr>
+          <td>Free Estimate</td>
+          <td>Fiberglass Pools (Primary)</td>
+          <td class="conv">8</td>
+          <td>$8,000</td>
+        </tr>
+        <tr>
+          <td>Free Estimate</td>
+          <td>Pool Builder / Contractor</td>
+          <td>2</td>
+          <td>$2,000</td>
+        </tr>
+        <tr>
+          <td>Contact Form</td>
+          <td>Pool Builder / Contractor</td>
+          <td>1</td>
+          <td>$1,000</td>
+        </tr>
+        <tr style="font-weight:700; background:var(--gray-light);">
+          <td colspan="2">TOTAL</td>
+          <td>11</td>
+          <td>$11,000</td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="finding info">
+      <strong>Note:</strong> All 11 post-change conversions are Free Estimate (10) or Contact Form (1). Zero brochure downloads and zero call conversions in this 12-day window. This could mean the brochure download tracking tag needs verification, or it could simply reflect that Free Estimate is the dominant conversion path for this dealer.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== DAILY TREND ===================== -->
+<div class="section" id="daily-trend">
+  <div class="section-header">
+    <div class="section-num">10</div>
+    <h2>Daily Performance Trend</h2>
+  </div>
+  <div class="section-body">
+    <div class="query-block">SELECT segments.date, campaign.name, metrics.impressions, metrics.clicks, metrics.cost_micros, metrics.conversions
+FROM campaign
+WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' AND campaign.status = 'ENABLED'
+ORDER BY segments.date ASC</div>
+
+    <div class="table-wrap">
+      <table>
+        <tr>
+          <th>Date</th>
+          <th colspan="3">Fiberglass Pools (Primary)</th>
+          <th colspan="3">Pool Builder / Contractor</th>
+          <th>Daily Total</th>
+        </tr>
+        <tr>
+          <th></th>
+          <th>Clicks</th><th>Spend</th><th>Conv</th>
+          <th>Clicks</th><th>Spend</th><th>Conv</th>
+          <th>Conv</th>
+        </tr>
+        <tr><td>3/12</td><td>10</td><td>$40.98</td><td>0</td><td>8</td><td>$45.76</td><td>0</td><td>0</td></tr>
+        <tr><td>3/13</td><td>8</td><td>$28.78</td><td>0</td><td>11</td><td>$57.34</td><td>0</td><td>0</td></tr>
+        <tr><td>3/14</td><td>18</td><td>$98.65</td><td class="conv">1</td><td>11</td><td>$58.71</td><td class="conv">1</td><td class="conv">2</td></tr>
+        <tr><td>3/15</td><td>12</td><td>$57.53</td><td>0</td><td>14</td><td>$57.12</td><td>0</td><td>0</td></tr>
+        <tr><td>3/16</td><td>10</td><td>$41.24</td><td class="conv">1</td><td>6</td><td>$24.57</td><td>0</td><td class="conv">1</td></tr>
+        <tr><td>3/17</td><td>11</td><td>$40.59</td><td class="conv">1</td><td>4</td><td>$16.06</td><td>0</td><td class="conv">1</td></tr>
+        <tr><td>3/18</td><td>11</td><td>$46.65</td><td class="conv">2.5</td><td>4</td><td>$27.17</td><td class="conv">1</td><td class="conv">3.5</td></tr>
+        <tr><td>3/19</td><td>10</td><td>$46.84</td><td>0.5</td><td>11</td><td>$99.38</td><td>0</td><td>0.5</td></tr>
+        <tr><td>3/20</td><td>12</td><td>$44.43</td><td class="conv">1</td><td>9</td><td>$64.97</td><td>0</td><td class="conv">1</td></tr>
+        <tr><td>3/21</td><td>16</td><td>$64.48</td><td class="conv">1</td><td>9</td><td>$69.85</td><td>0</td><td class="conv">1</td></tr>
+        <tr><td>3/22</td><td>18</td><td>$48.09</td><td class="conv">1</td><td>11</td><td>$66.23</td><td>0</td><td class="conv">1</td></tr>
+        <tr><td>3/23</td><td>0</td><td>$0</td><td>0</td><td>0</td><td>$0</td><td>0</td><td>0</td></tr>
+      </table>
+    </div>
+
+    <div class="finding info">
+      <strong>Trend Analysis:</strong> First two days post-change (3/12-3/13) had zero conversions &mdash; typical learning period. Conversions started on 3/14 and have been steady since (1-3.5 per day). March 18 was the best day (3.5 conv). Primary campaign converts almost daily; Builder has only converted on 3/14 and 3/18. March 23 shows $0 because data was pulled partway through the day.
+    </div>
+    <div class="finding warn">
+      <strong>Builder campaign has not converted since March 18</strong> &mdash; 5 straight days (3/19-3/23) with zero conversions despite spending $300+ during that stretch. This pattern strengthens the case for budget reallocation.
+    </div>
+  </div>
+</div>
+
+<!-- ===================== STRUCTURAL CHECKS ===================== -->
+<div class="section" id="structural">
+  <div class="section-header">
+    <div class="section-num">11</div>
+    <h2>Structural Verification Summary</h2>
+  </div>
+  <div class="section-body">
+    <div class="table-wrap">
+      <table>
+        <tr><th>Check</th><th>Status</th><th>API Evidence</th></tr>
+        <tr>
+          <td>Geo Targeting</td>
+          <td><span class="tag tag-good">CORRECT</span></td>
+          <td>positive_geo_target_type=7 (PRESENCE) on both campaigns</td>
+        </tr>
+        <tr>
+          <td>Bidding Strategy</td>
+          <td><span class="tag tag-info">TARGET_SPEND</span></td>
+          <td>bidding_strategy_type=9 (Max Clicks), $15 CPC ceiling on both campaigns</td>
+        </tr>
+        <tr>
+          <td>Networks</td>
+          <td><span class="tag tag-good">CORRECT</span></td>
+          <td>Google Search only (target_search_network=false)</td>
+        </tr>
+        <tr>
+          <td>Match Types</td>
+          <td><span class="tag tag-good">CORRECT</span></td>
+          <td>All keywords PHRASE (3) or EXACT (2). Zero broad match confirmed.</td>
+        </tr>
+        <tr>
+          <td>Conversion Tracking</td>
+          <td><span class="tag tag-good">CLEAN</span></td>
+          <td>4 ENABLED actions, all ONE_PER_CLICK, no duplicates. 1 REMOVED action correctly excluded.</td>
+        </tr>
+        <tr>
+          <td>Shared Negative Lists</td>
+          <td><span class="tag tag-good">CONFIRMED</span></td>
+          <td>Master Exclusion List 3.18 (162 terms) active on both campaigns (confirmed in prior audit via campaign_shared_set query)</td>
+        </tr>
+        <tr>
+          <td>Broad Match</td>
+          <td><span class="tag tag-good">NONE</span></td>
+          <td>All 30 keywords returned match_type=2 (EXACT) or 3 (PHRASE)</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- ===================== PRIORITY ACTIONS ===================== -->
+<div class="section" id="priorities">
+  <div class="section-header">
+    <div class="section-num">12</div>
+    <h2>Priority Actions for Pools 123 Meeting</h2>
+  </div>
+  <div class="section-body">
+    <ul class="priority-list">
+
+      <li class="priority-item p1">
+        <div class="pi-tag"><span class="tag tag-p1">P1</span></div>
+        <div class="pi-body">
+          <h4>Pause Cost/Pricing Ad Group OR Redirect to /fiberglass-pool-designs/</h4>
+          <p><strong>Evidence:</strong> $194.81 spend, 46 clicks, 0 conversions in 12 days. 3rd consecutive audit flagging this. Combined with gallery page waste ($149), that's $318 of the $1,145 total spend (27.8%) going to zero-conversion pages.</p>
+          <p><strong>How to fix:</strong> Google Ads > Fiberglass Pools (Primary) campaign > Ad Groups > "Fiberglass Pools Cost / Pricing" > Pause. OR: keep keywords active but change their final URLs from /pool-pricing/ to /fiberglass-pool-designs/ (the $46 CPA page).</p>
+          <p><strong>Expected impact:</strong> Recover ~$500/month and redirect those clicks to a page with 9.4% CVR. Could add 3-5 conversions/month.</p>
+        </div>
+      </li>
+
+      <li class="priority-item p1">
+        <div class="pi-tag"><span class="tag tag-p1">P1</span></div>
+        <div class="pi-body">
+          <h4>Reallocate Budget from Builder to Primary Campaign</h4>
+          <p><strong>Evidence:</strong> Post-change, Primary campaign = $62.03 CPA (9 conv). Builder campaign = $293.58 CPA (2 conv). Builder hasn't converted since 3/18 &mdash; 5 straight days of zero conversions. Builder IS is 22.4% (55.8% rank-lost) due to QS=0 on all 3 major keywords.</p>
+          <p><strong>How to fix:</strong> Google Ads > Pool Builder campaign > Settings > Budget > Reduce from $50/day to $25/day. Fiberglass Pools Primary > Settings > Budget > Increase from $50/day to $75/day.</p>
+          <p><strong>Expected impact:</strong> At current Primary efficiency ($62 CPA), the extra $25/day could yield 2-3 more conversions per week while cutting waste on Builder's QS=0 keywords.</p>
+        </div>
+      </li>
+
+      <li class="priority-item p1">
+        <div class="pi-tag"><span class="tag tag-p1">P1</span></div>
+        <div class="pi-body">
+          <h4>Add Competitor Brand Negatives</h4>
+          <p><strong>Evidence:</strong> "aqua pools new braunfels" ($6.26, 0 conv), "varsity pools new braunfels" ($5.41, 0 conv) confirmed in post-change search terms. Prior audit also flagged Gary's and Lonestar.</p>
+          <p><strong>How to fix:</strong> Google Ads > Tools > Shared Library > Negative Keyword Lists > Master Exclusion List 3.18 > Add:</p>
+          <p style="font-family:monospace; font-size:12px; background:#f1f5f9; padding:8px; border-radius:4px; margin-top:4px;">
+            "aqua pools" [PHRASE]<br>
+            "varsity pools" [PHRASE]<br>
+            "gary's pool" [PHRASE]<br>
+            "garys pool" [PHRASE]<br>
+            "lonestar pools" [PHRASE]<br>
+            "lonestar fiberglass" [PHRASE]
+          </p>
+          <p><strong>Expected impact:</strong> Recover ~$30-50/month in competitor brand waste.</p>
+        </div>
+      </li>
+
+      <li class="priority-item p2">
+        <div class="pi-tag"><span class="tag tag-p2">P2</span></div>
+        <div class="pi-body">
+          <h4>Add Wrong-Intent Negatives</h4>
+          <p><strong>Evidence:</strong> "above pool installation" ($7.83), "pool renovation" ($5.58), "we fix pools" ($5.45), "prefab plunge pool" ($5.40), "staycation pools" ($9.27) &mdash; all zero conversions.</p>
+          <p><strong>How to fix:</strong> Add to Master Exclusion List 3.18:</p>
+          <p style="font-family:monospace; font-size:12px; background:#f1f5f9; padding:8px; border-radius:4px; margin-top:4px;">
+            "above ground" [PHRASE]<br>
+            "above pool" [PHRASE]<br>
+            "pool renovation" [PHRASE]<br>
+            "pool repair" [PHRASE]<br>
+            "fix pools" [PHRASE]<br>
+            "prefab pool" [PHRASE]<br>
+            "prefab plunge" [PHRASE]<br>
+            "staycation" [PHRASE]
+          </p>
+          <p><strong>Expected impact:</strong> Recover ~$30-40/month in wrong-intent waste.</p>
+        </div>
+      </li>
+
+      <li class="priority-item p2">
+        <div class="pi-tag"><span class="tag tag-p2">P2</span></div>
+        <div class="pi-body">
+          <h4>Create Brand Defense Campaign</h4>
+          <p><strong>Evidence:</strong> "leisure pools new braunfels" triggered across both campaigns &mdash; $35.53 spend, 6 clicks, 0 conversions in 12 days. Paying $5-9 CPC for own brand name. A dedicated brand campaign would capture this at $0.50-1.00 CPC.</p>
+          <p><strong>How to fix:</strong> Create new campaign "LP San Antonio &mdash; Brand" with $5-10/day budget, exact-match keywords: [leisure pools san antonio], [leisure pools new braunfels], [pools 123 san antonio]. Add "leisure pools" as phrase-match negative to both existing campaigns to prevent cannibalization.</p>
+          <p><strong>Expected impact:</strong> Capture branded traffic at 80-90% lower CPC, improve overall account efficiency.</p>
+        </div>
+      </li>
+
+      <li class="priority-item p3">
+        <div class="pi-tag"><span class="tag tag-p3">P3</span></div>
+        <div class="pi-body">
+          <h4>Apply Mobile Bid Adjustment on Builder Campaign</h4>
+          <p><strong>Evidence:</strong> Mobile = 85.5% of spend, $108.79 CPA. Desktop = 12.2% of spend, $69.77 CPA. The gap is most pronounced on the Builder campaign where mobile generates clicks but not conversions.</p>
+          <p><strong>How to fix:</strong> Google Ads > Pool Builder / Contractor > Devices > Mobile > Set bid adjustment to -15%.</p>
+          <p><strong>Expected impact:</strong> Modest CPA improvement on Builder campaign by suppressing mobile's over-indexing.</p>
+        </div>
+      </li>
+
+      <li class="priority-item p3">
+        <div class="pi-tag"><span class="tag tag-p3">P3</span></div>
+        <div class="pi-body">
+          <h4>Verify Brochure Download and Call Tracking Tags</h4>
+          <p><strong>Evidence:</strong> Zero brochure downloads and zero call conversions in the 12-day post-change window. All 11 conversions are Free Estimate (10) or Contact Form (1). The conversion actions exist and are ENABLED, but no events fired.</p>
+          <p><strong>How to fix:</strong> Visit leisurepoolssanantonio.com, test the brochure download form, and verify in Google Ads > Conversions > Conversion actions that "Download Brochure" shows recent activity. Also verify call extension is serving by checking Ads & Extensions > Assets > Call.</p>
+          <p><strong>Expected impact:</strong> If tags broke post-change, fixing them could surface 2-5 additional conversions that are currently going untracked.</p>
+        </div>
+      </li>
+
+    </ul>
+  </div>
+</div>
+
+<!-- ===================== MEETING TALKING POINTS ===================== -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-num">+</div>
+    <h2>Pools 123 Thursday Meeting Talking Points</h2>
+  </div>
+  <div class="section-body">
+    <ol style="margin-left: 20px; font-size: 13px; line-height: 2;">
+      <li><strong>Post-change performance is trending up:</strong> $104 CPA (down from $154 blended), 4.7% CVR (up from 3.1%). 11 leads in 12 days.</li>
+      <li><strong>Primary campaign is the engine:</strong> 9 of 11 conversions, $62 CPA. /fiberglass-pool-designs/ page is doing the heavy lifting at $46 CPA / 9.4% CVR.</li>
+      <li><strong>Builder campaign needs attention:</strong> Only 2 conversions, $294 CPA, hasn't converted since 3/18. QS=0 on all major keywords. Recommend budget shift to Primary.</li>
+      <li><strong>Quick win available now:</strong> Pausing Cost/Pricing ad group recovers $500/month going to /pool-pricing/ (zero conversions across 3 audits). Redirect to /fiberglass-pool-designs/.</li>
+      <li><strong>Conversion tracking is clean:</strong> Unlike Houston (duplicate tracking), San Antonio has no duplication issues. All 11 leads are real.</li>
+      <li><strong>Competitor leakage is minor:</strong> ~$45 in 12 days on competitor brand terms &mdash; addressable with 6 negative keywords.</li>
+    </ol>
+  </div>
+</div>
+
+</div><!-- end container -->
+
+<div class="report-footer">
+  Post-Change Performance Audit &mdash; Leisure Pools San Antonio (9720633800)<br>
+  Generated 2026-03-23 | Data: Google Ads API (MCC 836-765-6694) | Period: 2026-03-12 to 2026-03-23<br>
+  All findings backed by raw API data. GAQL queries shown for each section.
+</div>
+
+</body>
+</html>

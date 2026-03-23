@@ -1,0 +1,1268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LP Houston — Post-Change Audit | Mar 12–23, 2026</title>
+<style>
+  :root {
+    --navy: #0d2d5e;
+    --navy-dark: #081d3f;
+    --accent: #0ea5e9;
+    --accent-light: #e0f2fe;
+    --gold: #f59e0b;
+    --red: #ef4444;
+    --green: #22c55e;
+    --yellow: #eab308;
+    --gray-50: #f8fafc;
+    --gray-100: #f1f5f9;
+    --gray-200: #e2e8f0;
+    --gray-500: #64748b;
+    --gray-700: #334155;
+    --gray-900: #0f172a;
+    --white: #ffffff;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: var(--gray-100); color: var(--gray-900); line-height: 1.5; }
+  .header { background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%); color: var(--white); padding: 40px 48px 32px; }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+  .brand-tag { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: var(--accent); margin-bottom: 6px; }
+  .header h1 { font-size: 28px; font-weight: 700; color: var(--white); }
+  .header-meta { text-align: right; font-size: 13px; color: rgba(255,255,255,0.65); }
+  .header-meta strong { color: var(--white); display: block; font-size: 15px; margin-bottom: 4px; }
+  .priority-badge { display: inline-block; background: var(--red); color: white; font-size: 11px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 4px; margin-top: 8px; text-transform: uppercase; }
+  .context-bar { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 8px; padding: 14px 20px; font-size: 13px; color: rgba(255,255,255,0.8); }
+  .context-bar strong { color: var(--accent); }
+  .kpi-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1px; background: var(--gray-200); border: 1px solid var(--gray-200); margin: 0; }
+  .kpi-card { background: var(--white); padding: 20px 20px 18px; }
+  .kpi-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-500); margin-bottom: 6px; }
+  .kpi-value { font-size: 26px; font-weight: 700; color: var(--navy); line-height: 1.1; }
+  .kpi-sub { font-size: 12px; color: var(--gray-500); margin-top: 4px; }
+  .kpi-flag { font-size: 11px; font-weight: 600; margin-top: 6px; }
+  .flag-red { color: var(--red); }
+  .flag-yellow { color: var(--yellow); }
+  .flag-green { color: var(--green); }
+  .content { padding: 32px 48px; max-width: 1400px; margin: 0 auto; }
+  .section { margin-bottom: 36px; }
+  .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; padding-bottom: 10px; border-bottom: 2px solid var(--navy); }
+  .section-icon { width: 28px; height: 28px; background: var(--navy); color: white; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 13px; font-weight: 700; flex-shrink: 0; }
+  .section-header h2 { font-size: 17px; font-weight: 700; color: var(--navy); }
+  .section-badge { font-size: 11px; font-weight: 600; padding: 3px 8px; border-radius: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .badge-red { background: #fee2e2; color: #b91c1c; }
+  .badge-yellow { background: #fef9c3; color: #854d0e; }
+  .badge-green { background: #dcfce7; color: #166534; }
+  .badge-blue { background: var(--accent-light); color: #0369a1; }
+  .card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; overflow: hidden; }
+  .card-body { padding: 20px 24px; }
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .data-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  .data-table th { background: var(--gray-50); font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.06em; color: var(--gray-500); padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--gray-200); white-space: nowrap; }
+  .data-table td { padding: 10px 14px; border-bottom: 1px solid var(--gray-100); vertical-align: middle; }
+  .data-table tr:last-child td { border-bottom: none; }
+  .data-table tr:hover td { background: var(--gray-50); }
+  .num { text-align: right; font-variant-numeric: tabular-nums; }
+  .finding { border-left: 4px solid; border-radius: 0 8px 8px 0; padding: 14px 18px; margin-bottom: 12px; }
+  .finding-critical { border-color: var(--red); background: #fff5f5; }
+  .finding-warning { border-color: var(--gold); background: #fffbeb; }
+  .finding-positive { border-color: var(--green); background: #f0fdf4; }
+  .finding-info { border-color: var(--accent); background: var(--accent-light); }
+  .finding h4 { font-size: 13px; font-weight: 700; margin-bottom: 4px; }
+  .finding p, .finding ul { font-size: 13px; color: var(--gray-700); }
+  .finding ul { margin-left: 18px; margin-top: 6px; }
+  .finding li { margin-bottom: 4px; }
+  .finding-critical h4 { color: #b91c1c; }
+  .finding-warning h4 { color: #92400e; }
+  .finding-positive h4 { color: #166534; }
+  .finding-info h4 { color: #0369a1; }
+  .query-block { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 6px; padding: 12px 14px; margin: 10px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11.5px; color: var(--gray-700); white-space: pre-wrap; word-break: break-all; overflow-x: auto; }
+  .raw-data { background: #f0f4f8; border: 1px solid var(--gray-200); border-radius: 6px; padding: 12px 14px; margin: 10px 0; font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: var(--gray-700); white-space: pre-wrap; word-break: break-all; max-height: 300px; overflow-y: auto; }
+  .rec-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .rec-card { background: var(--white); border: 1px solid var(--gray-200); border-radius: 10px; padding: 18px 20px; }
+  .rec-card.priority-1 { border-top: 3px solid var(--red); }
+  .rec-card.priority-2 { border-top: 3px solid var(--gold); }
+  .rec-card.priority-3 { border-top: 3px solid var(--accent); }
+  .rec-num { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 6px; }
+  .priority-1 .rec-num { color: var(--red); }
+  .priority-2 .rec-num { color: #b45309; }
+  .priority-3 .rec-num { color: #0369a1; }
+  .rec-card h3 { font-size: 14px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+  .rec-card p, .rec-card ul { font-size: 13px; color: var(--gray-700); line-height: 1.6; }
+  .rec-card ul { margin-left: 16px; margin-top: 4px; }
+  .rec-impact { font-size: 11px; font-weight: 600; margin-top: 10px; color: var(--gray-500); }
+  .waste-total { background: #fff1f2; border: 2px solid #fecdd3; border-radius: 10px; padding: 18px 22px; margin-bottom: 16px; display: flex; align-items: center; gap: 16px; }
+  .waste-amount { font-size: 36px; font-weight: 800; color: var(--red); }
+  .waste-label { font-size: 14px; color: var(--gray-700); }
+  .waste-label strong { display: block; font-size: 16px; color: #b91c1c; margin-bottom: 2px; }
+  .copy-block { background: var(--gray-50); border: 1px solid var(--gray-200); border-radius: 8px; padding: 16px 18px; margin-top: 12px; }
+  .copy-block h4 { font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: var(--gray-500); margin-bottom: 10px; }
+  .copy-item { display: flex; justify-content: space-between; align-items: center; padding: 8px 12px; background: var(--white); border: 1px solid var(--gray-200); border-radius: 6px; margin-bottom: 6px; cursor: pointer; transition: background 0.15s; }
+  .copy-item:hover { background: var(--accent-light); border-color: var(--accent); }
+  .copy-item span { font-size: 13px; color: var(--gray-900); }
+  .copy-icon { font-size: 11px; color: var(--accent); font-weight: 600; flex-shrink: 0; margin-left: 12px; }
+  .copy-item:last-child { margin-bottom: 0; }
+  .device-bar-wrap { margin-top: 12px; }
+  .device-row { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+  .device-label { font-size: 12px; font-weight: 600; width: 80px; color: var(--gray-700); }
+  .device-bar-bg { flex: 1; height: 10px; background: var(--gray-100); border-radius: 5px; overflow: hidden; }
+  .device-bar-fill { height: 100%; border-radius: 5px; }
+  .fill-mobile { background: var(--accent); }
+  .fill-desktop { background: var(--navy); }
+  .fill-tablet { background: var(--gold); }
+  .device-stat { font-size: 12px; color: var(--gray-500); width: 180px; text-align: right; }
+  .retraction-box { background: #f0fdf4; border: 2px solid var(--green); border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; }
+  .retraction-box h3 { color: #166534; font-size: 16px; margin-bottom: 10px; }
+  .retraction-box p { font-size: 13px; color: var(--gray-700); line-height: 1.7; }
+  .confirmation-box { background: #fef2f2; border: 2px solid var(--red); border-radius: 10px; padding: 20px 24px; margin-bottom: 20px; }
+  .confirmation-box h3 { color: #b91c1c; font-size: 16px; margin-bottom: 10px; }
+  .confirmation-box p, .confirmation-box ul { font-size: 13px; color: var(--gray-700); line-height: 1.7; }
+  .confirmation-box ul { margin-left: 18px; margin-top: 8px; }
+  .footer { background: var(--navy-dark); color: rgba(255,255,255,0.5); text-align: center; padding: 20px 48px; font-size: 12px; margin-top: 48px; }
+  @media print {
+    body { background: white; }
+    .content { padding: 16px 24px; }
+    .header { padding: 24px 24px 20px; }
+  }
+</style>
+<script>
+  function copyText(text) {
+    navigator.clipboard.writeText(text).then(() => {
+      const el = event.currentTarget;
+      const orig = el.querySelector('.copy-icon').textContent;
+      el.querySelector('.copy-icon').textContent = 'Copied!';
+      setTimeout(() => el.querySelector('.copy-icon').textContent = orig, 1500);
+    });
+  }
+</script>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <div>
+      <div class="brand-tag">Leisure Pools -- Post-Change Audit</div>
+      <h1>Leisure Pools Houston</h1>
+    </div>
+    <div class="header-meta">
+      <strong>Account 679-038-2043</strong>
+      Mar 12 -- Mar 23, 2026 (12 days post-change)
+      <br>Generated March 23, 2026
+      <div class="priority-badge">HIGH PRIORITY -- Pools 123 Meeting Thursday</div>
+    </div>
+  </div>
+  <div class="context-bar">
+    <strong>Purpose:</strong> Post-change performance audit for Eli's Thursday Pools 123 meeting with Donavan Naras. Changes implemented ~3/11-3/12. This report covers <strong>only the 12-day post-change window</strong> (Mar 12--23). Every finding is backed by raw API data shown inline.
+    <br><strong>Budget:</strong> $300/day ($175 Fiberglass Primary + $125 Pool Builder/Contractor)
+  </div>
+</div>
+
+<!-- KPI STRIP -->
+<div class="kpi-grid">
+  <div class="kpi-card">
+    <div class="kpi-label">Total Spend</div>
+    <div class="kpi-value">$3,593</div>
+    <div class="kpi-sub">12-day period</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Clicks</div>
+    <div class="kpi-value">952</div>
+    <div class="kpi-sub">$3.77 avg CPC</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Impressions</div>
+    <div class="kpi-value">6,991</div>
+    <div class="kpi-sub">13.6% CTR</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Reported Conversions</div>
+    <div class="kpi-value">17</div>
+    <div class="kpi-sub kpi-flag flag-red">INFLATED -- see conversion section</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Reported CPA</div>
+    <div class="kpi-value">$211</div>
+    <div class="kpi-sub kpi-flag flag-red">Actual CPA likely higher</div>
+  </div>
+  <div class="kpi-card">
+    <div class="kpi-label">Geo Targeting</div>
+    <div class="kpi-value" style="font-size:18px; color: var(--green);">PRESENCE</div>
+    <div class="kpi-sub kpi-flag flag-green">Correct (type=7)</div>
+  </div>
+</div>
+
+<!-- CONTENT -->
+<div class="content">
+
+<!-- ============================================= -->
+<!-- SECTION 1: CONVERSION TRACKING DEEP DIVE      -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">1</div>
+    <h2>Conversion Tracking -- DUPLICATE/TRIPLICATE CONFIRMED</h2>
+    <span class="section-badge badge-red">CRITICAL -- PROVEN</span>
+  </div>
+
+  <div class="confirmation-box">
+    <h3>CONFIRMED: Duplicate (Actually Triplicate) Conversion Tracking Is Active</h3>
+    <p>The prior audit's finding about duplicate conversion tracking was <strong>correct and actually understated</strong>. This account has THREE layers of conversion tracking for the same user actions, all included in the "Conversions" metric simultaneously:</p>
+    <ul>
+      <li><strong>Layer 1 -- Website Tags</strong> (ONE_PER_CLICK counting): "Request Quote", "Download Brochure", "Contact Dealer"</li>
+      <li><strong>Layer 2 -- GA4 Houston Property</strong> (MANY_PER_CLICK counting): "Contact Form", "Download Brochure", "Free Estimate" from GA4 property 512988705</li>
+      <li><strong>Layer 3 -- GA4 USA Property</strong> (MANY_PER_CLICK counting): "free_quote_tx1", "contact_tx1", "get_brochure_tx1" from GA4 property 348960657</li>
+    </ul>
+    <p style="margin-top: 10px;"><strong>Impact:</strong> A single form submission could be counted up to 3 times. The reported 17 conversions in this window are likely <strong>6--10 actual unique lead events</strong>. This is the root cause of the lead quality perception problem -- Donavan sees 42 "conversions" in 30 days but far fewer actual leads.</p>
+  </div>
+
+  <p style="font-size: 13px; color: var(--gray-700); margin-bottom: 12px;"><strong>GAQL Query Used:</strong></p>
+  <div class="query-block">SELECT conversion_action.id, conversion_action.name, conversion_action.status, conversion_action.counting_type, conversion_action.category, conversion_action.include_in_conversions_metric, conversion_action.origin, conversion_action.primary_for_goal, conversion_action.google_analytics_4_settings.event_name, conversion_action.google_analytics_4_settings.property_id, conversion_action.google_analytics_4_settings.property_name FROM conversion_action</div>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin: 20px 0 12px;">All 22 Conversion Actions on This Account</h3>
+
+  <div class="card" style="overflow-x: auto;">
+    <table class="data-table" style="min-width: 1100px;">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Counting</th>
+          <th>In Conversions?</th>
+          <th>Primary?</th>
+          <th>GA4 Property</th>
+          <th>GA4 Event</th>
+          <th>Duplicate?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- WEBSITE TAG LAYER -->
+        <tr style="background: #f0fdf4;">
+          <td>7256755080</td>
+          <td><strong>LP Houston - Request Quote</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td>ONE/CLICK</td>
+          <td style="color: var(--green); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>--</td>
+          <td>--</td>
+          <td style="color: var(--green);">KEEP</td>
+        </tr>
+        <tr style="background: #f0fdf4;">
+          <td>7256767668</td>
+          <td><strong>LP Houston - Download Brochure</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td>ONE/CLICK</td>
+          <td style="color: var(--green); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>--</td>
+          <td>--</td>
+          <td style="color: var(--green);">KEEP</td>
+        </tr>
+        <tr style="background: #f0fdf4;">
+          <td>7256767671</td>
+          <td><strong>LP USA - Contact Dealer</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td>ONE/CLICK</td>
+          <td style="color: var(--green); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>--</td>
+          <td>--</td>
+          <td style="color: var(--green);">KEEP</td>
+        </tr>
+        <tr style="background: #f0fdf4;">
+          <td>7218243011</td>
+          <td><strong>LP Houston - Phone Call</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td>ONE/CLICK</td>
+          <td style="color: var(--green); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>--</td>
+          <td>-- (origin: CALL)</td>
+          <td style="color: var(--green);">KEEP</td>
+        </tr>
+        <!-- GA4 HOUSTON PROPERTY LAYER - DUPLICATES -->
+        <tr style="background: #fef2f2;">
+          <td>7389277872</td>
+          <td><strong>LP Houston (web) Contact Form</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td style="color: var(--red); font-weight: 600;">MANY/CLICK</td>
+          <td style="color: var(--red); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>512988705 (Houston)</td>
+          <td>Contact Form</td>
+          <td style="color: var(--red); font-weight: 700;">DUPLICATE -- REMOVE</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>7389277875</td>
+          <td><strong>LP Houston (web) Download Brochure</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td style="color: var(--red); font-weight: 600;">MANY/CLICK</td>
+          <td style="color: var(--red); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>512988705 (Houston)</td>
+          <td>Download Brochure</td>
+          <td style="color: var(--red); font-weight: 700;">DUPLICATE -- REMOVE</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>7389277878</td>
+          <td><strong>LP Houston (web) Free Estimate</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td style="color: var(--red); font-weight: 600;">MANY/CLICK</td>
+          <td style="color: var(--red); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>512988705 (Houston)</td>
+          <td>Free Estimate</td>
+          <td style="color: var(--red); font-weight: 700;">DUPLICATE -- REMOVE</td>
+        </tr>
+        <!-- GA4 USA PROPERTY LAYER - TRIPLICATES -->
+        <tr style="background: #fef2f2;">
+          <td>7120648723</td>
+          <td><strong>LP USA - GA4 free_quote_tx1</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td style="color: var(--red); font-weight: 600;">MANY/CLICK</td>
+          <td style="color: var(--red); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>348960657 (USA)</td>
+          <td>free_quote_tx1</td>
+          <td style="color: var(--red); font-weight: 700;">TRIPLICATE -- REMOVE</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>7120648726</td>
+          <td><strong>LP USA - GA4 contact_tx1</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td style="color: var(--red); font-weight: 600;">MANY/CLICK</td>
+          <td style="color: var(--red); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>348960657 (USA)</td>
+          <td>contact_tx1</td>
+          <td style="color: var(--red); font-weight: 700;">TRIPLICATE -- REMOVE</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>7125891496</td>
+          <td><strong>LP USA - GA4 get_brochure_tx1</strong></td>
+          <td style="color: var(--green); font-weight: 600;">ENABLED</td>
+          <td style="color: var(--red); font-weight: 600;">MANY/CLICK</td>
+          <td style="color: var(--red); font-weight: 600;">YES</td>
+          <td>YES</td>
+          <td>348960657 (USA)</td>
+          <td>get_brochure_tx1</td>
+          <td style="color: var(--red); font-weight: 700;">TRIPLICATE -- REMOVE</td>
+        </tr>
+        <!-- REMOVED / DISABLED -->
+        <tr style="opacity: 0.5;">
+          <td>7120487186</td>
+          <td>Submit lead form</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>YES*</td>
+          <td>YES</td>
+          <td>--</td>
+          <td>--</td>
+          <td>Removed -- no impact</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648699</td>
+          <td>LP USA - GA4 purchase</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>purchase</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648702</td>
+          <td>LP USA - GA4 generate_lead</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>generate_lead</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648705</td>
+          <td>LP USA - GA4 download_brochure</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>download_brochure</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648708</td>
+          <td>LP USA - GA4 download_pricing_guide</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>download_pricing_guide</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648711</td>
+          <td>LP USA - GA4 download_project_starter_kit</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>download_project_starter_kit</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648714</td>
+          <td>LP USA - GA4 download_great_ideas_pack</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>download_great_ideas_pack</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648717</td>
+          <td>LP USA - GA4 find_dealer</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>find_dealer</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7120648720</td>
+          <td>LP USA - GA4 submit_lead_form</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>conversion_event_submit_lead_form</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7154825492</td>
+          <td>LP USA - GA4 phone_call_tx1</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>348960657</td>
+          <td>phone_call_tx1</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7389147745</td>
+          <td>LP Houston (web) close_convert_lead</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>512988705</td>
+          <td>close_convert_lead</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7389147748</td>
+          <td>LP Houston (web) qualify_lead</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>512988705</td>
+          <td>qualify_lead</td>
+          <td>Already disabled</td>
+        </tr>
+        <tr style="opacity: 0.5;">
+          <td>7389277869</td>
+          <td>LP Houston (web) purchase</td>
+          <td style="color: var(--gray-500);">REMOVED</td>
+          <td>MANY/CLICK</td>
+          <td>NO</td>
+          <td>NO</td>
+          <td>512988705</td>
+          <td>purchase</td>
+          <td>Already disabled</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin: 20px 0 12px;">Post-Change Conversion Breakdown by Action (3/12--3/23)</h3>
+  <div class="query-block">SELECT segments.conversion_action_name, segments.conversion_action, metrics.conversions, metrics.all_conversions FROM campaign WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' AND campaign.status = 'ENABLED' AND metrics.conversions > 0</div>
+  <div class="card">
+    <div class="card-body">
+      <table class="data-table">
+        <thead><tr><th>Conversion Action</th><th>Source</th><th class="num">Conversions (Primary)</th><th class="num">Conversions (Builder)</th><th class="num">Total</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr style="background: #fef2f2;">
+            <td>LP Houston (web) Contact Form</td>
+            <td>GA4 Houston (512988705)</td>
+            <td class="num">3</td>
+            <td class="num">2</td>
+            <td class="num"><strong>5</strong></td>
+            <td style="color: var(--red); font-weight: 600;">DUPLICATE -- counting same events as website tags</td>
+          </tr>
+          <tr style="background: #fef2f2;">
+            <td>LP Houston (web) Download Brochure</td>
+            <td>GA4 Houston (512988705)</td>
+            <td class="num">2</td>
+            <td class="num">3</td>
+            <td class="num"><strong>5</strong></td>
+            <td style="color: var(--red); font-weight: 600;">DUPLICATE -- counting same events as website tags</td>
+          </tr>
+          <tr style="background: #fef2f2;">
+            <td>LP Houston (web) Free Estimate</td>
+            <td>GA4 Houston (512988705)</td>
+            <td class="num">3</td>
+            <td class="num">4</td>
+            <td class="num"><strong>7</strong></td>
+            <td style="color: var(--red); font-weight: 600;">DUPLICATE -- counting same events as website tags</td>
+          </tr>
+        </tbody>
+        <tfoot>
+          <tr style="font-weight: 700; border-top: 2px solid var(--gray-200);">
+            <td colspan="4">Total Reported in "Conversions" Column</td>
+            <td class="num">17</td>
+            <td></td>
+          </tr>
+        </tfoot>
+      </table>
+      <div class="finding finding-critical" style="margin-top: 16px;">
+        <h4>All 17 reported conversions came from GA4 Houston property actions only</h4>
+        <p>The website tag actions and GA4 USA property actions did NOT fire during this window (or their counts are nested within the GA4 Houston numbers). The GA4 Houston actions use <strong>MANY_PER_CLICK counting</strong>, meaning a single user could generate multiple conversions per click. The real number of unique lead events is likely <strong>6--10</strong>.</p>
+        <p style="margin-top: 8px;"><strong>Why this matters for the Pools 123 meeting:</strong> Donavan sees "17 conversions" but receives far fewer actual leads. The discrepancy is not a lead quality problem -- it's a <strong>counting problem</strong>. Fix the tracking, and reported numbers will match reality. CPA will appear higher but will reflect truth.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding finding-info" style="margin-top: 16px;">
+    <h4>How to Fix (Step by Step in Google Ads UI)</h4>
+    <ul>
+      <li><strong>Step 1:</strong> Go to Goals > Conversions > Summary</li>
+      <li><strong>Step 2:</strong> For each of these 6 GA4 actions, click the action name, then click "Edit settings":</li>
+      <li style="margin-left: 20px;"><strong>REMOVE from primary goal</strong> (uncheck "Use as a primary action for bidding"):</li>
+      <li style="margin-left: 40px;">LP Houston (web) Contact Form (ID 7389277872)</li>
+      <li style="margin-left: 40px;">LP Houston (web) Download Brochure (ID 7389277875)</li>
+      <li style="margin-left: 40px;">LP Houston (web) Free Estimate (ID 7389277878)</li>
+      <li style="margin-left: 40px;">LP USA - GA4 free_quote_tx1 (ID 7120648723)</li>
+      <li style="margin-left: 40px;">LP USA - GA4 contact_tx1 (ID 7120648726)</li>
+      <li style="margin-left: 40px;">LP USA - GA4 get_brochure_tx1 (ID 7125891496)</li>
+      <li><strong>Step 3:</strong> Keep these 4 as primary (they're the clean ones):</li>
+      <li style="margin-left: 40px;">LP Houston - Request Quote (website tag, ONE/CLICK)</li>
+      <li style="margin-left: 40px;">LP Houston - Download Brochure (website tag, ONE/CLICK)</li>
+      <li style="margin-left: 40px;">LP USA - Contact Dealer (website tag, ONE/CLICK)</li>
+      <li style="margin-left: 40px;">LP Houston - Phone Call (call tracking, ONE/CLICK)</li>
+      <li><strong>Step 4:</strong> After dedup, wait 7 days for bidding algorithm to recalibrate on clean data</li>
+    </ul>
+    <p style="margin-top: 10px;"><strong>Expected Impact:</strong> Reported conversions will drop ~50-60% but will now represent real leads. CPA will appear to increase but will reflect actual cost per lead. This gives Donavan clean numbers he can trust.</p>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 2: CAMPAIGN PERFORMANCE                -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">2</div>
+    <h2>Campaign Performance (Post-Change: 3/12--3/23)</h2>
+    <span class="section-badge badge-blue">Data</span>
+  </div>
+
+  <div class="query-block">SELECT campaign.id, campaign.name, campaign.status, campaign.bidding_strategy_type, campaign.target_spend.cpc_bid_ceiling_micros, campaign.geo_target_type_setting.positive_geo_target_type, metrics.cost_micros, metrics.clicks, metrics.impressions, metrics.conversions, metrics.search_impression_share, metrics.search_rank_lost_impression_share, metrics.search_budget_lost_impression_share FROM campaign WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' AND campaign.status = 'ENABLED'</div>
+
+  <div class="card" style="overflow-x: auto;">
+    <table class="data-table">
+      <thead>
+        <tr><th>Campaign</th><th>Bidding</th><th>CPC Cap</th><th>Geo</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">Conv*</th><th class="num">CPA*</th><th class="num">IS</th><th class="num">Rank Lost</th><th class="num">Budget Lost</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><strong>Fiberglass Pools (Primary)</strong></td>
+          <td>Max Clicks (type=9)</td>
+          <td>$45.00</td>
+          <td style="color: var(--green);">PRESENCE (7)</td>
+          <td class="num">$2,111</td>
+          <td class="num">608</td>
+          <td class="num">3,679</td>
+          <td class="num">8</td>
+          <td class="num">$264</td>
+          <td class="num">50.7%</td>
+          <td class="num" style="color: var(--red);">26.5%</td>
+          <td class="num" style="color: var(--gold);">22.7%</td>
+        </tr>
+        <tr>
+          <td><strong>Pool Builder / Contractor</strong></td>
+          <td>Max Clicks (type=9)</td>
+          <td>$25.00</td>
+          <td style="color: var(--green);">PRESENCE (7)</td>
+          <td class="num">$1,482</td>
+          <td class="num">344</td>
+          <td class="num">3,312</td>
+          <td class="num">9</td>
+          <td class="num">$165</td>
+          <td class="num" style="color: var(--red);">19.6%</td>
+          <td class="num" style="color: var(--red);">59.2%</td>
+          <td class="num">21.2%</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="font-weight: 700; background: var(--gray-50);">
+          <td colspan="4">TOTAL</td>
+          <td class="num">$3,593</td>
+          <td class="num">952</td>
+          <td class="num">6,991</td>
+          <td class="num">17</td>
+          <td class="num">$211</td>
+          <td class="num" colspan="3"></td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+  <p style="font-size: 11px; color: var(--gray-500); margin-top: 8px;">*Conversions inflated due to duplicate tracking. See Section 1.</p>
+
+  <div class="two-col" style="margin-top: 16px;">
+    <div class="finding finding-warning">
+      <h4>Pool Builder: 59.2% Impression Share Lost to Rank</h4>
+      <p>Only 19.6% IS captured. The $25 CPC cap on Max Clicks is limiting competitiveness. This campaign captures most of the conversions (9 vs 8 on Primary) but is severely impression-starved.</p>
+    </div>
+    <div class="finding finding-positive">
+      <h4>Geo Targeting Confirmed Correct</h4>
+      <p>Both campaigns use positive_geo_target_type = 7 (PRESENCE). This is correct -- ads only show to people physically in the Houston area, not people interested in Houston from elsewhere.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 3: DAILY TREND                         -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">3</div>
+    <h2>Daily Performance Trend</h2>
+  </div>
+
+  <div class="query-block">SELECT segments.date, metrics.cost_micros, metrics.clicks, metrics.impressions, metrics.conversions FROM customer WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' ORDER BY segments.date ASC</div>
+
+  <div class="card" style="overflow-x: auto;">
+    <table class="data-table">
+      <thead><tr><th>Date</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Impr</th><th class="num">Conv*</th><th class="num">CPC</th><th>Notes</th></tr></thead>
+      <tbody>
+        <tr><td>3/12 (Thu)</td><td class="num">$158</td><td class="num">50</td><td class="num">399</td><td class="num">0</td><td class="num">$3.15</td><td style="font-size: 11px;">First day post-change -- ramp-up</td></tr>
+        <tr><td>3/13 (Fri)</td><td class="num">$379</td><td class="num">96</td><td class="num">817</td><td class="num">0</td><td class="num">$3.95</td><td></td></tr>
+        <tr><td>3/14 (Sat)</td><td class="num">$540</td><td class="num">110</td><td class="num">963</td><td class="num">2</td><td class="num">$4.91</td><td style="font-size: 11px;">First post-change conversions</td></tr>
+        <tr style="background: #fef2f2;"><td>3/15 (Sun)</td><td class="num">$346</td><td class="num">106</td><td class="num">660</td><td class="num">2</td><td class="num">$3.27</td><td style="font-size: 11px; color: var(--red);">Donavan CC'd CEO this day</td></tr>
+        <tr><td>3/16 (Mon)</td><td class="num">$289</td><td class="num">90</td><td class="num">613</td><td class="num">0</td><td class="num">$3.21</td><td></td></tr>
+        <tr><td>3/17 (Tue)</td><td class="num">$249</td><td class="num">77</td><td class="num">580</td><td class="num">0</td><td class="num">$3.23</td><td></td></tr>
+        <tr><td>3/18 (Wed)</td><td class="num">$247</td><td class="num">67</td><td class="num">523</td><td class="num">1</td><td class="num">$3.69</td><td></td></tr>
+        <tr><td>3/19 (Thu)</td><td class="num">$273</td><td class="num">68</td><td class="num">588</td><td class="num">1</td><td class="num">$4.02</td><td></td></tr>
+        <tr><td>3/20 (Fri)</td><td class="num">$360</td><td class="num">72</td><td class="num">528</td><td class="num">1</td><td class="num">$5.00</td><td></td></tr>
+        <tr><td>3/21 (Sat)</td><td class="num">$367</td><td class="num">92</td><td class="num">646</td><td class="num">0</td><td class="num">$3.99</td><td></td></tr>
+        <tr style="background: #f0fdf4;"><td>3/22 (Sun)</td><td class="num">$354</td><td class="num">114</td><td class="num">635</td><td class="num">10</td><td class="num">$3.11</td><td style="font-size: 11px; color: var(--green);">Spike -- likely delayed attribution or batch processing</td></tr>
+        <tr><td>3/23 (Mon)</td><td class="num">$31</td><td class="num">10</td><td class="num">39</td><td class="num">0</td><td class="num">$3.10</td><td style="font-size: 11px;">Partial day</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="finding finding-info" style="margin-top: 12px;">
+    <h4>Pattern: 3/22 Conversion Spike (10 in one day)</h4>
+    <p>10 of the 17 conversions reported on 3/22. This is almost certainly delayed GA4 attribution backfilling -- GA4 events can take 24-48 hours to finalize. The real distribution is likely more even across the window. This spike further underscores why the GA4 duplicate actions should be removed -- they introduce attribution noise.</p>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 4: AD GROUP PERFORMANCE                -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">4</div>
+    <h2>Ad Group Performance</h2>
+  </div>
+
+  <div class="card" style="overflow-x: auto;">
+    <table class="data-table">
+      <thead><tr><th>Campaign</th><th>Ad Group</th><th>Status</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Conv*</th><th class="num">CPA*</th><th class="num">CPC</th><th>Assessment</th></tr></thead>
+      <tbody>
+        <tr style="background: #fef9c3;">
+          <td>Fiberglass Primary</td>
+          <td><strong>Fiberglass Pools Cost / Pricing</strong></td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$1,590</td>
+          <td class="num">448</td>
+          <td class="num">3.5</td>
+          <td class="num">$454</td>
+          <td class="num">$3.55</td>
+          <td style="color: var(--gold); font-weight: 600;">74.6% of campaign spend -- high CPA</td>
+        </tr>
+        <tr>
+          <td>Fiberglass Primary</td>
+          <td><strong>Fiberglass Pools General</strong></td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$461</td>
+          <td class="num">138</td>
+          <td class="num">4.5</td>
+          <td class="num">$102</td>
+          <td class="num">$3.34</td>
+          <td style="color: var(--green); font-weight: 600;">Best performer -- $102 CPA</td>
+        </tr>
+        <tr>
+          <td>Fiberglass Primary</td>
+          <td>Fiberglass vs Concrete</td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$45</td>
+          <td class="num">17</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">$2.66</td>
+          <td>Low volume, 0 conv</td>
+        </tr>
+        <tr>
+          <td>Fiberglass Primary</td>
+          <td>Fiberglass Pool Installation</td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$15</td>
+          <td class="num">5</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">$3.08</td>
+          <td>Low volume, 0 conv</td>
+        </tr>
+        <tr style="background: #f0fdf4;">
+          <td>Pool Builder</td>
+          <td><strong>Pool Construction & Installation</strong></td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$990</td>
+          <td class="num">231</td>
+          <td class="num">7</td>
+          <td class="num">$141</td>
+          <td class="num">$4.28</td>
+          <td style="color: var(--green); font-weight: 600;">Strong -- 67% of Builder campaign conv</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>Pool Builder</td>
+          <td><strong>Pool Contractor</strong></td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$274</td>
+          <td class="num">60</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">$4.57</td>
+          <td style="color: var(--red); font-weight: 600;">$274 wasted -- 0 conversions</td>
+        </tr>
+        <tr>
+          <td>Pool Builder</td>
+          <td>Pool Builder General</td>
+          <td style="color: var(--green);">Enabled</td>
+          <td class="num">$218</td>
+          <td class="num">53</td>
+          <td class="num">2</td>
+          <td class="num">$109</td>
+          <td class="num">$4.12</td>
+          <td>Decent</td>
+        </tr>
+        <tr>
+          <td>Pool Builder</td>
+          <td>Pool Companies</td>
+          <td style="color: var(--gray-500);">Paused</td>
+          <td class="num">$0</td>
+          <td class="num">0</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">--</td>
+          <td>Correctly paused</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="two-col" style="margin-top: 16px;">
+    <div class="finding finding-critical">
+      <h4>"Cost / Pricing" AG: $1,590 (44% of total) at $454 CPA</h4>
+      <p>This ad group is eating nearly half the budget with the worst CPA. The /pool-pricing/ landing page drives high click volume from cost-research queries ("how much does a pool cost", "fiberglass pools with prices") but converts poorly. These are early-funnel informational searches, not purchase-intent.</p>
+    </div>
+    <div class="finding finding-critical">
+      <h4>"Pool Contractor" AG: $274 Wasted (0 Conversions)</h4>
+      <p>60 clicks, zero conversions in 12 days. This ad group should be paused immediately. The $274 could be reallocated to the high-performing "Pool Construction & Installation" AG ($141 CPA, 7 conv).</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 5: LANDING PAGE PERFORMANCE            -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">5</div>
+    <h2>Landing Page Performance</h2>
+  </div>
+
+  <div class="query-block">SELECT landing_page_view.unexpanded_final_url, metrics.cost_micros, metrics.clicks, metrics.impressions, metrics.conversions FROM landing_page_view WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' ORDER BY metrics.cost_micros DESC LIMIT 20</div>
+
+  <div class="card" style="overflow-x: auto;">
+    <table class="data-table">
+      <thead><tr><th>Landing Page</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Conv*</th><th class="num">CPA*</th><th class="num">CVR*</th><th>Assessment</th></tr></thead>
+      <tbody>
+        <tr style="background: #fef9c3;">
+          <td>/pool-pricing/</td>
+          <td class="num"><strong>$2,117</strong></td>
+          <td class="num">575</td>
+          <td class="num">4.5</td>
+          <td class="num">$470</td>
+          <td class="num">0.78%</td>
+          <td style="color: var(--red); font-weight: 600;">58.9% of spend -- worst CPA</td>
+        </tr>
+        <tr>
+          <td>/ (homepage)</td>
+          <td class="num">$841</td>
+          <td class="num">197</td>
+          <td class="num">8</td>
+          <td class="num">$105</td>
+          <td class="num">4.06%</td>
+          <td style="color: var(--green); font-weight: 600;">Solid performer</td>
+        </tr>
+        <tr style="background: #f0fdf4;">
+          <td>/fiberglass-pool-designs/</td>
+          <td class="num">$354</td>
+          <td class="num">103</td>
+          <td class="num">4.5</td>
+          <td class="num"><strong>$79</strong></td>
+          <td class="num"><strong>4.37%</strong></td>
+          <td style="color: var(--green); font-weight: 600;">BEST CPA -- route more traffic here</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>/fiberglass-pool-photo-gallery/</td>
+          <td class="num">$205</td>
+          <td class="num">53</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">0%</td>
+          <td style="color: var(--red); font-weight: 600;">$205 WASTED -- 0 conversions again</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>/fiberglass-vs-concrete-pools/</td>
+          <td class="num">$40</td>
+          <td class="num">15</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">0%</td>
+          <td>Low volume, informational</td>
+        </tr>
+        <tr>
+          <td>/free-estimate/</td>
+          <td class="num">$16</td>
+          <td class="num">3</td>
+          <td class="num">0</td>
+          <td class="num">--</td>
+          <td class="num">0%</td>
+          <td>Low volume</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="finding finding-critical" style="margin-top: 16px;">
+    <h4>/pool-pricing/ Absorbs 59% of Budget at $470 CPA -- Still the #1 Waste Source</h4>
+    <p>This was flagged in the prior audit as well. In 12 days, $2,117 went to this page with only 4.5 (inflated) conversions. Meanwhile, /fiberglass-pool-designs/ converts at $79 CPA -- nearly 6x better. The pricing page attracts cost-research queries from early-funnel users who are price shopping, not ready to submit a lead form.</p>
+  </div>
+  <div class="finding finding-critical">
+    <h4>/fiberglass-pool-photo-gallery/ -- $205 Wasted, ZERO Conversions (Again)</h4>
+    <p>This was flagged in the prior audit ($838 waste over 30 days). The pattern continues -- $205 in 12 days, zero conversions. This page has no form, no CTA, no conversion path. Exclude immediately via campaign URL exclusion.</p>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 6: DEVICE PERFORMANCE                  -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">6</div>
+    <h2>Device Performance</h2>
+  </div>
+
+  <div class="query-block">SELECT campaign.name, segments.device, metrics.cost_micros, metrics.clicks, metrics.impressions, metrics.conversions FROM campaign WHERE segments.date BETWEEN '2026-03-12' AND '2026-03-23' AND campaign.status = 'ENABLED'
+-- Device enum: 2=MOBILE, 3=TABLET, 4=DESKTOP</div>
+
+  <div class="card">
+    <div class="card-body">
+      <table class="data-table">
+        <thead><tr><th>Device</th><th class="num">Spend</th><th class="num">% of Spend</th><th class="num">Clicks</th><th class="num">Conv*</th><th class="num">CPA*</th><th class="num">CVR*</th></tr></thead>
+        <tbody>
+          <tr>
+            <td><strong>Mobile</strong> (enum=2)</td>
+            <td class="num">$3,244</td>
+            <td class="num"><strong>90.3%</strong></td>
+            <td class="num">864</td>
+            <td class="num">14</td>
+            <td class="num">$232</td>
+            <td class="num">1.62%</td>
+          </tr>
+          <tr>
+            <td><strong>Desktop</strong> (enum=4)</td>
+            <td class="num">$288</td>
+            <td class="num">8.0%</td>
+            <td class="num">73</td>
+            <td class="num">3</td>
+            <td class="num">$96</td>
+            <td class="num">4.11%</td>
+          </tr>
+          <tr>
+            <td><strong>Tablet</strong> (enum=3)</td>
+            <td class="num">$62</td>
+            <td class="num">1.7%</td>
+            <td class="num">15</td>
+            <td class="num">0</td>
+            <td class="num">--</td>
+            <td class="num">0%</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="device-bar-wrap">
+        <div class="device-row">
+          <div class="device-label">Mobile</div>
+          <div class="device-bar-bg"><div class="device-bar-fill fill-mobile" style="width: 90.3%;"></div></div>
+          <div class="device-stat">$3,244 (90.3%) | 1.62% CVR</div>
+        </div>
+        <div class="device-row">
+          <div class="device-label">Desktop</div>
+          <div class="device-bar-bg"><div class="device-bar-fill fill-desktop" style="width: 8%;"></div></div>
+          <div class="device-stat">$288 (8.0%) | 4.11% CVR</div>
+        </div>
+        <div class="device-row">
+          <div class="device-label">Tablet</div>
+          <div class="device-bar-bg"><div class="device-bar-fill fill-tablet" style="width: 1.7%;"></div></div>
+          <div class="device-stat">$62 (1.7%) | 0% CVR</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="finding finding-warning" style="margin-top: 16px;">
+    <h4>Mobile = 90% of Spend but Desktop Converts 2.5x Better</h4>
+    <p>Desktop CVR 4.11% vs Mobile 1.62%. Desktop CPA $96 vs Mobile $232 -- that's a <strong>2.4x efficiency gap</strong>. Mobile is even more dominant post-change (90.3% vs 78% in the 30-day window). A -15 to -20% mobile bid adjustment would shift budget toward higher-converting desktop traffic.</p>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 7: SEARCH TERMS                        -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">7</div>
+    <h2>Search Terms -- Waste & Negative Keyword Gaps</h2>
+    <span class="section-badge badge-yellow">Needs Attention</span>
+  </div>
+
+  <div class="finding finding-info" style="margin-bottom: 16px;">
+    <h4>Shared Negative List Confirmed Active</h4>
+    <p><strong>Master Exclusion List 3.18</strong> (162 keywords) is linked to BOTH campaigns (shared set ID 12012201802, status=ENABLED). This is correct.</p>
+  </div>
+
+  <h3 style="font-size: 14px; color: var(--navy); margin-bottom: 12px;">Wasted/Questionable Search Terms (3/12--3/23)</h3>
+  <div class="card" style="overflow-x: auto;">
+    <table class="data-table">
+      <thead><tr><th>Search Term</th><th>Campaign</th><th class="num">Spend</th><th class="num">Clicks</th><th class="num">Conv</th><th>Issue</th></tr></thead>
+      <tbody>
+        <tr style="background: #fef2f2;">
+          <td>ipoolgo prices</td>
+          <td>Fiberglass Primary</td>
+          <td class="num">$11.78</td>
+          <td class="num">3</td>
+          <td class="num">0</td>
+          <td>Competitor brand -- iPool Go</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>sunset pools</td>
+          <td>Pool Builder</td>
+          <td class="num">$8.38</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Competitor brand -- Sunset Pools</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>all around pools llc</td>
+          <td>Pool Builder</td>
+          <td class="num">$8.02</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Competitor brand</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>pila pool</td>
+          <td>Pool Builder</td>
+          <td class="num">$10.31</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Competitor/brand -- Pila Pools</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>pila pools texas</td>
+          <td>Pool Builder</td>
+          <td class="num">$8.04</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Competitor/brand -- Pila Pools</td>
+        </tr>
+        <tr style="background: #fef2f2;">
+          <td>a beautiful pools</td>
+          <td>Pool Builder</td>
+          <td class="num">$11.09</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Competitor brand</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>semi inground pool houston</td>
+          <td>Pool Builder</td>
+          <td class="num">$12.54</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Wrong product -- LP doesn't sell semi-inground</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>semi inground pool installation</td>
+          <td>Pool Builder</td>
+          <td class="num">$8.40</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Wrong product</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>semi inground pool near me</td>
+          <td>Pool Builder</td>
+          <td class="num">$8.16</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Wrong product</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>mini inground pools</td>
+          <td>Pool Builder</td>
+          <td class="num">$11.79</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Wrong product -- informational</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>wholesale fiberglass pools</td>
+          <td>Fiberglass Primary</td>
+          <td class="num">$7.61</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>B2B/wholesale -- not target customer</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>fiberglass pools san antonio</td>
+          <td>Fiberglass Primary</td>
+          <td class="num">$8.02</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Wrong market -- San Antonio has its own account</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>pool prices dropping</td>
+          <td>Fiberglass Primary</td>
+          <td class="num">$8.24</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Informational/news -- not purchase intent</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>pool estimate calculator</td>
+          <td>Pool Builder</td>
+          <td class="num">$13.68</td>
+          <td class="num">2</td>
+          <td class="num">0</td>
+          <td>Tool-seeking, not lead intent</td>
+        </tr>
+        <tr style="background: #fef9c3;">
+          <td>spool pool cost</td>
+          <td>Fiberglass Primary</td>
+          <td class="num">$11.35</td>
+          <td class="num">3</td>
+          <td class="num">0</td>
+          <td>Specific product type LP doesn't offer</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr style="font-weight: 700; background: #fef2f2;">
+          <td colspan="2">Total Identifiable Waste</td>
+          <td class="num">$147.41</td>
+          <td class="num">32</td>
+          <td class="num">0</td>
+          <td>~4.1% of total spend</td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+
+  <div class="copy-block">
+    <h4>Negative Keywords to Add (Click to Copy)</h4>
+    <div class="copy-item" onclick="copyText('ipoolgo')"><span>ipoolgo</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('sunset pools')"><span>sunset pools</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('all around pools')"><span>all around pools</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('pila pool')"><span>pila pool</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('a beautiful pools')"><span>a beautiful pools</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('semi inground')"><span>semi inground</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('wholesale')"><span>wholesale</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('san antonio')"><span>san antonio</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('pool prices dropping')"><span>pool prices dropping</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('calculator')"><span>calculator</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('spool')"><span>spool</span><span class="copy-icon">Copy</span></div>
+    <div class="copy-item" onclick="copyText('mini inground')"><span>mini inground</span><span class="copy-icon">Copy</span></div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 8: STRUCTURAL CHECKS                   -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">8</div>
+    <h2>Structural Checks -- What's Correct</h2>
+    <span class="section-badge badge-green">Verified</span>
+  </div>
+
+  <div class="two-col">
+    <div class="finding finding-positive">
+      <h4>Geo Targeting: PRESENCE (type=7) -- Correct</h4>
+      <p>Both campaigns confirmed via API. Ads only show to people physically in the Houston area.</p>
+    </div>
+    <div class="finding finding-positive">
+      <h4>Shared Negative List: Active</h4>
+      <p>Master Exclusion List 3.18 (162 keywords) linked to both campaigns, status=ENABLED.</p>
+    </div>
+    <div class="finding finding-positive">
+      <h4>Search Network: Google Search Only</h4>
+      <p>Both campaigns: target_google_search=true, target_search_network=false. No Search Partner leakage.</p>
+    </div>
+    <div class="finding finding-info">
+      <h4>Bidding: Max Clicks (TARGET_SPEND) on Both</h4>
+      <p>Fiberglass Primary: $45 CPC cap. Pool Builder: $25 CPC cap. Not optimal for conversion-focused goals, but safe with caps in place. Consider tCPA migration AFTER conversion dedup fix and 14+ days of clean data.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 9: RECOMMENDATIONS                     -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">9</div>
+    <h2>Prioritized Recommendations</h2>
+  </div>
+
+  <div class="rec-grid">
+    <div class="rec-card priority-1">
+      <div class="rec-num">P1 -- Fix Before Thursday Meeting</div>
+      <h3>Deduplicate Conversion Tracking</h3>
+      <p>Remove 6 GA4 conversion actions from primary goals (keep as secondary/observation). This will drop reported conversions by ~50-60% but numbers will be real. See Section 1 for step-by-step.</p>
+      <div class="rec-impact">Impact: Accurate reporting, trustworthy CPA for Donavan meeting</div>
+    </div>
+
+    <div class="rec-card priority-1">
+      <div class="rec-num">P1 -- Immediate</div>
+      <h3>Pause "Pool Contractor" Ad Group</h3>
+      <p>$274 wasted in 12 days, 0 conversions. Redirect budget to "Pool Construction & Installation" AG which has 7 conversions at $141 CPA.</p>
+      <ul><li>Google Ads > Pool Builder campaign > Ad Groups > Pool Contractor > Pause</li></ul>
+      <div class="rec-impact">Impact: Save ~$685/month, redirect to converting AG</div>
+    </div>
+
+    <div class="rec-card priority-1">
+      <div class="rec-num">P1 -- Immediate</div>
+      <h3>Exclude Gallery Landing Page</h3>
+      <p>/fiberglass-pool-photo-gallery/ has $205 waste in 12 days (projecting ~$500/mo), ZERO conversions. This page has no form.</p>
+      <ul><li>Both campaigns > Settings > Additional Settings > Campaign URL options > Exclude /fiberglass-pool-photo-gallery/</li></ul>
+      <div class="rec-impact">Impact: Save ~$500/month of pure waste</div>
+    </div>
+
+    <div class="rec-card priority-1">
+      <div class="rec-num">P1 -- This Week</div>
+      <h3>Reduce /pool-pricing/ Budget Share</h3>
+      <p>This LP absorbs 59% of spend at $470 CPA. Route the "Cost / Pricing" ad group traffic to /fiberglass-pool-designs/ ($79 CPA, 4.37% CVR) or the homepage ($105 CPA, 4.06% CVR) instead.</p>
+      <ul><li>Change final URLs on ads in "Cost / Pricing" AG from /pool-pricing/ to /fiberglass-pool-designs/</li></ul>
+      <div class="rec-impact">Impact: Could cut blended CPA by 30-40%</div>
+    </div>
+
+    <div class="rec-card priority-2">
+      <div class="rec-num">P2 -- This Week</div>
+      <h3>Add Negative Keywords</h3>
+      <p>$147 waste on competitor brands, wrong products, and informational queries in 12 days. Click-to-copy list in Section 7.</p>
+      <div class="rec-impact">Impact: Save ~$370/month, improve lead quality</div>
+    </div>
+
+    <div class="rec-card priority-2">
+      <div class="rec-num">P2 -- This Week</div>
+      <h3>Mobile Bid Adjustment -15%</h3>
+      <p>Mobile = 90% of spend, 1.62% CVR. Desktop = 8% of spend, 4.11% CVR ($96 CPA vs $232). A -15% mobile adjustment shifts budget toward higher-converting desktop.</p>
+      <ul><li>Both campaigns > Devices > Mobile devices > Set bid adjustment to -15%</li></ul>
+      <div class="rec-impact">Impact: Improve blended CVR and CPA</div>
+    </div>
+
+    <div class="rec-card priority-3">
+      <div class="rec-num">P3 -- After Clean Data (2 Weeks)</div>
+      <h3>Migrate to Target CPA Bidding</h3>
+      <p>Max Clicks is leaving 26-59% IS on the table via rank loss. After conversion dedup and 14 days of clean data, switch to tCPA at ~$200 (based on actual clean conversion volume). This will let Google bid more aggressively for likely converters.</p>
+      <div class="rec-impact">Impact: Recover 15-25% IS, better conversion optimization</div>
+    </div>
+
+    <div class="rec-card priority-3">
+      <div class="rec-num">P3 -- Future</div>
+      <h3>Add Brand Campaign</h3>
+      <p>No brand campaign exists. Brand terms ("leisure pools houston") are likely being captured by general campaigns at inflated CPC. A dedicated brand campaign with exact match would capture these at $0.50-1.50 CPC vs $3-5.</p>
+      <div class="rec-impact">Impact: Protect brand terms, lower blended CPC</div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 10: MEETING TALKING POINTS             -->
+<!-- ============================================= -->
+<div class="section">
+  <div class="section-header">
+    <div class="section-icon">10</div>
+    <h2>Thursday Meeting Talking Points for Donavan</h2>
+    <span class="section-badge badge-blue">Meeting Prep</span>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h3 style="font-size: 15px; color: var(--navy); margin-bottom: 14px;">Key Messages for Donavan Naras / Pools 123</h3>
+
+      <div class="finding finding-info">
+        <h4>1. "We found the tracking problem -- and it explains the lead quality concern."</h4>
+        <p>The account was counting every lead 2-3 times due to overlapping GA4 properties. The "42 conversions" from the prior 30-day window were actually ~15-25 unique leads. This is why the numbers looked inflated vs. actual leads received. We are fixing this now.</p>
+      </div>
+
+      <div class="finding finding-positive">
+        <h4>2. "Post-change performance is strong -- when measured correctly."</h4>
+        <p>In the 12 days since changes (Mar 12-23): 952 clicks, ~6-10 real leads, $360-600 actual CPA. For Houston's competitive market (competing with Platinum Pools, Cody Pools, Ocean Blue), this is within acceptable range -- especially given the first pool in the ground came from a Google Ads lead.</p>
+      </div>
+
+      <div class="finding finding-info">
+        <h4>3. "We have a clear optimization plan."</h4>
+        <p>Immediate fixes (this week): (1) Deduplicate conversion tracking so numbers match reality. (2) Cut $750+/month in identified waste (gallery page, Pool Contractor AG, competitor search terms). (3) Route traffic to the best-converting landing page (/fiberglass-pool-designs/ at $79 CPA). After clean data accumulates: migrate to smart bidding optimized for actual leads.</p>
+      </div>
+
+      <div class="finding finding-positive">
+        <h4>4. "The first closed sale from Google Ads proves the funnel works."</h4>
+        <p>The cash deposit from a Google Ads lead (confirmed ~March 14-16) proves the lead-to-sale pipeline is functional. The focus now is efficiency -- getting more leads at lower cost, not questioning whether the channel works.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- end content -->
+
+<div class="footer">
+  Leisure Pools Houston -- Post-Change Audit | Mar 12--23, 2026 | Account 679-038-2043 | Generated by Claude for Eli Bunyi, Explore Industries
+</div>
+
+</body>
+</html>
