@@ -1,0 +1,676 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OpenClaw — Control Center</title>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0f; --card: #12121a; --card2: #1a1a26; --border: #2a2a3a;
+    --purple: #8b5cf6; --purple-dim: rgba(139,92,246,.12);
+    --teal: #14b8a6; --teal-dim: rgba(20,184,166,.12);
+    --green: #22c55e; --green-dim: rgba(34,197,94,.12);
+    --amber: #f59e0b; --amber-dim: rgba(245,158,11,.12);
+    --red: #ef4444; --red-dim: rgba(239,68,68,.12);
+    --blue: #3b82f6; --blue-dim: rgba(59,130,246,.12);
+    --text: #e4e4ef; --text2: #8888a0; --text3: #55556a;
+    --font: -apple-system, BlinkMacSystemFont, system-ui, 'Segoe UI', sans-serif;
+    --mono: 'SF Mono', 'Fira Code', ui-monospace, monospace;
+    --r: 12px; --rs: 8px;
+    --glow-purple: 0 0 20px rgba(139,92,246,.15);
+    --glow-teal: 0 0 20px rgba(20,184,166,.15);
+  }
+  html, body { height: 100%; background: var(--bg); color: var(--text); font: 14px/1.5 var(--font); -webkit-font-smoothing: antialiased; }
+
+  /* ── HEADER ── */
+  .header {
+    position: sticky; top: 0; z-index: 50;
+    background: rgba(10,10,15,.85); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 20px; display: flex; align-items: center; justify-content: space-between;
+  }
+  .header-left { display: flex; align-items: center; gap: 12px; }
+  .logo {
+    width: 36px; height: 36px; border-radius: 10px;
+    background: linear-gradient(135deg, var(--purple), var(--teal));
+    display: flex; align-items: center; justify-content: center;
+    font-size: 20px; box-shadow: var(--glow-purple);
+  }
+  .header-title { font-size: 17px; font-weight: 700; letter-spacing: -.3px; }
+  .header-sub { font-size: 12px; color: var(--text2); }
+  .header-right { display: flex; align-items: center; gap: 16px; }
+  .header-pill {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 4px 12px; border-radius: 20px; font-size: 12px; font-weight: 600;
+  }
+  .hp-green { background: var(--green-dim); color: var(--green); }
+  .hp-purple { background: var(--purple-dim); color: var(--purple); }
+  #live-clock { font-size: 12px; color: var(--text2); font-family: var(--mono); font-variant-numeric: tabular-nums; }
+
+  /* ── NAV TABS ── */
+  .nav-tabs {
+    display: flex; gap: 2px; padding: 8px 20px;
+    border-bottom: 1px solid var(--border); background: rgba(10,10,15,.6);
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+  }
+  .nav-tab {
+    padding: 8px 16px; border-radius: var(--rs); border: none; background: transparent;
+    color: var(--text2); font: 600 13px var(--font); cursor: pointer;
+    transition: all .15s ease; white-space: nowrap;
+  }
+  .nav-tab:hover { color: var(--text); background: rgba(255,255,255,.04); }
+  .nav-tab.active { color: var(--purple); background: var(--purple-dim); }
+
+  /* ── MAIN ── */
+  .main { padding: 20px; max-width: 1400px; margin: 0 auto; }
+  .panel { display: none; animation: fadeUp .2s ease; }
+  .panel.active { display: block; }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  /* ── CARDS ── */
+  .card {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 18px; transition: border-color .2s, box-shadow .2s;
+  }
+  .card:hover { border-color: rgba(139,92,246,.25); }
+  .card-t { font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: .6px; color: var(--text2); margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
+
+  /* ── STAT GRID ── */
+  .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin-bottom: 20px; }
+  .stat {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 16px; text-align: center; transition: all .2s;
+  }
+  .stat:hover { transform: translateY(-2px); box-shadow: var(--glow-purple); }
+  .stat-num { font-size: 28px; font-weight: 800; line-height: 1; }
+  .stat-label { font-size: 11px; color: var(--text2); margin-top: 4px; font-weight: 500; }
+
+  /* ── TWO COLUMNS ── */
+  .cols { display: grid; grid-template-columns: 1fr 380px; gap: 16px; }
+  @media (max-width: 900px) { .cols { grid-template-columns: 1fr; } }
+
+  /* ── AGENT CARDS ── */
+  .agents { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 10px; }
+  .agent {
+    background: var(--card2); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 14px; display: flex; gap: 12px; cursor: pointer; transition: all .2s;
+  }
+  .agent:hover { border-color: var(--purple); box-shadow: var(--glow-purple); transform: translateY(-1px); }
+  .agent-emoji { width: 38px; height: 38px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; background: var(--purple-dim); flex-shrink: 0; }
+  .agent-name { font-size: 14px; font-weight: 600; }
+  .agent-desc { font-size: 11px; color: var(--text2); margin-top: 2px; line-height: 1.4; }
+  .agent-tags { display: flex; gap: 4px; margin-top: 8px; flex-wrap: wrap; }
+  .tag { font-size: 10px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .t-cloud { background: var(--blue-dim); color: var(--blue); }
+  .t-local { background: var(--amber-dim); color: var(--amber); }
+  .t-active { background: var(--green-dim); color: var(--green); }
+  .t-ready { background: rgba(85,85,106,.2); color: var(--text2); }
+
+  /* ── SECURITY ── */
+  .sec-row { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(42,42,58,.5); }
+  .sec-row:last-child { border-bottom: none; }
+  .sec-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+  .sec-dot.g { background: var(--green); box-shadow: 0 0 6px var(--green); }
+  .sec-dot.y { background: var(--amber); box-shadow: 0 0 6px var(--amber); }
+  .sec-dot.r { background: var(--red); box-shadow: 0 0 6px var(--red); }
+  .sec-label { flex: 1; font-size: 13px; }
+  .sec-val { font-size: 11px; font-weight: 600; padding: 2px 8px; border-radius: 10px; }
+  .sv-g { background: var(--green-dim); color: var(--green); }
+  .sv-y { background: var(--amber-dim); color: var(--amber); }
+
+  /* ── MODEL CARDS ── */
+  .models { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 12px; }
+  .model {
+    background: var(--card); border: 1px solid var(--border); border-radius: var(--r);
+    padding: 16px; transition: all .2s; position: relative; overflow: hidden;
+  }
+  .model:hover { border-color: var(--teal); box-shadow: var(--glow-teal); }
+  .model-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+  .model-name { font-size: 14px; font-weight: 700; font-family: var(--mono); }
+  .model-badge { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 8px; }
+  .mb-ollama { background: var(--amber-dim); color: var(--amber); }
+  .mb-openai { background: var(--blue-dim); color: var(--blue); }
+  .mb-anthropic { background: var(--purple-dim); color: var(--purple); }
+  .model-desc { font-size: 12px; color: var(--text2); margin-bottom: 10px; }
+  .model-specs { display: flex; flex-wrap: wrap; gap: 6px; }
+  .spec { font-size: 10px; color: var(--text3); background: rgba(85,85,106,.15); padding: 3px 8px; border-radius: 6px; font-family: var(--mono); }
+  .model-cost { margin-top: 10px; font-size: 12px; }
+  .free { color: var(--green); font-weight: 700; }
+
+  /* ── KB ── */
+  .kb-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+  .kb-stat { text-align: center; padding: 16px; background: var(--card); border: 1px solid var(--border); border-radius: var(--r); }
+  .kb-num { font-size: 32px; font-weight: 800; color: var(--teal); }
+  .kb-label { font-size: 11px; color: var(--text2); }
+  .kb-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  @media (max-width: 800px) { .kb-grid, .kb-stats { grid-template-columns: 1fr; } }
+  .kb-item {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 7px 10px; border-radius: var(--rs); transition: background .15s;
+    font-size: 13px;
+  }
+  .kb-item:hover { background: rgba(139,92,246,.06); }
+  .kb-brand { font-size: 10px; font-weight: 600; color: var(--teal); font-family: var(--mono); }
+  .exclusion { display: inline-flex; align-items: center; gap: 4px; font-size: 11px; padding: 3px 10px; border-radius: 10px; background: var(--red-dim); color: var(--red); border: 1px solid rgba(239,68,68,.15); margin: 3px; }
+
+  /* ── QUICK ACTIONS ── */
+  .actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  .act-btn {
+    display: flex; align-items: center; justify-content: center; gap: 8px;
+    padding: 12px; border-radius: var(--rs); font: 600 13px var(--font);
+    border: 1px solid transparent; cursor: pointer; transition: all .15s;
+  }
+  .act-btn:hover { transform: translateY(-1px); }
+  .act-btn:active { transform: scale(.98); }
+  .ab-purple { background: var(--purple-dim); color: var(--purple); border-color: rgba(139,92,246,.2); }
+  .ab-purple:hover { background: rgba(139,92,246,.2); }
+  .ab-teal { background: var(--teal-dim); color: var(--teal); border-color: rgba(20,184,166,.2); }
+  .ab-teal:hover { background: rgba(20,184,166,.2); }
+  .ab-amber { background: var(--amber-dim); color: var(--amber); border-color: rgba(245,158,11,.2); }
+  .ab-amber:hover { background: rgba(245,158,11,.2); }
+  .ab-blue { background: var(--blue-dim); color: var(--blue); border-color: rgba(59,130,246,.2); }
+  .ab-blue:hover { background: rgba(59,130,246,.2); }
+  .ab-green { background: var(--green-dim); color: var(--green); border-color: rgba(34,197,94,.2); }
+  .ab-green:hover { background: rgba(34,197,94,.2); }
+  .ab-red { background: var(--red-dim); color: var(--red); border-color: rgba(239,68,68,.2); }
+  .ab-red:hover { background: rgba(239,68,68,.2); }
+
+  /* ── DEVICES ── */
+  .device { display: flex; align-items: center; gap: 10px; padding: 10px 0; border-bottom: 1px solid rgba(42,42,58,.4); }
+  .device:last-child { border-bottom: none; }
+  .device-icon { font-size: 18px; width: 32px; text-align: center; }
+  .device-info { flex: 1; }
+  .device-name { font-size: 13px; font-weight: 600; }
+  .device-meta { font-size: 11px; color: var(--text2); }
+
+  /* ── FEED ── */
+  .feed { max-height: 300px; overflow-y: auto; }
+  .feed::-webkit-scrollbar { width: 4px; }
+  .feed::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+  .feed-item { display: flex; gap: 8px; padding: 8px 0; border-bottom: 1px solid rgba(42,42,58,.3); font-size: 12px; }
+  .feed-item:last-child { border-bottom: none; }
+  .feed-time { color: var(--text3); min-width: 52px; font-family: var(--mono); font-variant-numeric: tabular-nums; }
+  .feed-icon { font-size: 13px; }
+  .feed-msg { color: var(--text2); flex: 1; }
+
+  /* ── AUDIT ── */
+  .audit-item { display: flex; gap: 10px; padding: 12px 0; border-bottom: 1px solid rgba(42,42,58,.4); }
+  .audit-item:last-child { border-bottom: none; }
+  .audit-sev { font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 6px; min-width: 44px; text-align: center; flex-shrink: 0; height: fit-content; margin-top: 2px; }
+  .as-pass { background: var(--green-dim); color: var(--green); }
+  .as-warn { background: var(--amber-dim); color: var(--amber); }
+  .as-info { background: var(--blue-dim); color: var(--blue); }
+  .audit-title { font-size: 13px; font-weight: 500; }
+  .audit-desc { font-size: 11px; color: var(--text2); margin-top: 3px; line-height: 1.5; }
+
+  /* Checklist */
+  .check-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid rgba(42,42,58,.3); }
+  .check-item:last-child { border-bottom: none; }
+  .check-item input[type=checkbox] { accent-color: var(--green); width: 16px; height: 16px; cursor: pointer; }
+  .check-item label { font-size: 13px; cursor: pointer; flex: 1; }
+
+  /* ── TOAST ── */
+  .toast {
+    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%) translateY(60px);
+    background: var(--card2); border: 1px solid var(--purple); border-radius: var(--r);
+    padding: 10px 24px; font-size: 13px; font-weight: 500; z-index: 200;
+    box-shadow: var(--glow-purple); transition: all .3s ease; opacity: 0; pointer-events: none;
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* ── MODAL ── */
+  .modal-bg {
+    position: fixed; inset: 0; background: rgba(0,0,0,.6); backdrop-filter: blur(4px);
+    z-index: 100; display: none; place-items: center; padding: 20px;
+  }
+  .modal-bg.show { display: grid; }
+  .modal {
+    background: var(--card); border: 1px solid var(--border); border-radius: 16px;
+    padding: 24px; width: min(500px, 100%); max-height: 80vh; overflow-y: auto;
+    animation: fadeUp .2s ease;
+  }
+  .modal h2 { font-size: 18px; margin-bottom: 16px; }
+  .modal-close { float: right; background: none; border: none; color: var(--text2); font-size: 20px; cursor: pointer; }
+  .modal-close:hover { color: var(--text); }
+
+  /* Agent detail */
+  .detail-section { margin-top: 16px; }
+  .detail-section h3 { font-size: 13px; color: var(--text2); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 8px; }
+  .detail-kv { display: flex; justify-content: space-between; padding: 6px 0; border-bottom: 1px solid rgba(42,42,58,.3); font-size: 13px; }
+  .detail-kv:last-child { border-bottom: none; }
+  .detail-key { color: var(--text2); }
+  .detail-val { color: var(--text); font-weight: 500; }
+
+  /* Ollama live status */
+  .ollama-live { display: flex; align-items: center; gap: 8px; padding: 10px; background: var(--card2); border-radius: var(--rs); margin-bottom: 12px; font-size: 12px; }
+  .ollama-dot { width: 8px; height: 8px; border-radius: 50%; animation: pulse 2s ease-in-out infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: .4; } }
+</style>
+
+<!-- ═══════════ MARKUP ═══════════ -->
+<div class="header">
+  <div class="header-left">
+    <div class="logo">🦞</div>
+    <div>
+      <div class="header-title">OpenClaw Control Center</div>
+      <div class="header-sub">Explore Industries · <span id="header-version">v2026.3.24</span></div>
+    </div>
+  </div>
+  <div class="header-right">
+    <span class="header-pill hp-green"><span class="sec-dot g" style="width:6px;height:6px"></span> Gateway Up</span>
+    <span class="header-pill hp-purple">7 Agents</span>
+    <span id="live-clock"></span>
+  </div>
+</div>
+
+<div class="nav-tabs">
+  <button class="nav-tab active" data-tab="overview">Overview</button>
+  <button class="nav-tab" data-tab="agents">Agents</button>
+  <button class="nav-tab" data-tab="models">Models</button>
+  <button class="nav-tab" data-tab="knowledge">Knowledge</button>
+  <button class="nav-tab" data-tab="security">Security</button>
+</div>
+
+<div class="main">
+
+<!-- ═══════════ OVERVIEW ═══════════ -->
+<div id="p-overview" class="panel active">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" style="color:var(--purple)">7</div><div class="stat-label">Active Agents</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--teal)">6</div><div class="stat-label">Local Models</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--blue)">48</div><div class="stat-label">Knowledge Files</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">A-</div><div class="stat-label">Security Score</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--amber)">3</div><div class="stat-label">Paired Devices</div></div>
+  </div>
+
+  <div class="cols">
+    <div>
+      <!-- Agent Overview -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-t">🤖 Agents</div>
+        <div class="agents" id="agents-overview"></div>
+      </div>
+
+      <!-- Live Ollama -->
+      <div class="card">
+        <div class="card-t">🧠 Ollama Status</div>
+        <div class="ollama-live">
+          <span class="ollama-dot" id="ollama-dot" style="background:var(--text3)"></span>
+          <span id="ollama-status">Checking...</span>
+        </div>
+        <div id="ollama-models"></div>
+      </div>
+    </div>
+
+    <div>
+      <!-- Security Quick -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-t">🛡️ Security</div>
+        <div class="sec-row"><span class="sec-dot g"></span><span class="sec-label">Gateway</span><span class="sec-val sv-g">localhost</span></div>
+        <div class="sec-row"><span class="sec-dot g"></span><span class="sec-label">Auth token</span><span class="sec-val sv-g">enabled</span></div>
+        <div class="sec-row"><span class="sec-dot g"></span><span class="sec-label">Permissions</span><span class="sec-val sv-g">700</span></div>
+        <div class="sec-row"><span class="sec-dot y"></span><span class="sec-label">Trusted proxies</span><span class="sec-val sv-y">not set</span></div>
+        <div class="sec-row"><span class="sec-dot g"></span><span class="sec-label">External exposure</span><span class="sec-val sv-g">none</span></div>
+        <div class="sec-row"><span class="sec-dot g"></span><span class="sec-label">Webhooks</span><span class="sec-val sv-g">off</span></div>
+      </div>
+
+      <!-- Quick Actions -->
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-t">⚡ Quick Actions</div>
+        <div class="actions">
+          <button class="act-btn ab-purple" onclick="sendAction('security-audit','quick.security')">🛡️ Security Audit</button>
+          <button class="act-btn ab-teal" onclick="sendAction('doctor','quick.doctor')">🩺 Run Doctor</button>
+          <button class="act-btn ab-amber" onclick="sendAction('refresh-kb','quick.kb')">📚 Refresh KB</button>
+          <button class="act-btn ab-blue" onclick="sendAction('check-models','quick.models')">🧠 Check Models</button>
+          <button class="act-btn ab-green" onclick="sendAction('pull-model','quick.pull')">⬇️ Pull Model</button>
+          <button class="act-btn ab-red" onclick="sendAction('restart-gateway','quick.restart')">🔄 Restart</button>
+        </div>
+      </div>
+
+      <!-- Devices -->
+      <div class="card">
+        <div class="card-t">📱 Paired Devices</div>
+        <div class="device"><div class="device-icon">💻</div><div class="device-info"><div class="device-name">CLI (darwin)</div><div class="device-meta">operator · admin · pairing</div></div></div>
+        <div class="device"><div class="device-icon">🌐</div><div class="device-info"><div class="device-name">Control UI (webchat)</div><div class="device-meta">operator · admin · pairing</div></div></div>
+        <div class="device"><div class="device-icon">💻</div><div class="device-info"><div class="device-name">MacBook Air (2)</div><div class="device-meta">operator · admin · pairing</div></div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ AGENTS ═══════════ -->
+<div id="p-agents" class="panel">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" style="color:var(--purple)">7</div><div class="stat-label">Total Agents</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">1</div><div class="stat-label">Main Agent</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--blue)">6</div><div class="stat-label">Specialized</div></div>
+  </div>
+  <div class="agents" id="agents-full"></div>
+</div>
+
+<!-- ═══════════ MODELS ═══════════ -->
+<div id="p-models" class="panel">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" style="color:var(--amber)">6</div><div class="stat-label">Local (Ollama)</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--blue)">1</div><div class="stat-label">OpenAI Cloud</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--purple)">2</div><div class="stat-label">Anthropic Cloud</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">$0</div><div class="stat-label">Local Cost</div></div>
+  </div>
+  <div class="models" id="models-grid"></div>
+</div>
+
+<!-- ═══════════ KNOWLEDGE ═══════════ -->
+<div id="p-knowledge" class="panel">
+  <div class="kb-stats">
+    <div class="kb-stat"><div class="kb-num">32</div><div class="kb-label">Dealer Profiles</div></div>
+    <div class="kb-stat"><div class="kb-num">4</div><div class="kb-label">Brand Guides</div></div>
+    <div class="kb-stat"><div class="kb-num">7</div><div class="kb-label">Agent Playbooks</div></div>
+  </div>
+  <div class="kb-grid">
+    <div>
+      <div class="card">
+        <div class="card-t">🏪 Dealer Knowledge</div>
+        <div id="kb-dealers"></div>
+      </div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-t">🎨 Brand Guides</div>
+        <div class="kb-item"><span>Leisure Pools</span><span class="kb-brand">leisurepoolsusa.com</span></div>
+        <div class="kb-item"><span>Aviva Pools</span><span class="kb-brand">avivapools.com</span></div>
+        <div class="kb-item"><span>Imagine Pools</span><span class="kb-brand">imaginepools.com</span></div>
+        <div class="kb-item"><span>Evo Pools</span><span class="kb-brand">evopools.com</span></div>
+      </div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-t">📋 Agent Playbooks</div>
+        <div class="kb-item"><span>Social Captions</span><span class="kb-brand">caption formulas</span></div>
+        <div class="kb-item"><span>Reddit Monitor</span><span class="kb-brand">subreddits + triggers</span></div>
+        <div class="kb-item"><span>Content Research</span><span class="kb-brand">SEO + blog angles</span></div>
+        <div class="kb-item"><span>Competitor Social</span><span class="kb-brand">tracking playbook</span></div>
+        <div class="kb-item"><span>Market Research</span><span class="kb-brand">per-dealer framework</span></div>
+        <div class="kb-item"><span>Brand QA</span><span class="kb-brand">guideline checks</span></div>
+        <div class="kb-item"><span>Caption From Blog</span><span class="kb-brand">blog → social</span></div>
+      </div>
+      <div class="card">
+        <div class="card-t">🚫 Exclusion Zone</div>
+        <p style="font-size:11px;color:var(--text2);margin-bottom:10px">These are NOT in the knowledge base — agents cannot access:</p>
+        <div style="display:flex;flex-wrap:wrap;gap:4px">
+          <span class="exclusion">🔑 Google Ads API</span>
+          <span class="exclusion">🔑 OAuth tokens</span>
+          <span class="exclusion">🔑 MCC account IDs</span>
+          <span class="exclusion">📊 GA4 / GTM</span>
+          <span class="exclusion">💰 Billing data</span>
+          <span class="exclusion">📧 Gmail creds</span>
+          <span class="exclusion">🔧 Write tool</span>
+          <span class="exclusion">📝 CLAUDE.md</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════ SECURITY ═══════════ -->
+<div id="p-security" class="panel">
+  <div class="stats">
+    <div class="stat"><div class="stat-num" style="color:var(--green)">8</div><div class="stat-label">Passed</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--amber)">1</div><div class="stat-label">Warnings</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--green)">0</div><div class="stat-label">Critical</div></div>
+    <div class="stat"><div class="stat-num" style="color:var(--blue)">1</div><div class="stat-label">Info</div></div>
+  </div>
+  <div class="cols">
+    <div class="card">
+      <div class="card-t">🔍 Audit Results</div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">Gateway bound to localhost</div><div class="audit-desc">127.0.0.1:18789 — not exposed to network. #1 security control.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">Authentication enabled</div><div class="audit-desc">Token auth with 48-char token. Consider upgrading to 64+.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">No external webhooks</div><div class="audit-desc">Zero inbound/outbound webhook endpoints. No hook attack surface.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">Config permissions 700</div><div class="audit-desc">~/.openclaw/ owner-only. Credentials not world-readable.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-warn">WARN</span><div><div class="audit-title">Trusted proxies not configured</div><div class="audit-desc">Safe while localhost-only. MUST set before any reverse proxy exposure.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">No open groups/channels</div><div class="audit-desc">Zero external connections. All communication local.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-info">INFO</span><div><div class="audit-title">Browser control enabled</div><div class="audit-desc">Agents can control browser. Disable if unused to reduce surface.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">Single operator trust model</div><div class="audit-desc">Personal assistant mode — appropriate for this setup.</div></div></div>
+      <div class="audit-item"><span class="audit-sev as-pass">PASS</span><div><div class="audit-title">CVE-2026-25253 (RCE)</div><div class="audit-desc">NOT affected — gateway is localhost-only. 42K+ instances exposed globally, yours is not one.</div></div></div>
+    </div>
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-t">✅ Hardening Checklist</div>
+        <div class="check-item"><input type="checkbox" checked disabled><label>Gateway localhost-only</label></div>
+        <div class="check-item"><input type="checkbox" checked disabled><label>Auth token enabled</label></div>
+        <div class="check-item"><input type="checkbox" checked disabled><label>Config directory 700</label></div>
+        <div class="check-item"><input type="checkbox" id="hc1"><label for="hc1">Upgrade token to 64+ chars</label></div>
+        <div class="check-item"><input type="checkbox" id="hc2"><label for="hc2">Disable browser control</label></div>
+        <div class="check-item"><input type="checkbox" id="hc3"><label for="hc3">Set exec-approval restrictions</label></div>
+        <div class="check-item"><input type="checkbox" id="hc4"><label for="hc4">Restrict pairing to CLI</label></div>
+        <div class="check-item"><input type="checkbox" id="hc5"><label for="hc5">Review ClawHub skills</label></div>
+      </div>
+      <div class="card">
+        <div class="card-t">⚡ Security Actions</div>
+        <div class="actions">
+          <button class="act-btn ab-purple" onclick="sendAction('security-audit','sec.audit')" style="grid-column:span 2">🛡️ Run Full Security Audit</button>
+          <button class="act-btn ab-amber" onclick="sendAction('rotate-token','sec.rotate')">🔑 Rotate Token</button>
+          <button class="act-btn ab-red" onclick="sendAction('revoke-device','sec.revoke')">🚫 Revoke Device</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<!-- Agent Detail Modal -->
+<div class="modal-bg" id="agent-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="agent-detail"></div>
+  </div>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ═══════════ DATA ═══════════
+const AGENTS = [
+  { id:'main', emoji:'🦞', name:'Explore HQ', desc:'Primary assistant — social, research, brand QA, full coordination', model:'GPT-5.4', type:'cloud', status:'active', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+  { id:'social-captions', emoji:'📱', name:'Social Captions', desc:'Brand-specific social media caption writing for all 4 brands', model:'GPT-5.4', type:'cloud', status:'ready', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+  { id:'reddit-monitor', emoji:'🔍', name:'Reddit Monitor', desc:'Track pool-related Reddit threads, sentiment, and opportunities', model:'GPT-5.4', type:'cloud', status:'ready', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+  { id:'content-research', emoji:'📝', name:'Content Research', desc:'Blog topics, SEO angles, content calendar ideas per brand', model:'GPT-5.4', type:'cloud', status:'ready', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+  { id:'competitor-watch', emoji:'👀', name:'Competitor Watch', desc:'Monitor competitor social, ads, and web presence across markets', model:'GPT-5.4', type:'cloud', status:'ready', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+  { id:'brand-qa', emoji:'✅', name:'Brand QA', desc:'Check content against brand guidelines before posting — cross-reference prevention', model:'GPT-5.4', type:'cloud', status:'ready', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+  { id:'market-research', emoji:'📊', name:'Market Research', desc:'Per-dealer local market analysis — keywords, competitors, seasonal angles', model:'GPT-5.4', type:'cloud', status:'ready', workspace:'/Users/Explore/Documents/OpenClaw-HQ' },
+];
+
+const MODELS = [
+  { name:'explore-assistant:latest', provider:'ollama', desc:'Custom assistant fine-tuned for Explore workflows', specs:['128K ctx','8K out','text'], cost:'FREE' },
+  { name:'explore-caption-writer:latest', provider:'ollama', desc:'Specialized social media caption generation', specs:['32K ctx','8K out','text'], cost:'FREE' },
+  { name:'llama3.2:3b', provider:'ollama', desc:'Meta Llama 3.2 — fast general-purpose reasoning', specs:['3.2B','128K ctx','Q4_K_M','2.0 GB'], cost:'FREE' },
+  { name:'qwen2.5:3b', provider:'ollama', desc:'Alibaba Qwen 2.5 — strong multilingual + tool use', specs:['3.1B','32K ctx','Q4_K_M','1.9 GB'], cost:'FREE' },
+  { name:'phi3:mini', provider:'ollama', desc:'Microsoft Phi-3 Mini — compact reasoning', specs:['3.8B','128K ctx','Q4_0','2.2 GB'], cost:'FREE' },
+  { name:'nomic-embed-text', provider:'ollama', desc:'Embedding model for RAG and knowledge search', specs:['137M','2K ctx','F16','274 MB'], cost:'FREE' },
+  { name:'GPT-5.4 (Codex)', provider:'openai', desc:'Default cloud model for all agents via ChatGPT Team', specs:['cloud','reasoning','text + image'], cost:'Team plan' },
+  { name:'Claude Opus 4.6', provider:'anthropic', desc:'Top-tier reasoning via Vertex AI', specs:['1M ctx','128K out','reasoning'], cost:'Pay-per-token' },
+  { name:'Claude Sonnet 4.6', provider:'anthropic', desc:'Fast + capable via Vertex AI', specs:['1M ctx','128K out','reasoning'], cost:'Pay-per-token' },
+];
+
+const DEALERS = [
+  'All American Pools & Spas','Aqua Pools Corpus Christi','Backyard Pool & Patio','Blue Orca Pools',
+  'Bluefin Contracting','Bluefin Pools Texas','Cajun Pools & Spas','Elite Aviva Nashville South',
+  'Elite Aviva Terre Haute','Elite LP Athens','Elite LP Beaufort','Elite LP Coastal Mississippi',
+  'Elite LP Columbus OH','Elite LP Jacksonville','Elite LP Lake City','Elite LP Northwest Ohio',
+  'Elite LP Sarasota','Elite LP Savannah','Integrity Built Pools','Leisure Pools Austin',
+  'Leisure Pools Boston North','Leisure Pools DFW','Leisure Pools Europe','Leisure Pools Front Range',
+  'Leisure Pools Houston','Leisure Pools OK','Leisure Pools San Antonio','Leisure Pools Waco',
+  'Poolux Builders','Precision Fiberglass Pools','Pronto Pools','Tri-County Pools'
+];
+
+// ═══════════ BRIDGE ═══════════
+function hasBridge() {
+  return typeof window.openclawSendUserAction === 'function';
+}
+
+function sendAction(name, sourceId) {
+  if (hasBridge()) {
+    const ok = window.openclawSendUserAction({ name, surfaceId:'control-center', sourceComponentId:sourceId, context:{ t:Date.now() } });
+    toast(ok ? 'Sent: ' + name : 'Failed: ' + name);
+  } else {
+    toast('Action: ' + name + ' (bridge not connected — open in OpenClaw app)');
+  }
+}
+
+// ═══════════ TAB SWITCHING ═══════════
+document.querySelectorAll('.nav-tab').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('p-' + btn.dataset.tab).classList.add('active');
+    localStorage.setItem('oc_tab', btn.dataset.tab);
+  });
+});
+
+// ═══════════ RENDER AGENTS ═══════════
+function renderAgents(containerId, detailed) {
+  const el = document.getElementById(containerId);
+  el.innerHTML = AGENTS.map(a => `
+    <div class="agent" onclick="showAgent('${a.id}')">
+      <div class="agent-emoji">${a.emoji}</div>
+      <div>
+        <div class="agent-name">${a.name}</div>
+        <div class="agent-desc">${a.desc}</div>
+        <div class="agent-tags">
+          <span class="tag ${a.type === 'cloud' ? 't-cloud' : 't-local'}">${a.model}</span>
+          <span class="tag ${a.status === 'active' ? 't-active' : 't-ready'}">${a.status === 'active' ? '● Active' : '○ Ready'}</span>
+        </div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ═══════════ AGENT DETAIL MODAL ═══════════
+function showAgent(id) {
+  const a = AGENTS.find(x => x.id === id);
+  if (!a) return;
+  document.getElementById('agent-detail').innerHTML = `
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:16px">
+      <div class="agent-emoji" style="width:48px;height:48px;font-size:24px">${a.emoji}</div>
+      <div>
+        <div style="font-size:18px;font-weight:700">${a.name}</div>
+        <div style="font-size:12px;color:var(--text2)">${a.desc}</div>
+      </div>
+    </div>
+    <div class="detail-section">
+      <h3>Configuration</h3>
+      <div class="detail-kv"><span class="detail-key">Agent ID</span><span class="detail-val" style="font-family:var(--mono)">${a.id}</span></div>
+      <div class="detail-kv"><span class="detail-key">Model</span><span class="detail-val">${a.model}</span></div>
+      <div class="detail-kv"><span class="detail-key">Type</span><span class="detail-val">${a.type === 'cloud' ? '☁️ Cloud' : '🏠 Local'}</span></div>
+      <div class="detail-kv"><span class="detail-key">Status</span><span class="detail-val">${a.status === 'active' ? '🟢 Active' : '⚪ Ready'}</span></div>
+      <div class="detail-kv"><span class="detail-key">Workspace</span><span class="detail-val" style="font-size:11px;font-family:var(--mono)">${a.workspace}</span></div>
+    </div>
+    <div class="detail-section">
+      <h3>Capabilities</h3>
+      <div style="font-size:12px;color:var(--text2);line-height:1.8">
+        ${a.id === 'main' ? '✅ Social content · ✅ Reddit · ✅ Research · ✅ Brand QA · ✅ Coordination<br>🚫 Google Ads · 🚫 Email · 🚫 Billing · 🚫 GA4/GTM' :
+          a.id === 'social-captions' ? '✅ Caption writing · ✅ Brand voice · ✅ Pool model naming · ✅ Colorway matching<br>🚫 Posting (draft only) · 🚫 Scheduling' :
+          a.id === 'reddit-monitor' ? '✅ Subreddit monitoring · ✅ Sentiment analysis · ✅ Opportunity flagging<br>🚫 Posting · 🚫 Commenting · 🚫 Upvoting' :
+          a.id === 'brand-qa' ? '✅ Guideline checking · ✅ Cross-reference prevention · ✅ Model/colorway verification<br>🚫 Content creation · 🚫 Publishing' :
+          a.id === 'market-research' ? '✅ Local market analysis · ✅ Competitor research · ✅ Keyword opportunities<br>🚫 Google Ads changes · 🚫 Budget recommendations' :
+          '✅ Research · ✅ Analysis · ✅ Documentation<br>🚫 External actions · 🚫 Google Ads'}
+      </div>
+    </div>
+    <div style="margin-top:20px;display:flex;gap:8px">
+      <button class="act-btn ab-purple" onclick="sendAction('invoke-agent','agent.${a.id}')" style="flex:1">▶️ Invoke Agent</button>
+      <button class="act-btn ab-amber" onclick="sendAction('configure-agent','agent.config.${a.id}')" style="flex:1">⚙️ Configure</button>
+    </div>
+  `;
+  document.getElementById('agent-modal').classList.add('show');
+}
+
+function closeModal() { document.getElementById('agent-modal').classList.remove('show'); }
+document.getElementById('agent-modal').addEventListener('click', e => { if (e.target === document.getElementById('agent-modal')) closeModal(); });
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// ═══════════ RENDER MODELS ═══════════
+function renderModels() {
+  document.getElementById('models-grid').innerHTML = MODELS.map(m => `
+    <div class="model">
+      <div class="model-top">
+        <div class="model-name">${m.name}</div>
+        <span class="model-badge mb-${m.provider}">${m.provider}</span>
+      </div>
+      <div class="model-desc">${m.desc}</div>
+      <div class="model-specs">${m.specs.map(s => `<span class="spec">${s}</span>`).join('')}</div>
+      <div class="model-cost">${m.cost === 'FREE' ? '<span class="free">FREE</span> · local inference' : m.cost}</div>
+    </div>
+  `).join('');
+}
+
+// ═══════════ RENDER KB DEALERS ═══════════
+function renderDealers() {
+  document.getElementById('kb-dealers').innerHTML = DEALERS.map(d => {
+    const brand = d.includes('Aviva') ? 'AV' : d.includes('Evo') ? 'EV' : d.includes('Imagine') ? 'IM' : 'LP';
+    return `<div class="kb-item"><span>${d}</span><span class="kb-brand">${brand}</span></div>`;
+  }).join('');
+}
+
+// ═══════════ OLLAMA LIVE CHECK ═══════════
+async function checkOllama() {
+  const dot = document.getElementById('ollama-dot');
+  const status = document.getElementById('ollama-status');
+  const models = document.getElementById('ollama-models');
+  try {
+    const res = await fetch('http://127.0.0.1:11434/api/tags');
+    if (res.ok) {
+      const data = await res.json();
+      dot.style.background = 'var(--green)';
+      status.innerHTML = '<span style="color:var(--green);font-weight:600">Connected</span> — ' + data.models.length + ' models loaded on localhost:11434';
+      models.innerHTML = data.models.map(m => {
+        const size = (m.size / 1e9).toFixed(1);
+        return `<div style="display:flex;align-items:center;justify-content:space-between;padding:6px 0;border-bottom:1px solid rgba(42,42,58,.3);font-size:12px">
+          <span style="font-family:var(--mono);font-weight:600">${m.name}</span>
+          <span style="color:var(--text2)">${size} GB · ${m.details.parameter_size} · ${m.details.quantization_level}</span>
+        </div>`;
+      }).join('');
+    } else throw new Error('not ok');
+  } catch {
+    dot.style.background = 'var(--red)';
+    status.innerHTML = '<span style="color:var(--red);font-weight:600">Offline</span> — Ollama not responding on localhost:11434';
+    models.innerHTML = '<div style="font-size:12px;color:var(--text2);padding:8px 0">Run <code style="background:var(--card2);padding:2px 6px;border-radius:4px">ollama serve</code> to start</div>';
+  }
+}
+
+// ═══════════ TOAST ═══════════
+let toastTimer;
+function toast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ═══════════ CLOCK ═══════════
+function tick() {
+  const now = new Date();
+  let h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+  const ampm = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12;
+  document.getElementById('live-clock').textContent = h + ':' + String(m).padStart(2,'0') + ':' + String(s).padStart(2,'0') + ' ' + ampm;
+}
+
+// ═══════════ INIT ═══════════
+(function init() {
+  renderAgents('agents-overview'); renderAgents('agents-full', true);
+  renderModels(); renderDealers();
+  checkOllama(); setInterval(checkOllama, 30000);
+  tick(); setInterval(tick, 1000);
+
+  // Restore tab
+  const saved = localStorage.getItem('oc_tab');
+  if (saved) {
+    document.querySelectorAll('.nav-tab').forEach(b => { b.classList.toggle('active', b.dataset.tab === saved); });
+    document.querySelectorAll('.panel').forEach(p => { p.classList.toggle('active', p.id === 'p-' + saved); });
+  }
+
+  // Restore security checklist
+  ['hc1','hc2','hc3','hc4','hc5'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) { el.checked = localStorage.getItem('oc_'+id)==='true'; el.onchange = () => localStorage.setItem('oc_'+id, el.checked); }
+  });
+})();
+</script>
